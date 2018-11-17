@@ -672,11 +672,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	    $playlist->setUId($user_id);
 	    $output = $playlist->getPlaylist();
 	    
-	    if (!isset($output)) {
+	    if (empty($output)) {
 	      echo "No tracks added to playlist yet...";
 	    } else {
 	      echo $output;
 	    }
+	    
 	    ?>
 	  </div>
 	  

@@ -587,6 +587,11 @@
 	    $playlist = new Playlist();
 	    $playlist->setUId($user_id);
 	    $output = $playlist->getPlaylist();
+	    if (empty($output)) {
+	      echo "No tracks added to playlist yet...";
+	    } else {
+	      echo $output;
+	    }
 	    ?>
 	  </div>
 
