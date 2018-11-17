@@ -155,9 +155,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       position:relative;
       float:left;
       cursor:pointer;
-      top:20px;
+      top:10px;
       padding:4px;
-      left:230px!important;
+      left:150px!important;
       color:gold!important;
     }
     .m_action_items {
@@ -334,27 +334,25 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var statusCnt = obj.length;
         
         if (statusCnt == 0) {
-          var status = $( '<div>No status history retrieved...</div>');
+          var noStatus = $('<p id="noStatus" class="w3-center">No status history to retrieve...</p>');
           var mostRecentStatus = $('#status_history_container').first();
-          status.prependTo(mostRecentStatus); 
+          noStatus.prependTo(mostRecentStatus);
           return;
         }
 
         for ( var x = 0; x < statusCnt; x++ ) {
           
-          if (obj[x].display != "false") {
+          var status = $( '<div id="status' + obj[x].status_id + '"' + 
+          '<p>' + obj[x].status_text + '</p>' + 
+          '<p>' + obj[x].created_at + '</p>' +
+          '<div id="status_options" style="position:relative;top:2px;padding:10px;">' +
+          '<a id="deleteStatus" href="home.php?action=Delete%20Status&statid=' 
+          + obj[x].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;">' + 
+          '</i></a>' + '</div><hr></div>');
           
-            var status = $( '<div id="status' + obj[x].status_id + '"' + 
-            '<p>' + obj[x].status_text + '</p>' + 
-            '<p>' + obj[x].created_at + '</p>' +
-            '<div id="status_options" style="position:relative;top:2px;padding:10px;">' +
-            '<a id="deleteStatus" href="home.php?action=Delete%20Status&statid=' 
-            + obj[x].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;">' + 
-            '</i></a>' + '</div><hr></div>');
-          
-             var mostRecentStatus = $('#status_history_container').first();
-             status.prependTo(mostRecentStatus);   
-          } 
+          var mostRecentStatus = $('#status_history_container').first();
+          status.prependTo(mostRecentStatus);   
+              
         }	   
       }
     };
@@ -680,7 +678,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	    $output = $playlist->getPlaylist();
 	    
 	    if (!($output)) {
-	      echo "No tracks added to playlist yet...";
+	      echo "<p>No tracks added to playlist yet...</p>";
 	    } else {
 	      echo $output;
 	    }
@@ -728,7 +726,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  </header>
 	  
 	  <div id="flashback_container" class="w3-container status-tab">
-	    <div id="status_history_container"></div>
+	    <div id="status_history_container">
+	    
+	    </div>
 	  </div>	
 	  
       <div class="w3-container w3-light-grey w3-padding">
