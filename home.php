@@ -525,7 +525,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     $('#submit').click(function() {
       $('#status').trigger('focusout'); // Required to make status updates push to server
       var message = $('#status').val();
-      // var user_id = "<?php echo $_SESSION['user_id']; ?>";
+      var user_id = "<?php echo $_SESSION['user_id']; ?>";
       $('#status').val('');
       
       $.ajax({
@@ -534,7 +534,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         dataType: 'json', 
         type: 'POST', 
         url: 'simulation_controller.php',
-        data: { update: message }
+        data: { update: message, u_id: user_id }
       }).done(function ( msg ) {
         
         $('#m_status_update').text(msg[0].status_text);
