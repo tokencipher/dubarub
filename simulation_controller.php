@@ -8,19 +8,23 @@ include ('php_inc/inc_db_qp4.php');
 
 if (isset($_POST['update'])) {
   if (!empty($_POST['update'])) {
-    $verb = $_POST['update'];
-    $user_id = $_SESSION['user_id'];
-    $verb = addslashes($verb);
+    $status = $_POST['update'];
+    $user_id = $_POST['u_id'];
+    $status = addslashes($status);
     if ($conn !== FALSE) {
       $tableName = "status";
-      $sql = "INSERT INTO $tableName (u_id, status_text) VALUES ('$user_id', '$verb')";
-      $conn->query($sql);
+      $sql = "INSERT INTO $tableName (u_id, status_text) VALUES (:user_id, :status)";
+      $stmt = $conn->prepare($sql);
+    
+      $stmt->bindParam(':user_id', $user_id);
+      $stmt->bindParam(':status', $status);
+      $stmt->execute();
     }
   }
 }
 
 // Retrieve the data
-$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE u_id=$user_id AND display!='false'";
+$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE display = 'true' && u_id = $user_id";
 $object = array();
 $x = 0;
 foreach ($conn->query($sql) as $row) {
