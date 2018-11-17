@@ -17,10 +17,10 @@ session_start();
 * end the previous session .
 */
 
-
+/*
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-
+*/
 
 /**
  * Check if the user is logged in.
@@ -155,9 +155,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       position:relative;
       float:left;
       cursor:pointer;
-      top:10px;
+      top:20px;
       padding:4px;
-      left:151px!important;
+      left:230px!important;
       color:gold!important;
     }
     .m_action_items {
@@ -364,7 +364,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var postCnt = obj.length;
         
         if (postCnt == 0) {
-          var post = $('<p style="position:relative;" class="w3-center">No posts to show...</p>');
+          var post = $('<p id="noPosts" class="w3-center">No posts to show...</p>');
           var mostRecentPost = $('#post_container').first();
           post.prependTo(mostRecentPost);
           return;
@@ -838,13 +838,30 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     --> 
     
     
-    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-34px;">
+    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;">
       <span id="profile_followers">444m followers</span>
       <span id="profile_following" style="margin-left:13px;">0 following</span>
-      <span id="profile_posts" style="margin-left:13px;"></span>
+      <span id="profile_posts" style="margin-left:13px;">
+      <?php
+      
+        $id = $_SESSION['user_id'];
+        $post = new Post();
+        $post->setUserId($id);
+        $postCount = $post->getPostDisplayCount();
+        
+        if ($postCount == 1) {
+          echo "$postCount post";
+        } else if ($postCount > 1) {
+          echo "$postCount posts";
+        } else {
+          echo "0 posts";
+        }   
+      
+      ?>
+      </span>
     </div>
     
-    <div id="bio_text" style="position:relative;top:-30px;">
+    <div id="bio_text" style="position:relative;top:-13px;">
       <!-- Display bio from db -->
       <?php
         $user_id = $_SESSION['user_id'];
@@ -852,11 +869,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         $bio->setUserId($user_id);
         echo $bio->getBio();  
       ?>  
-      <!--
-      If you have any questions, ideas or concerns please contact me at 
-      <a href="mailto:adminb@quarterpast4.com" target="_top" style="color:blue;">adminb@quarterpast4.com</a>.
-       Thanks for visiting.
-      -->
+
     </div>
     
   </div>
@@ -915,13 +928,30 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     -->
     
-    <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-48px;">
+    <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;">
       <span id="m_profile_followers">444m followers</span>
       <span id="m_profile_following" style="margin-left:13px;">0 following</span>
-      <span id="m_profile_posts" style="margin-left:13px;">4 posts</span>
+      <span id="m_profile_posts" style="margin-left:13px;">
+      <?php
+      
+        $id = $_SESSION['user_id'];
+        $post = new Post();
+        $post->setUserId($id);
+        $postCount = $post->getPostDisplayCount();
+        
+        if ($postCount == 1) {
+          echo "$postCount post";
+        } else if ($postCount > 1) {
+          echo "$postCount posts";
+        } else {
+          echo "0 posts";
+        }   
+      
+      ?>
+      </span>
     </div>
     
-    <div id="m_bio_text" style="position:relative;top:-40px;">
+    <div id="m_bio_text" style="position:relative;top:-13px;">
      <?php 
        $user_id = $_SESSION['user_id'];
        $bio = new User();
@@ -983,7 +1013,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   
   <!-- end mobile display -->
 
-  <!-- post container must be last element in DOM or else it will overwrite content--> 
+  <!-- post container must be last node in DOM or else it will overwrite content--> 
   <div id="post_container"></div>
 
 

@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/15/18 -->
+<!-- Last modified: 11/16/18 -->
 <?php 
   session_start();
   
@@ -194,7 +194,7 @@
       }
     }
   } catch (Exception $e) {
-    echo "Fatal error: $e";
+    echo "DB exception: $e";
   }
 
 
