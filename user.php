@@ -597,28 +597,6 @@
 	    $output = $playlist->getPlaylist();
 	    ?>
 	  </div>
-	  
-	  <!--
-	  <div id="artist" class="w3-container music-tab">
-		<h1>Artist</h1>
-		<p>From artist</p>
-	  </div>
-
-	  <div id="album" class="w3-container music-tab">
-		<h1>Album</h1>
-		<p>From album</p>
-	  </div>
-
-	  <div id="genre" class="w3-container music-tab">
-	   <h1>Genre</h1>
-	   <p>From genre</p>
-	  </div>
-
-	  <div id="track" class="w3-container music-tab">
-	   <h1>Tracks</h1>
-	   <p>From Tracks</p>
-	  </div>
-	  -->
 
 	  <div class="w3-container w3-light-grey w3-padding">
 		<button class="w3-button w3-left w3-hover-red w3-border"
