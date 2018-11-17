@@ -376,8 +376,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         }
           
         for ( var x = 0; x < postCnt; x++ ) {
-        
-          if (obj[x].display != "false") {
     
     	    if (obj[x].image == "true") {
     	      var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' +
@@ -447,8 +445,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               
             var mostRecentPost = $('#post_container').first();
             post.prependTo(mostRecentPost);   
-            
-          }    
+              
         }  
       }
     };
