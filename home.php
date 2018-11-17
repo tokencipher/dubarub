@@ -334,7 +334,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var statusCnt = obj.length;
         
         if (statusCnt == 0) {
-          var noStatus = $('<p id="noStatus" class="w3-center">No status history to retrieve...</p>');
+          var noStatus = $('<p class="noStatus" class="w3-center">No status history to retrieve...</p>');
           var mostRecentStatus = $('#status_history_container').first();
           noStatus.prependTo(mostRecentStatus);
           return;
@@ -525,6 +525,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       var message = $('#status').val();
       var user_id = "<?php echo $_SESSION['user_id']; ?>";
       $('#status').val('');
+      
+      $('.noStatus').css({display: "none"});
       
       $.ajax({
         async: true, 
