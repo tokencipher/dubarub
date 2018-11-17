@@ -598,6 +598,7 @@
 	    ?>
 	  </div>
 	  
+	  <!--
 	  <div id="artist" class="w3-container music-tab">
 		<h1>Artist</h1>
 		<p>From artist</p>
@@ -617,6 +618,7 @@
 	   <h1>Tracks</h1>
 	   <p>From Tracks</p>
 	  </div>
+	  -->
 
 	  <div class="w3-container w3-light-grey w3-padding">
 		<button class="w3-button w3-left w3-hover-red w3-border"
