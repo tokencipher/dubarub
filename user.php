@@ -295,16 +295,13 @@
 
           for ( var x = 0; x < statusCnt; x++ ) {
         
-            if (obj[x].display != "false") {
-              
-              var status = $( '<div id="status' + obj[x].status_id + '"' + 
-              '<p>' + obj[x].status_text + '</p>' + 
-              '<p>' + obj[x].created_at + '</p><hr></div>');
+            var status = $( '<div id="status' + obj[x].status_id + '"' + 
+            '<p>' + obj[x].status_text + '</p>' + 
+            '<p>' + obj[x].created_at + '</p><hr></div>');
           
-              var mostRecentStatus = $('#status_history_container').first();
-              status.prependTo(mostRecentStatus);   
+            var mostRecentStatus = $('#status_history_container').first();
+            status.prependTo(mostRecentStatus);   
             
-            }
     	  }   
         }
       }
