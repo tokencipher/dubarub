@@ -45,8 +45,8 @@ class Playlist {
     $sql = "SELECT track_id, title, artist, album, year, genre, duration, mp3_path, ogg_path, art, bpm FROM $table WHERE u_id = $user_id";
     $object = array();
     $x = 0;
-    $input = "";
-    $input .= '<ol style="list-style-position:inside;margin:0;padding:0;">';
+    $playlist = "";
+    $playlist .= '<ol style="list-style-position:inside;margin:0;padding:0;">';
     
     foreach ($this->db->query($sql) as $row) {
       $object[$x]['track_id'] = "{$row['track_id']}";
@@ -70,12 +70,12 @@ class Playlist {
     }
     
     if (isset($object)) {
-       $input .= '</ol>';
+       $playlist .= '</ol>';
     } else {
-       $input = '';
+       $playlist = false;
     }
     
-    return $input;
+    return $playlist;
   }
   
   public function addTrack($track_id, $user_id, $title, $artist, $genre, $album, $duration, $mp3_path, $ogg_path, $cover_art, $bpm) {
