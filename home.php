@@ -17,6 +17,7 @@ session_start();
 * end the previous session .
 */
 
+
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
 
@@ -802,7 +803,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <div id="bio_avi" style="position:relative;padding:8px;width:100px;height:100px;">
       <img id="avatar" style="position:relative;" src="
       <?php 
-        $id = $_SESSION['id'];
+        $id = $_SESSION['user_id'];
         $user = new User();
         $user->setUserId($id);
         echo $user->getAvatar();
