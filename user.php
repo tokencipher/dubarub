@@ -144,6 +144,15 @@
       top:385px;
       right:5px;
     }
+    #m_flashback {
+     position:relative;
+     float:left;
+     cursor:pointer;
+     top:3px;
+     padding:4px;
+     left:150px;
+     color:gold;
+   }
     #close_flashback {
       display:none;
     }
@@ -254,23 +263,20 @@
         var statusCnt = obj.length;
         
         if (statusCnt == 0) {
-          var status = $( '<div>No status history retrieved...</div>');
+          var status = $('<p class="noStatus">No status history retrieved...</p>');
           var mostRecentStatus = $('#status_history_container').first();
           status.prependTo(mostRecentStatus); 
           return;
         }
 
         for ( var x = 0; x < statusCnt; x++ ) {
-        
-          if (obj[x].display != "false") {
       
-            var status = $( '<div id="status' + obj[x].status_id + '"' + 
-            '<p>' + obj[x].status_text + '</p>' + 
-            '<p>' + obj[x].created_at + '</p><hr></div>');
-            var mostRecentStatus = $('#status_history_container').first();
-            status.prependTo(mostRecentStatus);  
-                   
-          }	   
+          var status = $( '<div id="status' + obj[x].status_id + '"' + 
+          '<p>' + obj[x].status_text + '</p>' + 
+          '<p>' + obj[x].created_at + '</p><hr></div>');
+          var mostRecentStatus = $('#status_history_container').first();
+          status.prependTo(mostRecentStatus);  
+                      
         }
       }
     };
