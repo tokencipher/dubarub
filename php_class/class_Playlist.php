@@ -70,7 +70,7 @@ class Playlist {
     }
     
     if (isset($object)) {
-       $input .= '</ol>';;
+       $input .= '</ol>';
     } else {
        $input = '';
     }
