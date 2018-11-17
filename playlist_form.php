@@ -18,6 +18,43 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
 <?php
 
+function redisplayForm($message) {
+?>
+  <div class="w3-center"><br>
+    <form action="playlist_form.php" method="POST" enctype="multipart/form-data" class="w3-container" >
+      <div class="form-group">
+        <div class="w3-center">
+          <h2>Add track(s) to playlist</h2>
+          <i class="w3-xxlarge fa fa-music" style="color:#337ab7;"></i>
+        </div>
+        <br>
+      
+        <?php
+          $input = "";
+          if ($track_count == 0) {
+            $display = (isset($message)) ? $message : '<p style="color:red;">No tracks have been uploaded to the server as of yet...</p>';
+            echo $display;
+          } else {
+            for ($x = 0; $x < $track_count; $x++) {
+		      $input .= '<input type="checkbox" name="track_list[]" value="' . $object[$x]['track_id'] . '"required/> ';
+		      $input .= $object[$x]['artist'] . ' - ' . $object[$x]['title'] . '<br>';
+	        }
+	        echo $input;
+	      }
+	    ?>
+
+      <br>
+    </div>
+     
+    <button type="submit" name="upload" class="btn btn-primary w3-margin-bottom">Upload</button>
+     
+  </form>
+</div>
+
+
+<?php
+}
+
 $error_count = 0;
 $flag = false;
 
@@ -51,6 +88,11 @@ $track_count = count($object);
 
 if (isset($_POST['upload'])) {
 
+  if (!isset($_POST['track_list'][0])) {
+    header('Location: playlist_form.php');
+    exit;
+  }
+
   /*
    * track_selections + playlist_count yields the total playlist count
    * if total_playlist_count > 12 then subtract total_playlist_count by playlist_max
@@ -59,6 +101,7 @@ if (isset($_POST['upload'])) {
    */
   
   $selections = count($_POST['track_list']);
+  
   $track = new Track();
   $track_info = array();
   $playlist = new Playlist();
@@ -103,21 +146,7 @@ if ($error_count > 0) {
 
 ?>
 
-<!-- Author: Bryan Thomas -->
-<!-- Last modified: 10/11/2018 -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Create Playlist</title>
+<?php require_once('php_inc/inc_header.php'); ?>
 <?php include_once('php_inc/inc_user_nav.php'); ?>
 </head>
 <body>  
