@@ -578,14 +578,6 @@
 	  <div class="w3-bar w3-border-bottom">
 		<button onclick="openTab(event, 'my_playlist')" class="tablink w3-bar-item 
 		w3-button">Playlist</button>
-		<button onclick="openTab(event, 'artist')" class="tablink w3-bar-item
-		w3-button">Artists</button>
-		<button onclick="openTab(event, 'album')" class="tablink w3-bar-item
-		w3-button">Albums</button>
-		<button onclick="openTab(event, 'genre')" class="tablink w3-bar-item
-		w3-button">Genres</button>
-		<button onclick="openTab(event, 'track')" class="tablink w3-bar-item
-		w3-button">Tracks</button>
 	  </div>
 
    
