@@ -332,6 +332,13 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
         var statusCnt = obj.length;
+        
+        if (statusCnt == 0) {
+          var status = $( '<div>No status history retrieved...</div>');
+          var mostRecentStatus = $('#status_history_container').first();
+          status.prependTo(mostRecentStatus); 
+          return;
+        }
 
         for ( var x = 0; x < statusCnt; x++ ) {
           
