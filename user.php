@@ -790,6 +790,7 @@
       <?php 
     
       $id = $_SESSION['id'];
+      $bio = new User();
       $bio->setUserId($id);
       echo $bio->getBio();
       
