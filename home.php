@@ -371,7 +371,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var postCnt = obj.length;
         
         if (postCnt == 0) {
-          var post = $('<p id="noPosts" class="w3-center">No posts to show...</p>');
+          var post = $('<p id="noPosts" style="position:relative;top:10px;"class="w3-center">No posts to show...</p>');
           var mostRecentPost = $('#post_container').first();
           post.prependTo(mostRecentPost);
           return;
