@@ -266,16 +266,17 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       return performAsync("Loading tags...");    
     }).then( () => {
       loadTags();
-      return performAsync("Done!");
+      return performAsync("Done...");
     });
+      
     /*
-      loadTags();
       return performAsync("Loading playlist...");
     }).then( () => {
       loadPlaylist();
       return performAsync("Done!");
     });
     */
+    
   }
   
   /*
@@ -286,12 +287,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var obj = JSON.parse(this.responseText);
         var trackCnt = obj.length;
         
-        
-    	console.log(obj[0].track_id);
+        if (trackCnt == 0) {
+          var noTrack = $('<p id="noTrack">No track(s) have been added to playlist</p>');
+          var mostRecentTrack = $('#my_playlist').first();
+          noTrack.prependTo(mostRecentTrack);  
+          return;
+        }
  		
         for ( var x = 0; x < trackCnt; x++ ) {
-        
-         
         
           var track = $('<li class="track" id="track' + obj[x].track_id + 
           '" data-title="' + obj[x].title + '" data-artist="' + obj[x].artist +
@@ -299,9 +302,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           '" data-mp3-path="' + obj[x].mp3_path + '" data-ogg-path="' + obj[x].ogg_path +
           '" data-cover-art="' + obj[x].art + '">' + obj[x].artist + " - " + obj[x].title + '</li>');
           
-          var mostRecentTrack = $('#playlist_container').first();
+          var mostRecentTrack = $('#my_playlist').first();
           track.appendTo(mostRecentTrack);  
-          
           
         } 	  
     
@@ -671,16 +673,17 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
    
 	  <div id="my_playlist" class="w3-container music-tab">
 	    <?php
-	    $user_id = $_SESSION['user_id'];
-	    $playlist = new Playlist();
-	    $playlist->setUId($user_id);
-	    $output = $playlist->getPlaylist();
 	    
-	    if (!($output)) {
-	      echo "<p>No tracks added to playlist yet...</p>";
-	    } else {
-	      echo $output;
-	    }
+	      $user_id = $_SESSION['user_id'];
+	      $playlist = new Playlist();
+	      $playlist->setUId($user_id);
+	      $output = $playlist->getPlaylist();
+	    
+	      if (!($output)) {
+	        echo "<p>No tracks added to playlist yet...</p>";
+	      } else {
+	        echo $output;
+	      }
 	    
 	    ?>
 	  </div>
