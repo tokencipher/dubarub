@@ -11,10 +11,10 @@ include ('php_inc/inc_db_qp4.php');
 $lastId = 0;
 
 $tableName = 'status';
-$user_name = $_SESSION['user'];
+$id = $_SESSION['id'];
   
 // Retrieve the data
-$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE display = 'true' && user_name = $user_name";
+$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE u_id = $id && display = 'true' ";
   
 $object = array();
 $x = 0;
