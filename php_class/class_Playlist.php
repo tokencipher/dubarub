@@ -61,7 +61,7 @@ class Playlist {
       $object[$x]['art'] = "{$row['art']}";
       $object[$x]['bpm'] = "{$row['bpm']}";
       $object[$x]['art'] = empty($object[$x]['art']) ?  "img/cover_art/vinyl_stub.jpg" : $object[$x]['art'] ;
-	  $input .= '<li class="track" id="' . $object[$x]['track_id'] . '" data-title="' . 
+	  $playlist .= '<li class="track" id="' . $object[$x]['track_id'] . '" data-title="' . 
 	  $object[$x]['title'] . '" data-artist="' . $object[$x]['artist'] . '" data-genre="' .
 	  $object[$x]['genre'] . '" data-album="' . $object[$x]['album'] . '" data-mp3-path="' . 
 	  $object[$x]['mp3_path'] . '" data-ogg-path="' . $object[$x]['ogg_path'] . '" data-cover-art="' .
