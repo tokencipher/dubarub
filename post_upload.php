@@ -470,17 +470,9 @@ if ($error_count == 0) {
 
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 08/02/2018 -->
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Last modified: 11/17/2018 -->
+
+<?php require_once('php_inc/inc_header.php'); ?>
 <title>Post Upload</title>
 <style>
   .heading {

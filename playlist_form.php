@@ -147,6 +147,7 @@ if ($error_count > 0) {
 ?>
 
 <?php require_once('php_inc/inc_header.php'); ?>
+<title>Add track(s)</title>
 <?php include_once('php_inc/inc_user_nav.php'); ?>
 </head>
 <body>  
