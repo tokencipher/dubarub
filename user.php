@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/16/18 -->
+<!-- Last modified: 11/17/18 -->
 <?php 
   session_start();
   
@@ -584,15 +584,15 @@
    
 	  <div id="my_playlist" class="w3-container music-tab">
 	    <?php
-	    $user_id = $_SESSION['id'];
-	    $playlist = new Playlist();
-	    $playlist->setUId($user_id);
-	    $output = $playlist->getPlaylist();
-	    if (!($output)) {
-	      echo "No tracks added to playlist yet...";
-	    } else {
-	      echo $output;
-	    }
+	      $user_id = $_SESSION['id'];
+	      $playlist = new Playlist();
+	      $playlist->setUId($user_id);
+	      $output = $playlist->getPlaylist();
+	      if (!($output)) {
+	        echo "<p>No tracks added to playlist yet...</p>";
+	      } else {
+	        echo $output;
+	      }
 	    ?>
 	  </div>
 
