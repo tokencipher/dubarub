@@ -466,7 +466,7 @@
     setTimeout(function() { statusCount(); }, 3000);
     loadStatusEngine();
     
-    
+    /*
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js').then(function(registration) {
@@ -478,6 +478,7 @@
         });
       });
     }
+    */
     
     
     // Get ready to receive status update events 
