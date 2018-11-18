@@ -49,13 +49,17 @@ if ($conn !== FALSE) {
 $track_count = count($object);
 
 if (isset($_POST['delete'])) {
+
+  if (isset($_POST['track_list'])) {
   
-  $selections = count($_POST['track_list']);
-  $playlist = new Playlist();
+    $selections = count($_POST['track_list']);
+    $playlist = new Playlist();
   
-  for ($x = 0; $x < $selections; $x++ ) {
-    $track_id = $_POST['track_list'][$x]; 
-    $playlist->deleteTrack($track_id);
+    for ($x = 0; $x < $selections; $x++ ) {
+      $track_id = $_POST['track_list'][$x]; 
+      $playlist->deleteTrack($track_id);
+    }
+    
   }
   
 }
