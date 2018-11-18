@@ -1,9 +1,9 @@
 <?php
 /**
  * Start the session.
- * session_start();
  */
-//header('Content-Type: application/json;charset=utf-8');
+session_start();
+header('Content-Type: application/json;charset=utf-8');
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache'); // recommended to prevent caching of event data
 include ('php_inc/inc_db_qp4.php');
@@ -11,9 +11,10 @@ include ('php_inc/inc_db_qp4.php');
 $lastId = 0;
 
 $tableName = 'status';
+$user_name = $_SESSION['user'];
   
 // Retrieve the data
-$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE u_id=1 AND display!='false'";
+$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE display = 'true' && user_name = $user_name";
   
 $object = array();
 $x = 0;
