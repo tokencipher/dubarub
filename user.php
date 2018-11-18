@@ -436,7 +436,7 @@
         console.log('Data transmitted...');
       }
     };
-    statusEngine.open("GET", "query_status.php?id=" + id, true);
+    statusEngine.open("GET", "query_status.php", true);
     statusEngine.send();
   }
   
