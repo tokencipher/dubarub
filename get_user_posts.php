@@ -40,5 +40,6 @@ include ("php_inc/inc_db_qp4.php");
 
 $myObj = json_encode($object);
 echo $myObj;
+$conn = null;
 
 ?>
