@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/17/18 -->
+<!-- Last modified: 11/16/18 -->
 <?php 
   session_start();
   
@@ -144,15 +144,6 @@
       top:385px;
       right:5px;
     }
-    #m_flashback {
-     position:relative;
-     float:left;
-     cursor:pointer;
-     top:3px;
-     padding:4px;
-     left:150px;
-     color:gold;
-   }
     #close_flashback {
       display:none;
     }
@@ -263,20 +254,23 @@
         var statusCnt = obj.length;
         
         if (statusCnt == 0) {
-          var status = $('<p class="noStatus">No status history retrieved...</p>');
+          var status = $( '<div>No status history retrieved...</div>');
           var mostRecentStatus = $('#status_history_container').first();
           status.prependTo(mostRecentStatus); 
           return;
         }
 
         for ( var x = 0; x < statusCnt; x++ ) {
+        
+          if (obj[x].display != "false") {
       
-          var status = $( '<div id="status' + obj[x].status_id + '"' + 
-          '<p>' + obj[x].status_text + '</p>' + 
-          '<p>' + obj[x].created_at + '</p><hr></div>');
-          var mostRecentStatus = $('#status_history_container').first();
-          status.prependTo(mostRecentStatus);  
-                      
+            var status = $( '<div id="status' + obj[x].status_id + '"' + 
+            '<p>' + obj[x].status_text + '</p>' + 
+            '<p>' + obj[x].created_at + '</p><hr></div>');
+            var mostRecentStatus = $('#status_history_container').first();
+            status.prependTo(mostRecentStatus);  
+                   
+          }	   
         }
       }
     };
@@ -295,13 +289,16 @@
 
           for ( var x = 0; x < statusCnt; x++ ) {
         
-            var status = $( '<div id="status' + obj[x].status_id + '"' + 
-            '<p>' + obj[x].status_text + '</p>' + 
-            '<p>' + obj[x].created_at + '</p><hr></div>');
+            if (obj[x].display != "false") {
+              
+              var status = $( '<div id="status' + obj[x].status_id + '"' + 
+              '<p>' + obj[x].status_text + '</p>' + 
+              '<p>' + obj[x].created_at + '</p><hr></div>');
           
-            var mostRecentStatus = $('#status_history_container').first();
-            status.prependTo(mostRecentStatus);   
+              var mostRecentStatus = $('#status_history_container').first();
+              status.prependTo(mostRecentStatus);   
             
+            }
     	  }   
         }
       }
@@ -328,6 +325,7 @@
  
         for ( var x = 0; x < postCnt; x++ ) {
         
+          if (obj[x].display != "false") {
     
     	    if (obj[x].image == "true") {
     	      var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' +
@@ -382,7 +380,8 @@
               
             var mostRecentPost = $('#post_container').first();
             post.prependTo(mostRecentPost);    
-               
+            
+          }    
         }  
       }
     };
@@ -436,7 +435,7 @@
         console.log('Data transmitted...');
       }
     };
-    statusEngine.open("GET", "query_status.php", true);
+    statusEngine.open("GET", "query_status.php?id=" + id, true);
     statusEngine.send();
   }
   
@@ -466,19 +465,18 @@
     setTimeout(function() { statusCount(); }, 3000);
     loadStatusEngine();
     
-    /*
+     // Register service worker
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(function(registration) {
           // Registration was successful
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
-          // registration failed 
+          // registration failed
           console.log('ServiceWorker registration failed: ', err);
         });
-      });
+      });    		  
     }
-    */
     
     
     // Get ready to receive status update events 
@@ -585,15 +583,15 @@
    
 	  <div id="my_playlist" class="w3-container music-tab">
 	    <?php
-	      $user_id = $_SESSION['id'];
-	      $playlist = new Playlist();
-	      $playlist->setUId($user_id);
-	      $output = $playlist->getPlaylist();
-	      if (!($output)) {
-	        echo "<p>No tracks added to playlist yet...</p>";
-	      } else {
-	        echo $output;
-	      }
+	    $user_id = $_SESSION['id'];
+	    $playlist = new Playlist();
+	    $playlist->setUId($user_id);
+	    $output = $playlist->getPlaylist();
+	    if (!($output)) {
+	      echo "No tracks added to playlist yet...";
+	    } else {
+	      echo $output;
+	    }
 	    ?>
 	  </div>
 
