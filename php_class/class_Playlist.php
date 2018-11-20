@@ -158,7 +158,7 @@ class Playlist {
     return $this->ogg_path;
   }
   
-  public function setUId($u_id) {
+  public function setUID($u_id) {
     $this->user_id = $u_id;
   }
   
