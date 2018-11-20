@@ -1,4 +1,4 @@
-<audio id="my-audio" controls>
+<audio id="my-audio" controls controlsList="nodownload">
   <source id="mp3-src" src="" type="audio/mpeg">
   <source id="ogg-src" src="" type="audio/ogg">
 </audio>
