@@ -6,34 +6,32 @@ session_start();
 header('Content-Type: application/json;charset=utf-8');
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache'); // recommended to prevent caching of event data
+
 include ('php_inc/inc_db_qp4.php');
+  if ($conn !== FALSE) {
 
-$lastId = 0;
-
-$tableName = 'status';
-$id = $_SESSION['id'];
+    $lastId = 0;
+    $table = "status";
+    $user_id = $_SESSION['id'];
   
-// Retrieve the data
-$sql = "SELECT u_id, status_id, status_text, created_at FROM $tableName WHERE u_id = $id && display = 'true' ";
-  
-$object = array();
-$x = 0;
-foreach ($conn->query($sql) as $row) {
-  $object['u_id'] = "{$row['u_id']}";
-  $object['status_id'] = "{$row['status_id']}";
-  $object['status_text'] = "{$row['status_text']}";
-  $object['created_at'] = "{$row['created_at']}";
-  // $lastUpdate = "{$row['status_text']}";
-  // $timestamp = "{$row['created_at']}";
-  // Omit this line of code if we want to get the most recent status update.
-  // ++$x; 
+	$sql = "SELECT u_id, status_id, status_text, created_at FROM $table WHERE display = 'true' && u_id = $user_id";
+	$object = array();
+	$x = 0;
+	foreach ($conn->query($sql) as $row) {
+  	  $object['u_id'] = "{$row['u_id']}";
+  	  $object['status_id'] = "{$row['status_id']}";
+  	  $object['status_text'] = "{$row['status_text']}";
+  	  $object['created_at'] = "{$row['created_at']}";
+  	  // $lastUpdate = "{$row['status_text']}";
+  	  // $timestamp = "{$row['created_at']}";
+  	  // Omit this line of code if we want to get the most recent status update.
+  	  // ++$x; 
+  	}
 }
 
-// Send the data back to the caller
+// Encode data to send back to the caller
 $myObj = json_encode($object);
   
-
-
 //$select = $conn->query($sql);
 //$select->execute();
 //$count = $select->rowCount();
