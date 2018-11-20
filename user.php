@@ -144,6 +144,14 @@
       top:385px;
       right:5px;
     }
+    #flashback {
+      position:relative;
+      float:left;
+      cursor:pointer;
+      padding:4px;
+      left:-37px!important;
+      color:gold;
+    }
     #close_flashback {
       display:none;
     }
