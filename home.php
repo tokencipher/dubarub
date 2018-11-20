@@ -501,21 +501,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     sequenceAsync();
     
-    
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          // registration failed
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });    		  
-    }
-    
-    
     $('#clear').click(function() {
       $('#status').val('');
     });
@@ -676,7 +661,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	    
 	      $user_id = $_SESSION['user_id'];
 	      $playlist = new Playlist();
-	      $playlist->setUId($user_id);
+	      $playlist->setUID($user_id);
 	      $output = $playlist->getPlaylist();
 	    
 	      if (!($output)) {
