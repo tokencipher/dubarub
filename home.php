@@ -151,6 +151,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       top:500px;
       text-align:right;   
     }
+    #flashback {
+      position:relative;
+      float:left;
+      cursor:pointer;
+      padding:4px;
+      left:-37px!important;
+      color:gold;
+    }
     #m_flashback {
       position:relative;
       float:left;
@@ -500,6 +508,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   $(document).ready(function() {
     
     sequenceAsync();
+    
     
     $('#clear').click(function() {
       $('#status').val('');
