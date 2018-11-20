@@ -19,7 +19,7 @@ class Track {
   private $ogg_path;
   
   public function __construct() {
-    require_once("../php_inc/inc_db_qp4.php");
+    include ("php_inc/inc_db_qp4.php");
     if ($conn !== false) {
       $this->db = $conn;
     }
