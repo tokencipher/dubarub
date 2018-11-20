@@ -31,6 +31,5 @@ foreach ($conn->query($sql) as $row) {
 // Send the data back to the caller
 $myObj = json_encode($object);
 echo $myObj;
-$conn = null;
 
 ?>
