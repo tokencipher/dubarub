@@ -91,7 +91,7 @@ if (isset($_POST['delete'])) {
           echo '<p style="color:red;">No tracks to delete...</p>';
         } else {
           for ($x = 0; $x < $track_count; $x++) {
-		    $input .= '<input type="checkbox" name="track_list[]" value="' . $object[$x]['track_id'] . '"required/> ';
+		    $input .= '<input type="checkbox" name="track_list[]" value="' . $object[$x]['track_id'] . '"/> ';
 		    $input .= $object[$x]['artist'] . ' - ' . $object[$x]['title'] . '<br>';
 	      }
 	      echo $input;
