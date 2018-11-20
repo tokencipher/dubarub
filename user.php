@@ -144,6 +144,15 @@
       top:385px;
       right:5px;
     }
+    #m_flashback {
+      position:relative;
+      float:left;
+      cursor:pointer;
+      top:4px;
+      padding:4px;
+      left:158px!important;
+      color:gold;
+   }
     #flashback {
       position:relative;
       float:left;
