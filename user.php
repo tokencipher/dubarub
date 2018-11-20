@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/16/18 -->
+<!-- Last modified: 11/19/18 -->
 <?php 
   session_start();
   
@@ -202,9 +202,9 @@
 
   
 <script>
-
-  var id = "<?php echo $_SESSION['id']; ?>";
+  
   var user = "<?php echo $_SESSION['user']; ?>";
+  var oldCount = 0;
 
   function performAsync(message, callback) {
     return new Promise( (resolve, reject) => {
@@ -242,7 +242,7 @@
         $('#m_avatar').attr("src", avatar[0].avatar);
       }
     };
-    avatarRequest.open("GET", "get_index_avatar.php?id=" + id, true);
+    avatarRequest.open("GET", "get_index_avatar.php", true);
     avatarRequest.send();
   }
   
@@ -261,20 +261,17 @@
         }
 
         for ( var x = 0; x < statusCnt; x++ ) {
-        
-          if (obj[x].display != "false") {
       
             var status = $( '<div id="status' + obj[x].status_id + '"' + 
             '<p>' + obj[x].status_text + '</p>' + 
             '<p>' + obj[x].created_at + '</p><hr></div>');
             var mostRecentStatus = $('#status_history_container').first();
             status.prependTo(mostRecentStatus);  
-                   
-          }	   
+            	   
         }
       }
     };
-    statusRequest.open("GET", "get_status.php?id=" + id, true);
+    statusRequest.open("GET", "get_status.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     statusRequest.send();
     
@@ -288,8 +285,6 @@
           $('#status_history_container').empty();
 
           for ( var x = 0; x < statusCnt; x++ ) {
-        
-            if (obj[x].display != "false") {
               
               var status = $( '<div id="status' + obj[x].status_id + '"' + 
               '<p>' + obj[x].status_text + '</p>' + 
@@ -298,12 +293,11 @@
               var mostRecentStatus = $('#status_history_container').first();
               status.prependTo(mostRecentStatus);   
             
-            }
     	  }   
         }
       }
     };
-    statusRequest.open("GET", "get_status.php?id=" + id, true);
+    statusRequest.open("GET", "get_status.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     statusRequest.send();
   
@@ -324,8 +318,6 @@
         }
  
         for ( var x = 0; x < postCnt; x++ ) {
-        
-          if (obj[x].display != "false") {
     
     	    if (obj[x].image == "true") {
     	      var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' +
@@ -380,12 +372,11 @@
               
             var mostRecentPost = $('#post_container').first();
             post.prependTo(mostRecentPost);    
-            
-          }    
+    
         }  
       }
     };
-    postRequest.open("GET", "get_index_posts.php?id=" + id, true);
+    postRequest.open("GET", "get_index_posts.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     postRequest.send();
   
@@ -406,7 +397,7 @@
         }
       }
     }; 
-    tagRequest.open("GET", "get_index_tags.php?id=" + id, true);
+    tagRequest.open("GET", "get_index_tags.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     tagRequest.send();
   
@@ -422,7 +413,7 @@
         //alert(oldCount);
       }
     }; 
-    statusCount.open("GET", "status_count.php?id=" + id, true);
+    statusCount.open("GET", "status_count.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     statusCount.send();
   
@@ -435,7 +426,7 @@
         console.log('Data transmitted...');
       }
     };
-    statusEngine.open("GET", "query_status.php?id=" + id, true);
+    statusEngine.open("GET", "query_status.php", true);
     statusEngine.send();
   }
   
@@ -465,7 +456,7 @@
     setTimeout(function() { statusCount(); }, 3000);
     loadStatusEngine();
     
-     // Register service worker
+    // Register service worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').then(function(registration) {
@@ -477,7 +468,6 @@
         });
       });    		  
     }
-    
     
     // Get ready to receive status update events 
     if (!!window.EventSource) { 
@@ -585,7 +575,7 @@
 	    <?php
 	    $user_id = $_SESSION['id'];
 	    $playlist = new Playlist();
-	    $playlist->setUId($user_id);
+	    $playlist->setUID($user_id);
 	    $output = $playlist->getPlaylist();
 	    if (!($output)) {
 	      echo "No tracks added to playlist yet...";
