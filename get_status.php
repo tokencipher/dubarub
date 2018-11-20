@@ -1,12 +1,16 @@
 <?php
+/**
+ * Start the session
+ */
+session_start();
 
 header('Content-Type: application/json;charset=utf-8');
 
 include ("php_inc/inc_db_qp4.php");
    if ($conn !== FALSE) {
      $table = "status";
-     $user_id = $_GET['id'];
-     $sql = "SELECT status_id, status_text, created_at, display FROM $table WHERE display = 'true' && u_id = $user_id;";
+     $user_id = $_SESSION['id'];
+     $sql = "SELECT status_id, status_text, created_at, display FROM $table WHERE display = 'true' && u_id = $user_id";
      $object = array();
      $x = 0;
      foreach ($conn->query($sql) as $row) {
@@ -20,6 +24,5 @@ include ("php_inc/inc_db_qp4.php");
 
 $myObj = json_encode($object);
 echo $myObj;
-$conn = null;
 
 ?>
