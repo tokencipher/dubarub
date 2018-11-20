@@ -36,12 +36,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
 
 <body>
 
-  <div id="unauth_container class="w3-center">
-    <div id="unauth_message" class="w3-center">
-      <p>
-        Only alpha testers are allowed beyond this point at this time.<br> 
-      </p>
-    </div>  
+  <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
+    <img src="img/dubarub1.jpg" alt="dubarub" id="place_logo" height="80" width="80" />   
   </div>
 
   <form name="loginForm" method="post" action="verify_login.php">
@@ -70,19 +66,18 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
   </form>
   
   <script>
-  
+  // Register service worker
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(function(registration) {
           // Registration was successful
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         }, function(err) {
-          // registration failed 
+          // registration failed
           console.log('ServiceWorker registration failed: ', err);
         });
-      });
+      });    		  
     }
-  
   </script>
   
 <?php include("php_inc/inc_footer.php"); ?>
