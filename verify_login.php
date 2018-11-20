@@ -20,11 +20,9 @@ $result = "";
 
 function redisplayForm($email, $errEmail, $errPassword) {
 ?>
-  <div id="unauth_message" class="w3-center">
-    <p> 
-      Only Adminb is allowed beyond this point at this time.<br>
-      Please leave this page.
-    </p>
+  
+  <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
+    <img src="img/dubarub.jpg" alt="dubarub" id="place_logo" height="80" width="80" />   
   </div>
   
   <form name="loginForm" method="post" action="verify_login.php">
