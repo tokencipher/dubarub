@@ -164,6 +164,16 @@
     #close_flashback {
       display:none;
     }
+    #my-audio {
+      position: fixed;
+      margin: auto!important;
+      top: 442px!important;
+      width: 100%;
+    }
+    #noPosts {
+      position:relative;
+      top:12px;
+    }
     a.one:link {
       text-decoration:underline;
     }
