@@ -30,7 +30,8 @@ require("php_class/class_Track.php");
 require ("php_inc/inc_db_qp4.php");
 require("getID3-1.9.15/getid3/getid3.php");
 
-$dir = "qp4_priv_user_files/audio";
+$dir = "dub_priv_user_files/audio";
+$target_art_path = "";
 $error_count = 0; 
 $audio = false;
 $data_format = "";
