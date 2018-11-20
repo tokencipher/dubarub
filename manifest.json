@@ -1,7 +1,7 @@
 {
-  "name": "dubarub",
-  "short_name": "dubarub",
-  "theme_color": "#ffff80",
+  "name": "Dubarub",
+  "short_name": "Dubarub",
+  "theme_color": "#33adff",
   "background_color": "#33adff",
   "display": "standalone",
   "start_url": "/home.php",
