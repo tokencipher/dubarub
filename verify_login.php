@@ -61,6 +61,7 @@ if (isset($_POST['submit'])) {
     $email = "";
   } else {
     $email = trim($_POST['email']);
+    $email = strtolower($email);
     $email = stripslashes($email);
     $email = htmlspecialchars($email);
     // $_SESSION['email'] = $email;
