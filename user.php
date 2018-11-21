@@ -245,14 +245,14 @@
   }
   
   function sequenceAsync() {
-    performAsync("Loading avatar...").then( () => {
-      loadAvatar();
+    performAsync("Loading posts...").then( () => {
+      loadPosts();
       return performAsync("Loading status history...");
     }).then( () => {
       loadStatusHistory();
-      return performAsync("Loading posts ...");
+      return performAsync("Loading avatar ...");
     }).then( () => {
-      loadPosts();
+      loadAvatar();
       return performAsync("Loading tags...");    
     }).then( () => {
       loadTags();
