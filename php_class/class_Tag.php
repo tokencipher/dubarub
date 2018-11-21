@@ -12,7 +12,7 @@ class Tag {
   private $timestamp;
 
   public function __construct() {
-    include ("../php_inc/inc_db_qp4.php");
+    include ("php_inc/inc_db_qp4.php");
     if ($conn !== FALSE) {
       $this->db = $conn;
     }
