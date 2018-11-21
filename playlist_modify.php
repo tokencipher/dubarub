@@ -78,6 +78,7 @@ if (isset($_POST['delete'])) {
 <div class="w3-center">
   <h2>Delete track(s)</h2>
   <i class="w3-xxlarge fa fa-music" style="color:#337ab7;"></i>
+  <p style="position:relative;top:8px;">My playlist</p>
 </div>
 
 <div class="w3-center"><br>
