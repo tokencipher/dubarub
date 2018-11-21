@@ -158,6 +158,7 @@ if ($error_count > 0) {
       <div class="w3-center">
         <h2>Add track(s) to playlist</h2>
         <i class="w3-xxlarge fa fa-music" style="color:#337ab7;"></i>
+        <p style="position:relative;top:8px;">From server</p>
       </div>
       <br>
       
