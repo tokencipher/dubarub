@@ -38,7 +38,7 @@ $data_format = "";
 $bpm = "";
 $message = "";
 $art_message = "";
-$image = false;
+$cover_art = false;
 $art_flag = "";
 
 function autoRotateImage($image) {
@@ -75,6 +75,18 @@ if (isset($_POST['upload'])) {
   $mimeType_array = explode(";", $all_ext_mimeType);
   $mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
   $file_size = $_FILES['track']['size'];
+  $cover_art_size = $_FILES['cover_art']['size'];
+  
+  $temp_art_file = $_FILES['cover_art']['tmp_name'];
+  $target_art_path = $dir . "/cover_art/" . $_FILES['cover_art']['name'];
+  $art_fileInfo_array = getimagesize($temp_art_file);
+  $art_mimeType = $art_fileInfo_array['mime']; // Not being used, really
+  $art_file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
+  $art_all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_art_file));  // e.g. gives "image/jpeg"
+  $art_mimeType_array = explode(";", $art_all_ext_mimeType);
+  $art_mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
+  $art_file_size = $_FILES['cover_art']['size'];
+  
   
   /***Audio extentions and mime types***/
   /*
@@ -132,74 +144,114 @@ if (isset($_POST['upload'])) {
     ++$error_count;
   }
    
-  if (isset($_POST['cover_art'])) {
-    $temp_art_file = $_FILES['cover_art']['tmp_name'];
-    $target_art_path = $dir . "/cover_art/" . $_FILES['cover_art']['name'];
-    $art_fileInfo_array = getimagesize($temp_art_file);
-    $art_mimeType = $art_fileInfo_array['mime']; // Not being used, really
-    $art_file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
-    $art_all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_art_file));  // e.g. gives "image/jpeg"
-    $art_mimeType_array = explode(";", $art_all_ext_mimeType);
-    $art_mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
-    $art_file_size = $_FILES['cover_art']['size'];
-  
-  
-    // Check if a file has been uploaded
-    if ($art_file_size !== 0) {
+  // Check if a file has been uploaded
+  if ($art_file_size !== 0) {
     
-      switch ($art_mimeType_array[0]) {
+    switch ($art_mimeType_array[0]) {
       
-        /* begin image types */
+      /* begin image types */
       
-        case "image/gif":
-          $image = TRUE;
-          $art_mime_type = $art_mimeType_array[0];
-          break;
+      case "image/gif":
+        $cover_art = TRUE;
+        $art_mime_type = $art_mimeType_array[0];
+        break;
         
-        case "image/png":
-          $image = TRUE;
-          $art_mime_type = $art_mimeType_array[0];
-          break;
+      case "image/png":
+        $cover_art = TRUE;
+        $art_mime_type = $art_mimeType_array[0];
+        break;
         
-        case "image/jpeg":
-          $image = TRUE;
-          $art_mime_type = $art_mimeType_array[0];
-          break;
+      case "image/jpeg":
+        $cover_art = TRUE;
+        $art_mime_type = $art_mimeType_array[0];
+        break;
         
-        case "image/jpg":
-          $image = TRUE;
-          $art_mime_type = $art_mimeType_array[0];
-          break;
+      case "image/jpg":
+        $cover_art = TRUE;
+        $art_mime_type = $art_mimeType_array[0];
+        break;
         
-        case "image/bmp":
-          $image = TRUE;
-          $art_mime_type = $art_mimeType_array[0];
-          break;
+      case "image/bmp":
+        $cover_art = TRUE;
+        $art_mime_type = $art_mimeType_array[0];
+    	break;
     
-        case "image/webp":
-          $image = TRUE;
-          $art_mime_type = $art_mimeType_array[0];
-          break;
+      case "image/webp":
+        $cover_art = TRUE;
+        $art_mime_type = $art_mimeType_array[0];
+        break;
       
-        default:
-          $art_flag = 'invalid image format';
-          ++$error_count;  
-          break;      
-      }
-    
-      $art = true;
-    
-    } else {
-    
-      $art = false;
-      
+      default:
+        $art_flag = 'invalid image format';
+        ++$error_count;   
     }
     
-  } 
+  } else {
+    
+    $cover_art = FALSE;
+  }
 
 } // end of upload set check //
 
-if ($conn !== false) {
+
+if ($cover_art) {
+  
+  // Get image dimensions
+  list($width, $height) = getimagesize($temp_art_file);
+      
+  // Check if the file is really an image
+  if (($width == null) && ($height == null)) {
+    exit("Sorry, your file was not uploaded. It is not a valid image<br />");
+  }
+      
+  // resize if necessary
+  if ($width <= 5000 && $height > 900) {
+    $max_width = $width / 4.5;
+    $img = new Imagick($temp_art_file);
+    $img->thumbnailImage($max_width, 0);
+        
+    // Correct image orientation
+    autoRotateImage($img);
+        
+    $img->writeImage($temp_art_file);
+  }  
+      
+  if ($width >= 3000 && $height > 900) {
+    $max_width = $width / 3.5;
+    $img = new Imagick($temp_art_file);
+    $img->thumbnailImage($max_width, 0);
+        
+    // Correct image orientation
+    autoRotateImage($img);
+        
+    $img->writeImage($temp_art_file);
+  }
+      
+  if ($width >= 2000 && $height > 900) {
+    $max_width = $width / 2.5;
+    $img = new Imagick($temp_art_file);
+    $img->thumbnailImage($max_width, 0);
+        
+    // Correct image orientation 
+    autoRotateImage($img);
+        
+    $img->writeImage($temp_art_file);
+  }
+      
+  if ($width >= 900 && $height >= 900) {
+    $max_width = $width / 1.2;
+    $img = new Imagick($temp_art_file);
+    $img->thumbnailImage($max_width, 0);
+        
+    // Correct image orientation
+    autoRotateImage($img);
+        
+    $img->writeImage($temp_art_file);
+  }
+  
+}
+
+if ($conn !== FALSE) {
   $table = "track";
   $sql = "SELECT track_id FROM $table WHERE mp3_path = :mp3_path";
   $stmt = $conn->prepare($sql);
@@ -238,84 +290,28 @@ if ($error_count > 0) {
     
     case "invalid image format":
       $art_message = "Please upload a valid image file.";
-      
-  }
-  
-}
-
-
-if ($image) {
+      break;
     
-  // Get image dimensions
-  list($width, $height) = getimagesize($temp_art_file);
+    default:
+      $art_message = "Sorry, your file was not uploaded.";
       
-  // Check if the file is really an image
-  if (($width == null) && ($height == null)) {
-    echo "Sorry, your file was not uploaded. It is not a valid image" . "<br />";
-    return;
-  }
-      
-  // resize if necessary
-  if ($width <= 5000 && $height > 900) {
-    $max_width = $width / 4.5;
-    $img = new Imagick($temp_art_file);
-    $img->thumbnailImage($max_width, 0);
-        
-    // Correct image orientation
-    autoRotateImage($img);
-        
-    $img->writeImage($temp_art_file);
-  } 
-      
-  if ($width >= 3000 && $height > 900) {
-    $max_width = $width / 3.5;
-    $img = new Imagick($temp_art_file);
-    $img->thumbnailImage($max_width, 0);
-        
-    // Correct image orientation
-    autoRotateImage($img);
-        
-    $img->writeImage($temp_art_file);
-  }
-      
-  if ($width >= 2000 && $height > 900) {
-    $max_width = $width / 2.5;
-    $img = new Imagick($temp_art_file);
-    $img->thumbnailImage($max_width, 0);
-        
-    // Correct image orientation 
-    autoRotateImage($img);
-        
-    $img->writeImage($temp_art_file);
-  }
-      
-  if ($width >= 900 && $height >= 900) {
-    $max_width = $width / 1.2;
-    $img = new Imagick($temp_art_file);
-    $img->thumbnailImage($max_width, 0);
-        
-    // Correct image orientation
-    autoRotateImage($img);
-        
-    $img->writeImage($temp_art_file);
-  }
-  
-  if (move_uploaded_file($temp_art_file, $target_art_path) == true) {
-    chmod($target_art_path, 0644);
-    echo "File \"" . htmlentities($_FILES['cover_art']['name']) . "\" successfully 
-    uploaded.<br />\n";
   }
   
 }
 
 if ($error_count == 0) {
 
-  if ($audio) {
+  if ($audio && $cover_art) {
   
-    if (move_uploaded_file($temp_file, $target_mp3_path) == true) {
+    if (move_uploaded_file($temp_file, $target_mp3_path) && move_uploaded_file($temp_art_file, $target_art_path == true)) {
         
         chmod($target_mp3_path, 0644);
+        chmod($target_art_path, 0644);
+        
         echo "File \"" . htmlentities($_FILES['track']['name']) . "\" successfully 
+        uploaded.<br />\n";
+        
+        echo "File \"" . htmlentities($_FILES['cover_art']['name']) . "\" successfully 
         uploaded.<br />\n";
     
         // Remember to get user id from SESSION variable in production code
@@ -356,6 +352,46 @@ if ($error_count == 0) {
 		
 		$audio->createTrack();
 		
+	} else {
+	
+	   // Remember to get user id from SESSION variable in production code
+        $user_id = $_SESSION['user_id']; 
+        $user_name = $_SESSION['user_name'];
+        
+        $audio_size = isset($tag['filesize']) ? $tag['filesize'] : ''; // echo "Filesize: {$tag['filesize']}<br>";
+        //$audio_path = $tag['filepath']; // echo "Filepath: {$tag['filepath']}<br>";
+    	//$audio_name_path = $tag['filenamepath']; // echo "Filename path: {$tag['filenamepath']}<br>";
+    	//$file_format = $tag['fileformat']; // echo "Fileformat: {$tag['fileformat']}<br>";
+    	//$data_format = $tag['dataformat']; // echo "Dataformat: {$tag['audio']['dataformat']}<br>";
+    	//$channels = $tag['audio']['channels']; // echo "Channels: {$tag['audio']['channels']}<br>";
+    	//$bitrate = $tag['audio']['bitrate']; // echo "Sample rate: {$tag['audio']['bitrate']}<br>";
+    	//$channel_mode = $tag['audio']['channelmode']; // echo "Channel mode: {$tag['audio']['channelmode']}<br>";
+    	//$bitrate_mode = $tag['audio']['bitrate_mode']; // echo "Bitrate mode: {$tag['audio']['bitrate_mode']}<br>";
+    	$html_title = isset($tag['tags_html']['id3v2']['title'][0]) ? $tag['tags_html']['id3v2']['title'][0] : 'Unkown'; // echo "Tags html title: {$tag['tags_html']['id3v2']['title'][0]}<br>";
+    	$html_artist = isset($tag['tags_html']['id3v2']['artist'][0]) ? $tag['tags_html']['id3v2']['artist'][0] : 'Unknown'; // echo "Tags html artist: {$tag['tags_html']['id3v2']['artist'][0]}<br>";
+    	$html_album = isset($tag['tags_html']['id3v2']['album'][0]) ? $tag['tags_html']['id3v2']['album'][0] : 'Unknown'; // echo "Tags html album: {$tag['tags_html']['id3v2']['album'][0]}<br>";
+    	$html_year = isset($tag['tags_html']['id3v2']['year'][0]) ? $tag['tags_html']['id3v2']['year'][0] : 'Unknown'; // echo "Tags html year: {$tag['tags_html']['id3v2']['year'][0]}<br>";
+    	$html_genre = isset($tag['tags_html']['id3v2']['genre'][0]) ? $tag['tags_html']['id3v2']['genre'][0] : 'Unknown'; // echo "Tags html genre: {$tag['tags_html']['id3v2']['genre'][0]}<br>";
+    	$html_playtime = isset($tag['playtime_string']) ? $tag['playtime_string'] : ''; // echo "Tags html playtime string: {$tag['playtime_string']}<br>";
+    	$bpm = isset($tag['tags']['id3v2']['bpm'][0]) ? $tag['tags']['id3v2']['bpm'][0] : 'Unknown';           
+    
+        // Declare and initialize required values to be added to post object
+		$audio = new Track();
+		$audio->setUserId($user_id);
+		$audio->setArtist($html_artist);
+		$audio->setAlbum($html_album);
+		$audio->setTitle($html_title);
+		$audio->setYear($html_year);
+		$audio->setGenre($html_genre);
+		$audio->setDuration($html_playtime);
+		$audio->setFormat($data_format);
+		$audio->setFileSize($audio_size);
+		$audio->setMp3Path($target_mp3_path);
+		$audio->setBPM($bpm);
+		$audio->setCoverArt($target_art_path);
+		
+		$audio->createTrack();
+	
 	}
   
   }
@@ -366,7 +402,7 @@ if ($error_count == 0) {
 ?>
 
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/18/2018 -->
+<!-- Last modified: 11/21/2018 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <title>Upload track(s)</title>
 <?php include_once('php_inc/inc_user_nav.php'); ?>
