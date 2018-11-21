@@ -280,11 +280,18 @@
         var obj = JSON.parse(this.responseText);
         var statusCnt = obj.length;
         
+        /*
         if (statusCnt == 0) {
           var status = $( '<div>No status history retrieved...</div>');
           var mostRecentStatus = $('#status_history_container').first();
           status.prependTo(mostRecentStatus); 
           return;
+        }
+        */
+        
+        // Clear the loading message before populating
+        if (statusCnt > 0) {
+          $('#status_history_container').empty();
         }
 
         for ( var x = 0; x < statusCnt; x++ ) {
@@ -629,7 +636,21 @@
 	  </header>
 	  
 	  <div id="flashback_container" class="w3-container status-tab">
-	    <div id="status_history_container"></div>
+	    <div id="status_history_container">
+	      <?php
+	      	
+            $id = $_SESSION['id'];
+            $status = new Status();
+            $lastUpdate = $status->getText($id);
+            
+            if (empty($lastUpdate)) {
+              echo "<p>No status history to retrieve...</p>";
+            } else {
+              echo "<p>Loading...</p>";
+            }
+            
+	      ?>
+	    </div>
 	  </div>	
 	  
       <div class="w3-container w3-light-grey w3-padding">
