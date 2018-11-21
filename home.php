@@ -343,11 +343,18 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var obj = JSON.parse(this.responseText);
         var statusCnt = obj.length;
         
+        /*
         if (statusCnt == 0) {
           var noStatus = $('<p class="noStatus" class="w3-center">No status history to retrieve...</p>');
           var mostRecentStatus = $('#status_history_container').first();
           noStatus.prependTo(mostRecentStatus);
           return;
+        }
+        */
+        
+        // Clear the loading message before populating
+        if (statusCnt > 0) {
+          $('#status_history_container').empty();
         }
 
         for ( var x = 0; x < statusCnt; x++ ) {
@@ -723,7 +730,19 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  
 	  <div id="flashback_container" class="w3-container status-tab">
 	    <div id="status_history_container">
+	    <?php
 	    
+	      $user_id = $_SESSION['user_id'];
+          $lastUpdate = new Status();
+          echo $lastUpdate->getText($user_id);
+          
+          if (empty($lastUpdate)) {
+            echo "<p>No status history to retrieve...</p>";
+          } else {
+            echo "<p>Loading...</p>";
+          }
+          
+        ?>
 	    </div>
 	  </div>	
 	  
