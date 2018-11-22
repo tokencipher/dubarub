@@ -176,6 +176,15 @@ class Post {
     $this->avatar = $avatar;
   }
   
+  public function updateAvatar($user_id, $avatar) {
+    $table = "post";
+    $sql = "UPDATE $table SET avatar = :avatar WHERE u_id = :user_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();  
+  }
+  
   public function setPhotoUrl($image_path) {
     $this->photo_url = $image_path;
   }
