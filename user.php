@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/19/18 -->
+<!-- Last modified: 11/21/18 -->
 <?php 
   session_start();
   
@@ -245,14 +245,14 @@
   }
   
   function sequenceAsync() {
-    performAsync("Loading posts...").then( () => {
-      loadPosts();
+    performAsync("Loading avatar...").then( () => {
+      loadAvatar();
       return performAsync("Loading status history...");
     }).then( () => {
       loadStatusHistory();
-      return performAsync("Loading avatar ...");
+      return performAsync("Loading posts...");
     }).then( () => {
-      loadAvatar();
+      loadPosts();
       return performAsync("Loading tags...");    
     }).then( () => {
       loadTags();
