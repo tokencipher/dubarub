@@ -15,14 +15,15 @@ if (!isset($user_id) && !isset($_SESSION['logged_in'])) {
   exit; 
 }
 
-/*
+
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-*/
+
 
 ?>
 
 <?php require("php_class/class_User.php"); ?>
+<?php require ("php_class/class_Post.php"); ?>
 
 <?php
 
@@ -182,6 +183,9 @@ if ($error_count == 0) {
         $avatar->setUserId($user_id);
         $avatar->setAvatar($target_avi_dir);
         $avatar->updateAvatar();
+        
+        $postAvi = new Post();
+        $postAvi->updateAvatar($user_id, $target_avi_dir);
         
         header('location: home.php');
         exit;
