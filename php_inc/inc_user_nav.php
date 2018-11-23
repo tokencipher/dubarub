@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div id="header" class="w3-container w3-white" style="opacity:0.6">
       <img style="position:relative;top:6px" src="img/dubarub.jpg" alt="dubarub" id="dub" height="40" width="47" />
-      <span style="position:relative;top:13px" id="logoTitle"> closed beta </span>
+      <span style="position:relative;top:13px" id="logoTitle"> Closed BETA </span>
       <div class="dropdown">
         <button class="btn  btn-lg  dropdown-toggle" id="dropdownMenu1" type="button"  aria-label="Dropdown Menu">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
