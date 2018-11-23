@@ -209,7 +209,7 @@
       $stmt->execute();
       if (!$stmt->rowCount() > 0) {
     	exit('<div style="position:relative;margin:auto;" class="w3-center">' . 
-    	'<p style="color:red;">Cannot find that user.</p>' . 
+    	'<p style="color:red;">User not found.</p>' . 
     	'<p><a class="one" target="_self" href="home.php">Get back to the hot tub!</a></p></div>');
       } else {
         while ($row = $stmt->fetch()) {
@@ -674,11 +674,11 @@
       ?>" width="90" height="90"></img>
     </div>
     
-    <div id="bio_username" style="position:relative;top:-95px;left:110px;font-size:18px;">
+    <div id="bio_username" style="position:relative;top:-95px;left:110px;font-size:12px;">
       <?php 
         $id = $_SESSION['id'];
         $userName = new User();
-        echo $userName->getUsername($id); // must be output this way or else error    
+        echo "<b>" . $userName->getUsername($id) . "</b>"; // must be output this way or else error    
       ?>
     </div>
     
@@ -777,11 +777,11 @@
       ?>" width="90" height="90"></img>
     </div>
     
-    <div id="m_bio_username" style="position:relative;top:-95px;left:110px;font-size:18px;">
+    <div id="m_bio_username" style="position:relative;top:-95px;left:110px;font-size:12px;">
       <?php 
         $id = $_SESSION['id'];
         $userName = new User();
-        echo $userName->getUsername($id); // must be output this way or else error    
+        echo "<b>" . $userName->getUsername($id) . "</b>"; // must be output this way or else error    
       ?>
     </div>
     
