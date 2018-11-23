@@ -17,9 +17,10 @@ if (!isset($user_id) && !isset($_SESSION['logged_in'])) {
 
 <?php 
 
-
+/*
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
+*/
 
 
 /**
@@ -39,6 +40,7 @@ $bpm = "";
 $message = "";
 $art_message = "";
 $cover_art = false;
+$image = false;
 $art_flag = "";
 
 function autoRotateImage($image) {
@@ -152,32 +154,32 @@ if (isset($_POST['upload'])) {
       /* begin image types */
       
       case "image/gif":
-        $cover_art = TRUE;
+        $cover_art = true;
         $art_mime_type = $art_mimeType_array[0];
         break;
         
       case "image/png":
-        $cover_art = TRUE;
+        $cover_art = true;
         $art_mime_type = $art_mimeType_array[0];
         break;
         
       case "image/jpeg":
-        $cover_art = TRUE;
+        $cover_art = true;
         $art_mime_type = $art_mimeType_array[0];
         break;
         
       case "image/jpg":
-        $cover_art = TRUE;
+        $cover_art = true;
         $art_mime_type = $art_mimeType_array[0];
         break;
         
       case "image/bmp":
-        $cover_art = TRUE;
+        $cover_art = true;
         $art_mime_type = $art_mimeType_array[0];
     	break;
     
       case "image/webp":
-        $cover_art = TRUE;
+        $cover_art = true;
         $art_mime_type = $art_mimeType_array[0];
         break;
       
@@ -186,9 +188,12 @@ if (isset($_POST['upload'])) {
         ++$error_count;   
     }
     
+    $image = true;
+    
   } else {
     
-    $cover_art = FALSE;
+    $image = false;
+    $cover_art = false;
   }
 
 } // end of upload set check //
@@ -301,9 +306,9 @@ if ($error_count > 0) {
 
 if ($error_count == 0) {
 
-  if ($audio && $cover_art) {
+  if ($audio && $image) {
   
-    if (move_uploaded_file($temp_file, $target_mp3_path) && move_uploaded_file($temp_art_file, $target_art_path == true)) {
+    if ((move_uploaded_file($temp_file, $target_mp3_path)) && (move_uploaded_file($temp_art_file, $target_art_path)) == TRUE) {
         
         chmod($target_mp3_path, 0644);
         chmod($target_art_path, 0644);
@@ -388,7 +393,6 @@ if ($error_count == 0) {
 		$audio->setFileSize($audio_size);
 		$audio->setMp3Path($target_mp3_path);
 		$audio->setBPM($bpm);
-		$audio->setCoverArt($target_art_path);
 		
 		$audio->createTrack();
 	
