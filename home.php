@@ -835,11 +835,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     
     <!-- username character count cannot be greater than 24 -->
-    <div id="bio_username" style="position:relative;top:-95px;left:110px;font-size:18px;">
+    <div id="bio_username" style="position:relative;top:-95px;left:110px;font-size:12px;">
       <?php 
         $user_id = $_SESSION['user_id'];
         $userName = new User();
-        echo $userName->getUsername($user_id); // must be output this way or else error    
+        echo "<b>" . $userName->getUsername($user_id) . "</b>"; // must be output this way or else error    
       ?>
     </div>
     
@@ -927,11 +927,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     
     <!-- username character count cannot be greater than 24 -->
-    <div id="m_bio_username" style="position:relative;top:-99px;left:110px;font-size:18px;">
+    <div id="m_bio_username" style="position:relative;top:-99px;left:110px;font-size:12px;">
       <?php 
         $user_id = $_SESSION['user_id'];
         $userName = new User();
-        echo $userName->getUsername($user_id); // must be output this way or else error 
+        echo "<b>" . $userName->getUsername($user_id) . "</b>"; // must be output this way or else error 
       ?>
     </div>
     
