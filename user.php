@@ -349,7 +349,7 @@
           var mostRecentPost = $('#post_container').first();
           post.prependTo(mostRecentPost);   
           return; 
-        }
+        } 
  
         for ( var x = 0; x < postCnt; x++ ) {
     
