@@ -17,10 +17,8 @@ session_start();
 * end the previous session .
 */
 
-/*
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-*/
 
 /**
  * Check if the user is logged in.
@@ -383,7 +381,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     postRequest.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
-        console.log(obj);
         var postCnt = obj.length;
         
         if (postCnt == 0) {
