@@ -6,7 +6,10 @@ include('php_inc/inc_db_qp4.php');
 if (isset($_POST['update_bio'])) {
   if (!empty($_POST['update_bio'])) {
     $bio = $_POST['update_bio'];
-    $bio = addslashes($bio);
+    
+    /* If you uncomment this segment, escaped bio text will display to user from DB */
+    //$bio = addslashes($bio);
+    
     $user_id = $_POST['u_id'];
     if ($conn !== FALSE) {
       $table = "user";
