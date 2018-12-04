@@ -767,7 +767,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           <div class="form-group">
             <!-- <label for="bio_edit">Edit bio</label> -->
             <div><i class="w3-xxlarge fa fa-pencil" style="color:#ffcc66;"></i></div>
-            <textarea id="bio_edit" name="bio_edit" class="form-control" rows="3" maxlength="215">215 character limit</textarea>
+            <textarea id="bio_edit" name="bio_edit" class="form-control" placeholder="215 character limit" rows="3" maxlength="215"></textarea>
             <br>
           </div>
         </form>
