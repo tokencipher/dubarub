@@ -7,7 +7,10 @@ if (isset($_POST['update'])) {
   if (!empty($_POST['update'])) {
     $status = $_POST['update'];
     $user_id = $_POST['u_id'];
-    $status = addslashes($status);
+    
+    /* If you uncomment this section escaped status text will display to user from DB */
+    //$status = addslashes($status);
+    
     if ($conn !== FALSE) {
       $tableName = "status";
       $sql = "INSERT INTO $tableName (u_id, status_text) VALUES (:user_id, :status)";
