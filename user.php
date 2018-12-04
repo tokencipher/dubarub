@@ -546,7 +546,8 @@
       setTimeout(function() { 
         var newCount = data.status_id - document.getElementById("status_history_container").childNodes.length; 
         if ( newCount > oldCount) {
-          rewriteStatus();
+          var mostRecentStatus = $('#status_history_container').first();
+          status.prependTo(mostRecentStatus);
           statusCount();
         } 
       }, 3000);
