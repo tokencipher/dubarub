@@ -22,7 +22,7 @@ include ("php_inc/inc_db_qp4.php");
         $object[$x]['photo_url'] = "{$row['photo_url']}";
         $object[$x]['video_url'] = "{$row['video_url']}";
         $object[$x]['video_mp4'] = "{$row['video_mp4']}";
-        $object[$x]['external_url'] = "{$row['external_url']}";
+        $object[$x]['external'] = "{$row['external']}";
         $object[$x]['image'] = "{$row['image']}";
         $object[$x]['video'] = "{$row['video']}";
         $object[$x]['file_size'] = "{$row['file_size']}";
