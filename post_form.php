@@ -68,7 +68,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
 <form action="post_upload.php" method="POST" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="post_title">Enter title of new post</label>
+    <label for="post_title">Enter caption of new post</label>
     <input type="text" maxlength="80" name="post_title" class="form-control" id="post_title" aria-describedby="title_help" placeholder="Title" required>
     <small id="title_help" class="form-text text-muted">Title cannot be any longer than 80 characters.</small>
   </div>
