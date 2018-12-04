@@ -383,6 +383,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     postRequest.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var obj = JSON.parse(this.responseText);
+        console.log(obj);
         var postCnt = obj.length;
         
         if (postCnt == 0) {
@@ -515,7 +516,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   $(document).ready(function() {
     
     sequenceAsync();
-    
     
     $('#clear').click(function() {
       $('#status').val('');
