@@ -313,11 +313,11 @@ if ($error_count == 0) {
         chmod($target_mp3_path, 0644);
         chmod($target_art_path, 0644);
         
-        echo "File \"" . htmlentities($_FILES['track']['name']) . "\" successfully 
-        uploaded.<br />\n";
+        echo "<p class=\"trackUpload\" style=\"color:green;\">" . "File \"" . htmlentities($_FILES['track']['name']) . "\" successfully 
+        uploaded." . "</p>";
         
-        echo "File \"" . htmlentities($_FILES['cover_art']['name']) . "\" successfully 
-        uploaded.<br />\n";
+        echo "<p class=\"trackUpload\" style=\"color:green;\">" . "File \"" . htmlentities($_FILES['cover_art']['name']) . "\" successfully 
+        uploaded." . "</p>";
     
         // Remember to get user id from SESSION variable in production code
         $user_id = $_SESSION['user_id']; 
