@@ -217,6 +217,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     #close_flashback {
       display:none;
     }
+    #post_comments {
+      display: none;
+    }
     /* Phone portrait */
     @media (max-width: 481px) {
       #clear {display:none!important;}
@@ -405,9 +408,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>944,578' + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
-              '<span style="text-align:left;color:blue;text-decoration:underline;"><a href="#">Show/Hide Comments</a></span>' +
+              '<button onclick="toggleIt()" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
-			  '</div><hr><div id="post_comments"></div></div>');
+			  '</div><hr><div id="post_comments">' + 
+			  'hello</div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -510,6 +514,18 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
   }
   
+  function toggleIt() {
+    if (($('#post_comments').css("display")) === "none")  {
+      $('#post_comments').css({
+        display: "block"
+      });
+    } else {
+      $('#post_comments').css({
+        display: "none"
+      });
+    }
+  }
+  
   $(document).ready(function() {
     
     sequenceAsync();
@@ -591,6 +607,20 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     $('#flashback').click(function() {
       // Placeholder  
     });  
+    
+    /*
+    $('#toggle_comments').click(function() {
+      if (($('#post_comments').css("display")) === "none")  {
+        $('#post_comments').css({
+          display: "block"
+        });
+      } else {
+        $('#post_comments').css({
+          display: "none"
+        });
+      }
+    });
+    */
     
     $('#bio_edit_icon').click(function() {
       document.getElementById('bio_modal').style.display = 'block';
