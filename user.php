@@ -364,7 +364,12 @@
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>87,854' + 
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>14,944,578' + 
-              '</p></div><hr><p class="entry">' + obj[x].entry + '</p></div>');
+              '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
+              '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
+              '<button onclick="toggleIt()" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<span style="float:right;color:red;text-decoration:underline;"><a id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
+			  '</div><hr><div id="post_comments">' + 
+			  'hello</div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -482,6 +487,18 @@
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.classList.add("w3-light-grey");
 
+  }
+  
+  function toggleIt() {
+    if (($('#post_comments').css("display")) === "none") {
+      $('#post_comments').css({
+        display: "block"
+      });
+    } else {
+      $('#post_comments').css({
+        display: "none"
+      });
+    }
   }
     
   $(document).ready(function() { 
