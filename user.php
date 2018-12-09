@@ -372,7 +372,7 @@
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>87,854' + 
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>14,944,578' + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
-              '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
+              '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
@@ -394,7 +394,15 @@
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>98,384' + 
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>17,475,978' + 
-              '</p></div><hr><p class="entry">' + obj[x].entry + '</p></div>');
+              '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
+              '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<span style="float:right;color:red;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
+			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
+			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4"><h1 class="title">' + obj[x].title +
               '</h1><div style="position:relative;height:0;padding-bottom:56.25%">' +
@@ -406,7 +414,15 @@
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + 105,384 + 
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>' + 20,195,578 + 
-              '</p></div><hr><p class="entry">' + obj[x].entry + '</p></div>');
+              '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
+              '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<span style="float:right;color:red;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
+			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
+			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -416,7 +432,16 @@
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' +  moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>97,965' +
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>5,834,578' + 
-              '</p></div><hr><p class="entry">' + obj[x].entry + '</p></div></div>');
+              '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
+              '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<span style="float:right;color:red;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
+			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
+			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
+              );
     	    } 	  
               
             var mostRecentPost = $('#post_container').first();
