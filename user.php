@@ -315,27 +315,27 @@
     statusRequest.open("GET", "get_status.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     statusRequest.send();
+  }
     
-    function rewriteStatus() {
-      var statusRequest = new XMLHttpRequest();
-      statusRequest.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          var obj = JSON.parse(this.responseText);
-          var statusCnt = obj.length;
+  function rewriteStatus() {
+    var statusRequest = new XMLHttpRequest();
+    statusRequest.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var obj = JSON.parse(this.responseText);
+        var statusCnt = obj.length;
         
-          $('#status_history_container').empty();
+        $('#status_history_container').empty();
 
-          for ( var x = 0; x < statusCnt; x++ ) {
+        for ( var x = 0; x < statusCnt; x++ ) {
               
-              var status = $( '<div id="status' + obj[x].status_id + '"' + 
-              '<p>' + obj[x].status_text + '</p>' + 
-              '<p>' + obj[x].created_at + '</p><hr></div>');
+          var status = $( '<div id="status' + obj[x].status_id + '"' + 
+          '<p>' + obj[x].status_text + '</p>' + 
+          '<p>' + obj[x].created_at + '</p><hr></div>');
           
-              var mostRecentStatus = $('#status_history_container').first();
-              status.prependTo(mostRecentStatus);   
+          var mostRecentStatus = $('#status_history_container').first();
+          status.prependTo(mostRecentStatus);   
             
-    	  }   
-        }
+    	}   
       }
     };
     statusRequest.open("GET", "get_status.php", true);
@@ -379,7 +379,7 @@
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
-			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '">Actively building out comment section...</div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -664,8 +664,7 @@
       setTimeout(function() { 
         var newCount = data.status_id - document.getElementById("status_history_container").childNodes.length; 
         if ( newCount > oldCount) {
-          var mostRecentStatus = $('#status_history_container').first();
-          status.prependTo(mostRecentStatus);
+          rewriteStatus();
           statusCount();
         } 
       }, 3000);
