@@ -441,7 +441,6 @@
 			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
-              );
     	    } 	  
               
             var mostRecentPost = $('#post_container').first();
@@ -492,7 +491,7 @@
   			'<div class="media-left">' + 
   			'<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			'</div><div class="media-body"><h4 class="media-heading">' + comments[i].user_name + '</h4>' + 
- 			comments[i].comment + '</div></div>');
+ 			'<span style="font-size:12;font-weight:bold">' + comments[i].comment + '</span></div></div>');
           }
         }
       }
