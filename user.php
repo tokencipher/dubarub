@@ -177,13 +177,17 @@
     a.one:link {
       text-decoration:underline;
     }
-    
     a.one:visited {
     
     }
-    
     a.one:hover {
       color:blue;
+    }
+    .post_comments {
+      display: none;
+    }
+    .comment_box {
+      display: none;
     }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
@@ -256,8 +260,11 @@
       return performAsync("Loading tags...");    
     }).then( () => {
       loadTags();
+      return performAsync("Loading comments...");
+    }).then( () => {
+      loadComments();
       return performAsync("Done!");
-    }); 
+    });
   }
   
   function loadAvatar() {
@@ -366,10 +373,13 @@
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>14,944,578' + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
-              '<button onclick="toggleIt()" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
-              '<span style="float:right;color:red;text-decoration:underline;"><a id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
-			  '</div><hr><div id="post_comments">' + 
-			  'hello</div></div>');
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<span style="float:right;color:red;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
+			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
+			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -442,6 +452,30 @@
   
   }
   
+  function loadComments() {
+    var commentRequest = new XMLHttpRequest();
+    commentRequest.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var comments = JSON.parse(this.responseText);
+        var len = comments.length;
+        
+        console.log(comments[0]);
+        
+        if (len > 0) {
+          for ( var i = 0; i < len; i++) {
+            $('#post' + comments[i].p_id).find('.post_comments').prepend('<div id="comment' + comments[i].c_id +  '" class="media">' +
+  			'<div class="media-left">' + 
+  			'<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
+ 			'</div><div class="media-body"><h4 class="media-heading">' + comments[i].user_name + '</h4>' + 
+ 			comments[i].comment + '</div></div>');
+          }
+        }
+      }
+    };
+    commentRequest.open("GET", "get_comments.php", true);
+    commentRequest.send();
+  }
+  
   function statusCount() {
     var statusCount = new XMLHttpRequest();
     statusCount.onreadystatechange = function() {
@@ -489,16 +523,57 @@
 
   }
   
-  function toggleIt() {
-    if (($('#post_comments').css("display")) === "none") {
-      $('#post_comments').css({
+  function toggleComment(id) {
+    if (($('#post_comments' + id).css("display")) === "none") {
+      $('#post_comments' + id).css({
         display: "block"
       });
     } else {
-      $('#post_comments').css({
+      $('#post_comments' + id).css({
         display: "none"
       });
     }
+  }
+  
+  function toggleCommentBox(event, id) {
+    event.preventDefault();
+    if (($('#comment_box' + id).css("display")) === "none") {
+      $('#comment_box' + id).css({
+        display: "block"
+      });
+    } else {
+      $('#comment_box' + id).css({
+        display: "none"
+      });
+    }
+  }
+  
+  function submitComment(event, p_id) {
+    event.preventDefault();
+    
+    // Required to make comment push to server
+    $('#comment_text').trigger('focusout');
+    
+    // Save comment to variable
+    var comment = $('#comment_text').val();
+    console.log(comment);
+    console.log(p_id);
+      
+    // Clear out comment textarea input
+    $('#comment_text').val('');
+          
+    $.ajax({
+      async: true,
+      cache: false,
+      url: 'comment_controller.php',  
+      type: 'POST',
+      data: { comment_text: comment, post_id: p_id }  
+    }).done(function ( msg ) {
+      console.log('comment submitted...');
+    }).fail(function ( xhr, textStatus) {
+      console.log(xhr.statusText);
+    });
+    
   }
     
   $(document).ready(function() { 
@@ -507,6 +582,7 @@
     setTimeout(function() { statusCount(); }, 3000);
     loadStatusEngine();
     
+    /*
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
         navigator.serviceWorker.register('/sw.js').then(function(registration) {
@@ -518,6 +594,7 @@
         });
       });
     }
+    */
     
     // Get ready to receive status update events 
     if (!!window.EventSource) { 
