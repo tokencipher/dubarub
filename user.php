@@ -507,6 +507,8 @@
  			'<p style="font-size:12px">' + comments[i].comment + '</p><div style="font-size:12px" id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() +
  			'</div></div>');
           }
+        } else {
+          $('.post_comments').append('<div id="no_comment">Be the first to comment...</div>');
         }
       }
     };
