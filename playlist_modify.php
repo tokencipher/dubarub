@@ -62,7 +62,10 @@ if (isset($_POST['delete'])) {
     
   }
   
+  header('Location: playlist_modify.php');
+  
 }
+
 
 ?>
 
