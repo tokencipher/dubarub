@@ -175,19 +175,36 @@
       top:12px;
     }
     a.one:link {
-      text-decoration:underline;
+      text-decoration: underline;
     }
     a.one:visited {
     
     }
     a.one:hover {
-      color:blue;
+      color: blue;
     }
     .post_comments {
       display: none;
     }
     .comment_box {
       display: none;
+    }
+    /* unvisited link */
+    #comment_owner_link:link {
+      color: blue;
+      text-decoration:underline;
+    }
+    /* visited link */
+    #comment_owner_link:visited {
+      color: purple;
+    }
+    /* mouse over link */
+    #comment_owner_link:hover { /* must come after unvisited and visited */
+      color: blue;
+    }
+    /* selected link */
+    #comment_owner_link:active {
+      color: green;
     }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
@@ -379,7 +396,7 @@
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' + 
-			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '">Actively building out comment section...</div></div>');
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -483,15 +500,16 @@
         var comments = JSON.parse(this.responseText);
         var len = comments.length;
         
-        console.log(comments[0]);
+        //console.log(comments[0]);
         
         if (len > 0) {
           for ( var i = 0; i < len; i++) {
             $('#post' + comments[i].p_id).find('.post_comments').prepend('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			'<div class="media-left">' + 
   			'<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
- 			'</div><div class="media-body"><h4 class="media-heading">' + comments[i].user_name + '</h4>' + 
- 			'<span style="font-size:12;font-weight:bold">' + comments[i].comment + '</span></div></div>');
+ 			'</div><div style="position:relative;text-align:left;" class="media-body"><h4 class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</h4>' + 
+ 			'<p style="font-size:12px">' + comments[i].comment + '</p><div style="font-style:12px" id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() +
+ 			'</div></div>');
           }
         }
       }
