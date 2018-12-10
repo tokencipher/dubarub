@@ -256,12 +256,8 @@
 
   function performAsync(message, callback) {
     return new Promise( (resolve, reject) => {
-      setTimeout(
-        () => {
-          console.log(message);
-          resolve();
-        }, 100
-      );
+      console.log(message);
+      resolve();
     });
   }
   
