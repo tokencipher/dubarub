@@ -496,7 +496,8 @@
         var comments = JSON.parse(this.responseText);
         var len = comments.length;
         
-        //console.log(comments[0]);
+        // if ( $('#post' + obj.p_id).find('.post_comments').children().length > 0 ) {
+        // console.log(len);
         
         if (len > 0) {
           for ( var i = 0; i < len; i++) {
