@@ -503,8 +503,8 @@
             $('#post' + comments[i].p_id).find('.post_comments').prepend('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			'<div class="media-left">' + 
   			'<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
- 			'</div><div style="position:relative;text-align:left;" class="media-body"><h4 class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</h4>' + 
- 			'<p style="font-size:12px">' + comments[i].comment + '</p><div style="font-style:12px" id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() +
+ 			'</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
+ 			'<p style="font-size:12px">' + comments[i].comment + '</p><div style="font-size:12px" id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() +
  			'</div></div>');
           }
         }
