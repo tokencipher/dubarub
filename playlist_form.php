@@ -127,6 +127,7 @@ if (isset($_POST['upload'])) {
       $track_info['art'],
       $track_info['bpm']
     );
+    echo "<div style=\"color:green;margin-left:2px\" id=\"trackAdded\">" . $track_info['artist'] . " - " . $track_info['title'] . " added to playlist</div>";
   }
   
   /*
