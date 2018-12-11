@@ -231,14 +231,20 @@
     switch ( $_GET['action'] ) {
      
       case 'Upvote':
-        $c_id = $_GET['commid'];
-        $commentObj = new PostComment();
-        $upvotes = $commentObj->getUpvote($c_id);
+        if (isset($_SESSION['user_id'])) {
+          $u_id = $_SESSION['user_id'];
+          $c_id = $_GET['commid'];
+          $commentObj = new PostComment();
+          $upvoteFlag = $commentObj->getUpvoteFlag($u_id, $c_id);
         
-        if ($upvotes > 0) {
-          return;
+          if ($upvoteFlag == "true") {
+            return;
+          }
+          
+          $commentObj->setUpvoteFlag($u_id, $c_id, "true");
+        
         } else {
-          $commentObj->upvote($c_id);
+          echo "You must be logged in to give a trophy";
         }
         
         break;
