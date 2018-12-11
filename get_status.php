@@ -4,8 +4,6 @@
  */
 session_start();
 
-$status_id = $_GET['status_id']
-
 header('Content-Type: application/json;charset=utf-8');
 
 include ("php_inc/inc_db_qp4.php");
