@@ -275,7 +275,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       return performAsync("Loading tags...");    
     }).then( () => {
       loadTags();
-      return performAsync("Done...");
+      return performAsync("Loading comments...")
+    }).then( () => {
+      loadComments();
+      return performAsync("Done!");
     });
       
     /*
@@ -492,6 +495,58 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     tagRequest.open("GET", "get_user_tags.php", true);
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     tagRequest.send();
+  }
+  
+  function loadComments() {
+    var commentRequest = new XMLHttpRequest();
+    commentRequest.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var comments = JSON.parse(this.responseText);
+        var len = comments.length;
+        var value = "<?php echo ( (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 0 ); ?>";
+        console.log("value is: " + value);
+        var user_id = parseInt(value);
+        
+        // if ( $('#post' + obj.p_id).find('.post_comments').children().length > 0 ) {
+        // console.log(len);
+        
+        /*
+         * if current user session id == u_id then add delete icon else show default
+         * comment object
+        */
+        
+        if (len > 0) {
+          console.log("comment user id: " + comments[0].u_id + " and current user: " + user_id);
+          for ( var i = 0; i < len; i++) {
+            if ( comments[i].post_owner == user_id ) {
+              $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
+  			  '<div class="media-left">' + 
+  			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
+ 			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
+ 			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
+ 			  '<div id="remove_comment" style="position:relative;bottom:22px;margin-right:10px;float:right"><a id="deleteComment" href="user.php?action=Delete%20Comment&commID="' + comments[i].c_id + '">' + 
+ 			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></a></div>' + 
+ 			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
+ 			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
+ 			  '</div></div>');
+ 			} else {
+ 			  $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
+  			  '<div class="media-left">' + 
+  			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
+ 			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
+ 			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
+ 			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
+ 			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
+ 			  '</div></div>');
+ 			}
+          }
+        } else {
+          $('.post_comments').append('<div id="no_comment">Be the first to comment...</div>');
+        }
+      }
+    };
+    commentRequest.open("GET", "get_user_comments.php", true);
+    commentRequest.send();
   }
     
   function openTab(evt, tabName) {
