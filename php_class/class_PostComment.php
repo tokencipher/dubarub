@@ -60,11 +60,49 @@ class PostComment {
   
   public function reportComment($c_id) {}  
   
+  public function upvote($c_id) {
+    // Get upvote count so we can increment it and send to DB
+    $count = getUpvote($c_id);
+    
+    // Increment retrieved upvote
+    $count += 1;
+  
+    $table = "post_comment";
+    $sql = "UPDATE $table SET upvote = :inc WHERE c_id = :c_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':inc', $count);
+    $stmt->bindParam(':c_id', $c_id);
+    $stmt->execute();
+    
+  }
+  
+  public function setUpvoteFlag($u_id, $c_id, $flag) {  
+    $table = "comment_upvote";
+    $sql = "INSERT INTO $table (u_id, c_id, upvote) VALUES (:u_id, :c_id, :upvote)";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':c_id', $c_id);
+    $stmt->bindParam(':upvote', $flag);
+    $stmt->execute();
+  }
+  
   public function getUpvote($comment_id) {
     $table = "post_comment";
     $sql = "SELECT upvote FROM $table WHERE c_id = :c_id";
     $stmt = $this->db->prepare($sql);
     
+    $stmt->bindParam(':c_id', $comment_id);
+    $stmt->execute();
+  }
+  
+  public function getUpvoteFlag($user_id, $comment_id) {
+    $table = "comment_upvote";
+    $sql = "SELECT upvote FROM $table WHERE u_id = :u_id && c_id = :c_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':u_id', $user_id);
     $stmt->bindParam(':c_id', $comment_id);
     $stmt->execute();
   }
