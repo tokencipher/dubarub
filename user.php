@@ -224,6 +224,35 @@
 </head>
 <body>
 
+<?php
+
+  if (isset($_GET['action'])) {
+     
+    switch ( $_GET['action'] ) {
+     
+      case 'Upvote':
+        $c_id = $_GET['commid'];
+        $commentObj = new PostComment();
+        $upvotes = $commentObj->getUpvote($c_id);
+        
+        if ($upvotes > 0) {
+          return;
+        } else {
+          $commentObj->upvote($c_id);
+        }
+        
+        break;
+        
+      case 'Delete Comment':
+        $c_id = $_GET['commid'];
+        $commentObj = new PostComment();
+        $commentObj->deleteComment($c_id);
+        break;
+    }
+  }   
+
+?>
+
 <?php 
 
   try {
@@ -529,7 +558,7 @@
   			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
  			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
- 			  '<div id="remove_comment" style="position:relative;bottom:22px;margin-right:10px;float:right"><a id="deleteComment" href="user.php?action=Delete%20Comment&commID="' + comments[i].c_id + '">' + 
+ 			  '<div id="remove_comment" style="position:relative;bottom:22px;margin-right:10px;float:right"><a id="deleteComment" href="user.php?action=Delete%20Comment&commid="' + comments[i].c_id + '">' + 
  			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></a></div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
@@ -544,7 +573,7 @@
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
- 			  '<div id="trophy"><a href="user.php?action=Upvote&commID="' + comments[i].c_id + '">' +
+ 			  '<div id="trophy"><a href="user.php?action=Upvote&commid="' + comments[i].c_id + '">' +
  			  '<i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' +
  			  '</div></div>');
  			}
