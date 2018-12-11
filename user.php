@@ -224,41 +224,6 @@
 </head>
 <body>
 
-<?php
-
-  if (isset($_GET['action'])) {
-     
-    switch ( $_GET['action'] ) {
-     
-      case 'Upvote':
-        if (isset($_SESSION['user_id'])) {
-          $u_id = $_SESSION['user_id'];
-          $c_id = $_GET['commid'];
-          $commentObj = new PostComment();
-          $upvoteFlag = $commentObj->getUpvoteFlag($u_id, $c_id);
-        
-          if ($upvoteFlag == "true") {
-            return;
-          }
-          
-          $commentObj->setUpvoteFlag($u_id, $c_id, "true");
-        
-        } else {
-          echo "You must be logged in to give a trophy";
-        }
-        
-        break;
-        
-      case 'Delete Comment':
-        $c_id = $_GET['commid'];
-        $commentObj = new PostComment();
-        $commentObj->deleteComment($c_id);
-        break;
-    }
-  }   
-
-?>
-
 <?php 
 
   try {
@@ -579,7 +544,7 @@
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
- 			  '<div id="trophy"><a href="user.php?action=Upvote&commid="' + comments[i].c_id + '">' +
+ 			  '<div id="trophy"><a href="#">' + 
  			  '<i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' +
  			  '</div></div>');
  			}
