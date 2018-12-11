@@ -94,7 +94,7 @@ class PostComment {
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':c_id', $comment_id);
-    $stmt->execute();
+    return $stmt->execute();
   }
   
   public function getUpvoteFlag($user_id, $comment_id) {
@@ -104,7 +104,7 @@ class PostComment {
     
     $stmt->bindParam(':u_id', $user_id);
     $stmt->bindParam(':c_id', $comment_id);
-    $stmt->execute();
+    return $stmt->execute();
   }
   
   public function createComment($u_id, $user_name, $p_id, $avatar, $comment, $post_owner) {
@@ -129,7 +129,7 @@ class PostComment {
     
     $stmt->bindParam(':comment_id', $comment_id);
     
-    return $stmt->execute();
+    $stmt->execute();
   } 
   
 }
