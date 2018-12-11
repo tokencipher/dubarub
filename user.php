@@ -210,7 +210,9 @@
       display: flex;
       flex-direction: row;
       height:20px;
-      align-content: space-around;
+    }
+    .flex-container > div {
+      margin-right:10px;
     }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
@@ -526,6 +528,7 @@
  			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></a></div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
+ 			  '<div id="upvote">' + comments[i].upvote + ' trophies</div>' +
  			  '</div></div>');
  			} else {
  			  $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
@@ -535,6 +538,7 @@
  			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
+ 			  '<div id="upvote">' + comments[i].upvote + ' trophies</div>' +
  			  '</div></div>');
  			}
           }
