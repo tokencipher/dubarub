@@ -60,6 +60,15 @@ class PostComment {
   
   public function reportComment($c_id) {}  
   
+  public function getUpvote($comment_id) {
+    $table = "post_comment";
+    $sql = "SELECT upvote FROM $table WHERE c_id = :c_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':c_id', $comment_id);
+    $stmt->execute();
+  }
+  
   public function createComment($u_id, $user_name, $p_id, $avatar, $comment, $post_owner) {
     $table = "post_comment";
     $sql = "INSERT INTO $table (u_id, user_name, p_id, avatar, comment, post_owner) VALUES (:user_id, :user_name, :post_id, :avatar, :comment, :post_owner)";
