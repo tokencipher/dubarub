@@ -74,6 +74,17 @@ class PostComment {
     $stmt->execute();
   }
   
+  public function deleteComment($comment_id) {
+    $table = "post_comment";
+    $sql = "UPDATE $table SET display = 'false' WHERE c_id = :comment_id";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':comment_id', $comment_id);
+    
+    return $stmt->execute();
+  } 
+  
 }
 
 ?>
