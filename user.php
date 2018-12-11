@@ -518,6 +518,11 @@
         if (len > 0) {
           console.log("comment user id: " + comments[0].u_id + " and current user: " + user_id);
           for ( var i = 0; i < len; i++) {
+            if (comments[i].upvote == 1) {
+              var trophyAmount = "trophy";
+            } else {
+              var trophyAmount = "trophies";
+            }
             if ( comments[i].u_id == user_id ) {
               $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
@@ -528,7 +533,7 @@
  			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></a></div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
- 			  '<div id="upvote">' + comments[i].upvote + ' trophies</div>' +
+ 			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
  			  '</div></div>');
  			} else {
  			  $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
@@ -538,7 +543,9 @@
  			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
- 			  '<div id="upvote">' + comments[i].upvote + ' trophies</div>' +
+ 			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
+ 			  '<div id="trophy"><a href="user.php?action=Upvote&commID="' + comments[i].c_id + '">' +
+ 			  '<i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' +
  			  '</div></div>');
  			}
           }
