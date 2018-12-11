@@ -14,7 +14,7 @@ include ('php_inc/inc_db_qp4.php');
     $table = "status";
     $user_id = $_SESSION['id'];
   
-	$sql = "SELECT u_id, status_id, status_text, created_at FROM $table WHERE display = 'true' AND u_id = $user_id";
+	$sql = "SELECT u_id, status_id, status_text, created_at FROM $table WHERE display = 'true' && u_id = $user_id";
 	$object = array();
 	$x = 0;
 	foreach ($conn->query($sql) as $row) {
