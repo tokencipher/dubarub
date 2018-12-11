@@ -29,6 +29,7 @@ include ('php_inc/inc_db_qp4.php');
 // Send the data back to the caller
 $myObj = json_encode($object);
 echo $myObj
+$conn = null;
 //$count = $conn->query("SELECT count(*) FROM $tableName WHERE u_id=1")->fetchColumn();
 //echo $count;
 // Send the data back to the caller

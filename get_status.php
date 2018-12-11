@@ -4,6 +4,8 @@
  */
 session_start();
 
+$status_id = $_GET['status_id']
+
 header('Content-Type: application/json;charset=utf-8');
 
 include ("php_inc/inc_db_qp4.php");
@@ -24,5 +26,6 @@ include ("php_inc/inc_db_qp4.php");
 
 $myObj = json_encode($object);
 echo $myObj;
+$conn = null;
 
 ?>

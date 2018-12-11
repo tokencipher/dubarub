@@ -502,7 +502,7 @@
         var comments = JSON.parse(this.responseText);
         var len = comments.length;
         var value = "<?php echo ( (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 0 ); ?>";
-        //console.log("value is: " + value);
+        console.log("value is: " + value);
         var user_id = parseInt(value);
         
         // if ( $('#post' + obj.p_id).find('.post_comments').children().length > 0 ) {
@@ -514,7 +514,7 @@
         */
         
         if (len > 0) {
-          //console.log("comment user id: " + comments[0].u_id + " and current user: " + user_id);
+          console.log("comment user id: " + comments[0].u_id + " and current user: " + user_id);
           for ( var i = 0; i < len; i++) {
             if ( comments[i].u_id === user_id ) {
               $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
