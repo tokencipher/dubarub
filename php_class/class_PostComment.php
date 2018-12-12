@@ -107,6 +107,17 @@ class PostComment {
     return $stmt->execute();
   }
   
+  public function setReportFlag($u_id, $c_id, $flag) {  
+    $table = "comment_reported";
+    $sql = "INSERT INTO $table (u_id, c_id, report) VALUES (:u_id, :c_id, :report)";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':c_id', $c_id);
+    $stmt->bindParam(':report', $flag);
+    $stmt->execute();
+  }
+  
   public function getReportFlag($user_id, $comment_id) {
     $table = "comment_reported";
     $sql = "SELECT report FROM $table WHERE u_id = :u_id && c_id = :c_id";
