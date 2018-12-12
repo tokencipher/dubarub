@@ -413,8 +413,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleIt()" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
-			  '</div><hr><div id="post_comments">' + 
-			  'hello</div></div>');
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -433,7 +432,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:3px;padding:10px;">' +
               '<span style="text-align:left;color:blue;text-decoration:underline;"><a href="#">Show/Hide Comments</a></span>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
-			  '</div></div>');
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
@@ -462,7 +461,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:2px;padding:10px;">' +
               '<span style="text-align:left;color:blue;text-decoration:underline;"><a href="#">Show/Hide Comments</a></span>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
-			  '</div></div></div>');	  
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');	  
     	    } 	  
               
             var mostRecentPost = $('#post_container').first();
