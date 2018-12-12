@@ -451,7 +451,7 @@
     		  '<div class="metadata"><p class="post_tags" style="margin-left:10px;">' +
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' +  moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' obj[x].comments +
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +
               '<i class="fa fa-heart-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;color:red;"></i>5,834,578' + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
