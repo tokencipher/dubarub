@@ -58,7 +58,21 @@ class PostComment {
   
   public function getComment() {}
   
-  public function reportComment($c_id) {}  
+  public function report($c_id) {
+    // Get report count so we can increment it and send to DB
+    $count = getReport($c_id);
+    
+    // Increment retrieved upvote
+    $count += 1;
+  
+    $table = "post_comment";
+    $sql = "UPDATE $table SET report = :inc WHERE c_id = :c_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':inc', $count);
+    $stmt->bindParam(':c_id', $c_id);
+    $stmt->execute();
+  }  
   
   public function upvote($c_id) {
     // Get upvote count so we can increment it and send to DB
