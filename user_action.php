@@ -21,6 +21,7 @@ header('Content-Type: application/json;charset=utf-8');
             return;
           }
           
+          $commentObj->upvote($c_id);
           $commentObj->setUpvoteFlag($u_id, $c_id, "true");
           
           $myObj = array();
