@@ -248,6 +248,16 @@ class Post {
     $stmt->execute();
   }
   
+  public function getUpvoteFlag($user_id, $post_id) {
+    $table = "post_upvote";
+    $sql = "SELECT upvote FROM $table WHERE u_id = :u_id && p_id = :p_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':u_id', $user_id);
+    $stmt->bindParam(':p_id', $post_id);
+    return $stmt->execute();
+  }
+  
   public function updateCommentCount($p_id) {
     // Get comment count so we can increment it and send to DB
     $count = getCommentCount($p_id);
