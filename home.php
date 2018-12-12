@@ -217,7 +217,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     #close_flashback {
       display:none;
     }
-    #post_comments {
+    .post_comments {
       display: none;
     }
     /* Phone portrait */
