@@ -73,7 +73,7 @@ class PostComment {
     
     $stmt->bindParam(':inc', $count);
     $stmt->bindParam(':c_id', $c_id);
-    $stmt->execute();
+    return $stmt->execute();
     
   }
   
