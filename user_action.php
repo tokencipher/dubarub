@@ -9,6 +9,27 @@ header('Content-Type: application/json;charset=utf-8');
   if (isset($_POST['user_action'])) {
      
     switch ( $_POST['action'] ) {
+    
+      case 'Upvote Post':
+        if (isset($_SESSION['user_id'])) {
+          $u_id = $_SESSION['user_id'];
+          $p_id = $_POST['post_id'];
+          $postObj = new Post();
+          $upvote_flag = $commentObj->getUpvoteFlag($u_id, $p_id);
+        
+          if ($upvote_flag == "true") {
+            return;
+          }
+          
+          $postObj->upvote($p_id);
+          $postObj->setUpvoteFlag($u_id, $p_id, "true");
+          
+          $myObj = array();
+          $trophy_count = $postObj->getUpvote($p_id);
+          $myObj['trophy_count'] = $trophy_count;
+        }
+        
+        break;
      
       case 'Upvote Comment':
         if (isset($_SESSION['user_id'])) {
