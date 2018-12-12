@@ -237,6 +237,18 @@ class Post {
     $this->mime_type = $mime;
   }
   
+  public function updateCommentCount($p_id) {
+    $table = "post";
+    $sql = "UPDATE $table SET comments = :inc WHERE p_id = :p_id";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':inc', $count);
+    $stmt->bindParam(':p_id', $p_id);
+    
+    $stmt->execute();
+  }
+  
   public function createPostWImage() {
     $table = "post";
     $sql = "INSERT INTO $table(u_id, user_name, title, avatar, photo_url, photo_cred, image, file_size, entry, display, mime_type) " . 
