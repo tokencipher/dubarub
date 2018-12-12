@@ -544,7 +544,7 @@
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
- 			  '<div class="trophy" data-commid="' + comments[i].c_id + '" data-uid="' + comments[i].u_id + '"><i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' +
+ 			  '<div onclick="handTrophy(this)" class="trophy" data-commid="' + comments[i].c_id + '" data-uid="' + comments[i].u_id + '"><i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' +
  			  '</div></div>');
  			}
           }
@@ -656,6 +656,41 @@
     });
     
   }
+  
+  function handTrophy(element) {
+    console.log("clicked");
+    var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    	
+    if (hand_trophy == "true") {
+    	
+      console.log("Should we hand trophy?... " + hand_trophy);
+      var trophy = $( element );
+	  var commID = trophy.data("commid");
+	  var uid = trophy.data("uid");
+		
+	  var action = "Upvote";
+		
+	  $.ajax({
+        async: true,
+      	cache: false,
+        url: 'user_action.php',  
+        type: 'POST',
+        data: { user_action: action, comment_id: commID }  
+      }).done(function ( msg ) {
+        console.log('Upvote action taken...');
+        console.log(msg);
+      }).fail(function ( xhr, textStatus) {
+        console.log(xhr.statusText);
+      });
+        
+    } else {
+      if (confirm("You must be logged in to give a trophy. Sign up/Login?")) {
+  	    window.location.assign("https://dubarub.com");
+	  } else {
+  		return;
+	  }
+    }     
+  }
     
   $(document).ready(function() { 
   
@@ -733,44 +768,6 @@
         // Connection was closed.
       }
     }, false);
-    
-    // Add trophy click event handler
-    $(".trophy").on("click", function() {
-    	var handTrophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
-    	
-    	if (handTrophy == "true") {
-    	
-    	  console.log("Should we hand trophy?... " + handTrophy);
-          var elem = $( this );
-		  var commID = elem.data("commid");
-		  var uid = elem.data("uid");
-		
-		  var action = "Upvote";
-		
-		  $.ajax({
-            async: true,
-      	    cache: false,
-            url: 'user_action.php',  
-            type: 'POST',
-            data: { user_action: action, comment_id: commID }  
-          }).done(function ( msg ) {
-            console.log('Upvote action taken...');
-            console.log(msg);
-          }).fail(function ( xhr, textStatus) {
-            console.log(xhr.statusText);
-          });
-        
-        } else {
-          if (confirm("You must be logged in to give a trophy. Sign up/Login?")) {
-  		    window.location.assign("https://dubarub.com");
-		  } else {
-  			return;
-		  }
-        }
-        
-    });
-		
-    
   
     $('#flashback').click(function() {
       // Placeholder  
