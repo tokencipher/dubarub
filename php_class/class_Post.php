@@ -237,6 +237,17 @@ class Post {
     $this->mime_type = $mime;
   }
   
+  public function setPostFlag($u_id, $p_id, $flag) {  
+    $table = "post_upvote";
+    $sql = "INSERT INTO $table (u_id, p_id, upvote) VALUES (:u_id, :p_id, :upvote)";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':p_id', $p_id);
+    $stmt->bindParam(':upvote', $flag);
+    $stmt->execute();
+  }
+  
   public function updateCommentCount($p_id) {
     // Get comment count so we can increment it and send to DB
     $count = getCommentCount($p_id);
