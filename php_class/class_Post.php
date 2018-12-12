@@ -237,6 +237,15 @@ class Post {
     $this->mime_type = $mime;
   }
   
+  public function getUpvote($p_id) {
+    $table = "post";
+    $sql = "SELECT upvote FROM $table WHERE p_id = :p_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':p_id', $p_id);
+    return $stmt->execute();
+  }
+  
   public function upvote($p_id) {
     // Get upvote count so we can increment it and send to DB
     $count = getUpvote($p_id);
@@ -251,7 +260,7 @@ class Post {
     $stmt->bindParam(':inc', $count);
     $stmt->bindParam(':p_id', $p_id);
     return $stmt->execute();
-    
+     
   }
   
   public function setPostFlag($u_id, $p_id, $flag) {  
