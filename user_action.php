@@ -42,6 +42,7 @@ header('Content-Type: application/json;charset=utf-8');
             return;
           }
           
+          $commentObj->report($c_id);
           $commentObj->setReportFlag($u_id, $c_id, "true");
           
           $myObj = array();
