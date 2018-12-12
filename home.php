@@ -411,7 +411,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
-              '<button onclick="toggleIt()" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
@@ -430,7 +430,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:3px;padding:10px;">' +
-              '<span style="text-align:left;color:blue;text-decoration:underline;"><a href="#">Show/Hide Comments</a></span>' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
@@ -459,7 +459,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:2px;padding:10px;">' +
-              '<span style="text-align:left;color:blue;text-decoration:underline;"><a href="#">Show/Hide Comments</a></span>' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:red;text-decoration:underline;"><a id="deletePost" href="home.php?action=Delete%20Post&pid=' + obj[x].p_id + '">Delete Post</a></span>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');	  
     	    } 	  
