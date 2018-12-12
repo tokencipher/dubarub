@@ -10,7 +10,7 @@ header('Content-Type: application/json;charset=utf-8');
      
     switch ( $_POST['action'] ) {
      
-      case 'Upvote':
+      case 'Upvote Comment':
         if (isset($_SESSION['user_id'])) {
           $u_id = $_SESSION['user_id'];
           $c_id = $_POST['comment_id'];
