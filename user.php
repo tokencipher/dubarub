@@ -658,7 +658,7 @@
   }
   
   function handTrophy(element) {
-    console.log("clicked");
+    console.log("trophy clicked");
     var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
     	
     if (hand_trophy == "true") {
