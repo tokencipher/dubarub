@@ -658,8 +658,42 @@
     
   }
   
+  function handPostTrophy(element) {
+    console.log("post trophy clicked");
+    var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    	
+    if (hand_trophy == "true") {
+    	
+      console.log("Should we hand trophy?... " + hand_trophy);
+      var trophy = $( element );
+	  var postID = trophy.data("postid");
+		
+	  var action = "Upvote Post";
+		
+	  $.ajax({
+        async: true,
+      	cache: false,
+        url: 'user_action.php',  
+        type: 'POST',
+        data: { user_action: action, post_id: postID }  
+      }).done(function ( msg ) {
+        console.log('Post upvote action taken...');
+        console.log(msg);
+      }).fail(function ( xhr, textStatus) {
+        console.log(xhr.statusText);
+      });
+        
+    } else {
+      if (confirm("You must be logged in to give a trophy. Sign up/Login?")) {
+  	    window.location.assign("https://dubarub.com");
+	  } else {
+  		return;
+	  }
+    }     
+  }
+  
   function handCommentTrophy(element) {
-    console.log("trophy clicked");
+    console.log("comment trophy clicked");
     var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
     	
     if (hand_trophy == "true") {
@@ -668,7 +702,7 @@
       var trophy = $( element );
 	  var commID = trophy.data("commid");
 		
-	  var action = "Upvote";
+	  var action = "Upvote Comment";
 		
 	  $.ajax({
         async: true,
@@ -677,7 +711,7 @@
         type: 'POST',
         data: { user_action: action, comment_id: commID }  
       }).done(function ( msg ) {
-        console.log('Upvote action taken...');
+        console.log('Comment upvote action taken...');
         console.log(msg);
       }).fail(function ( xhr, textStatus) {
         console.log(xhr.statusText);
