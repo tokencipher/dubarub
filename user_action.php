@@ -30,6 +30,24 @@ header('Content-Type: application/json;charset=utf-8');
         
         break;
         
+      case 'Flag Comment':
+        if (isset($_SESSION['user_id'])) {
+          $u_id = $_SESSION['user_id'];
+          $c_id = $_POST['comment_id'];
+          $commentObj = new PostComment();
+          $report_flag = $commentObj->getReportFlag($u_id, $c_id);
+          
+          if ($report_flag == "true") {
+            return;
+          }
+          
+          $commentObj->setReportFlag($u_id, $c_id, "true");
+          
+          $myObj = array();
+          $myObj['isFlagged'] = "true";
+        }
+        break;
+        
       case 'Delete Comment':
         $c_id = $_GET['commid'];
         $commentObj = new PostComment();
