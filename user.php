@@ -545,7 +545,7 @@
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
  			  '<div onclick="handTrophy(this)" class="trophy" data-commid="' + comments[i].c_id + '" data-uid="' + comments[i].u_id + '"><i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' + 
- 			  '<div onclick="flagComment(this)" style="position:relative;left:15px;" class="comment_flag"><i style="color:red" class="fa fa-flag" aria-hidden="true"></i></div>' +
+ 			  '<div onclick="flagComment(this)" class="comment_flag" data-commid="' + comments[i].c_id + '" data-uid="' + comments[i].u_id + '" style="position:relative;left:15px;"><i style="color:red" class="fa fa-flag" aria-hidden="true"></i></div>' +
  			  '</div></div>');
  			}
           }
