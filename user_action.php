@@ -4,6 +4,9 @@
  */
 session_start();
 
+require_once('php_class/class_Post.php');
+require_once('php_class/class_PostComment.php');
+
 header('Content-Type: application/json;charset=utf-8');
 
   if (isset($_POST['user_action'])) {
