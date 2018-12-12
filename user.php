@@ -701,7 +701,6 @@
       console.log("Should we flag comment?... " + flag_comment);
       var flag = $( element );
 	  var commID = flag.data("commid");
-	  var uid = flag.data("uid");
 		
 	  var action = "Flag Comment";
 		
