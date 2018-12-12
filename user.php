@@ -667,7 +667,6 @@
       console.log("Should we hand trophy?... " + hand_trophy);
       var trophy = $( element );
 	  var commID = trophy.data("commid");
-	  var uid = trophy.data("uid");
 		
 	  var action = "Upvote";
 		
