@@ -597,6 +597,40 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
+  function removeComment(element) {
+    console.log("remove comment item clicked");
+    var remove_flag = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    	
+    if (remove_flag == "true") {
+    	
+      console.log("Should we remove comment?... " + remove_flag);
+      var comment = $( element );
+	  var commID = comment.data("commid");
+		
+	  var action = "Remove Comment";
+		
+	  $.ajax({
+        async: true,
+      	cache: false,
+        url: 'user_action.php',  
+        type: 'POST',
+        data: { user_action: action, comment_id: commID }  
+      }).done(function ( msg ) {
+        console.log('Remove comment action taken...');
+        console.log(msg);
+      }).fail(function ( xhr, textStatus) {
+        console.log(xhr.statusText);
+      });
+        
+    } else {
+      if (confirm("You must be logged in to remove this comment. Sign up/Login?")) {
+  	    window.location.assign("https://dubarub.com");
+	  } else {
+  		return;
+	  }
+    }       
+  }
+  
   $(document).ready(function() {
     
     sequenceAsync();
