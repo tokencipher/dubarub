@@ -254,27 +254,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 </head>
 <body>
 
-<?php
-
-  if (isset($_GET['action'])) {
-     
-    switch ( $_GET['action'] ) {
-     
-      case 'Delete Post':
-        $p_id = $_GET['pid'];
-        $post_delete = new Post();
-        $post_delete->deletePost($p_id);
-        break;
-        
-      case 'Delete Status':
-        $stat_id = $_GET['statid'];
-        $status_delete = new Status();
-        $status_delete->deleteStatus($stat_id);
-        break;
-    }
-  }   
-?>
-
 <script>
 
   function performAsync(message, callback) {
@@ -828,6 +807,45 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         
     } else {
       if (confirm("You must be logged in to remove this post. Sign up/Login?")) {
+  	    window.location.assign("https://dubarub.com");
+	  } else {
+  		return;
+	  }
+    }       
+  }
+  
+  function removeStatus(element) {
+    console.log("remove status item clicked");
+    var remove_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+    
+    console.log("Remove status flag is set to: " + remove_flag);
+    	
+    if (remove_flag === true) {
+      if (confirm("Are you sure you want to delete this status?")) {
+  	    var status = $( element );
+	    var statusID = status.data("statusid");
+		
+	    var action = "Remove Status";
+		
+	    $.ajax({
+          async: true,
+      	  cache: false,
+          url: 'user_action.php',  
+          type: 'POST',
+          data: { user_action: action, status_id: statusID }  
+        }).done(function ( msg ) {
+          console.log('Remove status action taken...');
+          console.log(msg);
+        }).fail(function ( xhr, textStatus) {
+          console.log(xhr.statusText);
+        });
+        
+	  } else {
+  		return;
+	  }
+        
+    } else {
+      if (confirm("You must be logged in to remove this status. Sign up/Login?")) {
   	    window.location.assign("https://dubarub.com");
 	  } else {
   		return;
