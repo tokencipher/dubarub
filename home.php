@@ -684,11 +684,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   
   function flagComment(element) {
     console.log("flag clicked");
-    var flag_comment = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    var flag_comment = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
-    if (flag_comment == "true") {
-    	
-      console.log("Should we flag comment?... " + flag_comment);
+    if (flag_comment === true) {
+
       var flag = $( element );
 	  var commID = flag.data("commid");
 		
