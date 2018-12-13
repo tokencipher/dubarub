@@ -372,7 +372,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           '<p>' + obj[x].created_at + '</p>' +
           '<div id="status_options" style="position:relative;top:2px;padding:10px;">' +
           '<div onclick="removeStatus(this)" id="deleteStatus' + obj[x].status_id + '"  data-statusid="' + obj[x].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;">' + 
-          '</i></a></div></div><hr></div>');
+          '</i></div></div><hr></div>');
           
           var mostRecentStatus = $('#status_history_container').first();
           status.prependTo(mostRecentStatus);   
