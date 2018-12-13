@@ -792,6 +792,36 @@
     }       
   }
   
+  function follow() {
+    console.log("follow button clicked");
+    var follow_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+    	
+    if (follow_flag === true) {
+		
+	  var action = "Follow";
+		
+	  $.ajax({
+        async: true,
+      	cache: false,
+        url: 'user_action.php',  
+        type: 'POST',
+        data: { user_action: action }  
+      }).done(function ( msg ) {
+        console.log('Follow action taken...');
+        console.log(msg);
+      }).fail(function ( xhr, textStatus) {
+        console.log(xhr.statusText);
+      });
+        
+    } else {
+      if (confirm("You must be logged in to follow this user. Sign up/Login?")) {
+  	    window.location.assign("https://dubarub.com");
+	  } else {
+  		return;
+	  }
+    }       
+  }
+  
   $(document).ready(function() { 
   
     sequenceAsync();
