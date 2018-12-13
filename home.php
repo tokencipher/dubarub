@@ -651,11 +651,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   
   function handCommentTrophy(element) {
     console.log("comment trophy clicked");
-    var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
-    if (hand_trophy == "true") {
+    if (hand_trophy === true) {
     	
-      console.log("Should we hand trophy?... " + hand_trophy);
       var trophy = $( element );
 	  var commID = trophy.data("commid");
 		
