@@ -84,6 +84,17 @@ header('Content-Type: application/json;charset=utf-8');
           $myObj['isRemoved'] = "true";
         }
         break;
+        
+      case 'Remove Post':
+        if (isset($_SESSION['user_id'])) {
+          $p_id = $_POST['post_id'];
+          $postObj = new Post();
+          $postObj->deletePost($p_id);
+          
+          $myObj = array();
+          $myObj['isRemoved'] = "true";
+        }
+        break;
     }
   }   
   
