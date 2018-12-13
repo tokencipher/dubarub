@@ -77,9 +77,9 @@ header('Content-Type: application/json;charset=utf-8');
         
       case 'Remove Comment':
         if (isset($_SESSION['user_id'])) {
-          $comment_id = $_POST['commid'];
+          $comment_id = $_POST['comment_id'];
           $commentObj = new PostComment();
-          $commentObj->removeComment($comment_id);
+          $commentObj->deleteComment($comment_id);
           
           $myObj = array();
           $myObj['isCommentRemoved'] = "true";
