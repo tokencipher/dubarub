@@ -220,6 +220,23 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     .post_comments {
       display: none;
     }
+    /* unvisited link */
+    #comment_owner_link:link {
+      color: blue;
+      text-decoration:underline;
+    }
+    /* visited link */
+    #comment_owner_link:visited {
+      color: purple;
+    }
+    /* mouse over link */
+    #comment_owner_link:hover { /* must come after unvisited and visited */
+      color: blue;
+    }
+    /* selected link */
+    #comment_owner_link:active {
+      color: green;
+    }
     /* Phone portrait */
     @media (max-width: 481px) {
       #clear {display:none!important;}
