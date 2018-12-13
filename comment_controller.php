@@ -26,7 +26,7 @@ if (isset($_POST['comment_text'])) {
   
   if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];  
-    $comment_owner = $_SESSION['id'];
+    $post_owner = $_SESSION['id'];
 
     $user = new User();
     $user->setUserId($user_id);
@@ -34,11 +34,10 @@ if (isset($_POST['comment_text'])) {
     $user_name = $user->getUsername($user_id);
 
     $commentObj = new PostComment();
-    $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $comment_owner);
+    $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
   
     $post = new Post();
     $post->updateCommentCount($p_id);
-  }
 }
 
 
