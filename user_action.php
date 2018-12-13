@@ -107,6 +107,20 @@ header('Content-Type: application/json;charset=utf-8');
           $myObj['isStatusRemoved'] = "true";
         }
         break;
+        
+      case 'Follow':
+        if (isset($_SESSION['user_id'])) {
+          $user_id = $_SESSION['user_id'];
+          $user_name = $_SESSION['user'];
+          $following = $_SESSION['id'];
+          
+          $followObj = new Follow();
+          $followObj->follow($user_id, $user_name, $following);
+          
+          $myObj = array();
+          $myObj['isFollowed'] = "true";
+        }
+        break;
     }
   }   
   
