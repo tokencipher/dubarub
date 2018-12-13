@@ -438,7 +438,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
-              '<span onclick="removePost(this)" data-pid=' + obj[x].p_id + '" style="float:right;color:red;text-decoration:underline;">Delete Post</span>' +
+              '<span style="float:right;color:red;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="user.php?action=Add%20Comment&pid=' + obj[x].p_id + '">Add Comment</a></span>' +
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
+			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
+			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
@@ -612,6 +616,19 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       });
     } else {
       $('#post_comments' + id).css({
+        display: "none"
+      });
+    }
+  }
+  
+  function toggleCommentBox(event, id) {
+    event.preventDefault();
+    if (($('#comment_box' + id).css("display")) === "none") {
+      $('#comment_box' + id).css({
+        display: "block"
+      });
+    } else {
+      $('#comment_box' + id).css({
         display: "none"
       });
     }
