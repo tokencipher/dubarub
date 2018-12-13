@@ -568,13 +568,13 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
   }
   
-  function toggleIt() {
-    if (($('#post_comments').css("display")) === "none")  {
-      $('#post_comments').css({
+  function toggleComment(id) {
+    if (($('#post_comments' + id).css("display")) === "none") {
+      $('#post_comments' + id).css({
         display: "block"
       });
     } else {
-      $('#post_comments').css({
+      $('#post_comments' + id).css({
         display: "none"
       });
     }
