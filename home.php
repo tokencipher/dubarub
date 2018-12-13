@@ -634,6 +634,34 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
+  function submitComment(event, p_id) {
+    event.preventDefault();
+    
+    // Required to make comment push to server
+    $('#comment_text').trigger('focusout');
+    
+    // Save comment to variable
+    var comment = $('#comment_text').val();
+    console.log(comment);
+    console.log(p_id);
+      
+    // Clear out comment textarea input
+    $('#comment_text').val('');
+          
+    $.ajax({
+      async: true,
+      cache: false,
+      url: 'comment_controller.php',  
+      type: 'POST',
+      data: { comment_text: comment, post_id: p_id }  
+    }).done(function ( msg ) {
+      console.log('comment submitted...');
+    }).fail(function ( xhr, textStatus) {
+      console.log(xhr.statusText);
+    });
+    
+  }
+  
   function handPostTrophy(element) {
     console.log("post trophy clicked");
     var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
