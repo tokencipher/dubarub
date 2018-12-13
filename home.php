@@ -237,6 +237,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     #comment_owner_link:active {
       color: green;
     }
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      height:20px;
+    }
+    .flex-container > div {
+      margin-right:10px;
+    }
     /* Phone portrait */
     @media (max-width: 481px) {
       #clear {display:none!important;}
