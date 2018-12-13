@@ -755,25 +755,27 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     var remove_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (remove_flag === true) {
+      if (confirm("Are you sure you want to delete this comment?")) {
     	
-      var comment = $( element );
-	  var commID = comment.data("commid");
+        var comment = $( element );
+	    var commID = comment.data("commid");
 		
-	  var action = "Remove Comment";
+	    var action = "Remove Comment";
 		
-	  $.ajax({
-        async: true,
-      	cache: false,
-        url: 'user_action.php',  
-        type: 'POST',
-        data: { user_action: action, comment_id: commID }  
-      }).done(function ( msg ) {
-        console.log('Remove comment action taken...');
-        console.log(msg);
-      }).fail(function ( xhr, textStatus) {
-        console.log(xhr.statusText);
-      });
-        
+	    $.ajax({
+          async: true,
+      	  cache: false,
+          url: 'user_action.php',  
+          type: 'POST',
+          data: { user_action: action, comment_id: commID }  
+        }).done(function ( msg ) {
+          console.log('Remove comment action taken...');
+          console.log(msg);
+        }).fail(function ( xhr, textStatus) {
+          console.log(xhr.statusText);
+        });
+      }
+       
     } else {
       if (confirm("You must be logged in to remove this comment. Sign up/Login?")) {
   	    window.location.assign("https://dubarub.com");
