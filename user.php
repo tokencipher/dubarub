@@ -536,6 +536,8 @@
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
+ 			  '<div onclick="handCommentTrophy(this)" class="comment_trophy" data-commid="' + comments[i].c_id + '"><i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' + 
+ 			  '<div onclick="flagComment(this)" class="comment_flag" data-commid="' + comments[i].c_id + '" style="position:relative;left:15px;"><i style="color:red" class="fa fa-flag" aria-hidden="true"></i></div>' +
  			  '</div></div>');
  			} else {
  			  $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
