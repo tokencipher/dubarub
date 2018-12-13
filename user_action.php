@@ -117,7 +117,11 @@ header('Content-Type: application/json;charset=utf-8');
           
           $followObj = new Follow();
           $followObj->follow($user_id, $user_name, $following);
-          $followObj->addFollower($id, $user, $user_name);
+          
+          $id = $_SESSION['id'];
+          $user = $_SESSION['user'];
+          $follower = $user_name;
+          $followObj->addFollower($id, $user, $follower);
           
           $myObj = array();
           $myObj['isFollowed'] = "true";
