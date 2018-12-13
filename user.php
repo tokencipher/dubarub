@@ -662,11 +662,10 @@
   
   function handPostTrophy(element) {
     console.log("post trophy clicked");
-    var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
-    if (hand_trophy == "true") {
-    	
-      console.log("Should we hand trophy?... " + hand_trophy);
+    if (hand_trophy === true) {
+    
       var trophy = $( element );
 	  var postID = trophy.data("postid");
 		
