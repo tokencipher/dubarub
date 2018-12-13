@@ -996,7 +996,7 @@
     </div>
     
     <div id="bio_action_container" style="position:relative;top:-47px;left:108px;width:113px;height:25px;padding:2px;">
-      <i id="direct_message" class="fa fa-envelope action_items" aria-hidden="true"></i>
+      <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
     </div>
     
     <div id="follow_button_container" style="position:relative;top:-110px;left:110px;padding:0px;">
@@ -1099,7 +1099,7 @@
     </div>
     
     <div id="m_bio_action_container" style="position:relative;top:-47px;left:110px;width:100px;">  
-      <i id="m_direct_message" class="fa fa-envelope m_action_item" aria-hidden="true"></i>
+      <i id="m_direct_message" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
     </div>
     
     <div id="m_follow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;">

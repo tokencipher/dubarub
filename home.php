@@ -1214,7 +1214,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     <div id="bio_action_container" style="position:relative;top:-56px;left:103px;width:113px;height:25px;padding:2px;">
       <i id="bio_edit_icon" class="fa fa-pencil action_items" aria-hidden="true"></i>
-      <i id="direct_message" class="fa fa-envelope action_items" aria-hidden="true"></i>
+      <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
       <i id="settings" class="fa fa-cog action_items" aria-hidden="true"></i>
     </div>
     
@@ -1305,7 +1305,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     <div id="m_bio_action_container" style="position:relative;top:-56px;left:106px;width:100px;">
       <i id="m_bio_edit_icon" class="fa fa-pencil m_action_item" aria-hidden="true"></i>
-      <i id="m_direct_message" class="fa fa-envelope m_action_item" aria-hidden="true"></i>
+      <i id="m_direct_message" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
       <i id="m_settings" class="fa fa-cog m_action_item" aria-hidden="true"></i>
     </div>
     
