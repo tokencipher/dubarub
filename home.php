@@ -600,6 +600,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   function removeComment(element) {
     console.log("remove comment item clicked");
     var remove_flag = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    
+    console.log("Remove comment flag is set to: " + remove_flag);
     	
     if (remove_flag == "true") {
     	
