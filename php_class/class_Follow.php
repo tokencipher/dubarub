@@ -72,6 +72,18 @@ class Follow {
 	return $x;
   }
   
+  public function getFollowing($u_id) {
+    $table = "following";
+    $sql = "SELECT following FROM $table WHERE u_id = $u_id;";
+    
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $object[$x]['following'] = "{$row['follower']}";
+      ++$x; 
+	}
+	return $x;  
+  }
+  
 
 }
 
