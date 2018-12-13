@@ -600,6 +600,40 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
+  function handPostTrophy(element) {
+    console.log("post trophy clicked");
+    var hand_trophy = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
+    	
+    if (hand_trophy == "true") {
+    	
+      console.log("Should we hand trophy?... " + hand_trophy);
+      var trophy = $( element );
+	  var postID = trophy.data("postid");
+		
+	  var action = "Upvote Post";
+		
+	  $.ajax({
+        async: true,
+      	cache: false,
+        url: 'user_action.php',  
+        type: 'POST',
+        data: { user_action: action, post_id: postID }  
+      }).done(function ( msg ) {
+        console.log('Post upvote action taken...');
+        console.log(msg);
+      }).fail(function ( xhr, textStatus) {
+        console.log(xhr.statusText);
+      });
+        
+    } else {
+      if (confirm("You must be logged in to give a trophy. Sign up/Login?")) {
+  	    window.location.assign("https://dubarub.com");
+	  } else {
+  		return;
+	  }
+    }     
+  }
+  
   function removeComment(element) {
     console.log("remove comment item clicked");
     var remove_flag = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
