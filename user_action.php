@@ -15,8 +15,8 @@ header('Content-Type: application/json;charset=utf-8');
     
       case 'Upvote Post':
         if (isset($_SESSION['user_id'])) {
-          $u_id = $_SESSION['user_id'];
-          $p_id = $_POST['post_id'];
+          $user_id = $_SESSION['user_id'];
+          $post_id = $_POST['post_id'];
           $postObj = new Post();
           $upvote_flag = $commentObj->getUpvoteFlag($u_id, $p_id);
         
@@ -24,11 +24,11 @@ header('Content-Type: application/json;charset=utf-8');
             return;
           }
           
-          $postObj->upvote($p_id);
-          $postObj->setUpvoteFlag($u_id, $p_id, "true");
+          $postObj->upvote($post_id);
+          $postObj->setUpvoteFlag($user_id, $post_id, "true");
           
           $myObj = array();
-          $trophy_count = $postObj->getUpvote($p_id);
+          $trophy_count = $postObj->getUpvote($post_id);
           $myObj['trophy_count'] = $trophy_count;
         }
         
@@ -36,20 +36,20 @@ header('Content-Type: application/json;charset=utf-8');
      
       case 'Upvote Comment':
         if (isset($_SESSION['user_id'])) {
-          $u_id = $_SESSION['user_id'];
-          $c_id = $_POST['comment_id'];
+          $user_id = $_SESSION['user_id'];
+          $comment_id = $_POST['comment_id'];
           $commentObj = new PostComment();
-          $upvote_flag = $commentObj->getUpvoteFlag($u_id, $c_id);
+          $upvote_flag = $commentObj->getUpvoteFlag($user_id, $comment_id);
         
           if ($upvote_flag == "true") {
             return;
           }
           
-          $commentObj->upvote($c_id);
-          $commentObj->setUpvoteFlag($u_id, $c_id, "true");
+          $commentObj->upvote($comment_id);
+          $commentObj->setUpvoteFlag($user_id, $comment_id, "true");
           
           $myObj = array();
-          $trophy_count = $commentObj->getUpvote($c_id);
+          $trophy_count = $commentObj->getUpvote($comment_id);
           $myObj['trophy_count'] = $trophy_count;
         }
         
@@ -57,42 +57,53 @@ header('Content-Type: application/json;charset=utf-8');
         
       case 'Flag Comment':
         if (isset($_SESSION['user_id'])) {
-          $u_id = $_SESSION['user_id'];
-          $c_id = $_POST['comment_id'];
+          $user_id = $_SESSION['user_id'];
+          $comment_id = $_POST['comment_id'];
           $commentObj = new PostComment();
-          $report_flag = $commentObj->getReportFlag($u_id, $c_id);
+          $report_flag = $commentObj->getReportFlag($user_id, $comment_id);
           
           if ($report_flag == "true") {
             return;
           }
           
-          $commentObj->report($c_id);
-          $commentObj->setReportFlag($u_id, $c_id, "true");
+          $commentObj->report($comment_id);
+          $commentObj->setReportFlag($user_id, $comment_id, "true");
           
           $myObj = array();
-          $myObj['isFlagged'] = "true";
+          $myObj['isCommentFlagged'] = "true";
         }
         break;
         
       case 'Remove Comment':
         if (isset($_SESSION['user_id'])) {
-          $c_id = $_POST['commid'];
+          $comment_id = $_POST['commid'];
           $commentObj = new PostComment();
-          $commentObj->removeComment($c_id);
+          $commentObj->removeComment($comment_id);
           
           $myObj = array();
-          $myObj['isRemoved'] = "true";
+          $myObj['isCommentRemoved'] = "true";
         }
         break;
         
       case 'Remove Post':
         if (isset($_SESSION['user_id'])) {
-          $p_id = $_POST['post_id'];
+          $post_id = $_POST['post_id'];
           $postObj = new Post();
-          $postObj->deletePost($p_id);
+          $postObj->deletePost($post_id);
           
           $myObj = array();
-          $myObj['isRemoved'] = "true";
+          $myObj['isPostRemoved'] = "true";
+        }
+        break;
+        
+      case 'Remove Status':
+        if (isset($_SESSION['user_id'])) {
+          $stat_id = $_POST['stat_id'];
+          $status = new Status();
+          $status->deleteStatus($stat_id);
+          
+          $myObj = array();
+          $myObj['isStatusRemoved'] = "true";
         }
         break;
     }
