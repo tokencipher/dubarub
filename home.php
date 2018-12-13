@@ -533,7 +533,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         
         if (len > 0) {
           for ( var i = 0; i < len; i++) {
+            if (comments[i].upvote == 1) {
+              var trophyAmount = "trophy";
+            } else {
+              var trophyAmount = "trophies";
+            }
+            
             console.log("comment user id: " + comments[i].u_id + " and current user: " + user_id);
+            
             if ( comments[i].u_id == user_id ) {
               $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
@@ -544,6 +551,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
  			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></a></div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
+ 			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
  			  '</div></div>');
  			} else {
  			  $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
