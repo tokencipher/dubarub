@@ -115,16 +115,24 @@ header('Content-Type: application/json;charset=utf-8');
           $user_name = $_SESSION['user_name'];
           $following = $_SESSION['user'];
           
-          $followObj = new Follow();
-          $followObj->follow($user_id, $user_name, $following);
-          
           $id = $_SESSION['id'];
           $user = $_SESSION['user'];
           $follower = $user_name;
-          $followObj->addFollower($id, $user, $follower);
           
-          $myObj = array();
-          $myObj['isFollowed'] = "true";
+          
+          $followObj = new Follow();
+          $follow_flag = $followObj->getFollowFlag($user_id, $user);
+          
+          if (!$follow_flag) {
+            $followObj->follow($user_id, $user_name, $following);
+            $followObj->addFollower($id, $user, $follower);
+            $myObj = array();
+            $myObj['nowFollowing'] = "true";
+          } else {
+            $myObj = array();
+            $myObj['alreadyFollowing'] = "true";
+          }
+        
         }
         break;
     }
