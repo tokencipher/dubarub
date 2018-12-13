@@ -434,7 +434,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +  
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
-              '<div style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
+              '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
@@ -458,6 +458,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments + 
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
+              '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:3px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
@@ -476,6 +477,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].created_at + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
+              '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p><hr><p class="entry">' + obj[x].entry + '</p></div>');
     	    } else {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
@@ -487,10 +489,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' +  moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
+              '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:2px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
-              '<span onclick="removePost(this)" data-pid=' + obj[x].p_id + '" style="float:right;color:red;text-decoration:underline;">Delete Post</span>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');	  
     	    } 	  
               
