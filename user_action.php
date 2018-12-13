@@ -111,8 +111,8 @@ header('Content-Type: application/json;charset=utf-8');
       case 'Follow':
         if (isset($_SESSION['user_id'])) {
           $user_id = $_SESSION['user_id'];
-          $user_name = $_SESSION['user'];
-          $following = $_SESSION['id'];
+          $user_name = $_SESSION['user_name'];
+          $following = $_SESSION['user'];
           
           $followObj = new Follow();
           $followObj->follow($user_id, $user_name, $following);
