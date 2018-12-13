@@ -74,10 +74,15 @@ header('Content-Type: application/json;charset=utf-8');
         }
         break;
         
-      case 'Delete Comment':
-        $c_id = $_GET['commid'];
-        $commentObj = new PostComment();
-        $commentObj->deleteComment($c_id);
+      case 'Remove Comment':
+        if (isset($_SESSION['user_id'])) {
+          $c_id = $_POST['commid'];
+          $commentObj = new PostComment();
+          $commentObj->removeComment($c_id);
+          
+          $myObj = array();
+          $myObj['isRemoved'] = "true";
+        }
         break;
     }
   }   
