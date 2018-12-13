@@ -59,7 +59,19 @@ class Follow {
     $stmt->bindParam(':follower', $follower);
     $stmt->execute();
   }
-
+  
+  public function getFollowerCount($u_id) {
+    $table = "followers";
+    $sql = "SELECT follower FROM $table WHERE u_id = $u_id;";
+    
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $object[$x]['follower'] = "{$row['follower']}";
+      ++$x; 
+	}
+	return $x;
+  }
+  
 
 }
 
