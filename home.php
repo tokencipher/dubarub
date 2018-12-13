@@ -717,13 +717,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   
   function removeComment(element) {
     console.log("remove comment item clicked");
-    var remove_flag = "<?php (isset($_SESSION['user_id']) ? true : false); ?>";
-    
-    console.log("Remove comment flag is set to: " + remove_flag);
+    var remove_flag = Boolean("<?php (isset($_SESSION['user_id']) ? true : false); ?>");
     	
-    if (remove_flag == "true") {
+    if (remove_flag === true) {
     	
-      console.log("Should we remove comment?... " + remove_flag);
       var comment = $( element );
 	  var commID = comment.data("commid");
 		
