@@ -4,6 +4,7 @@ class Follow {
   private $db;
   private $u_id;
   private $user_name;
+  private $follower;
   private $following;
   
   public function __construct() {
