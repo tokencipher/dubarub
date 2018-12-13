@@ -528,7 +528,7 @@
             if ( comments[i].u_id == user_id ) {
               $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
-  			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
+  			  '<a href="#"><img style="margin-left:5px" height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
  			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
  			  '<div onclick="removeComment(this)" class="remove_comment" data-commid="' + comments[i].c_id + '" style="position:relative;bottom:22px;margin-right:10px;float:right">' + 
@@ -540,9 +540,9 @@
  			} else {
  			  $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
-  			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
+  			  '<a href="#"><img style="margin-left:5px" height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
- 			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
+ 			  '<div id="comment_body" style="margin-bottom:5px;font-size:12px">' + comments[i].comment + '</div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
