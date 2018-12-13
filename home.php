@@ -549,8 +549,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div id="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
  			  '<div id="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
- 			  '<div id="remove_comment" style="position:relative;bottom:22px;margin-right:10px;float:right"><a id="deleteComment" href="user.php?action=Delete%20Comment&commID="' + comments[i].c_id + '">' + 
- 			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></a></div>' + 
+ 			  '<div onclick="removeComment(this)" data-commid="' + comments[i].c_id + '" id="remove_comment' + comments[i].c_id + '" style="position:relative;bottom:22px;margin-right:10px;float:right">' + 
+ 			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></div>' + 
  			  '<div id="comment_options" style="clear:both;font-size:12px" class="flex-container">' + 
  			  '<div id="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
  			  '<div id="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
