@@ -84,6 +84,21 @@ class Follow {
 	return $x;  
   }
   
+  public function getFollowFlag($u_id, $following) {
+    $table = "following";
+    $sql = "SELECT user_name FROM $table WHERE u_id = :u_id && following = :following";
+    
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':following', $following);
+    $stmt->execute();
+    if (!$stmt->rowCount() > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
 
 }
 
