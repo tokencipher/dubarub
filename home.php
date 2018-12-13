@@ -504,7 +504,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var len = comments.length;
         var value = "<?php echo ( (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 0 ); ?>";
         console.log("value is: " + value);
-        var user_id = parseInt(value);
+        var user_id = value;
         
         // if ( $('#post' + obj.p_id).find('.post_comments').children().length > 0 ) {
         // console.log(len);
@@ -515,9 +515,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         */
         
         if (len > 0) {
-          console.log("comment user id: " + comments[0].u_id + " and current user: " + user_id);
           for ( var i = 0; i < len; i++) {
-            if ( comments[i].post_owner == user_id ) {
+            console.log("comment user id: " + comments[i].u_id + " and current user: " + user_id);
+            if ( comments[i].u_id == user_id ) {
               $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
   			  '<a href="#"><img height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +

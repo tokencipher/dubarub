@@ -516,13 +516,15 @@
         */
         
         if (len > 0) {
-          console.log("comment user id: " + comments[0].u_id + " and current user: " + user_id);
           for ( var i = 0; i < len; i++) {
             if (comments[i].upvote == 1) {
               var trophyAmount = "trophy";
             } else {
               var trophyAmount = "trophies";
             }
+            
+            console.log("comment owner user id: " + comments[i].u_id + " and current user: " + user_id);
+            
             if ( comments[i].u_id == user_id ) {
               $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
