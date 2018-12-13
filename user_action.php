@@ -7,6 +7,7 @@ session_start();
 require_once('php_class/class_Post.php');
 require_once('php_class/class_PostComment.php');
 require_once('php_class/class_Status.php');
+require_once('php_class/class_Follow.php');
 
 header('Content-Type: application/json;charset=utf-8');
 
