@@ -903,6 +903,14 @@
       // Placeholder  
     });  
     
+    $('#direct_message').click(function() {
+      document.getElementById('message_modal').style.display = 'block';
+    }); 
+    
+     $('#m_direct_message').click(function() {
+      document.getElementById('message_modal').style.display = 'block';
+    });
+    
     $('#m_flashback').click(function() {
     
       $('#close_flashback').css({
@@ -964,6 +972,43 @@
 
 	</div>
   </div>
+  
+  <!-- direct message dialog -->
+  <div id="message_modal" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-anmiate-zoom">
+      <header class="w3-container w3-blue">
+		<span onclick="document.getElementById('message_modal').style.display = 'none'"
+		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		<h2>Send message</h2>
+	  </header>
+    
+      <div class="w3-center"><br>
+        <form class="w3-container" method="post">
+          <div class="form-group">
+            <div><i class="w3-xxlarge fa fa-paper-plane" style="color:#339966;"></i></div>
+            <!--<label for="post_title">Enter caption of new post</label>-->
+            Subject: <input type="text" maxlength="140" name="message_subject" class="form-control" id="message_subject" aria-describedby="subject_help" placeholder="" />
+            <small id="title_help" class="form-text text-muted">Title cannot be any longer than 80 characters.</small>
+          </div>
+          <div class="form-group">
+            <!-- <label for="bio_edit">Edit bio</label> -->
+            body: <textarea id="message_body" name="message_body" class="form-control" placeholder="" rows="3" maxlength="" required></textarea>
+            <br>
+          </div>
+        </form>
+        
+        <div id="message_submit_container">
+          <button id="message_submit" class="btn btn-primary w3-margin-bottom">Send</button>
+        </div>
+      </div>
+      
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+        <button onclick="document.getElementById('message_modal').style.display='none'"
+        type="button" class="w3-button w3-hover-red">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!-- end direct message dialog -->
   
   <!-- status flashback dialog -->
   <div id="flashback-dialog" class="w3-modal">
