@@ -8,6 +8,7 @@ session_start();
   * Include our database connection.
   */
 require ("php_inc/inc_db_qp4.php");
+require_once("php_class/class_Session.php");
 
 $errorCount = 0;
 $email = "";
@@ -117,6 +118,10 @@ if ($errorCount == 0) {
         $_SESSION['user_id'] = $user_id;
         $_SESSION['user_name'] = $username;
         $_SESSION['logged_in'] = time();
+        
+        $user_log = new Session();
+        $user_log->logUser($_SESSION['user_id'], $_SESSION['user_name']);
+        
         header("Location: home.php");
         exit;
       }
