@@ -1362,7 +1362,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     <div id="m_bio_action_container" class="flex-container" style="position:relative;top:-44px;left:106px;">
       <i id="m_bio_edit_icon" class="fa fa-pencil m_action_item" aria-hidden="true"></i>
-      <i id="m_direct_message" style="margin-left:5px;" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
+      <i id="m_direct_message" style="margin-left:7px;" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
       <i id="m_inbox" style="margin-left:40px" class="fa fa-envelope action_items" aria-hidden="true"></i>
       <i id="m_settings" class="fa fa-cog m_action_item" aria-hidden="true"></i>
     </div>
