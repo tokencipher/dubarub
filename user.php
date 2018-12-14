@@ -965,7 +965,7 @@
 	  </div>
 
 	  <div class="w3-container w3-light-grey w3-padding">
-		<button class="w3-button w3-left w3-hover-red w3-border"
+		<button class="w3-button w3-left w3-red w3-border"
 		  onclick="$( '#music-dialog' ).css('display', 'none');">Close
 		</button>
 	  </div>
@@ -1004,7 +1004,7 @@
       
       <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
         <button onclick="document.getElementById('message_modal').style.display='none'"
-        type="button" class="w3-button w3-hover-red">Cancel</button>
+        type="button" class="w3-button w3-left w3-border w3-red">Cancel</button>
       </div>
     </div>
   </div>

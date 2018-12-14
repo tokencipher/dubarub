@@ -1111,7 +1111,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  </div>	
 	  
       <div class="w3-container w3-light-grey w3-padding">
-		<button id="flashback_dialog_close" class="w3-button w3-right w3-hover-red w3-border"
+		<button id="flashback_dialog_close" class="w3-button w3-right w3-red w3-border"
 		  onclick="$( '#flashback-dialog' ).css('display', 'none');">Close
 		</button>
 	  </div>
@@ -1146,7 +1146,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       
       <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
         <button onclick="document.getElementById('bio_modal').style.display='none'"
-        type="button" class="w3-button w3-hover-red">Cancel</button>
+        type="button" class="w3-button w3-left w3-border w3-red">Cancel</button>
       </div>
     </div>
   </div>
@@ -1178,7 +1178,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         
       <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
         <button onclick="document.getElementById('settings_modal').style.display='none'"
-        type="button" class="w3-button w3-hover-red">Cancel</button>
+        type="button" class="w3-button w3-left w3-border w3-red">Cancel</button>
       </div>
     </div>
   </div>
