@@ -49,6 +49,18 @@ class Session {
 	$stmt->execute();
   }
   
+  public function getOnlineFlag($user_id) {
+    $table = "sessions";
+    
+    $sql = "SELECT online FROM $table WHERE u_id = :user_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':user_id', $user_id);
+    
+    return $stmt->execute();
+  }
+
+  
   
 }
 
