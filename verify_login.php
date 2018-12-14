@@ -121,7 +121,6 @@ if ($errorCount == 0) {
         
         $user_log = new Session();
         $user_log->logUser($_SESSION['user_id'], $_SESSION['user_name']);
-        $user_log->setOnlineFlag($_SESSION['user_id'], "true");
         
         header("Location: home.php");
         exit;
