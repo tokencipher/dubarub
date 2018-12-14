@@ -2,7 +2,7 @@
   
 class Session {
   private $db;
-  private $u_id;
+  private $user_id;
   private $user_name;
   private $logged_in;
   
@@ -36,6 +36,10 @@ class Session {
     $stmt->bindParam(':user_id', $u_id);
     $stmt->bindParam(':user_name', $user_name);
     $stmt->execute(); 
+  }
+  
+  public function setUserID($user_id) {
+    $this->user_id = $user_id;
   }
   
   public function setOnlineFlag($user_id, $flag) {
