@@ -959,6 +959,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     });
     */
     
+    $('#direct_message').click(function() {
+      document.getElementById('message_modal').style.display = 'block';
+    }); 
+    
+     $('#m_direct_message').click(function() {
+      document.getElementById('message_modal').style.display = 'block';
+    });
+    
     $('#bio_edit_icon').click(function() {
       document.getElementById('bio_modal').style.display = 'block';
     });
