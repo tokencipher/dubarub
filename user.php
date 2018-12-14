@@ -988,11 +988,11 @@
             <div><i class="w3-xxlarge fa fa-paper-plane" style="color:#339966;"></i></div>
             <!--<label for="post_title">Enter caption of new post</label>-->
             Subject: <input type="text" maxlength="140" name="message_subject" class="form-control" id="message_subject" aria-describedby="subject_help" placeholder="" />
-            <small id="title_help" class="form-text text-muted">Title cannot be any longer than 80 characters.</small>
+            <small id="subject_help" class="form-text text-muted">Subject cannot be any longer than 140 characters.</small>
           </div>
           <div class="form-group">
             <!-- <label for="bio_edit">Edit bio</label> -->
-            body: <textarea id="message_body" name="message_body" class="form-control" placeholder="" rows="3" maxlength="" required></textarea>
+            Body: <textarea id="message_body" name="message_body" class="form-control" placeholder="" rows="3" maxlength="" required></textarea>
             <br>
           </div>
         </form>
