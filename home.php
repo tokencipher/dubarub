@@ -1283,8 +1283,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;">
-      <span id="profile_followers">444m followers</span>
-      <span id="profile_following" style="margin-left:13px;">0 following</span>
+      <span id="profile_followers">313m followers</span>
+      <span id="profile_following" style="margin-left:13px;">1 following</span>
       <span id="profile_posts" style="margin-left:13px;">
       <?php
       
@@ -1374,8 +1374,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     -->
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;">
-      <span id="m_profile_followers">444m followers</span>
-      <span id="m_profile_following" style="margin-left:13px;">0 following</span>
+      <span id="m_profile_followers">313m followers</span>
+      <span id="m_profile_following" style="margin-left:13px;">1 following</span>
       <span id="m_profile_posts" style="margin-left:13px;">
       <?php
       
