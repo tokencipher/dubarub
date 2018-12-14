@@ -38,6 +38,17 @@ class Session {
     $stmt->execute(); 
   }
   
+  public function setOnlineFlag($user_id, $flag) {
+    $table = "sessions";
+    
+    $sql = "UPDATE $table SET online = :flag WHERE u_id = :user_id";
+	$stmt = $this->db->prepare($sql);
+	
+	$stmt->bindParam(':user_id', $user_id);
+	$stmt->bindParam(':flag', $flag);
+	$stmt->execute();
+  }
+  
   
 }
 
