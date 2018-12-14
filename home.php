@@ -1210,7 +1210,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
             <!--<small id="subject_help" class="form-text text-muted">Subject cannot be any longer than 140 characters.</small>-->
           </div>
           <div class="form-group">
-            <div><i class="w3-xxlarge fa fa-paper-plane" style="color:#339966;"></i></div>
             <!--<label for="post_title">Enter caption of new post</label>-->
             Subject: <input type="text" maxlength="140" name="message_subject" class="form-control" id="message_subject" aria-describedby="subject_help" placeholder="" />
             <small id="subject_help" class="form-text text-muted">Subject cannot be any longer than 140 characters.</small>
