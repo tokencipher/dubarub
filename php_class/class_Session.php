@@ -43,7 +43,7 @@ class Session {
   }
   
   public function setOnlineFlag($flag) {
-    $table = "sessions";
+    $table = "online";
     
     $sql = "UPDATE $table SET online = :flag WHERE u_id = :user_id";
 	$stmt = $this->db->prepare($sql);
@@ -54,7 +54,7 @@ class Session {
   }
   
   public function getOnlineFlag($user_id) {
-    $table = "sessions";
+    $table = "online";
     
     $sql = "SELECT online FROM $table WHERE u_id = :user_id";
     $stmt = $this->db->prepare($sql);
