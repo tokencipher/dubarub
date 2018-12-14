@@ -1268,7 +1268,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
        "Closed beta v1.0"
     </div>
     
-    <div id="bio_action_container" class="flex-container" style="position:relative;top:-56px;left:103px;height:25px;padding:2px;">
+    <div id="bio_action_container" class="flex-container" style="position:relative;top:-38px;left:103px;height:25px;padding:2px;">
       <i id="bio_edit_icon" class="fa fa-pencil action_items" aria-hidden="true"></i>
       <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
       <i id="inbox" style="margin-left:40px"class="fa fa-envelope action_items" aria-hidden="true"></i>
