@@ -1026,7 +1026,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	<div class="w3-modal-content w3-card-4 w3-animate-zoom">
 	  <header class="w3-container w3-blue">
 		<span onclick="document.getElementById('music-dialog').style.display = 'none'"
-		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		class="w3-button w3-red w3-display-topright">&times;</span>
 		<h2>Music</h2>
 	  </header>
 
@@ -1096,7 +1096,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	<div class="w3-modal-content w3-card-4 w3-animate-zoom">
 	  <header class="w3-container w3-yellow">
 		<span id="flashback_dialog_x" onclick="document.getElementById('flashback-dialog').style.display = 'none'"
-		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		class="w3-button w3-red w3-display-topright">&times;</span>
 		<h2 style="color:white;">Status Flashback</h2>
 	  </header>
 	  
@@ -1133,7 +1133,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <div class="w3-modal-content w3-card-4 w3-anmiate-zoom">
       <header class="w3-container w3-blue">
 		<span onclick="document.getElementById('bio_modal').style.display = 'none'"
-		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		class="w3-button w3-red w3-display-topright">&times;</span>
 		<h2>Edit Bio</h2>
 	  </header>
     
@@ -1165,7 +1165,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <div class="w3-modal-content w3-card-4 w3-animate-zoom">
       <header class="w3-container w3-blue">
         <span onclick="document.getElementById('settings_modal').style.display = 'none'"
-        class="w3-button w3-hover-red w3-display-topright">&times;</span>
+        class="w3-button w3-red w3-display-topright">&times;</span>
         <h2>Update settings</h2>
       </header>
       
@@ -1197,7 +1197,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <div class="w3-modal-content w3-card-4 w3-anmiate-zoom">
       <header class="w3-container w3-blue">
 		<span onclick="document.getElementById('message_modal').style.display = 'none'"
-		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		class="w3-button w3-red w3-display-topright">&times;</span>
 		<h2>Send message</h2>
 	  </header>
     

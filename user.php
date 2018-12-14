@@ -940,7 +940,7 @@
 	<div class="w3-modal-content w3-card-4 w3-animate-zoom">
 	  <header class="w3-container w3-blue">
 		<span onclick="document.getElementById('music-dialog').style.display = 'none'"
-		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		class="w3-button w3-red w3-display-topright">&times;</span>
 		<h2>Music</h2>
 	  </header>
 
@@ -978,7 +978,7 @@
     <div class="w3-modal-content w3-card-4 w3-anmiate-zoom">
       <header class="w3-container w3-blue">
 		<span onclick="document.getElementById('message_modal').style.display = 'none'"
-		class="w3-button w3-hover-red w3-display-topright">&times;</span>
+		class="w3-button w3-red w3-display-topright">&times;</span>
 		<h2>Send message</h2>
 	  </header>
     
