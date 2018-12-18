@@ -761,7 +761,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     var remove_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (remove_flag === true) {
-      if (confirm("Are you sure you want to delete this comment?")) {
+      if ((confirm("Are you sure you want to delete this comment?"))) {
     	
         var comment = $( element );
 	    var commID = comment.data("commid");
@@ -783,7 +783,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       }
        
     } else {
-      if (confirm("You must be logged in to remove this comment. Sign up/Login?")) {
+      if ((confirm("You must be logged in to remove this comment. Sign up/Login?"))) {
   	    window.location.assign("https://dubarub.com");
 	  } else {
   		return;
@@ -798,7 +798,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     console.log("Remove post flag is set to: " + remove_flag);
     	
     if (remove_flag === true) {
-      if (confirm("Are you sure you want to delete this post?")) {
+      if ((confirm("Are you sure you want to delete this post?"))) {
   	    var post = $( element );
 	    var postID = post.data("pid");
 		
@@ -837,7 +837,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     console.log("Remove status flag is set to: " + remove_flag);
     	
     if (remove_flag === true) {
-      if (confirm("Are you sure you want to delete this status?")) {
+      if ((confirm("Are you sure you want to delete this status?"))) {
   	    var status = $( element );
 	    var statusID = status.data("statusid");
 		
@@ -861,7 +861,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  }
         
     } else {
-      if (confirm("You must be logged in to remove this status. Sign up/Login?")) {
+      if ((confirm("You must be logged in to remove this status. Sign up/Login?"))) {
   	    window.location.assign("https://dubarub.com");
 	  } else {
   		return;
