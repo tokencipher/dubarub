@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 12/11/18 -->
+<!-- Last modified: 01/01/18 -->
 <?php 
   session_start();
   
@@ -219,6 +219,7 @@
   <?php include_once ('php_class/class_Playlist.php'); ?>
   <?php include_once ('php_inc/inc_nav.php'); ?>
   <?php include_once ('php_class/class_Post.php'); ?>
+  <?php include_once ('php_class/class_Follow.php'); ?>
   <?php include_once ('php_class/class_User.php'); ?>
   <?php require_once ('php_inc/inc_db_qp4.php'); ?>
 </head>
@@ -1079,8 +1080,24 @@
     </div>
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-70px;">
-      <span id="profile_followers">313m followers</span>
-      <span id="profile_following" style="margin-left:13px;">1 following</span>
+      <span id="profile_followers">
+        <?php
+          $follow = new Follow();
+          $followers = $follow->getFollowerCount($_SESSION['id']);
+          if ($followers == 1) {
+            echo $followers . " follower";
+          } else {
+            echo $followers . " followers";
+          }
+        ?>
+      </span>
+      <span id="profile_following" style="margin-left:13px;">
+        <?php
+          $follow = new Follow();
+          $following = $follow->getFollowingCount($_SESSION['id']);
+          echo $following . " following";
+        ?>
+      </span>
       <span id="profile_posts" style="margin-left:13px;">
       <?php
       
@@ -1182,8 +1199,24 @@
     </div>
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-70px;">
-      <span id="m_profile_followers">313m followers</span>
-      <span id="m_profile_following" style="margin-left:13px;">1 following</span>
+      <span id="m_profile_followers">
+        <?php
+          $follow = new Follow();
+          $followers = $follow->getFollowerCount($_SESSION['id']);
+          if ($followers == 1) {
+            echo $followers . " follower";
+          } else {
+            echo $followers . " followers";
+          }
+        ?>
+      </span>
+      <span id="m_profile_following" style="margin-left:13px;">
+        <?php
+          $follow = new Follow();
+          $following = $follow->getFollowingCount($_SESSION['id']);
+          echo $following . " following"; 
+        ?>
+      </span>
       <span id="m_profile_posts" style="margin-left:13px;">
       <?php
       
