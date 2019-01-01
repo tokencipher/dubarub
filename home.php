@@ -35,6 +35,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 <?php require_once ('php_class/class_Status.php'); ?>
 <?php require_once ('php_class/class_Playlist.php'); ?>
 <?php require_once ('php_class/class_Post.php'); ?>
+<?php require_once ('php_class/class_Follow.php'); ?>
 <?php require_once ('php_class/class_User.php'); ?>
 <?php require_once ('php_inc/inc_db_qp4.php'); ?>
 <title>dubarub | Home</title>
@@ -761,7 +762,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     var remove_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (remove_flag === true) {
-      if ((confirm("Are you sure you want to delete this comment?"))) {
+      if (confirm("Are you sure you want to delete this comment?")) {
     	
         var comment = $( element );
 	    var commID = comment.data("commid");
@@ -783,7 +784,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       }
        
     } else {
-      if ((confirm("You must be logged in to remove this comment. Sign up/Login?"))) {
+      if (confirm("You must be logged in to remove this comment. Sign up/Login?")) {
   	    window.location.assign("https://dubarub.com");
 	  } else {
   		return;
@@ -798,7 +799,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     console.log("Remove post flag is set to: " + remove_flag);
     	
     if (remove_flag === true) {
-      if ((confirm("Are you sure you want to delete this post?"))) {
+      if (confirm("Are you sure you want to delete this post?")) {
   	    var post = $( element );
 	    var postID = post.data("pid");
 		
@@ -837,7 +838,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     console.log("Remove status flag is set to: " + remove_flag);
     	
     if (remove_flag === true) {
-      if ((confirm("Are you sure you want to delete this status?"))) {
+      if (confirm("Are you sure you want to delete this status?")) {
   	    var status = $( element );
 	    var statusID = status.data("statusid");
 		
@@ -861,7 +862,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  }
         
     } else {
-      if ((confirm("You must be logged in to remove this status. Sign up/Login?"))) {
+      if (confirm("You must be logged in to remove this status. Sign up/Login?")) {
   	    window.location.assign("https://dubarub.com");
 	  } else {
   		return;
@@ -1283,8 +1284,24 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;">
-      <span id="profile_followers">313m followers</span>
-      <span id="profile_following" style="margin-left:13px;">1 following</span>
+      <span id="profile_followers">
+        <?php
+          $follow = new Follow();
+          $followers = $follow->getFollowerCount($_SESSION['user_id']);
+          if ($followers == 1) {
+            echo $followers . " follower";
+          } else {
+            echo $followers . " followers";
+          }
+        ?>
+      </span>
+      <span id="profile_following" style="margin-left:13px;">
+        <?php
+          $follow = new Follow();
+          $following = $follow->getFollowingCount($_SESSION['user_id']);
+          echo $following . " following";
+        ?>
+      </span>
       <span id="profile_posts" style="margin-left:13px;">
       <?php
       
@@ -1374,8 +1391,24 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     -->
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;">
-      <span id="m_profile_followers">313m followers</span>
-      <span id="m_profile_following" style="margin-left:13px;">1 following</span>
+      <span id="m_profile_followers">
+        <?php
+          $follow = new Follow();
+          $followers = $follow->getFollowerCount($_SESSION['user_id']);
+          if ($followers == 1) {
+            echo $followers . " follower";
+          } else {
+            echo $followers . " followers";
+          }
+        ?>
+      </span>
+      <span id="m_profile_following" style="margin-left:13px;">
+        <?php
+          $follow = new Follow();
+          $following = $follow->getFollowingCount($_SESSION['user_id']);
+          echo $following . " following";
+        ?>
+      </span>
       <span id="m_profile_posts" style="margin-left:13px;">
       <?php
       
