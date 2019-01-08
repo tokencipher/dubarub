@@ -74,6 +74,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       text-align:center;
       color: #999;
     }
+    .title {
+      padding: 3px;
+      text-align:center;
+      /*font-family: 'Cormorant Garamond', serif;*/
+      font-family: 'Oxygen', sans-serif;
+    }
     #cover_art_container {
       position:fixed;
       border-style:solid;
@@ -410,9 +416,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     	    if (obj[x].image == "true") {
     	      var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' +
-    	      '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
-    	      '</span><h1 class="title">' + obj[x].title +
-              '</h1><img id="post" src="' + obj[x].photo_url + '" alt="" height="385" style="width:100%"></img>' +
+    	      '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
+    	      '</span><h2 class="title">' + obj[x].title +
+              '</h2><img id="post" src="' + obj[x].photo_url + '" alt="" height="385" style="width:100%"></img>' +
               '<div class="metadata"><span class="credit">' + obj[x].photo_cred + '</span><br><br>' +
               '<p class="post_tags" style="margin-left:10px;">' +  
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name + 
@@ -431,8 +437,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
-    		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
-    		  '</span><h1 class="title">' + obj[x].title + '</h1>' +
+    		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
+    		  '</span><h2 class="title">' + obj[x].title + '</h2>' +
               '<div id="video-container"><div id="video-contained" class="w3-container">' + 
               '<video width="100%" height="385" id="my-video" controls controlslist="nodownload" poster="' + obj[x].thumbnail + '" allowfullscreen>' +
 	          '<source src="' + obj[x].video_mp4 + '" type="video/mp4">' +
@@ -455,9 +461,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
-    		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
-    		  '</span><h1 class="title">' + obj[x].title +
-              '</h1><div style="position:relative;height:0px;padding-bottom:56.25%">' +
+    		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
+    		  '</span><h2 class="title">' + obj[x].title +
+              '</h2><div style="position:relative;height:0px;padding-bottom:56.25%">' +
 	          '<iframe src="" data-src="' + obj[x].external_url + '" frameborder="0"' +
 	          'width="640" height="360" frameborder="0" style="position:absolute;' +
 	          'width:100%;height:100%;left:0px;" allowfullscreen></iframe></div>' +
@@ -467,11 +473,19 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
-              '</p><hr><p class="entry">' + obj[x].entry + '</p></div>');
+              '</p><hr><p class="entry">' + obj[x].entry + '</p>' + 
+              '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
+              '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
+              '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
+			  '<textarea id="comment_text" name="comment_text" class="form-control" rows="3" required></textarea></div>' + 
+			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" id="commentSubmit" class="btn btn-primary">Submit</button></form>' +
+			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
-    		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="quarterpast4" id="qp4" height="40" width="47" class="w3-circle"/>' + 
-    		  '</span><h1 class="title">' + obj[x].title + '</h1>' +
+    		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
+    		  '</span><h2 class="title">' + obj[x].title + '</h2>' +
     		  '<div class="metadata">' + 
               '<p class="post_tags" style="margin-left:10px;">' +
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
