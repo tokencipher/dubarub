@@ -231,6 +231,22 @@ if (isset($_POST['upload'])) {
   } else {
     $media = FALSE;
   }
+  
+  if (isset($_POST['external_url'])) {
+    $url = $_POST['external_url'];
+    
+    // Remove all illegal characters from url
+    $url = filter_var($url, FILTER_SANITIZE_URL);
+    
+    // Validate url
+    if (filter_var($url, FILTER_VALIDATE_URL)) {
+      $external = TRUE;
+      $video = FALSE;
+      $image = FALSE;
+    } else {
+      $external = FALSE;
+    }
+  }
    
   /*  
 
@@ -434,6 +450,40 @@ if ($error_count == 0) {
       "\".<br />\n";
       redisplayForm($post_title, $post_entry);
     }
+  } else if ($external) {
+    // Post created with an external URL
+    $display = "true";
+    $user_id = $_SESSION['user_id']; 
+    $user_name = $_SESSION['user_name'];
+    $post_title = $_POST['post_title'];
+    $post_entry = $_POST['post_text'];
+    
+    $external_url = $_POST['external_url'];
+    $external_url_flag = "true";
+    
+    // Retrieve avatar from user object 
+    $avatar = new User();
+    $avatar->setUserId($user_id);
+    $avatar_path = $avatar->getAvatar();
+  
+    $Post = new Post();
+    $Post->insertPostWurl($user_id, $user_name, $avatar, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display, $external_url, $external_url_flag);
+  
+    // Get most recent post ID
+    $post_id = $Post->getPostId();
+  
+    if (!(empty($_POST['post_tags']))) {
+      // Add required values to tag object
+      $Tag = new Tag();
+      $Tag->setUserId($user_id);
+      $Tag->setPostId($post_id);
+      $Tag->setTags($tag_array);
+      $Tag->insertTags();
+    }
+  
+    header('Location: home.php');
+    exit;
+    
   } else {
     // Post created without an image. Call required object function.
     $display = "true";
@@ -470,7 +520,7 @@ if ($error_count == 0) {
 
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/17/2018 -->
+<!-- Last modified: 01/01/2019 -->
 
 <?php require_once('php_inc/inc_header.php'); ?>
 <title>Post Upload</title>
