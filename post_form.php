@@ -79,9 +79,15 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <input type="file" name="new_file" class="form-control-file" id="post_multimedia" aria-describedby="multimedia_help">
     <!--<small id="multimedia_help" class="form_text text-muted">File cannot be any larger than 10MB</small>-->
   </div>
+  <div>-Or-</div><br>
+  <div class="form-group">
+    <label for="photo_credit">Paste external URL</label>
+    <input type="text" maxlength="200" name="external_url" class="form-control" id="external_url" aria-describedby="url_help" placeholder="External URL">
+    <small id="url_help" class="form-text text-muted">You cannot both upload a image/video and use an external url</small>
+  </div>
   <div class="form-group">
     <label for="photo_credit">Enter photo credit for image (optional)</label>
-    <input type="text" maxlength="50" name="photo_cred" class="form-control" id="photo_credit" aria-describedby="title_help" placeholder="Photo credit" required>
+    <input type="text" maxlength="50" name="photo_cred" class="form-control" id="photo_credit" aria-describedby="title_help" placeholder="Photo credit">
     <small id="title_help" class="form-text text-muted">Photo credit cannot be any longer than 50 characters.</small>
   </div>
   <div class="form-group">
