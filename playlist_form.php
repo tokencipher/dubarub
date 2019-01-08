@@ -179,7 +179,7 @@ if ($error_count > 0) {
       <br>
     </div>
      
-    <button type="submit" name="upload" class="btn btn-primary w3-margin-bottom">Upload</button>
+    <button type="submit" name="upload" class="btn btn-primary w3-margin-bottom">Submit</button>
      
   </form>
 </div>
