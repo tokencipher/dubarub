@@ -10,6 +10,7 @@
   <meta name="keywords" content="Blog, Lifestyle, Music, Art, World, Fashion, Social Media" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="css/index.css" /> <!-- check -->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
   <link href="/lib/css/fonts/google/cormorant_garamond.css" rel="stylesheet" /> <!-- check -->
   <link rel="stylesheet" href="css/normalize.css" /> <!-- check --> 
   <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" /> <!-- check --> 
