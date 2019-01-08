@@ -389,6 +389,27 @@ class Post {
     return $stmt->execute();  
   }
   
+  public function insertPostWurl($user_id, $user_name, $avatar, $post_title, $post_entry, $char_count, $word_count, $display, $external_url, $external_url_flag) {
+    $table = "post";
+    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display, external_url, external) VALUES(:user, :user_name, :title, :entry, :char_count, :word_count, :display, :external_url, :external_url_flag)";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':user', $user_id);
+    $stmt->bindParam(':user_name', $user_name);
+    $stmt->bindParam(':title', $post_title);
+    $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':display', $display);
+    $stmt->bindParam(':entry', $post_entry);
+    $stmt->bindParam(':char_count', $char_count);
+    $stmt->bindParam(':word_count', $word_count);
+    $stmt->bindParam(':external_url', $external_url);
+    $stmt->bindParam(':external_url_flag', $external_url_flag);
+    
+    
+    return $stmt->execute();
+  }
+  
   public function insertPost($user_id, $user_name, $avatar, $post_title, $post_entry, $char_count, $word_count, $display) {
     $table = "post";
     $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display) VALUES(:user, :user_name, :title, :entry, :char_count, :word_count, :display)";
