@@ -114,8 +114,10 @@ $user_id = $_SESSION['user_id'];
         if (!$follow_flag) {
           $followObj->follow($user_id, $user_name, $following);
           $followObj->addFollower($id, $user, $follower);
+          $followers = $followObj->getFollowerCount($_SESSION['id']);
           $myObj = array();
           $myObj['nowFollowing'] = "true";
+          $myObj['followerCount'] = $followers;
         } else {
           $myObj = array();
           $myObj['alreadyFollowing'] = "true";
