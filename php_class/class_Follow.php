@@ -60,9 +60,13 @@ class Follow {
     $stmt->execute();
   }
   
-  public function removeFollower($u_id, $user_name, $follower) {
+  public function removeFollower($u_id, $follower) {
     $table = "followers";
-    $sql = "DELETE FROM $table WHERE u_id = :u_id && "
+    $sql = "DELETE FROM $table WHERE u_id = :u_id && follower = :follower";
+    
+    $stmt->bindParam(':u_id', $u_id);
+    $stmt->bindParam(':follower', $follower);
+    $stmt->execute();
   }
   
   public function getFollowerCount($u_id) {
