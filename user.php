@@ -220,6 +220,18 @@
     .flex-container > div {
       margin-right:10px;
     }
+    #follow_button_container {
+      position:relative;
+      top:-110px;
+      left:110px;
+      padding:0px;
+    }
+    #unfollow_button_container {
+      position:relative;
+      top:-110px;
+      left:110px;
+      padding:0px;
+    }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
   <?php include_once ('php_class/class_Playlist.php'); ?>
@@ -1081,8 +1093,12 @@
       <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
     </div>
     
-    <div id="follow_button_container" style="position:relative;top:-110px;left:110px;padding:0px;">
+    <div id="follow_button_container">
       <a href="#" onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
+    </div>
+    
+    <div id="unfollow_button_container">
+      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
     </div>
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-70px;">
