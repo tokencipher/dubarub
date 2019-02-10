@@ -813,11 +813,10 @@
   }
   
   function follow() {
-    console.log("follow button clicked");
+    console.log("Follow button clicked");
     var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
-    if (logged_in === true) {
-		
+    if (logged_in === true) {	
 	  var action = "Follow";
 		
 	  $.ajax({
@@ -825,14 +824,13 @@
       	cache: false,
         url: 'user_action.php',  
         type: 'POST',
-        data: { user_action: action }  
-      }).done(function ( msg ) {
+        data: {user_action: action}  
+      }).done(function (msg) {
         console.log('Follow action taken...');
         console.log(msg);
-      }).fail(function ( xhr, textStatus) {
+      }).fail(function (xhr, textStatus) {
         console.log(xhr.statusText);
-      });
-        
+      });     
     } else {
       if (confirm("You must be logged in to follow this user. Sign up/Login?")) {
   	    window.location.assign("https://dubarub.com");
@@ -842,6 +840,33 @@
     }       
   }
   
+  function unfollow() {
+    console.log("Unfollow button clicked");
+    var logged_in = Boolean("<?php echo isset($_SESSION['user_id'] ? true : false); ?>");
+    
+    if (logged_in === true) {
+      var action = "Unfollow";
+      
+      $.ajax({
+        async: true,
+        cache: false,
+        url: 'user_action.php',
+        type: 'POST',
+        data: {user_action: action}
+      }).done(function (msg) {
+        console.log("Unfollow action taken");
+        console.log(msg);
+      }).fail(function (xhr, textStatus) {
+        console.log(xhr.statusText);
+	  });
+    } else {
+      if (confirm("You must be logged in to unfollow this user. Sign up/Login?")) {
+        window.location.assign("https://dubarub.com");
+      } else {
+        return;
+      }
+    }
+  }
   
   $(document).ready(function() { 
   
