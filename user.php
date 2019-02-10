@@ -814,9 +814,9 @@
   
   function follow() {
     console.log("follow button clicked");
-    var follow_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+    var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
-    if (follow_flag === true) {
+    if (logged_in === true) {
 		
 	  var action = "Follow";
 		
@@ -841,6 +841,7 @@
 	  }
     }       
   }
+  
   
   $(document).ready(function() { 
   
