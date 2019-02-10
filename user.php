@@ -215,22 +215,23 @@
     .flex-container {
       display: flex;
       flex-direction: row;
-      height:20px;
+      height: 20px;
     }
     .flex-container > div {
-      margin-right:10px;
+      margin-right: 10px;
     }
     #follow_button_container {
-      position:relative;
-      top:-110px;
-      left:110px;
-      padding:0px;
+      position: relative;
+      top: -110px;
+      left: 110px;
+      padding: 0px;
     }
     #unfollow_button_container {
-      position:relative;
-      top:-110px;
-      left:110px;
-      padding:0px;
+      position: relative;
+      top: -110px;
+      left: 110px;
+      padding: 0px;
+      display: none;
     }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
