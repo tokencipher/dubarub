@@ -31,7 +31,6 @@ $user_id = $_SESSION['user_id'];
         $myObj = array();
         $trophy_count = $postObj->getUpvote($post_id);
         $myObj['trophy_count'] = $trophy_count;
-        
         break;
      
       case 'Upvote Comment':
@@ -49,7 +48,6 @@ $user_id = $_SESSION['user_id'];
         $myObj = array();
         $trophy_count = $commentObj->getUpvote($comment_id);
         $myObj['trophy_count'] = $trophy_count;
-        
         break;
         
       case 'Flag Comment':
@@ -66,7 +64,6 @@ $user_id = $_SESSION['user_id'];
           
         $myObj = array();
         $myObj['isCommentFlagged'] = "true";
-        
         break;
         
       case 'Remove Comment':
@@ -76,7 +73,6 @@ $user_id = $_SESSION['user_id'];
           
         $myObj = array();
         $myObj['isCommentRemoved'] = "true";
-        
         break;
         
       case 'Remove Post':
@@ -86,7 +82,6 @@ $user_id = $_SESSION['user_id'];
           
         $myObj = array();
         $myObj['isPostRemoved'] = "true";
-        
         break;
         
       case 'Remove Status':
@@ -96,7 +91,6 @@ $user_id = $_SESSION['user_id'];
           
         $myObj = array();
         $myObj['isStatusRemoved'] = "true";
-        
         break;
         
       case 'Follow':
@@ -122,7 +116,6 @@ $user_id = $_SESSION['user_id'];
           $myObj = array();
           $myObj['alreadyFollowing'] = "true";
         }
-    
         break;
         
       default:
