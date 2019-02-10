@@ -285,6 +285,7 @@
 <script>
   
   var user = "<?php echo $_SESSION['user']; ?>";
+  var following = Boolean("<?php echo $_SESSION['following']; ?>");
   var oldCount = 0;
 
   function performAsync(message, callback) {
@@ -980,9 +981,13 @@
       });
       
     });  
-    
-    var following = "<?php echo "
-    if ()
+
+    // If current logged in user is following profile viewed then hide follow button  
+    // and display unfollow button
+    if (following) {
+      $('#follow_button_container').css('display', 'none');
+      $('#unfollow_button_container').css('display', 'block');
+    }
   
   });
 </script>
