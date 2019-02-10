@@ -266,6 +266,10 @@
           $user = "{$row['user_name']}";
           $_SESSION['id'] = $id;
           $_SESSION['user'] = $user; 
+          
+          // Identify if user profile being viewed is being followed by current logged in user
+          $followObj = new Follow();
+          $following = $followObj->getFollowFlag($_SESSION['user_id'], $_SESSION['user']);
         }
       }
     }
@@ -975,6 +979,9 @@
       });
       
     });  
+    
+    var following = "<?php echo "
+    if ()
   
   });
 </script>
