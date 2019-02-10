@@ -814,8 +814,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     	
     if (remove_flag === true) {
       if (confirm("Are you sure you want to delete this post?")) {
+        //console.log("Performing remove action");
+        
   	    var post = $( element );
 	    var postID = post.data("pid");
+	    
+	    //console.log("Post ID is: " + postID);
 		
 	    var action = "Remove Post";
 		
@@ -855,6 +859,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       if (confirm("Are you sure you want to delete this status?")) {
   	    var status = $( element );
 	    var statusID = status.data("statusid");
+	    
+	    //console.log("status ID is: " + statusID);
 		
 	    var action = "Remove Status";
 		
