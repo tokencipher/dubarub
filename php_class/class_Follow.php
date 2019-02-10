@@ -39,13 +39,12 @@ class Follow {
     $stmt->execute();
   }
   
-  public function unfollow($u_id, $user_name, $following) {
+  public function unfollow($u_id, $following) {
     $table = "following";
     $sql = "DELETE FROM $table WHERE u_id = :u_id && following = :following";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $u_id);
-    $stmt->bindParam(':user_name', $user_name);
     $stmt->bindParam(':following', $following);
     $stmt->execute();
   }
@@ -62,7 +61,8 @@ class Follow {
   }
   
   public function removeFollower($u_id, $user_name, $follower) {
-    
+    $table = "followers";
+    $sql = "DELETE FROM $table WHERE u_id = :u_id && "
   }
   
   public function getFollowerCount($u_id) {
