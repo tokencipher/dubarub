@@ -848,7 +848,7 @@
   
   function unfollow() {
     console.log("Unfollow button clicked");
-    var logged_in = Boolean("<?php echo isset($_SESSION['user_id'] ? true : false); ?>");
+    var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     
     if (logged_in === true) {
       var action = "Unfollow";
