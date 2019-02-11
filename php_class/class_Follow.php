@@ -63,6 +63,7 @@ class Follow {
   public function removeFollower($u_id, $follower) {
     $table = "followers";
     $sql = "DELETE FROM $table WHERE u_id = :u_id && follower = :follower";
+    $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $u_id);
     $stmt->bindParam(':follower', $follower);
