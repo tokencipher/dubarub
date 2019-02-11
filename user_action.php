@@ -175,7 +175,7 @@ $user = $_SESSION['user'];
           
           // If the follow flag is equal to false then user profile viewed is not
           // followed by current logged in user 
-          $myObj = ['alreadyUnfollowed'] = "true";
+          $myObj['alreadyUnfollowed'] = "true";
         }
         break;
         
