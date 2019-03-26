@@ -19,10 +19,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
 <?php 
 
-/*
+
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-*/
+
 
 /**
  * Production version 
@@ -54,7 +54,7 @@ function autoRotateImage($image) {
   
   // Now that it's auto-rotated, make sure the EXIF data is correct in case the EXIF gets
   // saved with the image
-  $image->setImageOrientaion(imagick::ORIENTATION_TOPLEFT);
+  $image->setImageOrientation(imagick::ORIENTATION_TOPLEFT);
   
 }
 
