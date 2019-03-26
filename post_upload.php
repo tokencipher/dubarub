@@ -35,6 +35,29 @@ require("php_class/class_Tag.php");
 $dir = "dub_priv_user_files";
 $error_count = 0; 
 
+function autoRotateImage($image) {
+  $orientation = $image->getImageOrientation();
+  
+  switch ($orientation) {
+    case imagick::ORIENTATION_BOTTOMRIGHT;
+      $image->rotateimage("#000", 180); // rotate 180 degrees
+      break;
+      
+    case imagick::ORIENTATION_RIGHTTOP:
+      $image->rotateimage("#000", 90); // rotate 90 degrees CW
+      break;
+      
+    case imagick::ORIENTATION_LEFTBOTTOM:
+      $image->rotateimage("000", -90); // rotate 90 degrees CCW
+      break;
+  }
+  
+  // Now that it's auto-rotated, make sure the EXIF data is correct in case the EXIF gets
+  // saved with the image
+  $image->setImageOrientaion(imagick::ORIENTATION_TOPLEFT);
+  
+}
+
 function redisplayForm($post_title, $post_entry) {
 ?>
   
@@ -281,6 +304,61 @@ if ($error_count == 0) {
   if ($media) {
     
     if ($image) {
+    
+      // Get image dimensions
+      list($width, $height) = getimagesize($temp_file);
+      
+      // check if the file is really an image
+      if (($width == null) && ($height == null)) {
+        redisplayForm($post_title, $post_entry);
+        echo "Sorry, your file was not uploaded. Is it not a valid image" . "<br />";
+        return;
+      }
+      
+      // resize if necessary
+      if ($width <= 5000 && $height > 900) {
+        $max_width = $width / 4.5;
+        $img = new Imagick($temp_file);
+        $img->thumbnailImage($max_width, 0);
+        
+        // Correct image orientation
+        autoRotateImage($img);
+        
+        $img->writeImage($temp_file);
+      }
+      
+      if ($width >= 3000 && $height > 900) {
+        $max_width = $width / 3.5;
+        $img = new Imagick($temp_file);
+        $img->thumbnailImage($max_width, 0);
+        
+        // Correct image orientation
+        autoRotateImage($img);
+        
+        $img->writeImage($temp_file);
+      }
+      
+      if ($width >= 2000 && $height > 900) {
+        $max_width = $width / 2.5;
+        $img = new Imagick($temp_file);
+        $img->thumbnailImage($max_width, 0);
+        
+        // Correct image orientation
+        autoRotateImage($img);
+        
+        $img->writeImage($temp_file);
+      }
+      
+      if ($width >= 900 && $height >= 900) {
+        $max_width = $width / 1.2;
+        $img = new Imagick($temp_file);
+        $img->thumbnailImage($max_width, 0);
+        
+        // Correct image orientation
+        autoRotateImage($img);
+        
+        $img->writeImage($temp_file);
+      }
      
       if (move_uploaded_file($temp_file, $target_img_dir) == TRUE) {
         chmod($target_img_dir, 0644);
