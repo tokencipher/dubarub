@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/normalize.css" /> <!-- check --> 
   <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" /> <!-- check --> 
   <link rel="stylesheet" href="../lib/css/w3css/4/w3.css" /> <!-- check --> 
-  <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css" /> <!-- check --> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
