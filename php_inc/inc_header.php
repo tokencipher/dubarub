@@ -16,7 +16,11 @@
   <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" /> <!-- check --> 
   <link rel="stylesheet" href="../lib/css/w3css/4/w3.css" /> <!-- check --> 
   <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css" /> <!-- check --> 
-  <script src="/lib/js/jquery-3.2.1.min.js"></script> <!-- check --> 
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+  </script> <!-- check --> 
   <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> <!-- check --> 
   <script type="text/javascript" src="lib/js/jquery.jplayer.min.js"></script> <!-- check --> 
   <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
