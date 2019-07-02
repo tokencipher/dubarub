@@ -7,7 +7,7 @@ include ("php_inc/inc_db_qp4.php");
    if ($conn != FALSE) {
      $user_id = $_SESSION['user_id'];
      $table = "post";
-     $sql = "SELECT u_id, p_id, avatar, thumbnail, title, photo_url, video_url, video_mp4, image, video, external, external_url, file_size, upvote, comments, photo_cred, entry, created_at, user_name, display, mime_type FROM $table WHERE display = 'true' && u_id = $user_id";
+     $sql = "SELECT u_id, p_id, avatar, thumbnail, title, photo_url, video_url, video_mp4, image, video, external, file_size, upvote, comments, photo_cred, entry, created_at, user_name, display, mime_type FROM $table WHERE display = 'true' && u_id = $user_id";
      $object = array();
      $x = 0;
      foreach ($conn->query($sql) as $row) {
@@ -23,7 +23,6 @@ include ("php_inc/inc_db_qp4.php");
         $object[$x]['video_url'] = "{$row['video_url']}";
         $object[$x]['video_mp4'] = "{$row['video_mp4']}";
         $object[$x]['external'] = "{$row['external']}";
-        $object[$x]['external_url'] = "{$row['external_url']}";
         $object[$x]['image'] = "{$row['image']}";
         $object[$x]['video'] = "{$row['video']}";
         $object[$x]['file_size'] = "{$row['file_size']}";
