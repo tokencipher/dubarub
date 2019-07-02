@@ -66,7 +66,7 @@ class Track {
   
   public function createTrack() {
     $table = "track";
-    $sql = "INSERT INTO $table(u_id, artist, album, title, year, genre, duration, format, file_size, mp3_path, bpm, art) VALUES(:user_id, :artist, :album, :title, :year, :genre, :duration, :format, :file_size, :mp3_path, :bpm, :cover_art)";
+    $sql = "INSERT INTO $table(u_id, artist, album, title, year, genre, duration, format, file_size, mp3_path, art) VALUES(:user_id, :artist, :album, :title, :year, :genre, :duration, :format, :file_size, :mp3_path, :cover_art)";
     
     $stmt = $this->db->prepare($sql);
     
@@ -80,7 +80,7 @@ class Track {
     $stmt->bindParam(':format', $this->format);
     $stmt->bindParam(':file_size', $this->file_size);
     $stmt->bindParam(':mp3_path', $this->mp3_path);
-    $stmt->bindParam(':bpm', $this->bpm);
+    //$stmt->bindParam(':bpm', $this->bpm);
     $stmt->bindParam(':cover_art', $this->cover_art);
     
     return $stmt->execute();
