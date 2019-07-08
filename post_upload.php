@@ -575,8 +575,8 @@ if ($error_count == 0) {
     $display = "true";
     $user_id = $_SESSION['user_id']; 
     $user_name = $_SESSION['user_name'];
-    $post_title = $_POST['post_title'];
-    $post_entry = $_POST['post_text'];
+    $post_title = sanitize($_POST['post_title']);
+    $post_entry = sanitize($_POST['post_text']);
     
     // Retrieve avatar from user object 
     $avatar = new User();
@@ -606,7 +606,7 @@ if ($error_count == 0) {
 
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 01/01/2019 -->
+<!-- Last modified: 07/07/2019 -->
 
 <?php require_once('php_inc/inc_header.php'); ?>
 <title>Post Upload</title>
