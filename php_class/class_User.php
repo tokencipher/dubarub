@@ -69,7 +69,7 @@ class User {
   public function getAvatar() {
     $table = "user";
     $user_id = $this->user_id; 
-    $sql = "SELECT avatar FROM $table WHERE u_id = $user_id";
+    $sql = "SELECT avatar FROM $table WHERE u_id = $user_id;";
     foreach ($this->db->query($sql) as $row) {
       $avatar = "{$row['avatar']}";
     }
