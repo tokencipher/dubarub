@@ -96,6 +96,13 @@ function redisplayForm($post_title, $post_entry) {
 <?php
 }
 
+function sanitize($str) {
+  $new_str = trim($str);
+  $new_str = stripslashes($str);
+  $new_str = filter_var($new_str, FILTER_SANITIZE_STRING);
+  return $new_str;
+}
+
 if (isset($_POST['upload'])) {
   $target_dir = "";
   $temp_file = $_FILES['new_file']['tmp_name'];
@@ -371,12 +378,13 @@ if ($error_count == 0) {
     
         // Declare and initialize required values to be added to post object
         $display = "true";
-        $post_title = $_POST['post_title'];
+        $post_title = sanitize($_POST['post_title']); // sanitize 
         $image_url = $dir . "/image/" . $_FILES['new_file']['name'];
         $image_size = $_FILES['new_file']['size'];
-        $post_entry = $_POST['post_text']; 
+        $post_entry = sanitize($_POST['post_text']); // sanitize 
         $image_flag = "true";
-        $photo_credit = empty($_POST['photo_cred']) ? "Photo credit: Unknown" : "Photo credit: " . $_POST['photo_cred'];
+        // sanitize 
+        $photo_credit = empty($_POST['photo_cred']) ? "Photo credit: Unknown" : "Photo credit: " . sanitize($_POST['photo_cred']);
         
         // Retrieve avatar from user object 
         $avatar = new User();
@@ -387,13 +395,13 @@ if ($error_count == 0) {
         $Post = new Post();
         $Post->setUserId($user_id);
         $Post->setUsername($user_name);
-        $Post->setTitle($post_title);
+        $Post->setTitle($post_title); // sanitize 
         $Post->setAvatar($avatar_path);
-        $Post->setPhotoUrl($image_url);
-        $Post->setPhotoCredit($photo_credit);
+        $Post->setPhotoUrl($image_url); 
+        $Post->setPhotoCredit($photo_credit); // sanitize 
         $Post->setImageFlagString($image_flag);
         $Post->setSize($image_size);
-        $Post->setEntry($post_entry);
+        $Post->setEntry($post_entry); // sanitize 
         $Post->setEntryCharCnt($post_char_cnt);
         $Post->setEntryWordCnt($post_word_cnt);
         $Post->setDisplay($display);
