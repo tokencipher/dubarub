@@ -108,13 +108,18 @@ if (isset($_POST['upload'])) {
   $temp_file = $_FILES['new_file']['tmp_name'];
   $target_img_dir = $dir . "/image/" . $_FILES['new_file']['name'];
   $target_vid_dir = $dir . "/video/" . $_FILES['new_file']['name'];
-  $fileInfo_array = getimagesize($temp_file);
-  $mimeType = $fileInfo_array['mime']; // Not being used, really
-  $file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
-  $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));  // e.g. gives "image/jpeg"
-  $mimeType_array = explode(";", $all_ext_mimeType);
-  $mediaType = strtolower(pathinfo($target_dir,PATHINFO_EXTENSION));
   $file_size = $_FILES['new_file']['size'];
+  
+  if (!empty($temp_file)) {
+    $fileInfo_array = getimagesize($temp_file);
+    $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));
+    $mimeType_array = explode(";", $all_ext_mimeType);
+  }
+  //$mimeType = $fileInfo_array['mime']; // Not being used, really
+  //$file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
+  //$all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));  // e.g. gives "image/jpeg
+  //$mediaType = strtolower(pathinfo($target_dir,PATHINFO_EXTENSION));
+  
   // Post content char count
   $post_char_cnt = strlen($_POST['post_text']);
   
@@ -584,7 +589,7 @@ if ($error_count == 0) {
     $avatar_path = $avatar->getAvatar();
   
     $Post = new Post();
-    $Post->insertPost($user_id, $user_name, $avatar, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display);
+    $Post->insertPost($user_id, $user_name, $avatar_path, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display);
   
     // Get most recent post ID
     $post_id = $Post->getPostId();
