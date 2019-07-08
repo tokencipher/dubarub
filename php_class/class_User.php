@@ -28,12 +28,21 @@ class User {
     $this->age = $age;
   }
   
+  // Shouldn't ever have to be used 
   public function setUserId($uid) {
     $this->user_id = $uid;
   }
 
   public function setUsername($uname) {
     $this->username = $uname;
+  }
+  
+  public function setEmail($email) {
+    $this->email = $email;
+  }
+  
+  public function setPassword($password) {
+    $this->password = $password;
   }
   
   public function setAvatar($path) {
