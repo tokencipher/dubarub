@@ -7,7 +7,7 @@ class User {
   private $last_name;
   private $birth_date;
   private $age;
-  private $username;
+  private $user_name;
   private $avatar;
   private $email;
   private $password;
@@ -18,6 +18,20 @@ class User {
     if ($conn !== FALSE) {
       $this->db = $conn;
     }
+  }
+  
+  public function createUser() {
+    $table = "user";
+    $sql = "INSERT INTO $table(user_name, email, password, avatar) VALUES(:user_name, :email, :password, :avatar)";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':user_name', $this->user_name);
+    $stmt->bindParam(':email', $this->email);
+    $stmt->bindParam(':password', $this->password);
+    $stmt->bindParam(':avatar', $this->avatar);
+    
+    return $stmt->execute();
   }
   
   public function setName($name) {
@@ -34,7 +48,7 @@ class User {
   }
 
   public function setUsername($uname) {
-    $this->username = $uname;
+    $this->user_name = $uname;
   }
   
   public function setEmail($email) {
