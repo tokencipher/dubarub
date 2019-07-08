@@ -412,7 +412,7 @@ class Post {
   
   public function insertPost($user_id, $user_name, $avatar, $post_title, $post_entry, $char_count, $word_count, $display) {
     $table = "post";
-    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display) VALUES(:user, :user_name, :title, :entry, :char_count, :word_count, :display)";
+    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display) VALUES(:user, :user_name, :title, :avatar, :entry, :char_count, :word_count, :display)";
     
     $stmt = $this->db->prepare($sql);
     
