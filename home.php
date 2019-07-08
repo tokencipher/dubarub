@@ -890,6 +890,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }       
   }
   
+  function stripHTML(str) {
+    var StrippedString = str.replace(/(<([^>]+)>)/ig,"");
+    return StrippedString;
+  }
+  
   $(document).ready(function() {
     
     sequenceAsync();
@@ -899,7 +904,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     });
     $('#submit').click(function() {
       $('#status').trigger('focusout'); // Required to make status updates push to server
-      var message = $('#status').val();
+      var message = stripHTML($('#status').val());
       var user_id = "<?php echo $_SESSION['user_id']; ?>";
       $('#status').val('');
       
