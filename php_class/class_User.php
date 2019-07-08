@@ -2,11 +2,15 @@
 
 class User {
   private $db;
-  private $name;
-  private $age;
   private $user_id;
+  private $first_name;
+  private $last_name;
+  private $birth_date;
+  private $age;
   private $username;
   private $avatar;
+  private $email;
+  private $password;
   private $bio;
   
   function __construct() {
