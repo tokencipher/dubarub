@@ -409,7 +409,6 @@ class Post {
     
     return $stmt->execute();
   }
-  
   /*
   public function insertPost($user_id, $user_name, $avatar, $post_title, $post_entry, $char_count, $word_count, $display) {
     $table = "post";
@@ -429,17 +428,18 @@ class Post {
     return $stmt->execute();
   }
   */
+
   
   public function insertPost() {
     $table = "post";
-    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display) VALUES (:user, :user_name, :title, :avatar, :entry, :char_count, :word_count, :display)";
+    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display) VALUES (:user, :user_name, :avatar, :title, :entry, :char_count, :word_count, :display)";
     
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':user', $this->user_id);
     $stmt->bindParam(':user_name', $this->user_name);
-    $stmt->bindParam(':title', $this->title);
     $stmt->bindParam(':avatar', $this->avatar);
+    $stmt->bindParam(':title', $this->title);
     $stmt->bindParam(':display', $this->display);
     $stmt->bindParam('entry', $this->entry);
     $stmt->bindParam('char_count', $this->char_count);
@@ -447,6 +447,7 @@ class Post {
     
     return $stmt->execute();
   }
+  
   /**
    * insert blob into the post table
    * @param string $filePath
