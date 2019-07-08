@@ -145,7 +145,7 @@ if ($errorCount > 0) {
 if ($errorCount == 0) {
   if ($conn !== FALSE) {
     // $tableName = "user";
-    $sql = 'SELECT user_name FROM user WHERE username = :username';
+    $sql = 'SELECT user_name FROM user WHERE user_name = :username';
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':username', $username);
     $stmt->execute();
