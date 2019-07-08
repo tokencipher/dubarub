@@ -9,6 +9,7 @@
   */
 require ("php_inc/inc_db_qp4.php");
 require_once("php_class/class_Session.php");
+require_once("php_class/class_User.php"):
 
 $errorCount = 0;
 $username = "";
