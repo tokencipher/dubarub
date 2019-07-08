@@ -589,10 +589,20 @@ if ($error_count == 0) {
     $avatar_path = $avatar->getAvatar();
   
     $Post = new Post();
-    $Post->insertPost($user_id, $user_name, $avatar_path, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display);
+    $Post->setUserId($user_id);
+    $Post->setUsername($user_name);
+    $Post->setAvatar($avatar_path);
+    $Post->setTitle($post_title);
+    $Post->setEntry($post_entry);
+    $Post->setEntryCharCnt($post_char_cnt);
+    $Post->setEntryWordCnt($post_word_cnt);
+    $Post->setDisplay($display);
+    $Post->insertPost();
+    //$Post->insertPost($user_id, $user_name, $avatar_path, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display);
   
     // Get most recent post ID
-    $post_id = $Post->getPostId();
+    //$Post->setUserId($user_id);
+    $Post_id = $Post->getPostId();
   
     if (!(empty($_POST['post_tags']))) {
       // Add required values to tag object
