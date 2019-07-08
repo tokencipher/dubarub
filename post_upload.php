@@ -598,11 +598,9 @@ if ($error_count == 0) {
     $Post->setEntryWordCnt($post_word_cnt);
     $Post->setDisplay($display);
     $Post->insertPost();
-    //$Post->insertPost($user_id, $user_name, $avatar_path, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display);
-  
+      
     // Get most recent post ID
-    //$Post->setUserId($user_id);
-    $Post_id = $Post->getPostId();
+    $post_id = $Post->getPostId();
   
     if (!(empty($_POST['post_tags']))) {
       // Add required values to tag object
