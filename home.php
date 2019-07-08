@@ -832,6 +832,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         }).done(function ( msg ) {
           console.log('Remove post action taken...');
           console.log(msg);
+          window.location.assign(window.location.href);
         }).fail(function ( xhr, textStatus) {
           console.log(xhr.statusText);
         });
