@@ -31,6 +31,25 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
     width:50%;
     margin:auto;
   }
+  * unvisited link */
+  a:link {
+    color: blue;
+  }
+
+  /* visited link */
+  a:visited {
+    color: green;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: green;
+  }
+
+  /* selected link */
+  a:active {
+    color: yellow;
+  }
 </style>
 </head>
 
@@ -65,6 +84,10 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
     <button type="submit" name="submit" class="btn btn-primary">Login</button>    
   </form>
   
+  <div style="position:relative;width:100%;text-align:center;top:80px;margin:auto;">New user? <a style="text-decoration:underline" href="signup.php">Sign up!</a></div>
+  
+  
+  <!--
   <script>
   
     $(document).ready(function() {
@@ -87,6 +110,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
     
     
   </script>
+  -->
   
 <?php include("php_inc/inc_footer.php"); ?>
 
