@@ -1261,6 +1261,10 @@
       <a href="#" onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
     </div>
     
+    <div id="m_unfollow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;">
+      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
+    </div>
+    
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-70px;">
       <span id="m_profile_followers">
         <?php
