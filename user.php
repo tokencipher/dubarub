@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 01/01/18 -->
+<!-- Last modified: 08/24/19 -->
 <?php 
   session_start();
   
@@ -12,12 +12,12 @@
 
 <?php include_once ('php_inc/inc_header.php'); ?>
 
-<!--
+
 <?php 
   ini_set( 'display_errors', 1 ); 
   error_reporting( E_ALL );
 ?>
--->
+
 
 
   <title>dubarub | user</title>  
@@ -266,16 +266,18 @@
           $user = "{$row['user_name']}";
           $_SESSION['id'] = $id;
           $_SESSION['user'] = $user; 
-          
-          // Identify if user profile being viewed is being followed by current logged in user
-          $followObj = new Follow();
-          $following = $followObj->getFollowFlag($_SESSION['user_id'], $_SESSION['user']);
-          $_SESSION['following'] = $following;
         }
       }
     }
   } catch (Exception $e) {
     echo "DB exception: $e";
+  }
+	
+  if ((isset($_SESSION['user_id']))) {
+    // Identify if user profile being viewed is being followed by current logged in user
+    $followObj = new Follow();
+    $following = $followObj->getFollowFlag($_SESSION['user_id'], $_SESSION['user']);
+    $_SESSION['following'] = $following;
   }
 
 
@@ -497,7 +499,6 @@
       }
     };
     postRequest.open("GET", "get_index_posts.php", true);
-    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     postRequest.send();
   
   }
