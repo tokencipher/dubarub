@@ -35,6 +35,9 @@ require("php_class/class_Tag.php");
 $dir = "dub_priv_user_files";
 $error_count = 0; 
 
+$image = false;
+$video = false;
+
 function autoRotateImage($image) {
   $orientation = $image->getImageOrientation();
   
@@ -95,6 +98,9 @@ function redisplayForm($post_title, $post_entry) {
 
 <?php
 }
+?>
+
+<?php
 
 function sanitize($str) {
   $new_str = trim($str);
@@ -109,14 +115,15 @@ if (isset($_POST['upload'])) {
   $target_img_dir = $dir . "/image/" . $_FILES['new_file']['name'];
   $target_vid_dir = $dir . "/video/" . $_FILES['new_file']['name'];
   $file_size = $_FILES['new_file']['size'];
+
   
   if (!empty($temp_file)) {
-    $fileInfo_array = getimagesize($temp_file);
+    $file_info_mime = new finfo(FILEINFO_MIME);
     $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));
     $mimeType_array = explode(";", $all_ext_mimeType);
   }
-  //$mimeType = $fileInfo_array['mime']; // Not being used, really
-  //$file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
+  //$mimeType = $fileInfo_array['mime'];
+  //$fileInfo_array = getimagesize($temp_file);
   //$all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));  // e.g. gives "image/jpeg
   //$mediaType = strtolower(pathinfo($target_dir,PATHINFO_EXTENSION));
   
@@ -151,38 +158,32 @@ if (isset($_POST['upload'])) {
      /* begin image types */
     
       case "image/gif":
-        $image = TRUE;
-        $video = FALSE;
+        $image = true;
         $mime_type = $mimeType_array[0];
         break;
     
       case "image/png":
-        $image = TRUE;
-        $video = FALSE;
+        $image = true;
         $mime_type = $mimeType_array[0];
         break;
     
       case "image/jpeg":
-        $image = TRUE;
-        $video = FALSE;
+        $image = true;
         $mime_type = $mimeType_array[0];
         break;
         
       case "image/jpg":
-        $image = TRUE;
-        $video = FALSE;
+        $image = true;
         $mime_type = $mimeType_array[0];
         break;
         
       case "image/bmp":
-        $image = TRUE;
-        $video = FALSE;
+        $image = true;
         $mime_type = $mimeType_array[0];
         break;
         
       case "image/webp":
-        $image = TRUE;
-        $video = FALSE;
+        $image = true;
         $mime_type = $mimeType_array[0];
         break;
         
@@ -191,61 +192,50 @@ if (isset($_POST['upload'])) {
     /* begin video types */
     
       case "video/webm":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/ogg":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/mp4":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/m4v":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/quicktime":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         
-        $quicktime = TRUE;
+        $quicktime = true;
         
         break;
         
       case "video/wav":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/x-flv":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
     
       case "video/MP2T":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/3gpp":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
         
       case "video/x-msvideo":
-        $video = TRUE;
-        $image = FALSE;
+        $video = true;
         break;
      
       case "video/x-ms-wmv":
-        $video = TRUE;
-        $image = FALSE; 
+        $video = true;
         break;
     
       default: 
@@ -261,10 +251,10 @@ if (isset($_POST['upload'])) {
     
     }
     
-    $media = TRUE;
+    $media = true;
     
   } else {
-    $media = FALSE;
+    $media = false;
   }
   
   if (isset($_POST['external_url'])) {
@@ -275,11 +265,9 @@ if (isset($_POST['upload'])) {
     
     // Validate url
     if (filter_var($url, FILTER_VALIDATE_URL)) {
-      $external = TRUE;
-      $video = FALSE;
-      $image = FALSE;
+      $external = true;
     } else {
-      $external = FALSE;
+      $external = false;
     }
   }
    
@@ -372,7 +360,7 @@ if ($error_count == 0) {
         $img->writeImage($temp_file);
       }
      
-      if (move_uploaded_file($temp_file, $target_img_dir) == TRUE) {
+      if (move_uploaded_file($temp_file, $target_img_dir) == true) {
         chmod($target_img_dir, 0644);
         echo "File \"" . htmlentities($_FILES['new_file']['name']) . "\"successfully 
         uploaded.<br />\n";
@@ -433,7 +421,7 @@ if ($error_count == 0) {
       } 
     } else if ($video) {
      
-      if (move_uploaded_file($temp_file, $target_vid_dir) == TRUE) {
+      if (move_uploaded_file($temp_file, $target_vid_dir) == true) {
         chmod($target_vid_dir, 0644);
         /*
         echo "File \"" . htmlentities($_FILES['new_file']['name']) . "\"successfully 
@@ -615,11 +603,12 @@ if ($error_count == 0) {
     exit;
   
   }
+  
 }
 
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 07/07/2019 -->
+<!-- Last modified: 09/31/2019 -->
 
 <?php require_once('php_inc/inc_header.php'); ?>
 <title>Post Upload</title>
