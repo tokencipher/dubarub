@@ -9,7 +9,7 @@
   */
 require ("php_inc/inc_db_qp4.php");
 require_once("php_class/class_Session.php");
-require_once("php_class/class_User.php"):
+require_once("php_class/class_User.php");
 
 $errorCount = 0;
 $username = "";
@@ -28,14 +28,14 @@ function redisplayForm($username, $email, $errUsername, $errEmail, $errPassword)
     <img src="img/dubarub.jpg" alt="dubarub" id="place_logo" height="80" width="80" />   
   </div>
   
-  <h2 class="w3-center" style="color:green;">Welcome to the Public BETA!</h2>
+  <div class="w3-center" style="font-size:18px;">Let's get started!</p></div>
 
   <form action="verify_signup.php" method="POST" enctype="multipart/form-data">
     <div class="form-group">
       <input type="text" maxlength="30" name="username" class="form-control" 
         id="username" aria-describedby="username_help" placeholder="username" 
         value="<?php echo $username; ?>"  required>
-      <small id="username_help" class="form-text text-muted">Username cannot be longer than 30 characters.</small>
+      <small id="username_help" class="form-text text-muted">username cannot be longer than 30 characters.</small>
       <?php echo "<p class='text-danger'>$errUsername</p>"; ?>
     </div>
     <div class="form-group">
@@ -67,6 +67,10 @@ function redisplayForm($username, $email, $errUsername, $errEmail, $errPassword)
   
     <button type="submit" name="submit" class="btn btn-primary">Sign up!</button>
   </form>
+  
+  <div style="position:relative;top:10px;left:450px">
+    Already a user? <a href="index.php" style="text-decoration:underline">Sign in</a>
+  </div>
 <?php
 }
 
@@ -100,103 +104,93 @@ if (isset($_POST['submit'])) {
   
   if (empty($_POST['password'])) {
     ++$errorCount;
-    $errPassword = "password field cannot be empty";
+    $errPassword = "password field cannot be empty<br />";
     $password = "";
   } else {
     $password = trim($_POST['password']);
     $password = stripslashes($password);
     $password = htmlspecialchars($password);
-    $password = md5($password);
     // $_SESSSION['password'] = $password;
     $errPassword = "";
   }
   
-  $username = preg_match('/[@#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $_POST['username']);
-  if ($username) {
+  // validate username 
+  $special_chars = $username;
+  $special_chars = preg_match('/[@#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $username);
+  if ($special_chars) {
     ++$errorCount;
-    $errUsername = "Username cannot contain any special characters";
-  }
+    $errUsername = "username cannot contain any special characters";
+  } 
   
-  if( strlen($_POST['password']) < 8 ) {
+  if( strlen($password) < 8 ) {
     ++$errorCount;
-    $errPassword .= "Password too short!";
+    $errPassword .= "password too short<br />";
   }
  
-  if( strlen($_POST['password'] ) > 70 ) {
+  if( strlen($password) > 70 ) {
     ++$errorCount;
-    $errPassword .= "Password too long!";
+    $errPassword .= "password too long<br />";
   }
  
   if( !preg_match("#[0-9]+#", $password ) ) {
     ++$errorCount;
-    $errPassword .= "Password must include at least one number!";
+    $errPassword .= "password must include at least one number<br />";
   }
  
   if( !preg_match("#[a-z]+#", $password ) ) {
     ++$errorCount;
-    $errPassword .= "Password must include at least one letter!";
+    $errPassword .= "password must include at least one letter<br />";
   }
   
+}
+
+if ($conn !== FALSE) {
+  // $tableName = "user";
+  $sql = 'SELECT user_name FROM user WHERE user_name = :username';
+  $stmt = $conn->prepare($sql);
+  $stmt->bindParam(':username', $username);
+  $stmt->execute();
+  if (!$stmt->rowCount() > 0) {
+    $unique_user = true;
+  } else {
+    ++$errorCount;
+    $unique_user = false;
+    $errUsername = "this username has been taken.";
+  }
+
+  $sql = 'SELECT email FROM user WHERE email = :email';
+  $stmt = $conn->prepare($sql);
+  $stmt->bindParam(':email', $email);
+  $stmt->execute();
+  if (!$stmt->rowCount() > 0) {
+    $unique_email = true;
+  } else {
+    ++$errorCount;
+    $unique_email = false;
+    $errEmail = "this email is already in use.";
+  }
 }
 
 if ($errorCount > 0) {
   redisplayForm($username, $email, $errUsername, $errEmail, $errPassword);
 }
-  
-if ($errorCount == 0) {
-  if ($conn !== FALSE) {
-    // $tableName = "user";
-    $sql = 'SELECT user_name FROM user WHERE user_name = :username';
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':username', $username);
-    $stmt->execute();
-    if (!$stmt->rowCount() > 0) {
-      $unique_user = true;
-    } else {
-      ++$errorCount;
-      $unique_user = false;
-      $errUsername = "That username has been taken.";
-    }
-    
-    $sql = 'SELECT email FROM user WHERE email = :email';
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    if (!$stmt->rowCount() > 0) {
-      $unique_email = true;
-    } else {
-      ++$errorCount;
-      $unique_email = false;
-      $errEmail = "That email is already in use.";
-    }
-  }
-  
-  if ($unique_user && $unique_email) {
-    
-    // Set arguments
-    $username = trim($_POST['username']);
-    $username = strtolower($username);
-    $username = stripslashes($username);
-    $username = htmlspecialchars($username);
-    
-    $email = trim($_POST['email']);
-    $email = strtolower($email);
-    $email = stripslashes($email);
-    $email = htmlspecialchars($email);
-    
-    $password = trim($_POST['password']);
-    $password = stripslashes($password);
-    $password = htmlspecialchars($password);
-    $password = md5($password);
-    
-    // Create new user
-    $User = new User();
-    $User->setUsername($username);
-    $User->setEmail($email);
-    $User->setPassword($password);
-    $User->setAvatar($avatar);
-    $User->createUser();
-  }  
+
+if ($unique_user && $unique_email) {
+
+  // Set password to md5 hash
+  $password = md5($password);
+
+  $avatar = $_POST['avatar'];
+
+  // Create new user
+  $User = new User();
+  $User->setUsername($username);
+  $User->setEmail($email);
+  $User->setPassword($password);
+  $User->setAvatar($avatar);
+  $User->createUser();
+
+  header('Location: index.php');
 }
 
 /*
@@ -222,10 +216,30 @@ echo "<p>$password</p>";
     width:50%;
     margin:auto;
   }
+  
+  * unvisited link */
+  a:link {
+    color: blue;
+  }
+
+  /* visited link */
+  a:visited {
+    color: green;
+  }
+
+  /* mouse over link */
+  a:hover {
+    color: green;
+  }
+
+  /* selected link */
+  a:active {
+    color: yellow;
+  }
 </style>
 </head>
 <body> 
-<div id="result" class="w3-center" style="position:relative;top:100px;margin:auto;color:red;">
+<div id="result" class="w3-center" style="position:relative;top:100px;margin:auto;color:green;">
   <?php echo $result; ?>
 </div>
 </body>
