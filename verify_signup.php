@@ -164,13 +164,14 @@ if (isset($_POST['submit'])) {
     $errPassword = "";
   }
   
-  // validate username 
+  // invalidate username against special characters 
   $special_chars = $username;
   $special_chars = preg_match('/[@#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $username);
   if ($special_chars) {
     ++$errorCount;
     $errUsername = "username cannot contain any special characters";
   } 
+  
   
   if( strlen($password) < 8 ) {
     ++$errorCount;
@@ -180,6 +181,11 @@ if (isset($_POST['submit'])) {
   if( strlen($password) > 70 ) {
     ++$errorCount;
     $errPassword .= "password too long<br />";
+  }
+  
+  if ( preg_match("/$username/i", $password)) {
+    ++$errorCount;
+    $errPassword .= "password cannot contain username<br />";
   }
  
   if( !preg_match("#[0-9]+#", $password ) ) {
