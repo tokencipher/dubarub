@@ -4,6 +4,9 @@
  */
 //session_start();
 
+ini_set( 'display_errors', 1 ); 
+error_reporting( E_ALL );
+
 /** 
   * Include our database connection.
   */
@@ -21,7 +24,7 @@ $errUsername = "";
 $user_id = "";
 $result = "";
 
-function redisplayForm($username, $email, $errUsername, $errEmail, $errPassword) {
+function redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword) {
 ?>
   
   <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
@@ -48,7 +51,7 @@ function redisplayForm($username, $email, $errUsername, $errEmail, $errPassword)
     <div class="form-group">
       <input type="password" maxlength="70" name="password" class="form-control" 
       id="password" aria-describedby="password_help" placeholder="password" 
-      value="<?php echo $username; ?>" required>
+      value="<?php echo $password; ?>" required>
       <?php echo "<p class='text-danger'>$errPassword</p>"; ?>
     </div>
     <ul>
@@ -171,16 +174,12 @@ if ($conn !== FALSE) {
   }
 }
 
-if ($errorCount > 0) {
-  redisplayForm($username, $email, $errUsername, $errEmail, $errPassword);
-}
-
-if ($unique_user && $unique_email) {
+if ($errorCount == 0) {
 
   // Set password to md5 hash
   $password = md5($password);
 
-  $avatar = $_POST['avatar'];
+  $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
 
   // Create new user
   $User = new User();
@@ -189,9 +188,15 @@ if ($unique_user && $unique_email) {
   $User->setPassword($password);
   $User->setAvatar($avatar);
   $User->createUser();
-
+  
   header('Location: index.php');
+
 }
+
+if ($errorCount > 0) {
+  redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword);
+}
+
 
 /*
 echo "<p>$user_id</p>";
