@@ -21,10 +21,11 @@ $password = "";
 $errEmail = "";
 $errPassword = "";
 $errUsername = "";
+$errAvatar = "";
 $user_id = "";
 $result = "";
 
-function redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword) {
+function redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword, $errAvatar) {
 ?>
   
   <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
@@ -65,7 +66,8 @@ function redisplayForm($username, $email, $password, $errUsername, $errEmail, $e
       <!--<input type="hidden" name="MAX_FILE_SIZE" value="10000000" />-->
       <!--<input type="hidden" name="user_id" value="1" />-->
       <input type="file" name="avatar" class="form-control-file" id="avatar" aria-describedby="avatar_help">
-      <!--<small id="multimedia_help" class="form_text text-muted">File cannot be any larger than 10MB</small>-->
+      <!--<small id="multimedia_help" class="form_text text-muted"><?php echo $errAvatar; ?></small>-->
+      <?php echo "<p class='text-danger'>$errAvatar</p>"; ?>
     </div>
   
     <button type="submit" name="submit" class="btn btn-primary">Sign up!</button>
@@ -78,6 +80,57 @@ function redisplayForm($username, $email, $password, $errUsername, $errEmail, $e
 }
 
 if (isset($_POST['submit'])) {
+  $temp_file = $_FILES['avatar']['tmp_name'];
+  $file_size = $_FILES['avatar']['size'];
+  
+  if (!empty($temp_file)) {
+    $file_info_mime = new finfo(FILEINFO_MIME);
+    $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));
+    $mimeType_array = explode(";", $all_ext_mimeType);
+  }
+  
+  if ($file_size !== 0) {
+    switch ($mimeType_array[0]) {
+    
+     /* begin image types */
+    
+      case "image/gif":
+        $image = true;
+        $mime_type = $mimeType_array[0];
+        break;
+    
+      case "image/png":
+        $image = true;
+        $mime_type = $mimeType_array[0];
+        break;
+    
+      case "image/jpeg":
+        $image = true;
+        $mime_type = $mimeType_array[0];
+        break;
+        
+      case "image/jpg":
+        $image = true;
+        $mime_type = $mimeType_array[0];
+        break;
+        
+      case "image/bmp":
+        $image = true;
+        $mime_type = $mimeType_array[0];
+        break;
+        
+      case "image/webp":
+        $image = true;
+        $mime_type = $mimeType_array[0];
+        break;
+        
+      /* end image types */
+      
+      default:
+        $errAvatar = "sorry, only image files are allowed.";
+        ++$errorCount;
+    }
+  }
 
   if (empty($_POST['username'])) {
     ++$errorCount;
@@ -194,7 +247,7 @@ if ($errorCount == 0) {
 }
 
 if ($errorCount > 0) {
-  redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword);
+  redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword, $errAvatar);
 }
 
 
