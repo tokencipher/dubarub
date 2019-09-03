@@ -1,16 +1,10 @@
 <?php
-/**
- * Start the session
- */
-//session_start();
-
-ini_set( 'display_errors', 1 ); 
-error_reporting( E_ALL );
 
 /** 
   * Include our database connection.
   */
-require ("php_inc/inc_db_qp4.php");
+require("php_inc/inc_db_qp4.php");
+
 require_once("php_class/class_Session.php");
 require_once("php_class/class_User.php");
 
@@ -250,19 +244,10 @@ if ($errorCount > 0) {
   redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword, $errAvatar);
 }
 
-
-/*
-echo "<p>$user_id</p>";
-echo "<p>$username</p";
-echo "<p>$errEmail</p>";
-echo "<p>$errPassword</p>";
-echo "<p>$email</p>";
-echo "<p>$password</p>";
-*/
   
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 07/07/2019 -->
+<!-- Last modified: 09/03/2019 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <style>
   .heading {
