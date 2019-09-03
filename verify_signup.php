@@ -68,7 +68,7 @@ function redisplayForm($username, $email, $password, $errUsername, $errEmail, $e
   </form>
   
   <div style="position:relative;top:10px;left:450px">
-    Already a user? <a href="index.php" style="text-decoration:underline">Sign in</a>
+    Already a user? <a href="index.php" style="text-decoration:underline">Log in</a>
   </div>
 <?php
 }
@@ -183,7 +183,7 @@ if (isset($_POST['submit'])) {
     $errPassword .= "password too long<br />";
   }
   
-  if ( preg_match("/$username/i", $password)) {
+  if ( preg_match("/$username/i", $password ) ) {
     ++$errorCount;
     $errPassword .= "password cannot contain username<br />";
   }
