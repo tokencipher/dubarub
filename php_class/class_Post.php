@@ -366,7 +366,7 @@ class Post {
   
   public function createPostWUrl() {
     $table = "post";
-    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display, external_url, external) VALUES(:user_id, :user_name, :avatar, :title, :entry, :char_count, :word_count, :display, :external_url, :external_url_flag)";
+    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display, external_url, external) VALUES(:user_id, :user_name, :avatar, :title, :entry, :char_count, :word_count, :display, :external_url, :external_flag)";
     
     $stmt = $this->db->prepare($sql);
     
