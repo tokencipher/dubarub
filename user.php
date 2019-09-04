@@ -278,6 +278,8 @@
     $followObj = new Follow();
     $following = $followObj->getFollowFlag($_SESSION['user_id'], $_SESSION['user']);
     $_SESSION['following'] = $following;
+  } else {
+    $_SESSION['following'] = false;
   }
 
 
@@ -287,7 +289,7 @@
 <script>
   
   var user = "<?php echo $_SESSION['user']; ?>";
-  var following = Boolean("<?php echo isset($_SESSION['following']) ? 'true' : 'false'; ?>");
+  var following = Boolean("<?php echo $_SESSION['following']; ?>");
   var oldCount = 0;
 
   function performAsync(message, callback) {
@@ -989,9 +991,9 @@
 
     // If current logged in user is following profile viewed then hide follow button  
     // and display unfollow button
-    if (following == "true") {
+    if (following == true) {
       $('#follow_button_container').css('display', 'none');
-      $('$m_follow_button_container').css('display', 'none');
+      $('#m_follow_button_container').css('display', 'none');
       $('#unfollow_button_container').css('display', 'block');
       $('#m_unfollow_button_container').css('display', 'block');
     }
@@ -1267,8 +1269,8 @@
       <a href="#" onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
     </div>
     
-    <div id="m_unfollow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;">
-      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
+    <div id="m_unfollow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;display:none">
+      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
     </div>
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-70px;">
