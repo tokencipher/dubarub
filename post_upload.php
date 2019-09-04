@@ -537,7 +537,7 @@ if ($error_count == 0) {
     $post_title = sanitize($_POST['post_title']);
     $post_entry = sanitize($_POST['post_text']);
     
-    $external_url = $url;
+    $external_url = str_replace("watch?v=", "embed/", $url);
     $external_url_flag = "true";
     
     // Retrieve avatar from user object 
