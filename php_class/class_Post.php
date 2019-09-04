@@ -397,8 +397,8 @@ class Post {
     
     $stmt->bindParam(':user', $user_id);
     $stmt->bindParam(':user_name', $user_name);
-    $stmt->bindParam(':title', $post_title);
     $stmt->bindParam(':avatar', $avatar);
+    $stmt->bindParam(':title', $post_title);
     $stmt->bindParam(':display', $display);
     $stmt->bindParam(':entry', $post_entry);
     $stmt->bindParam(':char_count', $char_count);
