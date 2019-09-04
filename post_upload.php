@@ -468,9 +468,9 @@ if ($error_count == 0) {
         $video_url = $dir . "/video/" . $_FILES['new_file']['name'];
         $video_mp4 = $dir . "/video/" . $basename . ".mp4";
         $thumbnail = $dir . "/video/" . $basename . ".jpg";
-        $post_title = $_POST['post_title'];
+        $post_title = sanitize($_POST['post_title']);
         $video_size = $_FILES['new_file']['size'];
-        $post_entry = $_POST['post_text']; 
+        $post_entry = sanitize($_POST['post_text']); 
       
         
         // Convert video for browser support
@@ -534,10 +534,10 @@ if ($error_count == 0) {
     $display = "true";
     $user_id = $_SESSION['user_id']; 
     $user_name = $_SESSION['user_name'];
-    $post_title = $_POST['post_title'];
-    $post_entry = $_POST['post_text'];
+    $post_title = sanitize($_POST['post_title']);
+    $post_entry = sanitize($_POST['post_text']);
     
-    $external_url = $_POST['external_url'];
+    $external_url = $url;
     $external_url_flag = "true";
     
     // Retrieve avatar from user object 
