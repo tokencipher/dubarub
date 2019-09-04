@@ -391,7 +391,7 @@ class Post {
   
   public function insertPostWurl($user_id, $user_name, $avatar, $post_title, $post_entry, $char_count, $word_count, $display, $external_url, $external_url_flag) {
     $table = "post";
-    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display, external_url, external) VALUES(:user, :user_name, :title, :entry, :char_count, :word_count, :display, :external_url, :external_url_flag)";
+    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display, external_url, external) VALUES(:user, :user_name, :avatar, :title, :entry, :char_count, :word_count, :display, :external_url, :external_url_flag)";
     
     $stmt = $this->db->prepare($sql);
     
