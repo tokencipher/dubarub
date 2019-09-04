@@ -17,9 +17,10 @@ session_start();
 * end the previous session .
 */
 
+/*
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-
+*/
 /**
  * Check if the user is logged in.
  */
@@ -464,8 +465,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
     		  '</span><h2 class="title">' + obj[x].title +
               '</h2><div style="position:relative;height:0px;padding-bottom:56.25%">' +
-	          '<iframe src="" data-src="' + obj[x].external_url + '" frameborder="0"' +
-	          'width="640" height="360" frameborder="0" style="position:absolute;' +
+	          '<iframe src="' + obj[x].external_url + '" data-src="' + obj[x].external_url + '" frameborder="0"' +
+	          'width="640" height="360" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" style="position:absolute;' +
 	          'width:100%;height:100%;left:0px;" allowfullscreen></iframe></div>' +
               '<p class="post_tags" style="margin-left:10px;">' +
               '<i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
