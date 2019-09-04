@@ -465,7 +465,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
     		  '</span><h2 class="title">' + obj[x].title +
               '</h2><div style="position:relative;height:0px;padding-bottom:56.25%">' +
-	          '<iframe src="' + obj[x].external_url + '" data-src="' + obj[x].external_url + '" frameborder="0"' +
+	          '<iframe src="' + obj[x].external_url + '?playsinline=1" data-src="' + obj[x].external_url + '" frameborder="0"' +
 	          'width="640" height="360" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" style="position:absolute;' +
 	          'width:100%;height:100%;left:0px;" allowfullscreen></iframe></div>' +
 	          '<div class="metadata"><span class="credit">' + obj[x].photo_cred + '</span><br><br>' +
