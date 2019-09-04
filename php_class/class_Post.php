@@ -370,7 +370,7 @@ class Post {
     
     $stmt = $this->db->prepare($sql);
     
-    $stmt->bindParam(':u_id', $this->user_id);
+    $stmt->bindParam(':user_id', $this->user_id);
     $stmt->bindParam(':user_name', $this->user_name);
     $stmt->bindParam(':avatar', $this->avatar);
     $stmt->bindParam(':title', $this->title);
