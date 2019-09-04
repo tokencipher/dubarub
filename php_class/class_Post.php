@@ -61,7 +61,7 @@ class Post {
   public function getPostId() {
     $table = "post";
     $u_id = $this->user_id;
-    $sql = "SELECT p_id FROM $table WHERE u_id=$u_id;";
+    $sql = "SELECT p_id FROM $table WHERE u_id = $u_id;";
     foreach ($this->db->query($sql) as $row) {
       $recent_post_id = "{$row['p_id']}";
     }
@@ -352,6 +352,27 @@ class Post {
     $stmt->bindParam(':file_size', $this->file_size);
     $stmt->bindParam(':entry', $this->entry);
     $stmt->bindParam(':mime', $this->mime_type);
+    
+    return $stmt->execute();
+  }
+  
+  public function createPostWUrl() {
+    $table = "post";
+    $sql = "INSERT INTO $table(u_id, user_name, avatar, title, entry, entry_char_count, entry_word_count, display, external_url, external) VALUES(:user_id, :user_name, :avatar, :title, :entry, :char_count, :word_count, :display, :external_url, :external_url_flag)";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':user', $this->user_id);
+    $stmt->bindParam(':user_name', $this->user_name);
+    $stmt->bindParam(':avatar', $this->avatar);
+    $stmt->bindParam(':title', $this->title);
+    $stmt->bindParam(':display', $this->display);
+    $stmt->bindParam(':entry', $this->entry);
+    $stmt->bindParam(':char_count', $this->entry_char_count);
+    $stmt->bindParam(':word_count', $this->entry_word_count);
+    $stmt->bindParam(':external_url', $this->external_url);
+    $stmt->bindParam(':external_url_flag', $this->external_url_flag);
+    
     
     return $stmt->execute();
   }
