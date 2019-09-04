@@ -546,7 +546,17 @@ if ($error_count == 0) {
     $avatar_path = $avatar->getAvatar();
   
     $Post = new Post();
-    $Post->insertPostWurl($user_id, $user_name, $avatar_path, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display, $external_url, $external_url_flag);
+    $Post->setUserId($user_id);
+    $Post->setUsername($user_name);
+    $Post->setAvatar($avatar_path);
+    $Post->setTitle($post_title);
+    $Post->setEntry($post_entry);
+    $Post->setEntryCharCnt($post_char_cnt);
+    $Post->setEntryWordCnt($post_word_cnt);
+    $Post->setDisplay($display);
+    $Post->setExternalUrl($external_url);
+    $Post->setExternalUrlFlag($external_url_flag);
+    $Post->createPostWUrl();
   
     // Get most recent post ID
     $post_id = $Post->getPostId();
