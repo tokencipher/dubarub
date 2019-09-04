@@ -32,7 +32,7 @@ class Post {
   private $photo_cred;
   private $video;
   private $image;
-  private $external;
+  private $external_flag;
   private $external_url;
   
 
@@ -213,6 +213,14 @@ class Post {
     $this->thumbnail = $thumbnail;
   }
   
+  public function setExternalUrl($external_url) {
+    $this->external_url = $external_url;
+  }
+  
+  public function setExternalUrlFlag($flag) {
+    $this->external_flag = $flag;
+  }
+  
   public function setSize($file_size) {
     $this->file_size = $file_size;
   }
@@ -371,7 +379,7 @@ class Post {
     $stmt->bindParam(':char_count', $this->entry_char_count);
     $stmt->bindParam(':word_count', $this->entry_word_count);
     $stmt->bindParam(':external_url', $this->external_url);
-    $stmt->bindParam(':external_url_flag', $this->external_url_flag);
+    $stmt->bindParam(':external_url_flag', $this->external_flag);
     
     
     return $stmt->execute();
