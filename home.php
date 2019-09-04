@@ -876,6 +876,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         }).done(function ( msg ) {
           console.log('Remove status action taken...');
           console.log(msg);
+          $('#status' + statusID).remove();
         }).fail(function ( xhr, textStatus) {
           console.log(xhr.statusText);
         });
