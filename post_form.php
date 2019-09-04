@@ -83,7 +83,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   <div class="form-group">
     <label for="photo_credit">Paste external URL</label>
     <input type="text" maxlength="200" name="external_url" class="form-control" id="external_url" aria-describedby="url_help" placeholder="External URL">
-    <small id="url_help" class="form-text text-muted">You cannot both upload a image/video and use an external url</small>
+    <small id="url_help" class="form-text text-muted">Example youtube url: https://youtube.com/watch?v=dsu4XY4QNB0</small>
   </div>
   <div class="form-group">
     <label for="photo_credit">Enter photo credit for image (optional)</label>
