@@ -546,7 +546,7 @@ if ($error_count == 0) {
     $avatar_path = $avatar->getAvatar();
   
     $Post = new Post();
-    $Post->insertPostWurl($user_id, $user_name, $avatar, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display, $external_url, $external_url_flag);
+    $Post->insertPostWurl($user_id, $user_name, $avatar_path, $post_title, $post_entry, $post_char_cnt, $post_word_cnt, $display, $external_url, $external_url_flag);
   
     // Get most recent post ID
     $post_id = $Post->getPostId();
