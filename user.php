@@ -999,6 +999,9 @@
       if (user_id == id) {
         $('#follow_button_container').css('display', 'none');
         $('#m_follow_button_container').css('display', 'none');  
+        $('#direct_message').css('display', 'none');
+        $('#profile_stats').css('top', '-24px');
+        $('#bio_text').css('top', '-13px');
       }
     }
 
