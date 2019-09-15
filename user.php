@@ -278,8 +278,10 @@
     $followObj = new Follow();
     $following = $followObj->getFollowFlag($_SESSION['user_id'], $_SESSION['user']);
     $_SESSION['following'] = $following;
+    $_SESSION['logged_in_user'] = true;
   } else {
     $_SESSION['following'] = false;
+    $_SESSION['logged_in_user'] = false;
   }
 
 
@@ -287,7 +289,9 @@
 
   
 <script>
-  
+  var logged_in_user = Boolean("<?php echo $_SESSION['logged_in_user']; ?>");
+
+  var id = "<?php echo $_SESSION['id']; ?>";
   var user = "<?php echo $_SESSION['user']; ?>";
   var following = Boolean("<?php echo $_SESSION['following']; ?>");
   var oldCount = 0;
@@ -987,6 +991,16 @@
       });
       
     });  
+    
+    // If current logged in user has the same user id as user id of profile being 
+    // currently viewed then hide follow/unfollow button 
+    if (logged_in_user) {
+      var user_id = "<?php echo $_SESSION['user_id']; ?>";
+      if (user_id == id) {
+        $('#follow_button_container').css('display', 'none');
+        $('#m_follow_button_container').css('display', 'none');  
+      }
+    }
 
     // If current logged in user is following profile viewed then hide follow button  
     // and display unfollow button
@@ -1371,4 +1385,3 @@
   
   <?php include_once("php_inc/inc_music_source.php"); ?>
 <?php include_once("php_inc/inc_footer.php"); ?>
-
