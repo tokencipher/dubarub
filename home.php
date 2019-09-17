@@ -420,7 +420,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           var status = $( '<div id="status' + obj[x].status_id + '"' + 
           '<p>' + obj[x].status_text + '</p>' + 
           '<p>' + obj[x].created_at + '</p>' +
-          '<div id="status_options" style="position:relative;top:2px;padding:10px;">' +
+          '<div id="status_options" style="position:relative;top:2px;padding:10px;cursor:pointer;">' +
           '<div onclick="removeStatus(this)" id="deleteStatus' + obj[x].status_id + '"  data-statusid="' + obj[x].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;">' + 
           '</i></div></div><hr></div>');
           
@@ -990,7 +990,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var status = $( '<div id="status' + msg[0].status_id + '"' + 
         '<p>' + msg[0].status_text + '</p>' + 
         '<p>' + msg[0].created_at + '</p>' +
-        '<div id="status_options" style="position:relative;top:2px;padding:10px;">' +
+        '<div id="status_options" style="position:relative;top:2px;padding:10px;cursor:pointer;">' +
         '<div onclick="removeStatus(this)" id="deleteStatus' + msg[0].status_id + '"  data-statusid="' + msg[0].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;">' + 
         '</i></div></div><hr></div>');
           
