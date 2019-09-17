@@ -259,6 +259,42 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     .flex-container > div {
       margin-right:10px;
     }
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    .slideout-menu {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 256px;
+      min-height: 100vh;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      z-index: 0;
+      display: none;
+    }
+    .slideout-menu-left {
+      left: 0;
+    }
+    .slideout-menu-right {
+      right: 0;
+    }
+    .slideout-panel {
+      position: relative;
+      z-index: 1;
+      will-change: transform; 
+      background-color: #FFF; /* A background-color is required */
+      min-height: 100vh;
+    }
+    .slideout-open,
+    .slideout-open body,
+    .slideout-open .slideout-panel {
+      overflow: hidden;
+    }
+    .slideout-open .slideout-menu {
+      display: block;
+    }
     /* Phone portrait */
     @media (max-width: 481px) {
       #clear {display:none!important;}
@@ -876,6 +912,17 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         }).done(function ( msg ) {
           console.log('Remove status action taken...');
           console.log(msg);
+          /*
+          var statusFlashbackStatusText = $('#status' + statusID).text();
+          var statusContainerStatusText = $('#status_container').text();
+          var replacementStatusText = $('#flashbackContainer').find('#status' + statusID).next().text();
+          
+          if (statusFlashbackStatusText == statusContainerStatusText) {
+            statusFlashbackStatusText.text(replacementStatusText);
+            console.log('replaced text');
+          }
+          */
+          
           $('#status' + statusID).remove();
         }).fail(function ( xhr, textStatus) {
           console.log(xhr.statusText);
@@ -933,8 +980,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         '<p>' + msg[0].status_text + '</p>' + 
         '<p>' + msg[0].created_at + '</p>' +
         '<div id="status_options" style="position:relative;top:2px;padding:10px;">' +
-        '<a id="deleteStatus" href="home.php?action=Delete%20Status&statid=' + msg[0].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;"></i></a>' +
-		'</div><hr></div>');
+        '<div onclick="removeStatus(this)" id="deleteStatus' + msg[0].status_id + '"  data-statusid="' + msg[0].status_id + '"><i class="fa fa-trash-o" style="float:right;color:red;">' + 
+        '</i></div></div><hr></div>');
           
         var mostRecentStatus = $('#status_history_container').first(); 
         status.prependTo(mostRecentStatus);   
