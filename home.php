@@ -912,16 +912,27 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         }).done(function ( msg ) {
           console.log('Remove status action taken...');
           console.log(msg);
-          /*
+        
+          // Get the status update we are to delete
           var statusFlashbackStatusText = $('#status' + statusID).text();
-          var statusContainerStatusText = $('#status_container').text();
-          var replacementStatusText = $('#flashbackContainer').find('#status' + statusID).next().text();
           
-          if (statusFlashbackStatusText == statusContainerStatusText) {
-            statusFlashbackStatusText.text(replacementStatusText);
-            console.log('replaced text');
+          // Replace the timestamp with whitespace
+          var revisedFlashbackStatusText = statusFlashbackStatusText.replace(/\d\d\d\d-\d\d-\d\d\s\d\d:\d\d:\d\d/, '').trim();
+          //console.log('revised flashback status text: ' + revisedFlashbackStatusText);
+          
+          // Get the current status container text
+          var statusContainerStatusText = $('#status_container').text().replace(/\d\d\d\d-\d\d-\d\d\s\d\d:\d\d:\d\d/, '').trim();
+          //console.log('status container text: ' + statusContainerStatusText);
+          
+          // Get the replacement status to swap out in the status container
+          var replacementStatusText = $('#flashback_container').find('#status' + statusID).next().text().replace(/\d\d\d\d-\d\d-\d\d\s\d\d:\d\d:\d\d/, '');
+          //console.log('replacement status text: ' + replacementStatusText);
+          
+          if (revisedFlashbackStatusText == statusContainerStatusText) {
+            $('#status_container').text(replacementStatusText);
+            //console.log('replaced text');
           }
-          */
+        
           
           $('#status' + statusID).remove();
         }).fail(function ( xhr, textStatus) {
