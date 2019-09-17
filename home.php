@@ -921,7 +921,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           //console.log('revised flashback status text: ' + revisedFlashbackStatusText);
           
           // Get the current status container text
-          var statusContainerStatusText = $('#status_container').text().replace(/\d\d\d\d-\d\d-\d\d\s\d\d:\d\d:\d\d/, '').trim();
+          var statusContainerStatusText = $('#status_update').text().replace(/\d\d\d\d-\d\d-\d\d\s\d\d:\d\d:\d\d/, '').trim();
           //console.log('status container text: ' + statusContainerStatusText);
           
           // Get the replacement status to swap out in the status container
@@ -929,7 +929,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           //console.log('replacement status text: ' + replacementStatusText);
           
           if (revisedFlashbackStatusText == statusContainerStatusText) {
-            $('#status_container').text(replacementStatusText);
+            $('#status_update').text(replacementStatusText);
             //console.log('replaced text');
           }
         
