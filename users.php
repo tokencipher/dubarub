@@ -28,11 +28,17 @@
     #avatar {
       position:relative;
     }
-    #bio_username {
+    #bio_username_container {
       position:relative;
       top:-118px;
-      left:15px;
+      left:88px;
       font-size:12px;
+      width:100px;
+      height:70px;
+      overflow:scroll;
+    }
+    #bio_username {
+      text-align:left;
     }
     #bio_tagline_container {
       position:relative;
@@ -42,17 +48,23 @@
     }
     #bio_action_container {
       position:relative;
-      top:-47px;
-      left:108px;
+      top:-145px;
+      left:45px;
       width:113px;
       height:25px;
       padding:2px;
     }
+    #direct_message {
+      font-size:22px;
+      color:green;
+      cursor:pointer;
+    }
     #follow_button_container {
       position:relative;
-      top:-160px;
-      left:20px;
-      padding:0px;
+      top:-70px;
+      margin:auto;
+      padding:10px;
+      width:100%;
     }
     #unfollow_button_container {
       position:relative;
@@ -63,10 +75,10 @@
     }
     #profile_stats {
       position:relative;
-      width:328px;
       left:1px;
       margin-left:2px;
-      top:-70px;
+      top:-200px;
+      font-size:8px;
     }
     #profile_following {
       margin-left:13px;
@@ -88,8 +100,10 @@
       <img id="avatar" src="img/model_flic.jpg" width="65" height="65"></img>
     </div>
     
-    <div id="bio_username">
-      sinclair
+    <div id="bio_username_container">
+      <div id="bio_username">
+        sinclairssfsdsdsdsdssdgdgdsgfd
+      </div>
     </div>
     
     <!-- Hide display -->
@@ -102,7 +116,7 @@
     </div>
     
     <div id="follow_button_container">
-      <a href="#" onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
+      <a href="#" onclick="follow()" class="btn btn-primary btn-sm btn-block active" role="button" aria-pressed="true">Follow</a>
     </div>
     
     <div id="unfollow_button_container">
@@ -111,13 +125,13 @@
     
     <div id="profile_stats">
       <span id="profile_followers">
-      
+        
       </span>
       <span id="profile_following">
-      
+        
       </span>
       <span id="profile_posts">
-      
+
       </span>
     </div>
     
