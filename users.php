@@ -18,7 +18,7 @@
       line-height:75px;
       font-size:30px;
     }
-    #profile_bio_container {}
+    .profile_bio_container {}
     #bio_avi {
       position:relative;
       padding:8px;
@@ -48,29 +48,26 @@
     }
     #bio_action_container {
       position:relative;
-      top:-145px;
+      top:-142px;
       left:45px;
       width:113px;
       height:25px;
       padding:2px;
     }
     #direct_message {
-      font-size:22px;
+      font-size:20px;
       color:green;
       cursor:pointer;
     }
     #follow_button_container {
       position:relative;
-      top:-70px;
-      margin:auto;
+      top:-50px;
       padding:10px;
-      width:100%;
     }
     #unfollow_button_container {
       position:relative;
-      top:-110px;
-      left:110px;
-      padding:0px;
+      top:-50px;
+      padding:10px;
       display:none;
     }
     #profile_stats {
@@ -93,62 +90,62 @@
   </style>
 </head>
 <body class="flex_container">
+<script>
+  
+  function loadUsers() {
+    var usersRequest = new XMLHttpRequest();
+    usersRequest.onreadystatechange = function() {
+	  if (this.readyState == 4 && this.status == 200) {
+	    var obj = JSON.parse(this.responseText);
+	    var usersCnt = obj.length;
+	
+	    /*
+	    if (usersCnt == 0) {
+		  var noUsers = $('<p class="noUsers" class="w3-center">No users to retrieve...</p>');
+		  var mostRecentStatus = $('#status_history_container').first();
+		  noStatus.prependTo(mostRecentStatus);
+		  return;
+	    }
+	    */
+	
+	    // Clear the loading message before populating
+	    if (usersCnt > 0) {
+		  //$('#status_history_container').empty();
+	    }
 
-  <div class="flex_item" id="profile_bio_container">
-    
-    <div id="bio_avi">
-      <img id="avatar" src="img/model_flic.jpg" width="65" height="65"></img>
-    </div>
-    
-    <div id="bio_username_container">
-      <div id="bio_username">
-        sinclairssfsdsdsdsdssdgdgdsgfd
-      </div>
-    </div>
-    
-    <!-- Hide display -->
-    <div id="bio_tagline_container">
-      Something to say 
-    </div>
-    
-    <div id="bio_action_container">
-      <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
-    </div>
-    
-    <div id="follow_button_container">
-      <a href="#" onclick="follow()" class="btn btn-primary btn-sm btn-block active" role="button" aria-pressed="true">Follow</a>
-    </div>
-    
-    <div id="unfollow_button_container">
-      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
-    </div>
-    
-    <div id="profile_stats">
-      <span id="profile_followers">
-        
-      </span>
-      <span id="profile_following">
-        
-      </span>
-      <span id="profile_posts">
+	    for ( var x = 0; x < usersCnt; x++ ) {
+	  
+		  var user = $( '<div id="user' + obj[x].u_id + '" ' + 
+		  'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + obj[x].avatar +
+		  '" width="65" height="65"></img></div><div id="bio_username_container">' + 
+		  '<div id="bio_username">' + obj[x].user_name + '</div></div>' + 
+		  '<div id="bio_tagline_container"></div><div id="bio_action_container>"' +
+		  '<i id="direct_message" class="fa fa-paper-plane action_items "' + 
+		  'aria-hidden="true"></i></div><div id="bio_text_container">' + 
+		  '<p id="bio_text">' + obj[x].bio + '</p></div>' + 
+		  '<div id="follow_button_container"><a href="#" ' + 
+		  'onclick="follow()" class="btn btn-primary btn-sm btn-block active" ' +
+		  'role="button" aria-pressed="true">Follow</a></div> ' + 
+		  '<div id="unfollow_button_container"><a href="#" onclick="unfollow()" ' +
+		  'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
+		  'aria-pressed="true">Unfollow</a></div>'  
+		  );
+	  
+		  var flexContainer = $('.flex_container');
+		  user.appendTo(flexContainer);   
+		  
+	    }	   
+	  }  
+    };
+    usersRequest.open("GET", "users_controller.php", true);
+    usersRequest.send();
 
-      </span>
-    </div>
-    
-    <div id="bio_text">
-    
-    </div>
-    
-  </div>
-  <div class="flex_item">2</div>
-  <div class="flex_item">3</div>
-  <div class="flex_item">4</div>
-  <div class="flex_item">5</div>
-  <div class="flex_item">6</div>
-  <div class="flex_item">7</div>
-  <div class="flex_item">8</div>
-  <div class="flex_item">9</div>
-  <div class="flex_item">10</div>
+  }
+
+  $(document).ready(function() {
+    loadUsers();
+  });
+</script>
     
 </body>
 </html>
