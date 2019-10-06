@@ -20,7 +20,7 @@
 
 
 
-  <title>dubarub | user</title>  
+  <title>dubarub | <?php echo $user; ?></title>  
   <style>
     .music-tab {
       display:none;
