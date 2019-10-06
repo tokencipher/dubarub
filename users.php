@@ -12,7 +12,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       display:flex;
       flex-wrap:wrap;
       justify-content:center;
-      background-color:DodgerBlue;
     }
     .flex_item {
       background-color:#f1f1f1;
