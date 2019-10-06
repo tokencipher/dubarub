@@ -18,74 +18,71 @@
       line-height:75px;
       font-size:30px;
     }
-    .profile_bio_container {}
     #bio_avi {
       position:relative;
-      padding:8px;
-      width:100px;
-      height:100px;
+      padding:4px;
+      width:80px;
+      height:80px;
+      background:;
     }
     #avatar {
       position:relative;
+      top:-4px;
+      left:3px;
     }
     #bio_username_container {
       position:relative;
-      top:-118px;
+      top:-80px;
       left:88px;
       font-size:12px;
       width:100px;
-      height:70px;
+      height:25px;
+      line-height:24px;
       overflow:scroll;
+      background:;
     }
     #bio_username {
       text-align:left;
     }
-    #bio_tagline_container {
-      position:relative;
-      top:-75px;
-      left:145px;
-      display:none;
-    }
     #bio_action_container {
       position:relative;
-      top:-142px;
-      left:45px;
-      width:113px;
+      top:-55px;
+      left:88px;
+      width:28px;
+      line-height:13px;
       height:25px;
       padding:2px;
+      background:;
     }
     #direct_message {
+      position:relative;
+      float:left;
       font-size:20px;
       color:green;
       cursor:pointer;
     }
+    #bio_text_container {
+      position:relative;
+      line-height:20px;
+      top:-40px;
+      height:55px;
+      font-size:10px;
+      padding:1px;
+      text-align:justify;
+      word-wrap:break-word;
+      overflow:auto;
+      background:;
+    }
     #follow_button_container {
       position:relative;
-      top:-50px;
+      top:-40px;
       padding:10px;
     }
     #unfollow_button_container {
       position:relative;
-      top:-50px;
+      top:-40px;
       padding:10px;
       display:none;
-    }
-    #profile_stats {
-      position:relative;
-      left:1px;
-      margin-left:2px;
-      top:-200px;
-      font-size:8px;
-    }
-    #profile_following {
-      margin-left:13px;
-    }
-    #profile_posts {
-      margin-left:13px;
-    }
-    #bio_text {
-      position:relative;
-      top:-54px;
     }
   </style>
 </head>
@@ -115,12 +112,12 @@
 
 	    for ( var x = 0; x < usersCnt; x++ ) {
 	  
-		  var user = $( '<div id="user' + obj[x].u_id + '" ' + 
+		  var user = $('<div id="user' + obj[x].u_id + '" ' + 
 		  'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + obj[x].avatar +
 		  '" width="65" height="65"></img></div><div id="bio_username_container">' + 
 		  '<div id="bio_username">' + obj[x].user_name + '</div></div>' + 
-		  '<div id="bio_tagline_container"></div><div id="bio_action_container>"' +
-		  '<i id="direct_message" class="fa fa-paper-plane action_items "' + 
+		  '<div id="bio_action_container">' +
+		  '<i id="direct_message" class="fa fa-paper-plane action_items" ' + 
 		  'aria-hidden="true"></i></div><div id="bio_text_container">' + 
 		  '<p id="bio_text">' + obj[x].bio + '</p></div>' + 
 		  '<div id="follow_button_container"><a href="#" ' + 
@@ -128,7 +125,7 @@
 		  'role="button" aria-pressed="true">Follow</a></div> ' + 
 		  '<div id="unfollow_button_container"><a href="#" onclick="unfollow()" ' +
 		  'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
-		  'aria-pressed="true">Unfollow</a></div>'  
+		  'aria-pressed="true">Unfollow</a></div></div>'  
 		  );
 	  
 		  var flexContainer = $('.flex_container');
