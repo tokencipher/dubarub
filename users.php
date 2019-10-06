@@ -6,6 +6,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 }
 ?>
 <?php require_once('php_inc/inc_header.php'); ?>
+  <title>dubarub | Users</title>
   <style>
     .flex_container {
       display:flex;
@@ -91,8 +92,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       padding:10px;
     }
   </style>
+<?php include_once ('php_inc/inc_user_home_nav.php'); ?>
 </head>
-<body class="flex_container">
+<body>
 <script>
   var loggedInUserId = "<?php $_SESSION['user_id']; ?>";
   
@@ -194,6 +196,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     loadUsers();
   });
 </script>
+
+<div class="flex_container"></div>
     
-</body>
-</html>
+<?php require_once("php_inc/inc_user_footer.php"); ?>
