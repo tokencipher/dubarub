@@ -111,26 +111,62 @@
 	    }
 
 	    for ( var x = 0; x < usersCnt; x++ ) {
+	    
+	      var u_id = obj[x].u_id;
+	      var avatar = obj[x].avatar;
+	      var user_name = obj[x].user_name;
+	      var bio = obj[x].bio;
+	      
+	      console.log('rendered user id: ' + u_id);
+	    
+	      $.ajax({
+            async: true,
+            cache: false,
+            url: 'determine_follow_status.php',
+            dataType: 'json',  
+            type: 'POST',
+            data: { 
+              logged_in_user_id: 1, 
+              rendered_user_id: u_id,
+              avatar: avatar,
+              user_name: user_name,
+              bio: bio
+            }  
+          }).done(function ( data ) {
+            console.log('follow status determination made...');
+            console.log('follow status: ' + data.follow_status);
+            console.log('rendered user id: ' + data.rendered_user_id);
+            var follow_status = Boolean(data.follow_status);
+            
+            console.log('javascript converted follow status: ' + follow_status);
+            
+            if (follow_status) {
+              var follow_state = '<div id="unfollow_button_container"><a href="#" ' + 
+		      'onclick="follow()" class="btn btn-primary btn-sm btn-block active" ' +
+		      'role="button" aria-pressed="true">Unfollow</a></div> ';
+            } else {
+              var follow_state = '<div id="follow_button_container"><a href="#" ' + 
+		      'onclick="follow()" class="btn btn-primary btn-sm btn-block active" ' +
+		      'role="button" aria-pressed="true">Follow</a></div> ';
+            }
+            
+            var user = $('<div id="user' + data.rendered_user_id + '" ' + 
+		    'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
+		    '" width="65" height="65"></img></div><div id="bio_username_container">' + 
+		    '<div id="bio_username">' + data.user_name + '</div></div>' + 
+		    '<div id="bio_action_container">' +
+		    '<i id="direct_message" class="fa fa-paper-plane action_items" ' + 
+		    'aria-hidden="true"></i></div><div id="bio_text_container">' + 
+		    '<p id="bio_text">' + data.bio + '</p></div>' + follow_state + 
+		    '</div>');
 	  
-		  var user = $('<div id="user' + obj[x].u_id + '" ' + 
-		  'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + obj[x].avatar +
-		  '" width="65" height="65"></img></div><div id="bio_username_container">' + 
-		  '<div id="bio_username">' + obj[x].user_name + '</div></div>' + 
-		  '<div id="bio_action_container">' +
-		  '<i id="direct_message" class="fa fa-paper-plane action_items" ' + 
-		  'aria-hidden="true"></i></div><div id="bio_text_container">' + 
-		  '<p id="bio_text">' + obj[x].bio + '</p></div>' + 
-		  '<div id="follow_button_container"><a href="#" ' + 
-		  'onclick="follow()" class="btn btn-primary btn-sm btn-block active" ' +
-		  'role="button" aria-pressed="true">Follow</a></div> ' + 
-		  '<div id="unfollow_button_container"><a href="#" onclick="unfollow()" ' +
-		  'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
-		  'aria-pressed="true">Unfollow</a></div></div>'  
-		  );
-	  
-		  var flexContainer = $('.flex_container');
-		  user.appendTo(flexContainer);   
-		  
+		    var flexContainer = $('.flex_container');
+		    user.appendTo(flexContainer);
+		    
+          }).fail(function ( xhr, textStatus) {
+            console.log('xhr status: ' + textStatus.statusText);
+          });  
+               
 	    }	   
 	  }  
     };
