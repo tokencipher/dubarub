@@ -1,3 +1,10 @@
+<?php session_start(); 
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
+  // User not logged in. Redirect them back to the login.php page.
+  header('Location: index.php');
+  exit;
+}
+?>
 <?php require_once('php_inc/inc_header.php'); ?>
   <style>
     .flex_container {
@@ -87,6 +94,7 @@
 </head>
 <body class="flex_container">
 <script>
+  var loggedInUserId = "<?php $_SESSION['user_id']; ?>";
   
   function loadUsers() {
     var usersRequest = new XMLHttpRequest();
@@ -128,7 +136,7 @@
             dataType: 'json',  
             type: 'POST',
             data: { 
-              logged_in_user_id: 1, 
+              logged_in_user_id: loggedInUserId, 
               rendered_user_id: u_id,
               avatar: avatar,
               user_name: user_name,
