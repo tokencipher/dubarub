@@ -82,7 +82,6 @@
       position:relative;
       top:-40px;
       padding:10px;
-      display:none;
     }
   </style>
 </head>
@@ -117,7 +116,10 @@
 	      var user_name = obj[x].user_name;
 	      var bio = obj[x].bio;
 	      
+	      /*
 	      console.log('rendered user id: ' + u_id);
+	      console.log('rendered user id is of type: ' + typeof u_id );
+	      */
 	    
 	      $.ajax({
             async: true,
@@ -134,31 +136,36 @@
             }  
           }).done(function ( data ) {
             console.log('follow status determination made...');
-            console.log('follow status: ' + data.follow_status);
             console.log('rendered user id: ' + data.rendered_user_id);
             var follow_status = Boolean(data.follow_status);
             
-            console.log('javascript converted follow status: ' + follow_status);
+            console.log('javascript converted follow status to: ' + follow_status);
             
             if (follow_status) {
-              var follow_state = '<div id="unfollow_button_container"><a href="#" ' + 
-		      'onclick="follow()" class="btn btn-primary btn-sm btn-block active" ' +
-		      'role="button" aria-pressed="true">Unfollow</a></div> ';
+              var user = $('<div id="user' + data.rendered_user_id + '" ' + 
+		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
+		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
+		      '<div id="bio_username">' + data.user_name + '</div></div>' + 
+		      '<div id="bio_action_container">' +
+		      '<i id="direct_message" class="fa fa-paper-plane action_items" ' + 
+		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
+		      '<p id="bio_text">' + data.bio + '</p></div>' + 
+		      '<div id="unfollow_button_container"><a href="#" onclick="unfollow()" ' +
+		      'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
+		      'aria-pressed="true">Unfollow</a></div></div>');
             } else {
-              var follow_state = '<div id="follow_button_container"><a href="#" ' + 
-		      'onclick="follow()" class="btn btn-primary btn-sm btn-block active" ' +
-		      'role="button" aria-pressed="true">Follow</a></div> ';
+              var user = $('<div id="user' + data.rendered_user_id + '" ' + 
+		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
+		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
+		      '<div id="bio_username">' + data.user_name + '</div></div>' + 
+		      '<div id="bio_action_container">' +
+		      '<i id="direct_message" class="fa fa-paper-plane action_items" ' + 
+		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
+		      '<p id="bio_text">' + data.bio + '</p></div>' + 
+		      '<div id="follow_button_container"><a href="#" onclick="follow()" ' + 
+		      'class="btn btn-primary btn-sm btn-block active" role="button" ' +
+		      'aria-pressed="true">Follow</a></div></div>');
             }
-            
-            var user = $('<div id="user' + data.rendered_user_id + '" ' + 
-		    'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
-		    '" width="65" height="65"></img></div><div id="bio_username_container">' + 
-		    '<div id="bio_username">' + data.user_name + '</div></div>' + 
-		    '<div id="bio_action_container">' +
-		    '<i id="direct_message" class="fa fa-paper-plane action_items" ' + 
-		    'aria-hidden="true"></i></div><div id="bio_text_container">' + 
-		    '<p id="bio_text">' + data.bio + '</p></div>' + follow_state + 
-		    '</div>');
 	  
 		    var flexContainer = $('.flex_container');
 		    user.appendTo(flexContainer);
