@@ -3,10 +3,12 @@ session_start();
 
 header('Content-Type: application/json;charset=utf-8');
 
+$loggedInUserId = $_SESSION['user_id'];
+
 include ("php_inc/inc_db_qp4.php");
    if ($conn != FALSE) {
      $table = "user";
-     $sql = "SELECT u_id, first_name, last_name, user_name, logged_in, registration_date, language, bio, avatar FROM $table";
+     $sql = "SELECT u_id, first_name, last_name, user_name, logged_in, registration_date, language, bio, avatar FROM $table WHERE u_id != $loggedInUserId;";
      $object = array();
      $x = 0;
      foreach ($conn->query($sql) as $row) {
@@ -19,7 +21,7 @@ include ("php_inc/inc_db_qp4.php");
         $object[$x]['language'] = "{$row['language']}";
         $object[$x]['bio'] = "{$row['bio']}";
         $object[$x]['avatar'] = "{$row['avatar']}";
-       ++$x; 
+        ++$x; 
 	 }
    }
 
