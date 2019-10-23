@@ -969,7 +969,7 @@
       document.getElementById('message_modal').style.display = 'block';
     }); 
     
-     $('#m_direct_message').click(function() {
+    $('#m_direct_message').click(function() {
       document.getElementById('message_modal').style.display = 'block';
     });
     
