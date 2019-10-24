@@ -161,7 +161,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 		      '<p id="bio_text">' + data.bio + '</p></div>' + 
 		      '<div id="unfollow_button_container"><a onclick="unfollow(this)" ' +
 		      'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
-		      'aria-pressed="true" data-rendered-user-id="' + data.rendered_user_id + '">Unfollow</a></div></div>');
+		      'aria-pressed="true" data-rendered-user-name="' + data.user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Unfollow</a></div></div>');
             } else {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
 		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
@@ -173,7 +173,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 		      '<p id="bio_text">' + data.bio + '</p></div>' + 
 		      '<div id="follow_button_container"><a onclick="follow(this)" ' + 
 		      'class="btn btn-primary btn-sm btn-block active" role="button" ' +
-		      'aria-pressed="true" data-rendered-user-id="' + data.rendered_user_id + '">Follow</a></div></div>');
+		      'aria-pressed="true" data-rendered-user-name="' + data.user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Follow</a></div></div>');
             }
 	  
 		    var flexContainer = $('.flex_container');
@@ -202,6 +202,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     if (logged_in === true) {	
 	  var action = "Follow";
 	  var renderedUserId = $(elem).data("rendered-user-id");
+	  var renderedUserName = $(elem).data("rendered-user-name");
 	  
 	  $(elem).text("Unfollow");
 	  $(elem).parent().attr("id", "unfollow_button_container");
@@ -214,7 +215,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       	cache: false,
         url: 'user_action.php',  
         type: 'POST',
-        data: {user_action: action, rendered_user_id: renderedUserId}  
+        data: {
+          user_action: action, 
+          rendered_user_id: renderedUserId, 
+          rendered_user_name: renderedUserName
+        }  
       }).done(function (msg) {
         console.log('Follow action taken...');
         console.log(msg);
@@ -238,6 +243,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     if (logged_in === true) {
       var action = "Unfollow";
       var renderedUserId = $(elem).data("rendered-user-id");
+      var renderedUserName = $(elem).data("rendered-user-name");
       
 	  $(elem).text("Follow");
 	  $(elem).parent().attr("id", "follow_button_container");
@@ -249,7 +255,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         cache: false,
         url: 'user_action.php',
         type: 'POST',
-        data: {user_action: action, rendered_user_id: renderedUserId}
+        data: {
+          user_action: action, 
+          rendered_user_id: renderedUserId,
+          rendered_user_name: renderedUserName
+        }
       }).done(function (msg) {
         console.log("Unfollow action taken");
         console.log(msg);
