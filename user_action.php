@@ -18,10 +18,10 @@ $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
 // The user id of user whose profile is currently being viewed
-$id = $_SESSION['id'];
+$id = isset($_SESSION['id']) ? $_SESSION['id'] : $_POST['rendered_user_id'];
 
 // The user name of user whose profile is currently being viewed
-$user = $_SESSION['user'];
+$user = isset($_SESSION['user']) ? $_SESSION['user'] : $_POST['rendered_user_name'];
 
   if (isset($_POST['user_action'])) {
      
@@ -105,13 +105,8 @@ $user = $_SESSION['user'];
         break;
         
       case 'Follow':
-        $user_name = $_SESSION['user_name'];
-        $following = $_SESSION['user'];
-          
-        $id = $_SESSION['id'];
-        $user = $_SESSION['user'];
+        $following = $user;
         $follower = $user_name;
-          
           
         $followObj = new Follow();
         $follow_flag = $followObj->getFollowFlag($user_id, $user);
@@ -119,7 +114,7 @@ $user = $_SESSION['user'];
         if (!$follow_flag) {
           $followObj->follow($user_id, $user_name, $following);
           $followObj->addFollower($id, $user, $follower);
-          $followers = $followObj->getFollowerCount($_SESSION['id']);
+          $followers = $followObj->getFollowerCount($id);
           $myObj = array();
           $myObj['nowFollowing'] = "true";
           $myObj['followerCount'] = $followers;
