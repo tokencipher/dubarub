@@ -18,10 +18,10 @@ $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
 // The user id of user whose profile is currently being viewed
-$id = isset($_SESSION['id']) ? $_SESSION['id'] : $_POST['rendered_user_id'];
+$id = isset($_POST['rendered_user_id']) ? $_POST['rendered_user_id'] : $_SESSION['id'];
 
 // The user name of user whose profile is currently being viewed
-$user = isset($_SESSION['user']) ? $_SESSION['user'] : $_POST['rendered_user_name'];
+$user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_SESSION['user'];
 
   if (isset($_POST['user_action'])) {
      
