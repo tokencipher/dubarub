@@ -3,6 +3,8 @@
 class Follow {
   private $db;
   private $u_id;
+  private $u_id_following;
+  private $u_id_follower;
   private $user_name;
   private $follower;
   private $following;
@@ -51,7 +53,7 @@ class Follow {
   
   public function addFollower($u_id, $user_name, $follower) {
     $table = "followers";
-    $sql = "INSERT INTO $table (u_id, user_name, follower) VALUES (:u_id, :user_name, :follower)";
+    $sql = "INSERT INTO $table (u_id, user_name, follower, u_id_follower) VALUES (:u_id, :user_name, :follower, :)";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $u_id);
