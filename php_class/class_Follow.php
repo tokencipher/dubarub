@@ -30,14 +30,15 @@ class Follow {
     $this->db = null;
   }
   
-  public function follow($u_id, $user_name, $following) {
+  public function follow($u_id, $user_name, $following, $u_id_following) {
     $table = "following";
-    $sql = "INSERT INTO $table (u_id, user_name, following) VALUES (:u_id, :user_name, :following)";
+    $sql = "INSERT INTO $table (u_id, user_name, following, u_id_following) VALUES (:u_id, :user_name, :following, :u_id_following)";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $u_id);
     $stmt->bindParam(':user_name', $user_name);
     $stmt->bindParam(':following', $following);
+    $stmt->bindParam(':u_id_following', $u_id_following);
     $stmt->execute();
   }
   
