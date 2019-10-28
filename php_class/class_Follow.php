@@ -52,14 +52,15 @@ class Follow {
     $stmt->execute();
   }
   
-  public function addFollower($u_id, $user_name, $follower) {
+  public function addFollower($u_id, $user_name, $follower, $u_id_follower) {
     $table = "followers";
-    $sql = "INSERT INTO $table (u_id, user_name, follower, u_id_follower) VALUES (:u_id, :user_name, :follower, :)";
+    $sql = "INSERT INTO $table (u_id, user_name, follower, u_id_follower) VALUES (:u_id, :user_name, :follower, :u_id_follower)";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $u_id);
     $stmt->bindParam(':user_name', $user_name);
     $stmt->bindParam(':follower', $follower);
+    $stmt->bindParam(':u_id_follower', $u_id_follower);
     $stmt->execute();
   }
   
