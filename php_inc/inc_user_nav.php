@@ -15,6 +15,7 @@
           <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="playlist_form.php">Add to Playlist</a></li>
           <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="playlist_modify.php">Delete from Playlist</a></li>
           <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="music_form.php">Upload Track(s)</a></li>
+          <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="users.php">View All Users</a></li>
           <li><a target="_self" onmouseover="this.style.color='red'" onmouseout="this.style.color='grey'" href="logout.php?PHPSESSID=<?php echo session_id()?>">Logout</a></li>
           <!--<li><a target="_blank" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="./gallery.php">Gallery</a></li>-->
           <!--<li><a target="_blank" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="./working.php">Tags</a></li>-->
