@@ -113,7 +113,7 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
           
         if (!$follow_flag) {
           $followObj->follow($user_id, $user_name, $following, $id);
-          $followObj->addFollower($id, $user, $follower);
+          $followObj->addFollower($id, $user, $follower, $user_id);
           $followers = $followObj->getFollowerCount($id);
           $myObj = array();
           $myObj['nowFollowing'] = "true";
