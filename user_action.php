@@ -135,7 +135,7 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
         $followObj = new Follow();
         
         // Determine if user profile viewed is being followed by current user
-        $follow_flag = $followObj->getFollowFlag($user_id, $following);
+        $follow_flag = $followObj->getFollowFlag($user_id, $id);
         
         // If user profile currently viewed is being followed by current user 
         // then unfollow user at logged in users' request
