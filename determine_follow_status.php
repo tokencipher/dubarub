@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   $loggedInUserId = $_POST['logged_in_user_id'];
   $renderedUserId = $_POST['rendered_user_id'];
   $avatar = $_POST['avatar'];
-  $userName = $_POST['user_name'];
+  $userName = $_POST['rendered_user_name'];
   $bio = $_POST['bio'];
   
   // Identify if user profile being viewed is being followed by current logged in user
