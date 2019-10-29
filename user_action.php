@@ -150,7 +150,7 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
           // the user id of the profile being viewed -- identified as a php session
           // variable (id) and the user name of the currently logged in user.
           // These two values act a distinct key. 
-          $followObj->removeFollower($id, $follower);
+          $followObj->removeFollower($id, $user_id);
           
           // Get updated follower count of user profile being viewed
           $followers = $followObj->getFollowerCount($id);
