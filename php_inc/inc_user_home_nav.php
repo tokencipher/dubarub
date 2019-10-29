@@ -9,6 +9,7 @@
         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
           <li><a onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="home.php">Home</a></li>
           <!--<li><a target="_blank" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="./video_preview.php">Video</a></li>-->
+          <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="feed.php">Feed</a></li>
           <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="post_form.php">Add Post</a></li>
           <li><a target="_blank" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" id="music-link" href="#music-dialog">Playlist</a></li>
           <li><a target="_self" onmouseover="this.style.color='blue'" onmouseout="this.style.color='grey'" href="playlist_form.php">Add to Playlist</a></li>
