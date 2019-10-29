@@ -15,7 +15,7 @@
           var postCnt = obj.length;
         
           if (postCnt == 0) {
-            var post = $('<p id="noPosts" class="w3-center">' + user + ' hasn\'t posted yet...</p>');
+            var post = $('<p id="noPosts" class="w3-center">None of your followers has posted yet...</p>');
             var mostRecentPost = $('#post_container').first();
             post.prependTo(mostRecentPost);   
             return; 
