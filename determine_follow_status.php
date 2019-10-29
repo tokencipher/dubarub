@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   $followStatus['follow_status'] = $following;
   $followStatus['rendered_user_id'] = $renderedUserId; 
   $followStatus['avatar'] = $avatar;
-  $followStatus['user_name'] = $userName;
+  $followStatus['rendered_user_name'] = $renderedUserName;
   $followStatus['bio'] = $bio;  
 
   echo json_encode($followStatus);
