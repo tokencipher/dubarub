@@ -31,10 +31,7 @@ include ("php_inc/inc_db_qp4.php");
         $object[$x]['photo_cred'] = "{$row['photo_cred']}";
         $object[$x]['entry'] = "{$row['entry']}";
         $object[$x]['created_at'] = "{$row['created_at']}";
-       //$lastUpdate = "{$row['status_text']}";
-       // $timestamp = "{$row['created_at']}";
-       // Omit this line of code if we want to get the most recent status update.
-       ++$x; 
+        ++$x; 
 	 }
    }
 
