@@ -109,7 +109,7 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
         $follower = $user_name;
           
         $followObj = new Follow();
-        $follow_flag = $followObj->getFollowFlag($user_id, $user);
+        $follow_flag = $followObj->getFollowFlag($user_id, $id);
           
         if (!$follow_flag) {
           $followObj->follow($user_id, $user_name, $following);
