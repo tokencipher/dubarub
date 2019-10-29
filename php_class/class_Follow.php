@@ -99,9 +99,9 @@ class Follow {
 	return $x;  
   }
   
-  public function getFollowFlag($u_id, $following) {
+  public function getFollowFlag($u_id, $u_id_following) {
     $table = "following";
-    $sql = "SELECT user_name FROM $table WHERE u_id = :u_id && following = :following";
+    $sql = "SELECT user_name FROM $table WHERE u_id = :u_id && u_id_following = :u_id_following";
     
     $stmt = $this->db->prepare($sql);
     $stmt->bindParam(':u_id', $u_id);
