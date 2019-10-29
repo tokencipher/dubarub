@@ -22,6 +22,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
+/*
+ini_set('upload_max_filesize', '10M');
+ini_set('post_max_size', '10M');
+ini_set('max_input_time', 300);
+ini_set('max_execution_time', 300);
+*/
 
 
 /**
@@ -256,6 +262,16 @@ if (isset($_POST['upload'])) {
   } else {
     $media = false;
   }
+  /*
+  if ($filesize > 10000000) {
+    echo "Sorry, your media cannot be larger than 10MB. Please re-size then try again.";
+    $post_title = $_POST['post_title'];
+    $post_entry = $_POST['post_text'];
+    ++$errorCount;
+  } else {
+    $media = false;
+  }
+  */
   
   if (isset($_POST['external_url'])) {
     $url = $_POST['external_url'];
@@ -269,20 +285,9 @@ if (isset($_POST['upload'])) {
     } else {
       $external = false;
     }
-  }
-   
-  /*  
-
-  } else if ($filesize > 10000000) {
-      echo "Sorry, your media cannot be larger than 10MB. Please re-size then try again.";
-      $post_title = $_POST['post_title'];
-      $post_entry = $_POST['post_text'];
-      ++$errorCount;
-  } else {
-      $media = FALSE;
-  }
+  }  
   
-  
+  /*
   
   if (isset($_FILES['new_file'])) {
     // placeholder
