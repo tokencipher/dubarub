@@ -19,6 +19,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 ?>
 
 <?php include('php_inc/inc_header.php'); ?>
+<title>dubarub | Create a post</title>
 <style>
   form {
     position:relative;
