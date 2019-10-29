@@ -16,7 +16,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   
   // Identify if user profile being viewed is being followed by current logged in user
   $followObj = new Follow();
-  $following = $followObj->getFollowFlag($_SESSION['user_id'], $userName);
+  $following = $followObj->getFollowFlag($_SESSION['user_id'], $renderedUserId);
  
   $followStatus = array();
   $followStatus['follow_status'] = $following;
