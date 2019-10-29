@@ -209,7 +209,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  $(elem).attr("onclick", "unfollow(this)");	
 	  
 	
-	  /*
 	  $.ajax({
         async: true,
       	cache: false,
@@ -225,8 +224,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         console.log(msg);
       }).fail(function (xhr, textStatus) {
         console.log(xhr.statusText);
-      });  
-      */   
+      });   
     } else {
       if (confirm("You must be logged in to follow this user. Sign up/Login?")) {
   	    window.location.assign("https://dubarub.com");
@@ -249,7 +247,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  $(elem).parent().attr("id", "follow_button_container");
 	  $(elem).attr("onclick", "follow(this)");
       
-      /*
+      
       $.ajax({
         async: true,
         cache: false,
@@ -266,7 +264,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       }).fail(function (xhr, textStatus) {
         console.log(xhr.statusText);
 	  });
-	  */
     } else {
       if (confirm("You must be logged in to unfollow this user. Sign up/Login?")) {
         window.location.assign("https://dubarub.com");
