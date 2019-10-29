@@ -1,10 +1,3 @@
-<?php 
-
-  ini_set('display errors', 1);
-  error_reporting(E_ALL);
-  
-?>
-
 <?php include_once('php_inc/inc_header.php');?>
 
   <title>dubarub | Feed</title>  
