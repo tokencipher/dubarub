@@ -17,10 +17,10 @@ if (!isset($user_id) && !isset($_SESSION['logged_in'])) {
 
 <?php 
 
-/*
+
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-*/
+
 
 
 /**
@@ -41,6 +41,7 @@ $message = "";
 $art_message = "";
 $cover_art = false;
 $image = false;
+$flag = "";
 $art_flag = "";
 
 function autoRotateImage($image) {
@@ -68,27 +69,37 @@ function autoRotateImage($image) {
 
 if (isset($_POST['upload'])) {
   $temp_file = $_FILES['track']['tmp_name'];
-  $target_mp3_path = $dir . "/mp3/" . $_FILES['track']['name'];
-  //$target_ogg_path = $dir . "/ogg/" . $_FILES['track']['name'];
-  $fileInfo_array = getimagesize($temp_file);
-  $mimeType = $fileInfo_array['mime']; // Not being used, really
-  $file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
-  $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));  // e.g. gives "image/jpeg"
-  $mimeType_array = explode(";", $all_ext_mimeType);
-  $mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
-  $file_size = $_FILES['track']['size'];
-  $cover_art_size = $_FILES['cover_art']['size'];
+  if (!empty($temp_file)) {
+    $target_mp3_path = $dir . "/mp3/" . $_FILES['track']['name'];
+    //$target_ogg_path = $dir . "/ogg/" . $_FILES['track']['name'];
+    //$fileInfo_array = getimagesize($temp_file);
+    //$mimeType = $fileInfo_array['mime']; // Not being used, really
+    $file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
+    $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));  // e.g. gives "image/jpeg"
+    $mimeType_array = explode(";", $all_ext_mimeType);
+    $mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
+    $file_size = $_FILES['track']['size'];
+    $cover_art_size = $_FILES['cover_art']['size'];
+  } else {
+    exit("File is empty!");
+  }
   
   $temp_art_file = $_FILES['cover_art']['tmp_name'];
   $target_art_path = $dir . "/cover_art/" . $_FILES['cover_art']['name'];
-  $art_fileInfo_array = getimagesize($temp_art_file);
-  $art_mimeType = $art_fileInfo_array['mime']; // Not being used, really
-  $art_file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
-  $art_all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_art_file));  // e.g. gives "image/jpeg"
-  $art_mimeType_array = explode(";", $art_all_ext_mimeType);
-  $art_mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
-  $art_file_size = $_FILES['cover_art']['size'];
   
+  if (!empty($temp_art_file)) {
+    
+    $art_fileInfo_array = getimagesize($temp_art_file);
+    $art_all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_art_file));  // e.g. gives "image/jpeg"
+    $art_mimeType_array = explode(";", $art_all_ext_mimeType);
+    $art_mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
+    $art_file_size = $_FILES['cover_art']['size'];
+    
+  }
+  
+  //$art_mimeType = $art_fileInfo_array['mime']; // Not being used, really
+  //$art_file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
+ 
   
   /***Audio extentions and mime types***/
   /*
@@ -406,7 +417,7 @@ if ($error_count == 0) {
 ?>
 
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/21/2018 -->
+<!-- Last modified: 10/29/2019 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <title>Upload track(s)</title>
 <?php include_once('php_inc/inc_user_nav.php'); ?>
