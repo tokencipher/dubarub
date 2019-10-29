@@ -105,7 +105,7 @@ class Follow {
     
     $stmt = $this->db->prepare($sql);
     $stmt->bindParam(':u_id', $u_id);
-    $stmt->bindParam(':following', $following);
+    $stmt->bindParam(':u_id_following', $u_id_following);
     $stmt->execute();
     if (!$stmt->rowCount() > 0) {
       return false;
