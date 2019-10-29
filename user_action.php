@@ -144,7 +144,7 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
           // Implement unfollow function from Follow class by passing in the 
           // user_id of the currently logged in user and the name of the user
           // wished to be unfollowed. These two values act as a distinct key.
-          $followObj->unfollow($user_id, $following);
+          $followObj->unfollow($user_id, $id);
           
           // Implement removeFollower function from Follow class by passing in 
           // the user id of the profile being viewed -- identified as a php session
