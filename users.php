@@ -140,7 +140,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               logged_in_user_id: loggedInUserId, 
               rendered_user_id: u_id,
               avatar: avatar,
-              user_name: user_name,
+              rendered_user_name: user_name,
               bio: bio
             }  
           }).done(function ( data ) {
@@ -154,26 +154,26 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
 		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
 		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
-		      '<div id="bio_username">' + data.user_name + '</div></div>' + 
+		      '<div id="bio_username">' + data.rendered_user_name + '</div></div>' + 
 		      '<div id="bio_action_container">' +
 		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
 		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
 		      '<p id="bio_text">' + data.bio + '</p></div>' + 
 		      '<div id="unfollow_button_container"><a onclick="unfollow(this)" ' +
 		      'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
-		      'aria-pressed="true" data-rendered-user-name="' + data.user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Unfollow</a></div></div>');
+		      'aria-pressed="true" data-rendered-user-name="' + data.rendered_user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Unfollow</a></div></div>');
             } else {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
 		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
 		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
-		      '<div id="bio_username">' + data.user_name + '</div></div>' + 
+		      '<div id="bio_username">' + data.rendered_user_name + '</div></div>' + 
 		      '<div id="bio_action_container">' +
 		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
 		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
 		      '<p id="bio_text">' + data.bio + '</p></div>' + 
 		      '<div id="follow_button_container"><a onclick="follow(this)" ' + 
 		      'class="btn btn-primary btn-sm btn-block active" role="button" ' +
-		      'aria-pressed="true" data-rendered-user-name="' + data.user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Follow</a></div></div>');
+		      'aria-pressed="true" data-rendered-user-name="' + data.rendered_user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Follow</a></div></div>');
             }
 	  
 		    var flexContainer = $('.flex_container');
