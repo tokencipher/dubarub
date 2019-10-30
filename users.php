@@ -91,7 +91,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       padding:10px;
     }
   </style>
-<?php require_once ('php_inc/inc_user_home_nav.php'); ?>
+<?php require_once ('php_inc/inc_user_nav.php'); ?>
 </head>
 <body>
 <script>
