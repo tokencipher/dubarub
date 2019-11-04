@@ -231,7 +231,6 @@
       top: -110px;
       left: 110px;
       padding: 0px;
-      display: none;
     }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
@@ -296,11 +295,10 @@
   var following = Boolean("<?php echo $_SESSION['following']; ?>");
   var oldCount = 0;
   
-  function thousands_separator(num)
-  {
-    var num_parts = num.toString().split(".");
-    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return num_parts.join(".");
+  function thousands_separator(num) {
+    var numParts = num.toString().split(".");
+    numParts[0] = numParts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return numParts.join(".");
   } 
 
   function performAsync(message, callback) {
@@ -845,30 +843,38 @@
 	  var renderedUserId = "<?php echo $_SESSION['id']; ?>";
 	  var renderedUserName = "<?php echo $_SESSION['user']; ?>";
 	  
+	  
 	  if ($(elem).data("container-type") == "mobile") {
+	    $(elem).text("Unfollow");
+	    $(elem).parent().attr("id", "m_unfollow_button_container");
+	    $(elem).attr("onclick", "unfollow(this)");
+	    
 	    var mCurrentFollowerCount = $("#m_profile_followers").text().match(/\d/g).join('');
 	    mCurrentFollowerCount = thousands_separator(mCurrentFollowerCount);
 	    mCurrentFollowerCount = (Number(mCurrentFollowerCount) + 1).toString();
+	    
 	    if (mCurrentFollowerCount == 1) {
 	      $("#m_profile_followers").text(mCurrentFollowerCount + " follower");
 	    } else {
 	      $("#m_profile_followers").text(mCurrentFollowerCount + " followers");
 	    }
+	    
+	    
+	  } else {	  
 	    $(elem).text("Unfollow");
-	    $(elem).parent().attr("id", "m_unfollow_button_container");
+	    $(elem).parent().attr("id", "unfollow_button_container");
 	    $(elem).attr("onclick", "unfollow(this)");
-	  } else {
+	    
 	    var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
 	    currentFollowerCount = thousands_separator(currentFollowerCount);
 	    currentFollowerCount = (Number(currentFollowerCount) + 1).toString();
+	    
 	    if (currentFollowerCount == 1) {
 	      $("#profile_followers").text(currentFollowerCount + " follower");
 	    } else {
 	      $("#profile_followers").text(currentFollowerCount + " followers");
 	    }
-	    $(elem).text("Unfollow");
-	    $(elem).parent().attr("id", "unfollow_button_container");
-	    $(elem).attr("onclick", "unfollow(this)");
+	    
 	  }
 		
 	  $.ajax({
@@ -1070,11 +1076,12 @@
 
     // If current logged in user is following profile viewed then hide follow button  
     // and display unfollow button
-    if (following == true) {
+    if (following == true) {   
       $('#follow_button_container').css('display', 'none');
       $('#m_follow_button_container').css('display', 'none');
-      $('#unfollow_button_container').css('display', 'block');
-      $('#m_unfollow_button_container').css('display', 'block');
+    } else {
+      $('#unfollow_button_container').css('display', 'none');
+      $('#m_unfollow_button_container').css('display', 'none');
     }
   
   });
