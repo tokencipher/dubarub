@@ -829,19 +829,35 @@
     }       
   }
   
-  function follow() {
+  function follow(elem) {
     console.log("Follow button clicked");
     var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (logged_in === true) {	
 	  var action = "Follow";
+	  var renderedUserId = "<?php echo $_SESSION['id']; ?>";
+	  var renderedUserName = "<?php echo $_SESSION['user']; ?>";
+	  
+	  if ($(elem).data("container-type") == "mobile") {
+	    $(elem).text("Unfollow");
+	    $(elem).parent().attr("id", "m_unfollow_button_container");
+	    $(elem).attr("onclick", "unfollow(this)");
+	  } else {
+	    $(elem).text("Unfollow");
+	    $(elem).parent().attr("id", "unfollow_button_container");
+	    $(elem).attr("onclick", "unfollow(this)");
+	  }
 		
 	  $.ajax({
         async: true,
       	cache: false,
         url: 'user_action.php',  
         type: 'POST',
-        data: {user_action: action}  
+        data: {
+          user_action: action, 
+          rendered_user_id: renderedUserId,
+          rendered_user_name: renderedUserName
+        }  
       }).done(function (msg) {
         console.log('Follow action taken...');
         console.log(msg);
