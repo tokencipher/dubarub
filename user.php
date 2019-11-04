@@ -858,8 +858,14 @@
 	    $(elem).parent().attr("id", "m_unfollow_button_container");
 	    $(elem).attr("onclick", "unfollow(this)");
 	  } else {
-	    var mCurrentFollowerCount = $("#profile_followers").text().match(/\d/);
-	    console.log(mCurrentFollowerCount[0]);
+	    var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
+	    currentFollowerCount = thousands_separator(currentFollowerCount);
+	    currentFollowerCount = (Number(currentFollowerCount) + 1).toString();
+	    if (currentFollowerCount == 1) {
+	      $("#profile_followers").text(currentFollowerCount + " follower");
+	    } else {
+	      $("#profile_followers").text(currentFollowerCount + " followers");
+	    }
 	    $(elem).text("Unfollow");
 	    $(elem).parent().attr("id", "unfollow_button_container");
 	    $(elem).attr("onclick", "unfollow(this)");
