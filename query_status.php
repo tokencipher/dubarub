@@ -53,7 +53,7 @@ function sendMsg($id, $msg) {
   echo "id: $id" . PHP_EOL;
   echo "data: $msg" . PHP_EOL;
   echo PHP_EOL;
-  ob_flush();
+  ob_end_flush();
   flush();
 }
 
@@ -63,13 +63,13 @@ do {
   // Cap connections at 10 seconds. The browser will reopen the connection on close
   
   
-  if ((time() - $startedAt) > 10) {
+  if ((time() - $startedAt) > 1) {
     die();
   }
   
   
   sendMsg($startedAt, $myObj);
-  sleep(5);
+  sleep(1);
   
   // If we didn't use a while loop, the browser would essentially do polling 
   // every ~3seconds. Using the while, we keep the connection open and only make 
