@@ -879,13 +879,30 @@
     
     if (logged_in === true) {
       var action = "Unfollow";
+	  var renderedUserId = "<?php echo $_SESSION['id']; ?>";
+	  var renderedUserName = "<?php echo $_SESSION['user']; ?>";
+	  
+	  if ($(elem).data("container-type") == "mobile") {
+	    $(elem).text("Follow");
+	    $(elem).parent().attr("id", "m_follow_button_container");
+	    $(elem).attr("onclick", "follow(this)");
+	  } else {
+	    $(elem).text("Follow");
+	    $(elem).parent().attr("id", "follow_button_container");
+	    $(elem).attr("onclick", "follow(this)");
+	  }
+      
       
       $.ajax({
         async: true,
         cache: false,
         url: 'user_action.php',
         type: 'POST',
-        data: {user_action: action}
+        data: {
+          user_action: action,
+          rendered_user_id: renderedUserId,
+          rendered_user_name: renderedUserName
+        }
       }).done(function (msg) {
         console.log("Unfollow action taken");
         console.log(msg);
