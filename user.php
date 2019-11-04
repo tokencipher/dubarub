@@ -295,6 +295,13 @@
   var user = "<?php echo $_SESSION['user']; ?>";
   var following = Boolean("<?php echo $_SESSION['following']; ?>");
   var oldCount = 0;
+  
+  function thousands_separator(num)
+  {
+    var num_parts = num.toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return num_parts.join(".");
+  } 
 
   function performAsync(message, callback) {
     return new Promise( (resolve, reject) => {
@@ -839,10 +846,20 @@
 	  var renderedUserName = "<?php echo $_SESSION['user']; ?>";
 	  
 	  if ($(elem).data("container-type") == "mobile") {
+	    var mCurrentFollowerCount = $("#m_profile_followers").text().match(/\d/g).join('');
+	    mCurrentFollowerCount = thousands_separator(mCurrentFollowerCount);
+	    mCurrentFollowerCount = (Number(mCurrentFollowerCount) + 1).toString();
+	    if (mCurrentFollowerCount == 1) {
+	      $("#m_profile_followers").text(mCurrentFollowerCount + " follower");
+	    } else {
+	      $("#m_profile_followers").text(mCurrentFollowerCount + " followers");
+	    }
 	    $(elem).text("Unfollow");
 	    $(elem).parent().attr("id", "m_unfollow_button_container");
 	    $(elem).attr("onclick", "unfollow(this)");
 	  } else {
+	    var mCurrentFollowerCount = $("#profile_followers").text().match(/\d/);
+	    console.log(mCurrentFollowerCount[0]);
 	    $(elem).text("Unfollow");
 	    $(elem).parent().attr("id", "unfollow_button_container");
 	    $(elem).attr("onclick", "unfollow(this)");
