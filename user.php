@@ -603,6 +603,7 @@
         var data = JSON.parse(this.responseText);
         var statusId = data.status_id;
         oldCount = statusId - document.getElementById("status_history_container").childNodes.length;
+        //console.log("oldCount value: " + oldCount);
         //alert(oldCount);
       }
     }; 
@@ -947,10 +948,16 @@
       
       setTimeout(function() { 
         var newCount = data.status_id - document.getElementById("status_history_container").childNodes.length; 
+        //console.log("statusId in 'message' event: " + data.status_id);
+        //console.log("Number of status updates in status history container: " + document.getElementById("status_history_container").childNodes.length);
+        //console.log("newCount value (" + data.status_id  + "-" +  document.getElementById("status_history_container").childNodes.length + "status updates in status history container: " + newCount);
         if ( newCount > oldCount) {
           rewriteStatus();
           statusCount();
-        } 
+        } else if (newCount < oldCount) {
+          rewriteStatus();
+          statusCount();
+        }
       }, 3000);
     }, false);
     
