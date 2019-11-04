@@ -225,12 +225,14 @@
       top: -110px;
       left: 110px;
       padding: 0px;
+      display: none;
     }
     #unfollow_button_container {
       position: relative;
       top: -110px;
       left: 110px;
       padding: 0px;
+      display: none;
     }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
@@ -1088,23 +1090,30 @@
     if (logged_in_user) {
       var user_id = "<?php echo $_SESSION['user_id']; ?>";
       if (user_id == id) {
+        /*
         $('#follow_button_container').css('display', 'none');
         $('#m_follow_button_container').css('display', 'none');  
+        */
         $('#direct_message').css('display', 'none');
         $('#profile_stats').css('top', '-24px');
         $('#bio_text').css('top', '-13px');
       }
+      
+      // If current logged in user is following profile viewed then hide follow button  
+      // and display unfollow button
+      if (following == true) {   
+        $('#unfollow_button_container').css('display', 'block');
+        $('#m_unfollow_button_container').css('display', 'block');
+      } else {
+        if (user_id == id) {
+          return;
+        } else {
+          $('#follow_button_container').css('display', 'block');
+          $('#m_follow_button_container').css('display', 'block');
+        }
+      }
     }
 
-    // If current logged in user is following profile viewed then hide follow button  
-    // and display unfollow button
-    if (following == true) {   
-      $('#follow_button_container').css('display', 'none');
-      $('#m_follow_button_container').css('display', 'none');
-    } else {
-      $('#unfollow_button_container').css('display', 'none');
-      $('#m_unfollow_button_container').css('display', 'none');
-    }
   
   });
 </script>
