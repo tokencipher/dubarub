@@ -915,10 +915,32 @@
 	    $(elem).text("Follow");
 	    $(elem).parent().attr("id", "m_follow_button_container");
 	    $(elem).attr("onclick", "follow(this)");
+	    
+	    var mCurrentFollowerCount = $("#m_profile_followers").text().match(/\d/g).join('');
+	    mCurrentFollowerCount = thousands_separator(mCurrentFollowerCount);
+	    mCurrentFollowerCount = (Number(mCurrentFollowerCount) + 1).toString();
+	    
+	    if (mCurrentFollowerCount == 1) {
+	      $("#m_profile_followers").text(mCurrentFollowerCount + " follower");
+	    } else {
+	      $("#m_profile_followers").text(mCurrentFollowerCount + " followers");
+	    }
+	    
 	  } else {
 	    $(elem).text("Follow");
 	    $(elem).parent().attr("id", "follow_button_container");
 	    $(elem).attr("onclick", "follow(this)");
+	    
+	    var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
+	    currentFollowerCount = thousands_separator(currentFollowerCount);
+	    currentFollowerCount = (Number(currentFollowerCount) - 1).toString();
+	    
+	    if (currentFollowerCount == 1) {
+	      $("#profile_followers").text(currentFollowerCount + " follower");
+	    } else {
+	      $("#profile_followers").text(currentFollowerCount + " followers");
+	    }
+	    
 	  }
       
       
