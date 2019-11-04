@@ -873,7 +873,7 @@
     }       
   }
   
-  function unfollow() {
+  function unfollow(elem) {
     console.log("Unfollow button clicked");
     var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     
