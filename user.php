@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 08/24/19 -->
+<!-- Last modified: 10/04/19 -->
 <?php 
   session_start();
   
@@ -1166,11 +1166,11 @@
     </div>
     
     <div id="follow_button_container">
-      <a href="#" onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
+      <a onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
     </div>
     
     <div id="unfollow_button_container">
-      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
+      <a onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
     </div>
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-70px;">
@@ -1289,11 +1289,11 @@
     </div>
     
     <div id="m_follow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;">
-      <a href="#" onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
+      <a onclick="follow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
     </div>
     
     <div id="m_unfollow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;display:none">
-      <a href="#" onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
+      <a onclick="unfollow()" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
     </div>
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-70px;">
