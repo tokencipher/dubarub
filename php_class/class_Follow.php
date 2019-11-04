@@ -70,7 +70,6 @@ class Follow {
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $u_id);
-    $stmt->bindParam(':follower', $follower);
     $stmt->bindParam(':u_id_follower', $u_id_follower);
     $stmt->execute();
   }
