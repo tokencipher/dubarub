@@ -248,6 +248,16 @@
       padding:0px;
       display:none;
     }
+    #m_profile_stats {
+      position:relative;
+      width:328px;
+      left:1px;
+      top:-70px;
+    }
+    #m_bio_text {
+      position:relative;
+      top:-54px;
+    }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
   <?php include_once ('php_class/class_Playlist.php'); ?>
@@ -1110,6 +1120,8 @@
         */
         $('#direct_message').css('display', 'none');
         $('#profile_stats').css('top', '-24px');
+        $('#m_bio_text').css('top', '-26px');
+        $('#m_profile_stats').css('top', '-36px');
         $('#bio_text').css('top', '-13px');
       }
       
@@ -1404,7 +1416,7 @@
       <a onclick="unfollow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" data-container-type="mobile">Unfollow</a>
     </div>
     
-    <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-70px;">
+    <div id="m_profile_stats" class="w3-center">
       <span id="m_profile_followers">
         <?php
           $follow = new Follow();
@@ -1443,7 +1455,7 @@
       </span>
     </div>
     
-    <div id="m_bio_text" style="position:relative;top:-54px;">
+    <div id="m_bio_text">
       <?php 
     
       $id = $_SESSION['id'];
