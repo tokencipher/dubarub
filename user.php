@@ -234,6 +234,20 @@
       padding: 0px;
       display: none;
     }
+    #m_follow_button_container {
+     position:relative;
+     top:-108px;
+     left:110px;
+     padding:0px;
+     display:none;
+    }
+    #m_unfollow_button_container {
+      position:relative;
+      top:-108px;
+      left:110px;
+      padding:0px;
+      display:none;
+    }
   </style>
   <?php include_once ('php_class/class_Status.php'); ?>
   <?php include_once ('php_class/class_Playlist.php'); ?>
@@ -1382,11 +1396,11 @@
       <i id="m_direct_message" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
     </div>
     
-    <div id="m_follow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;">
+    <div id="m_follow_button_container">
       <a onclick="follow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" data-container-type="mobile">Follow</a>
     </div>
     
-    <div id="m_unfollow_button_container" style="position:relative;top:-108px;left:110px;padding:0px;display:none">
+    <div id="m_unfollow_button_container">
       <a onclick="unfollow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" data-container-type="mobile">Unfollow</a>
     </div>
     
