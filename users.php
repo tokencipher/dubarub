@@ -50,6 +50,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
     #bio_username {
       text-align:left;
+      font-size:12px;
     }
     #bio_action_container {
       position:relative;
@@ -154,7 +155,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
 		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
 		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
-		      '<div id="bio_username">' + data.rendered_user_name + '</div></div>' + 
+		      '<div id="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
 		      '<div id="bio_action_container">' +
 		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
 		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
@@ -166,7 +167,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
 		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
 		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
-		      '<div id="bio_username">' + data.rendered_user_name + '</div></div>' + 
+		      '<div id="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
 		      '<div id="bio_action_container">' +
 		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
 		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
