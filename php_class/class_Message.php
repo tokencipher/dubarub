@@ -42,6 +42,8 @@ class Message {
     foreach($this->db->query($sql) as $row) {
       $object[$x]['message_id'] = "{$row['message_id']}";
       $object[$x]['sender_id'] = "{$row['sender_id']}";
+      $object[$x]['sender_username'] = "{$row['sender_username']}";
+      $object[$x]['sender_avatar'] = "{$row['sender_avatar']}";
       $object[$x]['message'] = "{$row['message']}";
       $object[$x]['timestamp'] = "{$row['timestamp']}";
       $object[$x]['opened'] = "{$row['opened']}";
