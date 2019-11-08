@@ -153,8 +153,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
             
             if (follow_status) {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
-		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
-		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
+		      'class="flex_item"><div id="bio_avi"><a href="user.php?name=' + data.rendered_user_name + '"><img id="avatar" src="' + data.avatar +
+		      '" width="65" height="65"></img></a></div><div id="bio_username_container">' + 
 		      '<div id="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
 		      '<div id="bio_action_container">' +
 		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
@@ -165,8 +165,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 		      'aria-pressed="true" data-rendered-user-name="' + data.rendered_user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Unfollow</a></div></div>');
             } else {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
-		      'class="flex_item"><div id="bio_avi"><img id="avatar" src="' + data.avatar +
-		      '" width="65" height="65"></img></div><div id="bio_username_container">' + 
+		      'class="flex_item"><div id="bio_avi"><a href="user.php?name=' + data.rendered_user_name + '"><img id="avatar" src="' + data.avatar +
+		      '" width="65" height="65"></a></img></div><div id="bio_username_container">' + 
 		      '<div id="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
 		      '<div id="bio_action_container">' +
 		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
