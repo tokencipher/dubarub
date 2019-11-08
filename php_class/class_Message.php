@@ -34,7 +34,7 @@ class Message {
     $this->db = null;
   }
   
-  public function getMessages($recipient_id) {
+  public function getInbox($recipient_id) {
     $table = "message";
     $sql = "SELECT message_id, sender_id, sender_username, sender_avatar, message, timestamp, opened, display FROM message WHERE u_id = $recipient_id;";
     
