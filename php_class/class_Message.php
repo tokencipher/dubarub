@@ -4,6 +4,8 @@ class Message {
   private $db;
   private $message_id; // PRIMARY KEY
   private $sender_id; // FOREIGN KEY 
+  private $sender_username; 
+  private $sender_avatar;
   private $recipient_id; // FOREIGN KEY
   private $message; // VARCHAR(1300) NOT NULL;
   private $timestamp; // TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -34,7 +36,7 @@ class Message {
   
   public function getMessages($recipient_id) {
     $table = "message";
-    $sql = "SELECT * FROM message WHERE u_id = $recipient_id;";
+    $sql = "SELECT message_id, sender_id, sender_username, sender_avatar, message, timestamp, opened, display FROM message WHERE u_id = $recipient_id;";
     
     $x = 0; 
     foreach($this->db->query($sql) as $row) {
@@ -43,18 +45,21 @@ class Message {
       $object[$x]['message'] = "{$row['message']}";
       $object[$x]['timestamp'] = "{$row['timestamp']}";
       $object[$x]['opened'] = "{$row['opened']}";
+      $object[$x]['display'] = "{$row['display']}";
       ++$x;
     }
     return $x;
     
   }
   
-  public sendMessage($sender_id, $message) {
+  public sendMessage($sender_id, $sender_username, $sender_avatar, $message) {
     $table = "message";
-    $sql = "INSERT INTO $table (sender_id, message) VALUES (:sender_id, :message)";
+    $sql = "INSERT INTO $table (sender_id, sender_username, sender_avatar, message) VALUES (:sender_id, :sender_username, :sender_avatar, :message)";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':sender_id', $sender_id);
+    $stmt->bindParam(':sender_username', $sender_username);
+    $stmt->bindParam(':sender_avatar', $sender_avatar);
     $stmt->bindParam(':message', $message);
     $stmt->execute();
   }
