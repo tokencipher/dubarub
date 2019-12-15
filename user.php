@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 10/04/19 -->
+<!-- Last modified: 12/15/19 -->
 <?php 
   session_start();
   
@@ -259,12 +259,12 @@
       top:-54px;
     }
   </style>
-  <?php include_once ('php_class/class_Status.php'); ?>
-  <?php include_once ('php_class/class_Playlist.php'); ?>
-  <?php include_once ('php_inc/inc_nav.php'); ?>
-  <?php include_once ('php_class/class_Post.php'); ?>
-  <?php include_once ('php_class/class_Follow.php'); ?>
-  <?php include_once ('php_class/class_User.php'); ?>
+  <?php require_once ('php_class/class_Status.php'); ?>
+  <?php require_once ('php_class/class_Playlist.php'); ?>
+  <?php require_once ('php_inc/inc_nav.php'); ?>
+  <?php require_once ('php_class/class_Post.php'); ?>
+  <?php require_once ('php_class/class_Follow.php'); ?>
+  <?php require_once ('php_class/class_User.php'); ?>
   <?php require_once ('php_inc/inc_db_qp4.php'); ?>
 </head>
 <body>
@@ -299,12 +299,12 @@
   }
 	
   if ((isset($_SESSION['user_id']))) {
-    // Identify if user profile being viewed is being followed by current logged in user
+    // Identify if user profile being viewed is being followed by currently logged in user
     $followObj = new Follow();
     $following = $followObj->getFollowFlag($_SESSION['user_id'], $_SESSION['id']);
     $_SESSION['following'] = $following;
     $_SESSION['logged_in_user'] = true;
-  } else {
+  } else { 
     $_SESSION['following'] = false;
     $_SESSION['logged_in_user'] = false;
   }
@@ -353,6 +353,7 @@
     });
   }
   
+  // get_index_avatar.php makes no use of 'user_id' session variable
   function loadAvatar() {
     var avatarRequest = new XMLHttpRequest();
     avatarRequest.onreadystatechange = function() {
@@ -366,6 +367,7 @@
     avatarRequest.send();
   }
   
+  // get_status.php makes no use of 'user_id' session variable
   function loadStatusHistory() {
     var statusRequest = new XMLHttpRequest();
     statusRequest.onreadystatechange = function() {
@@ -402,7 +404,8 @@
     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     statusRequest.send();
   }
-    
+
+  // get_status.php makes no use of 'user_id' session variable 
   function rewriteStatus() {
     var statusRequest = new XMLHttpRequest();
     statusRequest.onreadystatechange = function() {
@@ -430,6 +433,7 @@
   
   }
   
+  // get_index_posts.php makes no use of 'user_id' session variable
   function loadPosts() {
     var postRequest = new XMLHttpRequest();
     postRequest.onreadystatechange = function() {
@@ -542,7 +546,8 @@
     postRequest.send();
   
   }
-
+	
+  // get_index_tags.php makes no use of 'user_id' session variable
   function loadTags() {
     var tagRequest = new XMLHttpRequest();
     tagRequest.onreadystatechange = function() {
@@ -564,12 +569,15 @@
   
   }
   
+  // get_comments.php makes no use of 'user_id' session variable 
   function loadComments() {
     var commentRequest = new XMLHttpRequest();
     commentRequest.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var comments = JSON.parse(this.responseText);
         var len = comments.length;
+        
+        // revise for user who isn't logged in 
         var value = "<?php echo ( (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 0 ); ?>";
         //console.log("value is: " + value);
         var user_id = parseInt(value);
@@ -627,6 +635,7 @@
     commentRequest.send();
   }
   
+  // status_count.php makes no use 'user_id' session variable 
   function statusCount() {
     var statusCount = new XMLHttpRequest();
     statusCount.onreadystatechange = function() {
@@ -644,6 +653,7 @@
   
   }
   
+  // query_status.php makes no use of 'user_id' session variable 
   function loadStatusEngine() {
     var statusEngine = new XMLHttpRequest();
     statusEngine.onreadystatechange = function() {
@@ -730,6 +740,8 @@
   
   function handPostTrophy(element) {
     console.log("post trophy clicked");
+    
+    // revise for user who isn't logged in 
     var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (hand_trophy === true) {
@@ -763,6 +775,8 @@
   
   function handCommentTrophy(element) {
     console.log("comment trophy clicked");
+    
+    // revise for user who isn't logged in 
     var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (hand_trophy === true) {
@@ -796,6 +810,8 @@
   
   function flagComment(element) {
     console.log("flag clicked");
+    
+    // revise for user who isn't logged in 
     var flag_comment = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (flag_comment === true) {
@@ -829,6 +845,8 @@
   
   function removeComment(element) {
     console.log("remove comment item clicked");
+    
+    // revise for user who isn't logged in 
     var remove_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (remove_flag === true) {
@@ -862,6 +880,8 @@
   
   function follow(elem) {
     console.log("Follow button clicked");
+    
+    // revise for user who isn't logged in 
     var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (logged_in === true) {	
@@ -930,6 +950,8 @@
   
   function unfollow(elem) {
     console.log("Unfollow button clicked");
+    
+    // revise for user who isn't logged in 
     var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     
     if (logged_in === true) {
@@ -1112,7 +1134,9 @@
     // If current logged in user has the same user id as user id of profile being 
     // currently viewed then hide follow/unfollow button 
     if (logged_in_user) {
-      var user_id = "<?php echo $_SESSION['user_id']; ?>";
+      
+      // revise for visitor 
+      var user_id = "<?php echo (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 0; ?>";
       if (user_id == id) {
         /*
         $('#follow_button_container').css('display', 'none');
@@ -1138,6 +1162,14 @@
           $('#m_follow_button_container').css('display', 'block');
         }
       }
+    } 
+    
+    if (!logged_in_user) {
+      console.log(typeof logged_in_user);
+      $('#profile_stats').css('top', '-24px');
+      $('#m_bio_text').css('top', '-26px');
+      $('#m_profile_stats').css('top', '-36px');
+      $('#bio_text').css('top', '-13px');
     }
 
   
