@@ -1149,8 +1149,6 @@
         $('#bio_text').css('top', '-13px');
       }
       
-      // If current logged in user is following profile viewed then hide follow button  
-      // and display unfollow button
       if (following == true) {   
         $('#unfollow_button_container').css('display', 'block');
         $('#m_unfollow_button_container').css('display', 'block');
@@ -1162,10 +1160,10 @@
           $('#m_follow_button_container').css('display', 'block');
         }
       }
-    } 
-    
-    if (!logged_in_user) {
-      console.log(typeof logged_in_user);
+    } else {
+      console.log("user not logged. show follow button still...");
+      $('#follow_button_container').css('display', 'block');
+      $('#m_follow_button_container').css('display', 'block');
       $('#profile_stats').css('top', '-24px');
       $('#m_bio_text').css('top', '-26px');
       $('#m_profile_stats').css('top', '-36px');
