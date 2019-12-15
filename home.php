@@ -1370,7 +1370,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     --> 
     
     
-    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;">
+    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;font-size:12px;font-weight:bold">
       <span id="profile_followers">
         <?php
           $follow = new Follow();
@@ -1477,7 +1477,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     -->
     
-    <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;">
+    <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;font-size:12px;font-weight:bold">
       <span id="m_profile_followers">
         <?php
           $follow = new Follow();
