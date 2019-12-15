@@ -1323,7 +1323,7 @@
       <a onclick="unfollow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
     </div>
     
-    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-70px;">
+    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;font-weight:bold;font-size:12px;top:-70px;">
       <span id="profile_followers">
         <?php
           $follow = new Follow();
@@ -1446,7 +1446,7 @@
       <a onclick="unfollow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" data-container-type="mobile">Unfollow</a>
     </div>
     
-    <div id="m_profile_stats" class="w3-center">
+    <div id="m_profile_stats" class="w3-center" style="font-size:12px;font-weight:bold">
       <span id="m_profile_followers">
         <?php
           $follow = new Follow();
