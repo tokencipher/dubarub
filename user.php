@@ -274,7 +274,7 @@
   try {
 
     // Retrieve username from db based on user_id
-    if ($conn !== FALSE) {
+    if ($conn !== false) {
       $table = "user";
       $user_name = $_SESSION['user'];
       $sql = 'SELECT u_id, user_name FROM user WHERE user_name = :user';
