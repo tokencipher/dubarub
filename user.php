@@ -1017,6 +1017,40 @@
     }
   }
   
+  function viewFollowers() {
+    console.log("followers link clicked");
+    
+    // revise for user who isn't logged in 
+    var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+    
+    if (logged_in === true) {
+      window.location.assign("https://dubarub.com/followers.php");
+    } else {
+      if (confirm("You must be logged in to view this user followers. Sign up/Login?")) {
+        window.location.assign("https://dubarub.com");
+      } else {
+        return;
+      }
+    }
+  }
+  
+  function viewFollowing() {
+    console.log("following link clicked");
+    
+    // revise for user who isn't logged in 
+    var logged_in = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+    
+    if (logged_in === true) {
+      window.location.assign("https://dubarub.com/following.php");
+    } else {
+      if (confirm("You must be logged in to view who this user is following. Sign up/Login?")) {
+        window.location.assign("https://dubarub.com");
+      } else {
+        return;
+      }
+    }
+  }
+  
   $(document).ready(function() { 
   
     sequenceAsync();
@@ -1324,7 +1358,7 @@
     </div>
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;font-weight:bold;font-size:12px;top:-70px;">
-      <span id="profile_followers">
+      <span id="profile_followers"><a style="cursor:pointer" onclick="viewFollowers()">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['id']);
@@ -1334,14 +1368,14 @@
             echo $followers . " followers";
           }
         ?>
-      </span>
-      <span id="profile_following" style="margin-left:13px;">
+      </a></span>
+      <span id="profile_following" style="margin-left:13px;"><a style="cursor:pointer" onclick="viewFollowing()">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['id']);
           echo $following . " following";
         ?>
-      </span>
+      </a></span>
       <span id="profile_posts" style="margin-left:13px;">
       <?php
       
@@ -1447,7 +1481,7 @@
     </div>
     
     <div id="m_profile_stats" class="w3-center" style="font-size:12px;font-weight:bold">
-      <span id="m_profile_followers">
+      <span id="m_profile_followers"><a onclick="viewFollowers()" style="cursor:pointer">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['id']);
@@ -1457,14 +1491,14 @@
             echo $followers . " followers";
           }
         ?>
-      </span>
-      <span id="m_profile_following" style="margin-left:13px;">
+        </a></span>
+      <span id="m_profile_following" style="margin-left:13px;"><a onclick="viewFollowing()" style="cursor:pointer">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['id']);
           echo $following . " following"; 
         ?>
-      </span>
+        </a></span>
       <span id="m_profile_posts" style="margin-left:13px;">
       <?php
       
