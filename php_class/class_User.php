@@ -136,6 +136,19 @@ class User {
     }
     return $followers;
   }
+  
+  public function getFollowing($user_id) {
+    $tableName = "following";
+    $sql = "SELECT following, u_id_following FROM $tableName WHERE u_id=$user_id";
+    $following = array();
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $following[$x]['following'] = "{$row['following']}";
+      $following[$x]['following_id'] = "{$row['u_id_following']}";
+      ++$x;
+    }
+    return $following;
+  }
 }
   
 ?>
