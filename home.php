@@ -1371,7 +1371,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;font-size:12px;font-weight:bold">
-      <span id="profile_followers">
+      <span id="profile_followers"><a href="followers.php" style="cursor:pointer;">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
@@ -1381,14 +1381,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
             echo $followers . " followers";
           }
         ?>
-      </span>
-      <span id="profile_following" style="margin-left:13px;">
+        </a></span>
+      <span id="profile_following" style="margin-left:13px;"><a href="following.php" style="cursor:pointer">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
           echo $following . " following";
         ?>
-      </span>
+        </a></span>
       <span id="profile_posts" style="margin-left:13px;">
       <?php
       
@@ -1478,7 +1478,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     -->
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;font-size:12px;font-weight:bold">
-      <span id="m_profile_followers">
+      <span id="m_profile_followers"><a href="followers.php" style="cursor:pointer">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
@@ -1488,8 +1488,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
             echo $followers . " followers";
           }
         ?>
-      </span>
-      <span id="m_profile_following" style="margin-left:13px;">
+        </a></span>
+      <span id="m_profile_following" style="margin-left:13px;"><a href="following.php" style="cursor:pointer">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
