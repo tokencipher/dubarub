@@ -124,7 +124,18 @@ class User {
     return $user_name;
   }
   
-  
+  public function getFollowers($user_id) {
+    $tableName = "followers";
+    $sql = "SELECT follower, u_id_follower FROM $tableName WHERE u_id=$user_id";
+    $followers = array();
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $followers[$x]['follower'] = "{$row['follower']}"; 
+      $followers[$x]['follower_id'] = "{$row['u_id_follower']}";
+      ++$x;
+    }
+    return $followers;
+  }
 }
   
 ?>
