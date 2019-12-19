@@ -31,7 +31,7 @@ require("php_class/class_Track.php");
 require ("php_inc/inc_db_qp4.php");
 require("getID3-1.9.15/getid3/getid3.php");
 
-$dir = "dub_priv_user_files/audio";
+$audio_dir = "dub_priv_user_files/audio";
 $target_art_path = "";
 $error_count = 0; 
 $audio = false;
@@ -71,8 +71,8 @@ function autoRotateImage($image) {
 if (isset($_POST['upload'])) {
   $temp_file = $_FILES['track']['tmp_name'];
   if (!empty($temp_file)) {
-    $target_mp3_path = $dir . "/mp3/" . $_FILES['track']['name'];
-    //$target_ogg_path = $dir . "/ogg/" . $_FILES['track']['name'];
+    $target_mp3_path = $audio_dir . "/mp3/" . $_FILES['track']['name'];
+    //$target_ogg_path = $audio_dir . "/ogg/" . $_FILES['track']['name'];
     //$fileInfo_array = getimagesize($temp_file);
     //$mimeType = $fileInfo_array['mime']; // Not being used, really
     $file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
@@ -86,7 +86,7 @@ if (isset($_POST['upload'])) {
   }
   
   $temp_art_file = $_FILES['cover_art']['tmp_name'];
-  $target_art_path = $dir . "/cover_art/" . $_FILES['cover_art']['name'];
+  $target_art_path = $audio_dir . "/cover_art/" . $_FILES['cover_art']['name'];
   
   if (!empty($temp_art_file)) {
     
