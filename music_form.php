@@ -116,7 +116,7 @@ if (isset($_POST['upload'])) {
    */
   
   // Check if a file has been uploaded    
-  if($file_size !== 0) {
+  if($file_size > 0) {
 
     switch ($mimeType_array[0]) {
     
@@ -158,7 +158,7 @@ if (isset($_POST['upload'])) {
   }
    
   // Check if a file has been uploaded
-  if ($art_file_size !== 0) {
+  if ($art_file_size > 0) {
     
     switch ($art_mimeType_array[0]) {
       
@@ -417,7 +417,7 @@ if ($error_count == 0) {
 ?>
 
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 10/29/2019 -->
+<!-- Last modified: 12/19/2019 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <title>Upload track(s)</title>
 <?php include_once('php_inc/inc_user_nav.php'); ?>
