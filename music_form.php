@@ -37,7 +37,7 @@ $error_count = 0;
 $audio = false;
 $data_format = "";
 $bpm = "";
-$message = "";
+$audio_error_message = "";
 $art_message = "";
 $cover_art = false;
 $image = false;
@@ -289,19 +289,19 @@ if ($error_count > 0) {
 
   switch ($flag) {
     case "invalid metadata":
-       $message = "Please check your audio metadata for valid id3v1/id3v2 artist and album tags.";
+       $audio_error_message = "Please check your audio metadata for valid id3v1/id3v2 artist and album tags.";
        break;
     
     case "track exists":
-       $message = "That track already exists.";
+       $audio_error_message = "That track already exists.";
        break;
        
     case "invalid data format":
-       $message =  "Please upload a valid mp3 or mp4 audio file.";
+       $audio_error_message =  "Please upload a valid mp3 or mp4 audio file.";
        break;
        
     default:
-       $message = "Sorry, your file was not uploaded.";
+       $audio_error_message = "Sorry, your file was not uploaded.";
        break;     
   }
   
@@ -451,7 +451,7 @@ if ($error_count == 0) {
   </form>
 </div>
 
-<div class="w3-center" id="message" style="position:relative;margin:auto;color:red;"><?php echo $message; ?></div><br>
+<div class="w3-center" id="message" style="position:relative;margin:auto;color:red;"><?php echo $audio_error_message; ?></div><br>
 <div class="w3-center" id="art_message" style="position:relative;margin:auto;color:red;"><?php echo $art_message; ?></div>
 
 <?php include_once('php_inc/inc_user_footer.php'); ?>
