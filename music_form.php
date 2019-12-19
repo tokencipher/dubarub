@@ -41,7 +41,7 @@ $audio_error_message = "";
 $art_error_message = "";
 $cover_art = false;
 $image = false;
-$flag = "";
+$audio_flag = "";
 $art_flag = "";
 $art_file_size = "";
 
@@ -129,7 +129,7 @@ if (isset($_POST['upload'])) {
     	$html_album = isset($tag['tags_html']['id3v2']['album'][0]) ? $tag['tags_html']['id3v2']['album'][0] : '';
     	
     	if ((empty($html_artist)) && (empty($html_album))) {
-    	  $flag = "invalid metadata";
+    	  $audio_flag = "invalid metadata";
           ++$error_count;
         }
     	break;
@@ -142,13 +142,13 @@ if (isset($_POST['upload'])) {
     	$html_album = isset($tag['tags_html']['id3v2']['album'][0]) ? $tag['tags_html']['id3v2']['album'][0] : '';
     	
     	if ((empty($html_artist)) && (empty($html_album))) {
-    	  $flag = "invalid metadata";
+    	  $audio_flag = "invalid metadata";
   		  ++$error_count;
 		}
         break;
         
       default:
-        $flag = "invalid data format";
+        $audio_flag = "invalid data format";
         ++$error_count;
         break;
     }
@@ -278,7 +278,7 @@ if ($conn !== FALSE) {
   $stmt->execute();
   if ($stmt->rowCount() > 0) {
     // The track already exists!
-    $flag = "track exists";
+    $audio_flag = "track exists";
     ++$error_count;
   }
 }
@@ -287,7 +287,7 @@ if ($conn !== FALSE) {
 // Check if $uploadOk is set to 0 by an error
 if ($error_count > 0) {
 
-  switch ($flag) {
+  switch ($audio_flag) {
     case "invalid metadata":
        $audio_error_message = "Please check your audio metadata for valid id3v1/id3v2 artist and album tags.";
        break;
