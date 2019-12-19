@@ -207,6 +207,7 @@ if (isset($_POST['upload'])) {
     $image = false;
     $cover_art = false;
     $art_flag = 'no image uploaded';
+    ++$error_count;
   }
 
 } // end of upload set check //
