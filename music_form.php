@@ -1,4 +1,4 @@
-<?php
+<?
 /**
  * Start the session. 
  */
@@ -38,7 +38,7 @@ $audio = false;
 $data_format = "";
 $bpm = "";
 $audio_error_message = "";
-$art_message = "";
+$art_error_message = "";
 $cover_art = false;
 $image = false;
 $flag = "";
@@ -308,15 +308,15 @@ if ($error_count > 0) {
   switch ($art_flag) {
     
     case "invalid image format":
-      $art_message = "Please upload a valid image file type (jpg, jpeg, png, bmp, webp).";
+      $art_error_message = "Please upload a valid image file type (jpg, jpeg, png, bmp, webp).";
       break;
       
     case "no image uploaded":
-      $art_message = "Please upload a valid image file as your cover art.";
+      $art_error_message = "Please upload a valid image file as your cover art.";
       break;
     
     default:
-      $art_message = "Sorry, your file was not uploaded.";
+      $art_error_message = "Sorry, your file was not uploaded.";
       
   }
   
@@ -451,7 +451,7 @@ if ($error_count == 0) {
   </form>
 </div>
 
-<div class="w3-center" id="message" style="position:relative;margin:auto;color:red;"><?php echo $audio_error_message; ?></div><br>
-<div class="w3-center" id="art_message" style="position:relative;margin:auto;color:red;"><?php echo $art_message; ?></div>
+<div class="w3-center" id="audio_error_message" style="position:relative;margin:auto;color:red;"><?php echo $audio_error_message; ?></div><br>
+<div class="w3-center" id="art_error_message" style="position:relative;margin:auto;color:red;"><?php echo $art_error_message; ?></div>
 
 <?php include_once('php_inc/inc_user_footer.php'); ?>
