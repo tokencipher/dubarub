@@ -308,7 +308,11 @@ if ($error_count > 0) {
   switch ($art_flag) {
     
     case "invalid image format":
-      $art_message = "Please upload a valid image file.";
+      $art_message = "Please upload a valid image file type (jpg, jpeg, png, bmp, webp).";
+      break;
+      
+    case "no image uploaded":
+      $art_message = "Please upload a valid image file as your cover art.";
       break;
     
     default:
