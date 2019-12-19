@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Start the session. 
  */
@@ -8,7 +8,7 @@
  * Check if the user is logged in. 
  */
  
-if (!isset($user_id) && !isset($_SESSION['logged_in'])) {
+if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   // User not logged in. Redirect them back to the login.php page.
   header('Location: login.php');
   exit; 
@@ -17,11 +17,8 @@ if (!isset($user_id) && !isset($_SESSION['logged_in'])) {
 
 <?php 
 
-
 ini_set( 'display_errors', 1 ); 
 error_reporting( E_ALL );
-
-
 
 /**
  * Production version 
@@ -146,7 +143,7 @@ if (isset($_POST['upload'])) {
   		  ++$error_count;
 		}
         break;
-        
+               
       default:
         $audio_flag = "invalid data format";
         ++$error_count;
