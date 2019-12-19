@@ -147,10 +147,10 @@ if (isset($_POST['upload'])) {
 		}
         break;
         
-        default:
-          $flag = "invalid data format";
-          ++$error_count;
-          break;
+      default:
+        $flag = "invalid data format";
+        ++$error_count;
+        break;
     }
     	   
   } else {
@@ -429,7 +429,7 @@ if ($error_count == 0) {
 <title>Upload track(s)</title>
 <?php include_once('php_inc/inc_user_nav.php'); ?>
 </head>
-<body>  
+<body>
 
 <div class="w3-center">
   <h2>Upload track(s)</h2>
