@@ -43,6 +43,7 @@ $cover_art = false;
 $image = false;
 $flag = "";
 $art_flag = "";
+$art_file_size = "";
 
 function autoRotateImage($image) {
   $orientation = $image->getImageOrientation();
