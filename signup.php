@@ -30,8 +30,8 @@
   }
 </style>
 <script>
-function myFunction() {
-  var x = document.getElementById("password");
+function showPassword(elem) {
+  var x = document.getElementById(elem);
   if (x.type === "password") {
     x.type = "text";
   } else {
