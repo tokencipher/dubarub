@@ -65,13 +65,6 @@ function myFunction() {
 
 <body>
 
-<?php
-  if (isset($_POST['submit'])) {
-    
-  }
-  //return preg_match('/[@#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $string);
-?>
-
 <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
   <img src="img/dubarub.jpg" alt="dubarub" id="place_logo" height="80" width="80" />   
 </div>
