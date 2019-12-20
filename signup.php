@@ -62,12 +62,12 @@ function showPassword(elem) {
    <div class="form-group">
     <input type="password" maxlength="70" name="password" class="form-control" id="password" aria-describedby="password_help" placeholder="password" required>
     <!-- An element to toggle between password visibility -->
-    <input type="checkbox" onclick="myFunction()">Show Password
+    <input type="checkbox" onclick="showPassword(this)">Show Password
   </div>
    <div class="form-group">
     <input type="password" maxlength="70" name="verify_password" class="form-control" id="verify_password" aria-describedby="password_help" placeholder="verify password" required>
     <!-- An element to toggle between password visibility -->
-    <input type="checkbox" onclick="myFunction()">Show Password
+    <input type="checkbox" onclick="showPassword(this)">Show Password
   </div>
   <ul>
     <li> Minimum length is 8 characters, maximum is 70.</li>
