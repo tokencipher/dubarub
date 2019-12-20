@@ -66,16 +66,16 @@ function autoRotateImage($image) {
 }
 
 if (isset($_POST['upload'])) {
-  $temp_file = $_FILES['track']['tmp_name'];
-  if (!empty($temp_file)) {
+  $temp_audio_file = $_FILES['track']['tmp_name'];
+  if (!empty($temp_audio_file)) {
     $target_mp3_path = $audio_dir . "/mp3/" . $_FILES['track']['name'];
     //$target_ogg_path = $audio_dir . "/ogg/" . $_FILES['track']['name'];
-    //$fileInfo_array = getimagesize($temp_file);
+    //$fileInfo_array = getimagesize($temp_audio_file);
     //$mimeType = $fileInfo_array['mime']; // Not being used, really
     $file_info_mime = new finfo(FILEINFO_MIME); // object oriented approach!
-    $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_file));  // e.g. gives "image/jpeg"
+    $all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_audio_file));  // e.g. gives "image/jpeg"
     $mimeType_array = explode(";", $all_ext_mimeType);
-    $mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
+    $mediaType = strtolower(pathinfo($temp_audio_file,PATHINFO_EXTENSION));
     $file_size = $_FILES['track']['size'];
     $cover_art_size = $_FILES['cover_art']['size'];
   } else {
@@ -90,7 +90,7 @@ if (isset($_POST['upload'])) {
     $art_fileInfo_array = getimagesize($temp_art_file);
     $art_all_ext_mimeType = $file_info_mime->buffer(file_get_contents($temp_art_file));  // e.g. gives "image/jpeg"
     $art_mimeType_array = explode(";", $art_all_ext_mimeType);
-    $art_mediaType = strtolower(pathinfo($temp_file,PATHINFO_EXTENSION));
+    $art_mediaType = strtolower(pathinfo($temp_audio_file,PATHINFO_EXTENSION));
     $art_file_size = $_FILES['cover_art']['size'];
     
   }
@@ -121,7 +121,7 @@ if (isset($_POST['upload'])) {
       case "audio/mpeg":
         $audio = true;
         $getID3 = new getID3;
-        $tag = $getID3->analyze($temp_file);
+        $tag = $getID3->analyze($temp_audio_file);
         $html_artist = isset($tag['tags_html']['id3v2']['artist'][0]) ? $tag['tags_html']['id3v2']['artist'][0] : ''; 
     	$html_album = isset($tag['tags_html']['id3v2']['album'][0]) ? $tag['tags_html']['id3v2']['album'][0] : '';
     	
@@ -134,7 +134,7 @@ if (isset($_POST['upload'])) {
       case "audio/mp4": 
         $audio = true;
         $getID3 = new getID3;
-        $tag = $getID3->analyze($temp_file);
+        $tag = $getID3->analyze($temp_audio_file);
         $html_artist = isset($tag['tags_html']['id3v2']['artist'][0]) ? $tag['tags_html']['id3v2']['artist'][0] : ''; 
     	$html_album = isset($tag['tags_html']['id3v2']['album'][0]) ? $tag['tags_html']['id3v2']['album'][0] : '';
     	
@@ -323,7 +323,7 @@ if ($error_count == 0) {
 
   if ($audio && $image) {
   
-    if ((move_uploaded_file($temp_file, $target_mp3_path)) && (move_uploaded_file($temp_art_file, $target_art_path)) == TRUE) {
+    if ((move_uploaded_file($temp_audio_file, $target_mp3_path)) && (move_uploaded_file($temp_art_file, $target_art_path)) == TRUE) {
         
         chmod($target_mp3_path, 0644);
         chmod($target_art_path, 0644);
