@@ -49,6 +49,12 @@ function redisplayForm($username, $email, $password, $errUsername, $errEmail, $e
       value="<?php echo $password; ?>" required>
       <?php echo "<p class='text-danger'>$errPassword</p>"; ?>
     </div>
+    <div class="form-group">
+      <input type="password" maxlength="70" name="verify_password" class="form-control" 
+      id="verify_password" aria-describedby="password_help" placeholder="verify password" 
+      value="<?php echo $password; ?>" required>
+      <?php echo "<p class='text-danger'>$errPassword</p>"; ?>
+    </div>
     <ul>
       <li>Minimum length is 8 characters, maximum is 70.</li>
       <li>Must contain at least one number.</li>
