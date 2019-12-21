@@ -47,12 +47,14 @@ function redisplayForm($username, $email, $password, $errUsername, $errEmail, $e
       <input type="password" maxlength="70" name="password" class="form-control" 
       id="password" aria-describedby="password_help" placeholder="password" 
       value="<?php echo $password; ?>" required>
+      <input type="checkbox" onclick="showPassword(document.getElementById('password'))">
       <?php echo "<p class='text-danger'>$errPassword</p>"; ?>
     </div>
     <div class="form-group">
       <input type="password" maxlength="70" name="verify_password" class="form-control" 
       id="verify_password" aria-describedby="password_help" placeholder="verify password" 
       value="<?php echo $password; ?>" required>
+      <input type="checkbox" onclick="showPassword(document.getElementById('verify_password'))">
       <?php echo "<p class='text-danger'>$errPassword</p>"; ?>
     </div>
     <ul>
@@ -292,6 +294,16 @@ if ($errorCount > 0) {
     color: yellow;
   }
 </style>
+<script>
+function showPassword(elem) {
+  var x = elem;
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+</script>
 </head>
 <body> 
 <div id="result" class="w3-center" style="position:relative;top:100px;margin:auto;color:green;">
