@@ -1,11 +1,13 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 12/15/19 -->
+<!-- Last modified: 12/20/19 -->
 <?php 
   session_start();
   
   // Get user name, set session
-  $user = $_GET['name'];
-  $_SESSION['user'] = $user;
+  $user = isset($_GET['name']) ? $_GET['name'] : '';
+  if (!empty($user)) {
+    $_SESSION['user'] = $user;
+  }
  
   
 ?>
