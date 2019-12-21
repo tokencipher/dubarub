@@ -12,14 +12,16 @@ $errorCount = 0;
 $username = "";
 $email = "";
 $password = "";
+$verifiedPassword = "";
 $errEmail = "";
 $errPassword = "";
+$errVerifyPassword = "";
 $errUsername = "";
 $errAvatar = "";
 $user_id = "";
 $result = "";
 
-function redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword, $errAvatar) {
+function redisplayForm($username, $email, $password, $verifiedPassword, $errUsername, $errEmail, $errPassword, $errVerifyPassword, $errAvatar) {
 ?>
   
   <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
@@ -53,9 +55,9 @@ function redisplayForm($username, $email, $password, $errUsername, $errEmail, $e
     <div class="form-group">
       <input type="password" maxlength="70" name="verify_password" class="form-control" 
       id="verify_password" aria-describedby="password_help" placeholder="verify password" 
-      value="<?php echo $password; ?>" required>
+      value="<?php echo $verifiedPassword; ?>" required>
       <input type="checkbox" onclick="showPassword(document.getElementById('verify_password'))">
-      <?php echo "<p class='text-danger'>$errPassword</p>"; ?>
+      <?php echo "<p class='text-danger'>$errVerifyPassword</p>"; ?>
     </div>
     <ul>
       <li>Minimum length is 8 characters, maximum is 70.</li>
@@ -143,7 +145,6 @@ if (isset($_POST['submit'])) {
     $username = strtolower($username);
     $username = stripslashes($username);
     $username = htmlspecialchars($username);
-    // $_SESSION['email'] = $email;
     $errUsername = "";
   }
   
@@ -156,7 +157,6 @@ if (isset($_POST['submit'])) {
     $email = strtolower($email);
     $email = stripslashes($email);
     $email = htmlspecialchars($email);
-    // $_SESSION['email'] = $email;
     $errEmail = "";
   }
   
@@ -168,8 +168,18 @@ if (isset($_POST['submit'])) {
     $password = trim($_POST['password']);
     $password = stripslashes($password);
     $password = htmlspecialchars($password);
-    // $_SESSSION['password'] = $password;
     $errPassword = "";
+  }
+  
+  if (empty($_POST['verify_password'])) {
+    ++$errorCount;
+    $errVerifyPassword = "verify password field cannot be empty<br />";
+    $verifiedPassword = "";
+  } else {
+    $verifiedPassword = trim($_POST['verify_password']);
+    $verifiedPassword = stripslashes($verifiedPassword);
+    $verifiedPassword = htmlspecialchars($verifiedPassword);
+    $errVerifyPassword = "";
   }
   
   // invalidate username against special characters 
@@ -204,6 +214,13 @@ if (isset($_POST['submit'])) {
   if( !preg_match("#[a-z]+#", $password ) ) {
     ++$errorCount;
     $errPassword .= "password must include at least one letter<br />";
+  }
+  
+  if ($password !== $verifiedPassword) {
+    ++$errorCount;
+    $errVerifyPassword .= "passwords must match<br />";
+  } else {
+    $errVerifyPassword = "";
   }
   
 }
@@ -255,13 +272,13 @@ if ($errorCount == 0) {
 }
 
 if ($errorCount > 0) {
-  redisplayForm($username, $email, $password, $errUsername, $errEmail, $errPassword, $errAvatar);
+  redisplayForm($username, $email, $password, $verifiedPassword, $errUsername, $errEmail, $errPassword, $errVerifyPassword, $errAvatar);
 }
 
   
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 09/03/2019 -->
+<!-- Last modified: 12/20/2019 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <style>
   .heading {
