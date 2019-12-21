@@ -7,6 +7,8 @@
   $user = isset($_GET['name']) ? $_GET['name'] : '';
   if (!empty($user)) {
     $_SESSION['user'] = $user;
+  } else {
+    $_SESSION['user'] = '';
   }
  
   
@@ -278,7 +280,7 @@
     // Retrieve username from db based on user_id
     if ($conn !== false) {
       $table = "user";
-      $user_name = $user;
+      $user_name = $_SESSION['user'];
       $sql = 'SELECT u_id, user_name FROM user WHERE user_name = :user';
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':user', $user_name);
