@@ -318,6 +318,7 @@
 
   
 <script>
+  var oldCount;
   var logged_in_user = Boolean("<?php echo $_SESSION['logged_in_user']; ?>");
 
   var id = "<?php echo $_SESSION['id']; ?>";
