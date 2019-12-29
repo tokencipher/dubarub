@@ -952,6 +952,21 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }       
   }
   
+  function getFollowers() {
+    window.location.assign("followers.php");
+  }
+  
+  function getFollowing() {
+    window.location.assign("following.php");
+  }
+  
+  function appearAsLink(elm) {
+    $(elm).css({
+      'text-decoration': 'underline', 
+      'cursor': 'pointer'
+    });
+  }
+    
   function stripHTML(str) {
     var StrippedString = str.replace(/(<([^>]+)>)/ig,"");
     return StrippedString;
@@ -1371,7 +1386,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     
     <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;font-size:12px;font-weight:bold">
-      <span id="profile_followers"><a href="followers.php" style="cursor:pointer;">
+      <span id="profile_followers" onclick="getFollowers()"><a style="cursor:pointer;">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
@@ -1382,7 +1397,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           }
         ?>
         </a></span>
-      <span id="profile_following" style="margin-left:13px;"><a href="following.php" style="cursor:pointer">
+      <span id="profile_following" style="margin-left:13px;" onclick="getFollowing()"><a style="cursor:pointer">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
@@ -1478,22 +1493,22 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     -->
     
     <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;font-size:12px;font-weight:bold">
-      <span id="m_profile_followers"><a href="followers.php" style="cursor:pointer">
+      <span id="m_profile_followers">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
           if ($followers == 1) {
-            echo $followers . " follower";
+            echo '<a style="cursor:pointer" onclick="getFollowers()">' . $followers . ' follower</a>';
           } else {
-            echo $followers . " followers";
+            echo '<a style="cursor:pointer" onclick="getFollowers()">' . $followers . ' followers</a>';
           }
         ?>
-        </a></span>
-      <span id="m_profile_following" style="margin-left:13px;"><a href="following.php" style="cursor:pointer">
+      </span>
+      <span id="m_profile_following" style="margin-left:13px;">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
-          echo $following . " following";
+          echo '<a style="cursor:pointer" onclick="getFollowing()">' . $following . ' following</a>';
         ?>
       </span>
       <span id="m_profile_posts" style="margin-left:13px;">
