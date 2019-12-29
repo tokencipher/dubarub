@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="Bryan Thomas" />
-  <meta name="description" content="A social media platform for aspiring musicians, producers, artists, poets, journalists, content-creators and consumers to collaborate, socialize and be discovered. " />
+  <meta name="description" content="Connecting musical talent to the world" />
   <meta name="keywords" content="Blog, Lifestyle, Music, Art, World, Fashion, Social Media" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" href="css/index.css" /> <!-- check -->
