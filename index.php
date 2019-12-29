@@ -84,7 +84,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
     <button type="submit" name="submit" class="btn btn-primary">Login</button>    
   </form>
   
-  <div style="position:relative;width:100%;text-align:center;top:80px;margin:auto;">New user? <a style="text-decoration:underline" href="signup.php">Sign up!</a></div>
+  <div style="position:relative;width:100%;text-align:center;top:75px;margin-left:auto;margin-right:auto;margin-bottom:30px;">New user? <a style="text-decoration:underline" href="signup.php">Sign up!</a></div>
   
   
   <!--
