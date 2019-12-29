@@ -23,7 +23,7 @@ function redisplayForm($message) {
   <div class="w3-center"><br>
     <form action="playlist_form.php" method="POST" enctype="multipart/form-data" class="w3-container" >
       <div class="form-group">
-        <div class="w3-center">
+        <div class="w3-center"> <!-- this line might be redundant -->
           <h2>Add track(s) to playlist</h2>
           <i class="w3-xxlarge fa fa-music" style="color:#337ab7;"></i>
         </div>
@@ -111,23 +111,33 @@ if (isset($_POST['upload'])) {
     ++$error_count;
   }
   
-  for ($x = 0; $x < $selections; $x++ ) {
+  if ($error_count > 0) {
+    switch($flag) {
+      case "exceeded playlist max":
+        echo "<p style=\"color:red\">You have exceeded a maximum amount of 12 songs you may add to your playlist.</p>";
+        break;
+    }
+  } else {
   
-    $track_info = $track->getTrackInfo($_POST['track_list'][$x]);
-    $playlist->addTrack(
-      $_POST['track_list'][$x],
-      $user_id,
-      $track_info['title'],
-      $track_info['artist'],
-      $track_info['genre'],
-      $track_info['album'],
-      $track_info['duration'],
-      $track_info['mp3_path'],
-      $track_info['ogg_path'],
-      $track_info['art'],
-      $track_info['bpm']
-    );
-    echo "<div style=\"color:green;margin-left:2px\" id=\"trackAdded\">" . $track_info['artist'] . " - " . $track_info['title'] . " added to playlist</div>";
+    for ($x = 0; $x < $selections; $x++ ) {
+  
+      $track_info = $track->getTrackInfo($_POST['track_list'][$x]);
+      $playlist->addTrack(
+        $_POST['track_list'][$x],
+        $user_id,
+        $track_info['title'],
+        $track_info['artist'],
+        $track_info['genre'],
+        $track_info['album'],
+        $track_info['duration'],
+        $track_info['mp3_path'],
+        $track_info['ogg_path'],
+        $track_info['art'],
+        $track_info['bpm']
+      );
+      echo "<div style=\"color:green;margin-left:2px\" class=\"trackAdded\">" . $track_info['artist'] . " - " . $track_info['title'] . " added to playlist</div>";
+    }
+    
   }
   
   /*
@@ -135,14 +145,6 @@ if (isset($_POST['upload'])) {
   echo var_dump($_POST['track_list']);  
   */
   
-}
-
-if ($error_count > 0) {
-  switch($flag) {
-    case "exceeded playlist max":
-      echo "You have exceeded the maxmimum amount of songs you may add to your playlist.";
-      break;
-  }
 }
 
 ?>
