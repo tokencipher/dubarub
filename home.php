@@ -97,14 +97,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       top:81px;
       max-width:335px;
     }
-    #m_profile_bio_container {
-      position:relative;
-      padding:10px;
-      margin:auto;
-      border-style:solid;
-      width:95%;
-      height:300px;
-    }
     #new_status_container {
       position:fixed;
       overflow:scroll;
@@ -133,6 +125,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       position:relative;
       left:-8px;
     }
+    /*
     #m_status_container {
       position:relative;
       top:27px;
@@ -146,6 +139,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       height:60px;
       background-color:white;
     }
+    */
     #m_status_date {
       position:relative;
       top:32px;
@@ -164,15 +158,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       padding:4px;
       left:-37px!important;
       color:gold;
-    }
-    #m_flashback {
-      position:relative;
-      float:left;
-      cursor:pointer;
-      top:10px;
-      padding:4px;
-      left:150px!important;
-      color:gold!important;
     }
     .m_action_items {
       position:relative;
@@ -387,7 +372,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var avatar = JSON.parse(this.responseText);
         //alert(avatar[0].avatar);
         $('#avatar').attr("src", avatar[0].avatar);
-        $('#m_avatar').attr("src", avatar[0].avatar);
+        $('#m-avatar').attr("src", avatar[0].avatar);
       }
     };
     avatarRequest.open("GET", "get_avatar.php", true);
@@ -1460,14 +1445,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
 <!-- start mobile display -->
   
-  <div id="m_profile_bio_container">
+  <div id="m-profile-bio-container">
     
-    <div id="m_bio_avi" style="position:relative;padding:8px;width:100px;height:100px;">
-      <img id="m_avatar"style="position:relative;" src="" width="80" height="80"></img>
+    <div id="m-bio-avi">
+      <img id="m-avatar" src="" width="80" height="80"></img>
     </div>
     
     <!-- username character count cannot be greater than 24 -->
-    <div id="m_bio_username" style="position:relative;top:-99px;left:110px;font-size:12px;">
+    <div id="m-bio-username">
       <?php 
         $user_id = $_SESSION['user_id'];
         $userName = new User();

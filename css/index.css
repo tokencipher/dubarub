@@ -1,0 +1,608 @@
+/* Extra small devices (phones, 325px and up) */
+@media only screen and (min-width: 320px) {
+  #m-profile-bio-container {
+    position:relative;
+    padding:10px;
+    margin:auto;
+    border-style:solid;
+    width:95%;
+    height:300px;
+  }
+  #m-bio-avi {
+    position:relative;
+    padding:8px;
+    width:100px;
+    height:100px;
+  }
+  #m-avatar {
+    position:relative;
+  }
+  #m-bio-username {
+    position:relative;
+    top:-96px;
+    left:108px;
+    width:170px;
+    font-size:12px;
+    overflow:auto;
+  }
+  #m-bio-tagline-container {
+    position:relative;
+    display:none;
+    top:-75px;
+    left:145px;
+  }
+  #m-bio-action-container {
+    position:relative;
+    top:-44px;
+    left:106px;
+    font-size:18px;
+  }
+  .m-action-item {
+    position:relative;
+    float:left;
+    cursor:pointer;
+    top:8px;
+    padding:3px;
+  }
+  #m-bio-edit-icon {
+    position:relative;
+    top:-46px;
+    left:106px;
+    color:#ffcc66;
+  }
+  #m-direct-message {
+    position:relative;
+    top:-46px;
+    left:106px;
+    color:#339966;
+    margin-left:7px;
+  }
+  #m-inbox {
+    position:relative;
+    top:-46px;
+    left:106px;
+    margin-left:10px;
+    color:grey;
+  }
+  #m-settings {
+    position:relative;
+    top:-46px;
+    left:115px;
+    color:#cc6600;
+  }
+  #m-profile-stats {
+    position:relative;
+    margin:auto;
+    width:270px;
+    top:-24px;
+    left: 1px;
+    font-size:12px;
+    font-weight:bold;
+  }
+  #m-profile-following {
+    margin-left:13px;
+  }
+  #m-profile-posts {
+    margin-left:13px;
+  }
+  #m-bio-text {
+    position:relative;
+    top:-13px;
+    height:110px;
+    overflow:scroll;
+    background-color:gold;
+  }
+  div.section {
+    position: relative;
+    margin: auto;
+    width: 95%;
+  }
+  #unauth_container {
+    position:relative;
+    top:30px;
+    border-style:dashed;
+    margin:auto;
+    width:100px;
+    background:green;
+  }
+  #unauth_message {
+    position:relative;
+    font-size:14px;
+    color:red;
+  }
+  #post_container {
+    position:relative;
+    top:30px;
+  }
+   #flashback {
+     display:none;
+   }
+   #m-flashback {
+     position:relative;
+     float:left;
+     cursor:pointer;
+     top:10px;
+     padding:4px;
+     left:120px;
+     color:gold;
+   }
+   #status_container {
+     display:none;
+   }
+   #m-status-container {
+     position:relative;
+     top:30px;
+     margin:auto;
+     left:1px;
+     overflow:scroll;
+     border-style:dashed;
+     padding:5px;
+     width:300px;
+     max-width:300px;
+     height:60px;
+     background-color:white;
+   }
+   #m-status-date {
+     position:relative;
+     top:32px;
+     left:145px!important;
+   }
+   #form_container {
+     position:relative;
+     padding:5px;
+     width:305px;
+     margin:auto;
+     max-width:305px;
+     height:115px;
+     top:10px;
+   }
+   #button_submit_container {
+     position:relative;
+     top:-2px;
+     left:14px;
+   }
+   #button_clear_container {
+     position:relative;
+     top:13px; 
+     height:15px;   
+     left:119px;
+   }
+   #clear {
+     display:none!important;
+   }
+   #profile_bio_container {
+     display:none;
+   }
+   #private_login {
+     position:relative;
+     margin-bottom:8px;
+     color:red!important;
+   }
+   #cover_art_container {
+     display:none;
+   }
+   #my-audio {
+     position: fixed;
+     bottom: 5px;
+     margin: auto;
+     width: 100%;
+   }
+   #album_art_container {
+     display:none;
+   }
+   
+   body { 
+     padding-top: 70px; 
+   }
+   
+   #menuButton {
+     margin-top: 5px;
+   }
+
+   #logoTitle {
+     position: relative;
+     top: 9x;
+     color: black!important;
+   }
+     
+   #noPosts {
+     position:relative;
+     top: 10px;
+   }
+   
+   #dub {
+     position: relative;
+     top: 7px!important;
+   }
+   
+   li a { color: green;}
+   
+   p.entry {
+     text-align: justify;
+   }
+   
+   #footer {
+     position: relative;
+   }
+}
+
+/* Galaxy S5 media query */
+
+/* MacBook Pro 13" or Desktops and Laptops*/
+@media screen and (min-width: 1200px) {
+  #my-audio {
+    display: none;
+  }
+  #flashback {
+    position:relative;
+    float:left;
+    cursor:pointer;
+    padding:4px;
+    left:27px;
+    color:gold;
+  }
+  #m_flashback {
+    display:none;
+  }
+  #dub {
+  	margin-top: 5px;
+  	margin-left: 20px;
+  }
+  
+  #logoTitle {
+  	position: relative;
+  	top: 13px;
+  	left: 3px;
+  }
+  
+  .dropdown {
+    position: relative;
+    top: 2px;
+    margin-right: 20px;
+    float: right;
+  }
+  #unauth_message {
+    position:relative;
+    color:red;
+    font-size:20px;
+  }
+  #form_container {
+    position:fixed;
+    top:516px;
+    left:16px;
+  }
+  #button_clear_container {
+    position:fixed;
+    top:625px;    
+    left:110px;
+    z-index:2!important;
+  }
+  #button_submit_container {
+    position:fixed;
+    top:625px;
+    left:22px;
+    z-index:2!important;
+  }
+  #m_profile_bio_container {
+    display:none;
+  }
+  #m_status_container {
+    display:none;
+  }
+  #m_status_date {
+    display:none;
+  }
+  #m_post_container {
+    display:none!important;
+  }
+  #private_login {
+    position:relative;
+    margin-bottom:8px;
+    top:8px;
+    color:red;
+  }
+  #up_shortcut {
+    display:none;
+  }
+  	
+}
+  
+/* Large screens */
+@media only screen and (min-width: 1824px) {
+  #status_container {
+    display:none;
+  }
+  #m_flashback {
+    display:none;
+  }
+  #m_status_container {
+    display:none;
+  }
+  #m_status_date {
+    display:none;
+  }
+  #m_post_container {
+    display:none;
+  }
+  #form_container {
+    position:fixed;
+    top:516px;
+    left:16px;
+  }
+  #button_clear_container {
+    position:fixed;
+    top:625px;    
+    left:110px;
+  }
+  #button_submit_container {
+    position:fixed;
+    top:625px;
+    left:22px;
+  }
+  #m_profile_bio_container {
+    display:none;
+  }
+  #up_shortcut {
+    display:none;
+  }
+}
+  
+
+/* Default */
+#show-menu-button {
+  display:none;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* This css rule-set gets rid of extra, horizontal white-space */
+html, body {
+  overflow-x:hidden;
+  width:100%;
+  margin:0px;
+}
+
+
+body { 
+   padding-top: 70px; 
+}
+
+#header {
+   opacity: 0.5;
+   margin-bottom: 10px;
+   height: 50px;
+}
+
+#qp4 {
+  margin-top: 4px;
+}
+
+#logoTitle {
+  position: relative;
+  top: 13px;
+}
+
+#aside {
+   display:none;
+   width: 180px;
+   border: 3px solid;
+   top: 120px;
+   right: 110px;
+   position: absolute;
+}
+
+#status_container {
+  position:fixed;
+  overflow:scroll;
+  border-style:dashed;
+  padding:5px;
+  width:330px;
+  max-width:330px;
+  height:115px;
+  left:13px;
+  top: 80px;
+  background-color:white;
+}
+
+#status_date {
+  position:fixed;
+  left:170px;
+  top:175px;
+  text-align:right;   
+}
+.section {
+  position: relative;
+  margin: auto;
+  width: 45%;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  top: 2px;
+  float: right;
+}
+
+.dropdown-menu {
+  display:none;
+}
+  
+.metadata {
+   text-align: left;
+   margin-top: 3px;
+   position: relative;
+   font-family: 'Aref Ruqaa', serif;
+   font-size: 12px;
+   color: grey;
+}
+
+.credit {
+   position: relative;
+   float: right;
+   font-style: italic;
+   margin-right: 5px;
+}
+
+.metaText {
+   margin-top: 5px;
+}
+
+.title {
+   padding: 3px;
+   text-align:center;
+   /*font-family: 'Cormorant Garamond', serif;*/
+   font-family: 'Oxygen', sans-serif;
+  }
+
+#location {color: grey;}
+
+p.entry {
+  font-size: 16px;
+  font-family: 'Aref Ruqaa', serif;
+  text-align: justify;
+  padding: 10px;
+}
+
+p.sn {
+  text-align: left;
+  font-family: 'Aref Ruqaa', serif;
+}
+
+#footer {
+  position: absolute;
+  padding-top: 3px;
+  margin-top: 20px;
+  left: 0;
+  bottom: 0;
+  height: 48px;
+  width: 100%;
+  overflow: hidden;
+}
+
+#copyright {
+  font-size: 12px;
+  text-align: center;
+}
+
+#author {
+  font-size: 10px;
+  text-align: center;
+  color: grey;
+}
+
+@font-face {
+    font-family: "FontAwesome";
+    src: url("fonts/fontawesome-webfont.eot");
+    font-weight: 400;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+.jp-title ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+
+
+.jp-jplayer, .jp-audio {
+    width: 420px;
+    margin: 50px auto;
+}
+
+.jp-controls {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: "FontAwesome";
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.jp-controls li {
+    display: inline;
+}
+
+.jp-controls a {
+    color: #fff;
+}
+
+.jp-play,.jp-pause {
+    width: 60px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    line-height: 43px;
+    border-right: 1px solid #d22f0f;
+}
+
+.jp-controls .jp-play:hover,.jp-controls .jp-pause:hover {
+    background-color: #de3918;
+}
+
+.jp-mute,.jp-unmute {
+    position: absolute;
+    right: 55px;
+    top: 0;
+    width: 20px;
+    height: 40px;
+    display: inline-block;
+    line-height: 46px;
+}
+
+.jp-mute {
+    text-align: left;
+}
+
+.jp-volume-bar {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    width: 45px;
+    height: 8px;
+    border-radius: 20px 20px 20px 20px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
+    background-color: #992E18;
+    overflow: hidden;
+}
+
+.jp-volume-bar-value {
+    background-color: #fff;
+    height: 8px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.jp-progress {
+    background-color: #992E18;
+    border-radius: 20px 20px 20px 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 133px;
+    top: 15px;
+    width: 210px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2) inset;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2) inset;
+}
+
+.jp-play-bar {
+    height: 12px;
+    background-color: #fff;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.jp-time-holder {
+    color: #FFF;
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    right: 90px;
+    top: 14px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}  
