@@ -140,11 +140,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       background-color:white;
     }
     */
-    #m_status_date {
-      position:relative;
-      top:32px;
-      left:185px;
-    }
     #status_date {
       position:fixed;
       left:170px;
@@ -158,28 +153,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       padding:4px;
       left:-37px!important;
       color:gold;
-    }
-    .m_action_items {
-      position:relative;
-      float:left;
-      cursor:pointer;
-      top:10px;
-      padding:3px;
-    }
-    #m_bio_edit_icon {
-      position:relative;
-      left:8px;
-      color:#ffcc66;
-    }
-    #m_direct_message {
-      position:relative;
-      left:21px;
-      color:#339966;
-    }
-    #m_settings {
-      position:relative;
-      left:22px;
-      color:#cc6600;
     }
     .action_items {
       position:relative;
@@ -198,9 +171,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       color:#339966;
     }
     #inbox {
-      color:grey;
-    }
-    #m_inbox {
       color:grey;
     }
     #settings {
@@ -981,8 +951,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         data: { update: message, u_id: user_id }
       }).done(function ( msg ) {
         
-        $('#m_status_update').text(msg[0].status_text);
-        $('#m_status_time').text(msg[0].created_at);
+        $('#m-status-update').text(msg[0].status_text);
+        $('#m-status-time').text(msg[0].created_at);
         
         $('#status_update').text(msg[0].status_text);
         $('#status_time').text(msg[0].created_at);
@@ -1012,7 +982,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       var id = "<?php echo $_SESSION['user_id']; ?>";
 
       $('#bio_text').text(bio);
-      $('#m_bio_text').text(bio);
+      $('#m-bio-text').text(bio);
       
       // Clear out bio_edit textarea input
       $('#bio_edit').val('');
@@ -1057,7 +1027,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       document.getElementById('message_modal').style.display = 'block';
     }); 
     
-     $('#m_direct_message').click(function() {
+     $('#m-direct-message').click(function() {
       document.getElementById('message_modal').style.display = 'block';
     });
     
@@ -1065,7 +1035,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       document.getElementById('bio_modal').style.display = 'block';
     });
     
-    $('#m_bio_edit_icon').click(function() {
+    $('#m-bio-edit-icon').click(function() {
       document.getElementById('bio_modal').style.display = 'block';
     })
     
@@ -1074,7 +1044,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       //document.getElementById('settings_modal').style.display = 'block';
     })
     
-    $('#m_settings').click(function() {
+    $('#m-settings').click(function() {
       window.location.assign('settings_update.php');
       //document.getElementById('settings_modal').style.display = 'block';
     })
@@ -1091,7 +1061,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       });
     });
     
-    $('#m_flashback').click(function() {
+    $('#m-flashback').click(function() {
     
       $('#close_flashback').css({
         position: "fixed",
@@ -1460,15 +1430,15 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       ?>
     </div>
     
-    <div id="m_bio_tagline_container" style="position:relative;display:none;top:-75px;left:145px;">
+    <div id="m-bio-tagline-container">
        "Alpha Testing"
     </div>
     
-    <div id="m_bio_action_container" class="flex-container" style="position:relative;top:-44px;left:106px;">
-      <i id="m_bio_edit_icon" class="fa fa-pencil m_action_item" aria-hidden="true"></i>
-      <i id="m_direct_message" style="margin-left:7px;" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
-      <i id="m_inbox" style="margin-left:40px" class="fa fa-envelope action_items" aria-hidden="true"></i>
-      <i id="m_settings" class="fa fa-cog m_action_item" aria-hidden="true"></i>
+    <div id="m_bio-action-container" class="flex-container">
+      <div><i id="m-bio-edit-icon" class="fa fa-pencil fa-lg m-action-item" aria-hidden="true"></i></div>
+      <div><i id="m-direct-message" class="fa fa-paper-plane fa-lg m-action-item" aria-hidden="true"></i></div>
+      <div><i id="m-inbox" class="fa fa-envelope fa-lg m-action-item" aria-hidden="true"></i></div>
+      <div><i id="m-settings" class="fa fa-cog fa-lg m-action-item" aria-hidden="true"></i></div>
     </div>
     
     <!--
@@ -1477,8 +1447,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     -->
     
-    <div id="m_profile_stats" class="w3-center" style="position:relative;width:328px;left:1px;top:-24px;font-size:12px;font-weight:bold">
-      <span id="m_profile_followers">
+    <div id="m-profile-stats" class="w3-center">
+      <span id="m-profile-followers">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
@@ -1489,14 +1459,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           }
         ?>
       </span>
-      <span id="m_profile_following" style="margin-left:13px;">
+      <span id="m-profile-following">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
           echo '<a style="cursor:pointer" onclick="getFollowing()">' . $following . ' following</a>';
         ?>
       </span>
-      <span id="m_profile_posts" style="margin-left:13px;">
+      <span id="m-profile-posts">
       <?php
       
         $id = $_SESSION['user_id'];
@@ -1516,7 +1486,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       </span>
     </div>
     
-    <div id="m_bio_text" style="position:relative;top:-13px;">
+    <div id="m-bio-text">
      <?php 
        $user_id = $_SESSION['user_id'];
        $bio = new User();
@@ -1546,8 +1516,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <button id="submit" class="btn btn-primary">Update</button>
   </div>
 
-  <div id="m_status_container">
-    <span id="m_status_update">
+  <div id="m-status-container">
+    <span id="m-status-update">
       <?php
         $user_id = $_SESSION['user_id'];
         $lastUpdate = new Status();
@@ -1555,8 +1525,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       ?>
     </span>
   </div>
-  <div id="m_status_date">
-    <span id="m_status_time">
+  <div id="m-status-date">
+    <span id="m-status-time">
       <?php
         $user_id = $_SESSION['user_id'];
         $timestamp = new Status();
@@ -1564,7 +1534,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       ?>
   </div>
   
-  <i id="m_flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt" aria-hidden="true"></i>
+  <i id="m-flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt" aria-hidden="true"></i>
   
   <div id="up_shortcut" style="z-index:999999">
     <a href="#m_profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
