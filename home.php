@@ -82,20 +82,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       font-family: 'Oxygen', sans-serif;
     }
     #cover_art_container {
-      position:fixed;
-      border-style:solid;
-      right:10px;
-      height:290px;
-      top:215px;
-      width:335px;
-    }
-    #profile_bio_container {
-      position:fixed;
-      border-style:solid;
-      left:10px;
-      height:290px;
-      top:81px;
-      max-width:335px;
+     
     }
     #new_status_container {
       position:fixed;
@@ -108,22 +95,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       right:13px;
       top:80px;
       background-color:white;
-    }
-    #status_container {
-      position:fixed;
-      overflow:scroll;
-      border-style:dashed;
-      padding:5px;
-      width:330px;
-      max-width:330px;
-      height:115px;
-      left:13px;
-      top: 383px;
-      background-color:white;
-    }
-    #status_time {
-      position:relative;
-      left:-8px;
     }
     /*
     #m_status_container {
@@ -140,43 +111,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       background-color:white;
     }
     */
-    #status_date {
-      position:fixed;
-      left:170px;
-      top:500px;
-      text-align:right;   
-    }
-    #flashback {
-      position:relative;
-      float:left;
-      cursor:pointer;
-      padding:4px;
-      left:-37px!important;
-      color:gold;
-    }
     .action_items {
       position:relative;
       cursor:pointer;
       top:-4px;
       padding:3px;
     }
-    #bio_edit_icon {
-      position:relative;
-      left:5px;
-      color:#ffcc66;
-    }
-    #direct_message {
-      position:relative;
-      left:18px;
-      color:#339966;
-    }
     #inbox {
       color:grey;
-    }
-    #settings {
-      position:relative;
-      left:22px;
-      color:#cc6600;
     }
     #up_shortcut {
       position:fixed;
@@ -1300,9 +1242,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       
     
             
-  <div id="profile_bio_container" style="padding:10px;">  
-    <div id="bio_avi" style="position:relative;padding:8px;width:100px;height:100px;">
-      <img id="avatar" style="position:relative;" src="
+  <div id="profile-bio-container">  
+    <div id="bio-avi">
+      <img id="avatar" src="
       <?php 
         $id = $_SESSION['user_id'];
         $user = new User();
@@ -1313,7 +1255,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     
     <!-- username character count cannot be greater than 24 -->
-    <div id="bio_username" style="position:relative;top:-95px;left:110px;font-size:12px;">
+    <div id="bio-username">
       <?php 
         $user_id = $_SESSION['user_id'];
         $userName = new User();
@@ -1322,15 +1264,15 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     
     <!-- Hide display of tagline and replace with action items -->
-    <div id="bio_tagline_container" style="position:relative;top:-75px;left:145px;display:none;">
+    <div id="bio-tagline-container">
        "Closed beta v1.0"
     </div>
     
-    <div id="bio_action_container" class="flex-container" style="position:relative;top:-38px;left:103px;height:25px;padding:2px;">
-      <i id="bio_edit_icon" class="fa fa-pencil action_items" aria-hidden="true"></i>
-      <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
-      <i id="inbox" style="margin-left:40px"class="fa fa-envelope action_items" aria-hidden="true"></i>
-      <i id="settings" class="fa fa-cog action_items" aria-hidden="true"></i>
+    <div id="bio-action-container" class="flex-container">
+      <i id="bio-edit-icon" class="fa fa-pencil action-item" aria-hidden="true"></i>
+      <i id="direct-message" class="fa fa-paper-plane action-item" aria-hidden="true"></i>
+      <i id="inbox" class="fa fa-envelope action-tem" aria-hidden="true"></i>
+      <i id="settings" class="fa fa-cog action-item" aria-hidden="true"></i>
     </div>
     
     <!--
@@ -1340,8 +1282,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     --> 
     
     
-    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;top:-24px;font-size:12px;font-weight:bold">
-      <span id="profile_followers" onclick="getFollowers()"><a style="cursor:pointer;">
+    <div id="profile-stats">
+      <span id="profile-followers" onclick="getFollowers()"><a style="cursor:pointer;">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
@@ -1352,14 +1294,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           }
         ?>
         </a></span>
-      <span id="profile_following" style="margin-left:13px;" onclick="getFollowing()"><a style="cursor:pointer">
+      <span id="profile-following" onclick="getFollowing()"><a style="cursor:pointer">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
           echo $following . " following";
         ?>
         </a></span>
-      <span id="profile_posts" style="margin-left:13px;">
+      <span id="profile-posts">
       <?php
       
         $id = $_SESSION['user_id'];
@@ -1379,7 +1321,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       </span>
     </div>
     
-    <div id="bio_text" style="position:relative;top:-13px;">
+    <div id="bio-text">
       <!-- Display bio from db -->
       <?php
         $user_id = $_SESSION['user_id'];
@@ -1392,17 +1334,19 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
   </div>
   
-  <div id="status_container">
-    <span id="status_update">
+  <div id="status-container">
+    <span id="status-update">
       <?php
         $user_id = $_SESSION['user_id'];
         $lastUpdate = new Status();
         echo htmlentities($lastUpdate->getText($user_id));
       ?>
     </span>
+  </div>
+  <div>
     <br>
-    <div id="status_date">
-      <span id="status_time">
+    <div id="status-date">
+      <span id="status-time">
         <?php
           $user_id = $_SESSION['user_id'];
           $timestamp = new Status();
@@ -1413,92 +1357,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
   </div>
 
-<!-- start mobile display -->
   
-  <div id="m-profile-bio-container">
-    
-    <div id="m-bio-avi">
-      <img id="m-avatar" src="" width="80" height="80"></img>
-    </div>
-    
-    <!-- username character count cannot be greater than 24 -->
-    <div id="m-bio-username">
-      <?php 
-        $user_id = $_SESSION['user_id'];
-        $userName = new User();
-        echo "<b>" . $userName->getUsername($user_id) . "</b>"; // must be output this way or else error 
-      ?>
-    </div>
-    
-    <div id="m-bio-tagline-container">
-       "Alpha Testing"
-    </div>
-    
-    <div id="m_bio-action-container" class="flex-container">
-      <div><i id="m-bio-edit-icon" class="fa fa-pencil fa-lg m-action-item" aria-hidden="true"></i></div>
-      <div><i id="m-direct-message" class="fa fa-paper-plane fa-lg m-action-item" aria-hidden="true"></i></div>
-      <div><i id="m-inbox" class="fa fa-envelope fa-lg m-action-item" aria-hidden="true"></i></div>
-      <div><i id="m-settings" class="fa fa-cog fa-lg m-action-item" aria-hidden="true"></i></div>
-    </div>
-    
-    <!--
-    <div id="m_follow_button_container" style="position:relative;top:-126px;left:112px;padding:0px;">
-      <a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Follow</a>
-    </div>
-    -->
-    
-    <div id="m-profile-stats" class="w3-center">
-      <span id="m-profile-followers">
-        <?php
-          $follow = new Follow();
-          $followers = $follow->getFollowerCount($_SESSION['user_id']);
-          if ($followers == 1) {
-            echo '<a style="cursor:pointer" onclick="getFollowers()">' . $followers . ' follower</a>';
-          } else {
-            echo '<a style="cursor:pointer" onclick="getFollowers()">' . $followers . ' followers</a>';
-          }
-        ?>
-      </span>
-      <span id="m-profile-following">
-        <?php
-          $follow = new Follow();
-          $following = $follow->getFollowingCount($_SESSION['user_id']);
-          echo '<a style="cursor:pointer" onclick="getFollowing()">' . $following . ' following</a>';
-        ?>
-      </span>
-      <span id="m-profile-posts">
-      <?php
-      
-        $id = $_SESSION['user_id'];
-        $post = new Post();
-        $post->setUserId($id);
-        $postCount = $post->getPostDisplayCount();
-        
-        if ($postCount == 1) {
-          echo "$postCount post";
-        } else if ($postCount > 1) {
-          echo "$postCount posts";
-        } else {
-          echo "0 posts";
-        }   
-      
-      ?>
-      </span>
-    </div>
-    
-    <div id="m-bio-text">
-     <?php 
-       $user_id = $_SESSION['user_id'];
-       $bio = new User();
-       $bio->setUserId($user_id);
-       echo $bio->getBio();
-     ?>
-    </div>
-    
-  </div>
-  
-  <div id="form_container"> 
-    <form id="status_form" method="post">
+  <div id="form-container"> 
+    <form id="status-form" method="post">
       <div class="form-group">
         <label for="status">Update status</label>
         <textarea id="status" name="status" class="form-control" rows="3"></textarea>
@@ -1515,27 +1376,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   <div id="button_submit_container">
     <button id="submit" class="btn btn-primary">Update</button>
   </div>
-
-  <div id="m-status-container">
-    <span id="m-status-update">
-      <?php
-        $user_id = $_SESSION['user_id'];
-        $lastUpdate = new Status();
-        echo $lastUpdate->getText($user_id);
-      ?>
-    </span>
-  </div>
-  <div id="m-status-date">
-    <span id="m-status-time">
-      <?php
-        $user_id = $_SESSION['user_id'];
-        $timestamp = new Status();
-        echo $timestamp->getTimestamp($user_id);
-      ?>
-  </div>
-  
-  <i id="m-flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt" aria-hidden="true"></i>
-  
+    
   <div id="up_shortcut" style="z-index:999999">
     <a href="#m_profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
       <span class="glyphicon glyphicon-circle-arrow-up"></span>
