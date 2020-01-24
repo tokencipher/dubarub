@@ -907,13 +907,16 @@
   }
   #direct-message {
     position:relative;
-    left:18px;
+    left:10px;
     color:#339966;
   }
-  #inbox { margin-left:40px; }
+  #inbox { 
+    position:relative; 
+    left:20px;
+  }
   #settings { 
     position:relative;
-    left:22px;
+    left:40px;
     color:#cc6600;
   }
   #profile-stats {
@@ -1046,11 +1049,10 @@
   }
   #cover-art-container { 
     position:fixed;
-    right:10px!important;
+    right:40px!important;
     height:290px;
     top:215px;
     width:335px;
-    display:none;
   }
   #my-audio {
     position: fixed;
