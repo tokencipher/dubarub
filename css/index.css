@@ -1014,12 +1014,43 @@
     margin-bottom: 8px;
     color: red!important;
   }
+  .jp-gui {
+	position: fixed;
+	left: 800px!important;
+	bottom: 55px!important;
+	width: 30%;
+	opacity: 0.6;
+	background: #f34927;
+	background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f34927), color-stop(100%,#dd3311));
+	background: -webkit-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -o-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -ms-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: linear-gradient(to bottom,  #f34927 0%,#dd3311 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f34927', endColorstr='#dd3311',GradientType=0 );
+	-webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);    
+	box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);
+	border-radius: 3px;
+	overflow: hidden;
+	margin-top: 10px;
+  }
+  .jp-title {
+	position: fixed;
+	text-align: center;
+	font-size: 12px;
+	margin-left: 30px;
+	left: 930px;
+	bottom: 100px;
+	width:18%;
+	color: #999;
+  }
   #cover-art-container { 
     position:fixed;
-    right:35px;
+    right:10px!important;
     height:290px;
     top:215px;
     width:335px;
+    display:none;
   }
   #my-audio {
     position: fixed;
