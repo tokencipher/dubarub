@@ -125,7 +125,6 @@
       if (this.readyState == 4 && this.status == 200) {
         var avatar = JSON.parse(this.responseText);
         $('#avatar').attr("src", avatar[0].avatar);
-        $('#m_avatar').attr("src", avatar[0].avatar);
       }
     };
     avatarRequest.open("GET", "get_index_avatar.php", true);
@@ -653,40 +652,21 @@
 	  var action = "Follow";
 	  var renderedUserId = "<?php echo $_SESSION['id']; ?>";
 	  var renderedUserName = "<?php echo $_SESSION['user']; ?>";
+	    
+	  $(elem).text("Unfollow");
+	  $(elem).parent().attr("id", "unfollow_button_container");
+	  $(elem).attr("onclick", "unfollow(this)");
 	  
+	  var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
+	  currentFollowerCount = thousands_separator(currentFollowerCount);
+	  currentFollowerCount = (Number(currentFollowerCount) + 1).toString();
 	  
-	  if ($(elem).data("container-type") == "mobile") {
-	    $(elem).text("Unfollow");
-	    $(elem).parent().attr("id", "m_unfollow_button_container");
-	    $(elem).attr("onclick", "unfollow(this)");
-	    
-	    var mCurrentFollowerCount = $("#m_profile_followers").text().match(/\d/g).join('');
-	    mCurrentFollowerCount = thousands_separator(mCurrentFollowerCount);
-	    mCurrentFollowerCount = (Number(mCurrentFollowerCount) + 1).toString();
-	    
-	    if (mCurrentFollowerCount == 1) {
-	      $("#m_profile_followers").text(mCurrentFollowerCount + " follower");
-	    } else {
-	      $("#m_profile_followers").text(mCurrentFollowerCount + " followers");
-	    }
-	    
-	    
-	  } else {	  
-	    $(elem).text("Unfollow");
-	    $(elem).parent().attr("id", "unfollow_button_container");
-	    $(elem).attr("onclick", "unfollow(this)");
-	    
-	    var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
-	    currentFollowerCount = thousands_separator(currentFollowerCount);
-	    currentFollowerCount = (Number(currentFollowerCount) + 1).toString();
-	    
-	    if (currentFollowerCount == 1) {
-	      $("#profile_followers").text(currentFollowerCount + " follower");
-	    } else {
-	      $("#profile_followers").text(currentFollowerCount + " followers");
-	    }
-	    
+	  if (currentFollowerCount == 1) {
+		$("#profile_followers").text(currentFollowerCount + " follower");
+	  } else {
+		$("#profile_followers").text(currentFollowerCount + " followers");
 	  }
+	    
 		
 	  $.ajax({
         async: true,
@@ -724,36 +704,21 @@
 	  var renderedUserId = "<?php echo $_SESSION['id']; ?>";
 	  var renderedUserName = "<?php echo $_SESSION['user']; ?>";
 	  
-	  if ($(elem).data("container-type") == "mobile") {
-	    $(elem).text("Follow");
-	    $(elem).parent().attr("id", "m_follow_button_container");
-	    $(elem).attr("onclick", "follow(this)");
-	    
-	    var mCurrentFollowerCount = $("#m_profile_followers").text().match(/\d/g).join('');
-	    mCurrentFollowerCount = thousands_separator(mCurrentFollowerCount);
-	    mCurrentFollowerCount = (Number(mCurrentFollowerCount) + 1).toString();
-	    
-	    if (mCurrentFollowerCount == 1) {
-	      $("#m_profile_followers").text(mCurrentFollowerCount + " follower");
-	    } else {
-	      $("#m_profile_followers").text(mCurrentFollowerCount + " followers");
-	    }
-	    
+	  $(elem).text("Follow");
+	  $(elem).attr("onclick", "follow(this)");
+	  
+	  $(elem).text("Follow");
+	  $(elem).parent().attr("id", "follow_button_container");
+	  $(elem).attr("onclick", "follow(this)");
+	  
+	  var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
+	  currentFollowerCount = thousands_separator(currentFollowerCount);
+	  currentFollowerCount = (Number(currentFollowerCount) - 1).toString();
+	  
+	  if (currentFollowerCount == 1) {
+		$("#profile_followers").text(currentFollowerCount + " follower");
 	  } else {
-	    $(elem).text("Follow");
-	    $(elem).parent().attr("id", "follow_button_container");
-	    $(elem).attr("onclick", "follow(this)");
-	    
-	    var currentFollowerCount = $("#profile_followers").text().match(/\d/g).join('');
-	    currentFollowerCount = thousands_separator(currentFollowerCount);
-	    currentFollowerCount = (Number(currentFollowerCount) - 1).toString();
-	    
-	    if (currentFollowerCount == 1) {
-	      $("#profile_followers").text(currentFollowerCount + " follower");
-	    } else {
-	      $("#profile_followers").text(currentFollowerCount + " followers");
-	    }
-	    
+		$("#profile_followers").text(currentFollowerCount + " followers");
 	  }
       
       
@@ -869,8 +834,6 @@
       var data = JSON.parse(event.data);
       //var accum = data.status_id - document.getElementById("status_history_container").childNodes.length;
       //$('#status_history_container').empty();
-      $('#m_status_container').text(data.status_text);
-      $('#m_status_date').text(data.created_at);
       $('#status_update').text(data.status_text);
       $('#status_time').text(data.created_at);
       var status = $( '<div id="status' + data.status_id + '"' + 
@@ -907,29 +870,6 @@
       document.getElementById('message_modal').style.display = 'block';
     }); 
     
-    $('#m_direct_message').click(function() {
-      document.getElementById('message_modal').style.display = 'block';
-    });
-    
-    $('#m_flashback').click(function() {
-    
-      $('#close_flashback').css({
-        position: "fixed",
-        top: "385px",
-        right: "5px"
-      });
-      
-      document.getElementById('close_flashback').style.display='block'; 
-      
-      $('#close_flashback').click(function() {
-      
-        $('#flashback-dialog').css('display', 'none');
-        $('#close_flashback').css('display', 'none');  
-      
-      });
-      
-    });  
-    
     // If current logged in user has the same user id as user id of profile being 
     // currently viewed then hide follow/unfollow button 
     if (logged_in_user) {
@@ -938,36 +878,23 @@
       var user_id = "<?php echo (isset($_SESSION['user_id'])) ? $_SESSION['user_id'] : 0; ?>";
       if (user_id == id) {
         /*
-        $('#follow_button_container').css('display', 'none');
-        $('#m_follow_button_container').css('display', 'none');  
+        $('#follow_button_container').css('display', 'none');  
         */
         $('#direct_message').css('display', 'none');
-        /*$('#profile_stats').css('top', '-18px');*/
-        $('#m_bio_text').css('top', '-26px');
-        $('#m_profile_stats').css('top', '-36px');
-        /*$('#bio_text').css('top', '8px');*/
       }
       
       if (following == true) {   
         $('#unfollow_button_container').css('display', 'block');
-        $('#m_unfollow_button_container').css('display', 'block');
       } else {
         if (user_id == id) {
           return;
         } else {
           $('#follow_button_container').css('display', 'block');
-          $('#m_follow_button_container').css('display', 'block');
         }
       }
     } else {
       console.log("user not logged. show follow button still...");
       $('#follow_button_container').css('display', 'block');
-      $('#m_follow_button_container').css('display', 'block');
-      /*
-      $('#profile_stats').css('top', '-24px');
-      $('#m_bio_text').css('top', '-26px');
-      $('#m_profile_stats').css('top', '-48px');
-      */
     }
 
   
@@ -1212,7 +1139,7 @@
   <!-- start mobile display -->
   
   <div id="up_shortcut" style="z-index:999999">
-    <a href="#m_profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
+    <a href="#profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
       <span class="glyphicon glyphicon-circle-arrow-up"></span>
     </a>
   </div>
