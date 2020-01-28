@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 12/20/19 -->
+<!-- Last modified: 01/29/20 -->
 <?php 
   session_start();
   
@@ -14,7 +14,7 @@
   
 ?>
 
-<?php include_once ('php_inc/inc_header.php'); ?>
+<?php include_once ('php_inc/inc_visitor_header.php'); ?>
 
 
 <?php 
@@ -22,247 +22,7 @@
   error_reporting( E_ALL );
 ?>
 
-
-
   <title>dubarub | <?php echo $user; ?></title>  
-  <style>
-    .music-tab {
-      display:none;
-    }
-    .jp-gui {
-	  position: fixed;
-      left: 885px!important;
-      bottom: 75px!important;
-      width: 30%;
-	  opacity: 0.6;
-	  background: #f34927;
-	  background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
-	  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f34927), color-stop(100%,#dd3311));
-	  background: -webkit-linear-gradient(top,  #f34927 0%,#dd3311 100%);
-	  background: -o-linear-gradient(top,  #f34927 0%,#dd3311 100%);
-	  background: -ms-linear-gradient(top,  #f34927 0%,#dd3311 100%);
-	  background: linear-gradient(to bottom,  #f34927 0%,#dd3311 100%);
-	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f34927', endColorstr='#dd3311',GradientType=0 );
-	  -webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);    
-      box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);
-      border-radius: 3px;
-	  overflow: hidden;
-	  margin-top: 10px;
-    }
-    .jp-title {
-      position: fixed;
-      text-align: center;
-      font-size: 12px;
-      margin-left: 55px;
-      left: 930px;
-      bottom: 125px;
-      width:18%;
-      text-align:center;
-      color: #999;
-    }
-    .title {
-      padding: 3px;
-      text-align:center;
-      /*font-family: 'Cormorant Garamond', serif;*/
-      font-family: 'Oxygen', sans-serif;
-    }
-    #cover_art_container {
-      position:fixed;
-      border-style:solid;
-      right:10px;
-      height:290px;
-      top:215px;
-      width:335px;
-    }
-    #profile_bio_container {
-      position:fixed;
-      border-style:solid;
-      left:10px;
-      height:300px;
-      top:101px;
-      max-width:335px;
-    }
-    #m_profile_bio_container {
-      position:relative;
-      padding:10px;
-      margin:auto;
-      border-style:solid;
-      width:95%;
-      height:300px;
-    }
-    #m_status_container {
-      position:relative;
-      top:19px;
-      margin:auto;
-      left:1px;
-      overflow:scroll;
-      border-style:dashed;
-      padding:5px;
-      width:330px;
-      max-width:330px;
-      height:60px;
-      background-color:white;
-    }
-    #status_container {
-      position:fixed;
-      overflow:scroll;
-      border-style:dashed;
-      padding:5px;
-      width:330px;
-      max-width:330px;
-      height:115px;
-      left:13px;
-      top: 428px;
-      background-color:white;
-    } 
-    #status_date {
-      position:fixed;
-      left:162px;
-      top:545px;
-      text-align:right;   
-    }
-    #m_status_date {
-      position:relative;
-      top:24px;
-      left:185px;
-    }
-    .m_action_items {
-      position:relative;
-      float:left;
-      cursor:pointer;
-      top:10px;
-      padding:3px;
-    }
-    #m_direct_message {
-      position:relative;
-      left:21px;
-      color:#339966;
-    }
-    .action_items {
-      position:relative;
-      cursor:pointer;
-      top:-4px;
-      padding:3px;
-    }
-    #direct_message {
-      position:relative;
-      left:18px;
-      color:#339966;
-    }
-    #up_shortcut {
-      position:fixed;
-      top:385px;
-      right:5px;
-    }
-    #m_flashback {
-      position:relative;
-      float:left;
-      cursor:pointer;
-      top:4px;
-      padding:4px;
-      left:158px!important;
-      color:gold;
-   }
-    #flashback {
-      position:relative;
-      float:left;
-      cursor:pointer;
-      padding:4px;
-      left:-37px!important;
-      color:gold;
-    }
-    #close_flashback {
-      display:none;
-    }
-    #my-audio {
-      position: fixed;
-      margin: auto!important;
-      top: 442px!important;
-      width: 100%;
-    }
-    #noPosts {
-      position:relative;
-      top:12px;
-    }
-    a.one:link {
-      text-decoration: underline;
-    }
-    a.one:visited {
-    
-    }
-    a.one:hover {
-      color: blue;
-    }
-    .post_comments {
-      display: none;
-    }
-    .comment_box {
-      display: none;
-    }
-    /* unvisited link */
-    #comment_owner_link:link {
-      color: blue;
-      text-decoration:underline;
-    }
-    /* visited link */
-    #comment_owner_link:visited {
-      color: purple;
-    }
-    /* mouse over link */
-    #comment_owner_link:hover { /* must come after unvisited and visited */
-      color: blue;
-    }
-    /* selected link */
-    #comment_owner_link:active {
-      color: green;
-    }
-    .flex-container {
-      display: flex;
-      flex-direction: row;
-      height: 20px;
-    }
-    .flex-container > div {
-      margin-right: 10px;
-    }
-    #follow_button_container {
-      position: relative;
-      top: -110px;
-      left: 110px;
-      padding: 0px;
-      display: none;
-    }
-    #unfollow_button_container {
-      position: relative;
-      top: -110px;
-      left: 110px;
-      padding: 0px;
-      display: none;
-    }
-    #m_follow_button_container {
-     position:relative;
-     top:-108px;
-     left:110px;
-     padding:0px;
-     display:none;
-    }
-    #m_unfollow_button_container {
-      position:relative;
-      top:-108px;
-      left:110px;
-      padding:0px;
-      display:none;
-    }
-    #m_profile_stats {
-      position:relative;
-      width:328px;
-      left:1px;
-      top:-70px;
-    }
-    #m_bio_text {
-      position:relative;
-      top:-54px;
-    }
-  </style>
   <?php require_once ('php_class/class_Status.php'); ?>
   <?php require_once ('php_class/class_Playlist.php'); ?>
   <?php require_once ('php_inc/inc_nav.php'); ?>
@@ -1182,10 +942,10 @@
         $('#m_follow_button_container').css('display', 'none');  
         */
         $('#direct_message').css('display', 'none');
-        $('#profile_stats').css('top', '-24px');
+        /*$('#profile_stats').css('top', '-18px');*/
         $('#m_bio_text').css('top', '-26px');
         $('#m_profile_stats').css('top', '-36px');
-        $('#bio_text').css('top', '-13px');
+        /*$('#bio_text').css('top', '8px');*/
       }
       
       if (following == true) {   
@@ -1203,10 +963,11 @@
       console.log("user not logged. show follow button still...");
       $('#follow_button_container').css('display', 'block');
       $('#m_follow_button_container').css('display', 'block');
+      /*
       $('#profile_stats').css('top', '-24px');
       $('#m_bio_text').css('top', '-26px');
-      $('#m_profile_stats').css('top', '-36px');
-      $('#bio_text').css('top', '-13px');
+      $('#m_profile_stats').css('top', '-48px');
+      */
     }
 
   
@@ -1326,10 +1087,10 @@
 	</div>
   </div>
   
-  <div id="profile_bio_container" style="padding:10px;">
+  <div id="profile_bio_container">
     
-    <div id="bio_avi" style="position:relative;padding:8px;width:100px;height:100px;">
-      <img id="avatar" style="position:relative;" src="
+    <div id="bio_avi">
+      <img id="avatar" src="
        <?php 
         $id = $_SESSION['id'];
         $user = new User();
@@ -1338,7 +1099,7 @@
       ?>" width="90" height="90"></img>
     </div>
     
-    <div id="bio_username" style="position:relative;top:-95px;left:110px;font-size:12px;">
+    <div id="bio_username">
       <?php 
         $id = $_SESSION['id'];
         $userName = new User();
@@ -1347,10 +1108,10 @@
     </div>
     
     <!-- Hide display -->
-    <div id="bio_tagline_container" style="position:relative;top:-75px;left:145px;display:none;">
+    <div id="bio_tagline_container">
     </div>
     
-    <div id="bio_action_container" style="position:relative;top:-47px;left:108px;width:113px;height:25px;padding:2px;">
+    <div id="bio_action_container">
       <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
     </div>
     
@@ -1362,7 +1123,7 @@
       <a onclick="unfollow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Unfollow</a>
     </div>
     
-    <div id="profile_stats" style="position:relative;width:328px;left:1px;margin-left:2px;font-weight:bold;font-size:12px;top:-70px;">
+    <div id="profile_stats">
       <span id="profile_followers"><a style="cursor:pointer" onclick="viewFollowers()">
         <?php
           $follow = new Follow();
@@ -1374,14 +1135,14 @@
           }
         ?>
       </a></span>
-      <span id="profile_following" style="margin-left:13px;"><a style="cursor:pointer" onclick="viewFollowing()">
+      <span id="profile_following"><a style="cursor:pointer" onclick="viewFollowing()">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['id']);
           echo $following . " following";
         ?>
       </a></span>
-      <span id="profile_posts" style="margin-left:13px;">
+      <span id="profile_posts">
       <?php
       
         $id = $_SESSION['id'];
@@ -1401,7 +1162,7 @@
       </span>
     </div>
     
-    <div id="bio_text" style="position:relative;top:-54px;">
+    <div id="bio_text">
        <?php
          
          $id = $_SESSION['id'];
@@ -1432,8 +1193,9 @@
       
     </span>
     <br>
-    <div id="status_date">
-      <span id="status_time">
+  </div>
+  <div id="status_date">
+    <span id="status_time">
         <?php
           
           $id = $_SESSION['id'];
@@ -1441,132 +1203,13 @@
           echo $timestamp->getTimestamp($id);
           
         ?>
-      </span>
-      <i id="flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt fa-lg" aria-hidden="true"></i> 
-    </div>
+    </span>
   </div>
-  
-  <div id="test_container" style="position:relative;"></div>
+  <span id="flashback">
+    <i onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt fa-lg" aria-hidden="true"></i> 
+  </span>
   
   <!-- start mobile display -->
-  
-  <div id="m_profile_bio_container">
-    <div id="m_bio_avi" style="position:relative;padding:8px;width:100px;height:100px;">
-      <img id="m_avatar" style="position:relative;" src="
-      <?php 
-        $id = $_SESSION['id'];
-        $user = new User();
-        $user->setUserId($id);
-        echo $user->getAvatar();
-      ?>" width="90" height="90"></img>
-    </div>
-    
-    <div id="m_bio_username" style="position:relative;top:-95px;left:110px;font-size:12px;">
-      <?php 
-        $id = $_SESSION['id'];
-        $userName = new User();
-        echo "<b>" . $userName->getUsername($id) . "</b>"; // must be output this way or else error    
-      ?>
-    </div>
-    
-    <!-- Hide display -->
-    <div id="m_bio_tagline_container" style="position:relative;top:-75px;left:145px;display:none;">
-    </div>
-    
-    <div id="m_bio_action_container" style="position:relative;top:-47px;left:110px;width:100px;">  
-      <i id="m_direct_message" class="fa fa-paper-plane m_action_item" aria-hidden="true"></i>
-    </div>
-    
-    <div id="m_follow_button_container">
-      <a onclick="follow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" data-container-type="mobile">Follow</a>
-    </div>
-    
-    <div id="m_unfollow_button_container">
-      <a onclick="unfollow(this)" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" data-container-type="mobile">Unfollow</a>
-    </div>
-    
-    <div id="m_profile_stats" class="w3-center" style="font-size:12px;font-weight:bold">
-      <span id="m_profile_followers"><a onclick="viewFollowers()" style="cursor:pointer">
-        <?php
-          $follow = new Follow();
-          $followers = $follow->getFollowerCount($_SESSION['id']);
-          if ($followers == 1) {
-            echo $followers . " follower";
-          } else {
-            echo $followers . " followers";
-          }
-        ?>
-        </a></span>
-      <span id="m_profile_following" style="margin-left:13px;"><a onclick="viewFollowing()" style="cursor:pointer">
-        <?php
-          $follow = new Follow();
-          $following = $follow->getFollowingCount($_SESSION['id']);
-          echo $following . " following"; 
-        ?>
-        </a></span>
-      <span id="m_profile_posts" style="margin-left:13px;">
-      <?php
-      
-        $id = $_SESSION['id'];
-        $post = new Post();
-        $post->setUserId($id);
-        $postCount = $post->getPostDisplayCount();
-        
-        if ($postCount == 1) {
-          echo "$postCount post";
-        } else if ($postCount > 1) {
-          echo "$postCount posts";
-        } else {
-          echo "0 posts";
-        }   
-      
-      ?>
-      </span>
-    </div>
-    
-    <div id="m_bio_text">
-      <?php 
-    
-      $id = $_SESSION['id'];
-      $bio = new User();
-      $bio->setUserId($id);
-      echo $bio->getBio();
-      
-      ?>
-    </div>
-    
-  </div>
-  
-  <div id="m_status_container">
-    <span id="m_status_update">
-      <?php
-      
-        $id = $_SESSION['id'];
-        $status = new Status();
-        $lastUpdate = $status->getText($id);
-        
-        if (empty($lastUpdate)) {
-          echo '{' . $_SESSION['user'] . ' hasn\'t made a status update yet. [womp, womp, wommppp]}';
-        } else {
-          echo htmlentities($lastUpdate);
-        }
-        
-      ?>
-    </span>
-  </div>
-  <div id="m_status_date">
-    <span id="m_status_time">
-      <?php
-      
-        $id = $_SESSION['id'];
-        $timestamp = new Status();
-        echo $timestamp->getTimestamp($id);
-        
-      ?>
-    </span>
-  </div>
-
-  <i id="m_flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt" aria-hidden="true"></i>
   
   <div id="up_shortcut" style="z-index:999999">
     <a href="#m_profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
