@@ -1,6 +1,10 @@
+/*
+ * Add media query for screen 1920 x 1080 resolution/dimension
+ *
+*/
 /* Extra small devices (phones, 320px and up) */
 @media only screen and (min-width: 320px) {
-  #profile-bio-container {
+  #profile_bio_container {
     position:relative;
     padding:10px;
     margin:auto;
@@ -8,7 +12,7 @@
     width:95%;
     height:300px;
   }
-  #bio-avi {
+  #bio_avi {
     position:relative;
     padding:8px;
     width:100px;
@@ -17,7 +21,7 @@
   #avatar {
     position:relative;
   }
-  #bio-username {
+  #bio_username {
     position:relative;
     top:-96px;
     left:108px;
@@ -25,53 +29,283 @@
     font-size:12px;
     overflow:auto;
   }
-  #bio-tagline-container {
+  #bio_tagline_container {
     position:relative;
     display:none;
     top:-75px;
     left:145px;
   }
-  #bio-action-container {
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    height:20px;
+  }
+  .flex-container > div {
+    margin-right:10px;
+  }
+  #bio_action_container {
     position:relative;
     top:-44px;
     left:106px;
     font-size:18px;
   }
-  .action-item {
+  .action_items {
     position:relative;
     float:left;
     cursor:pointer;
     top:8px;
     padding:3px;
   }
-  #bio-edit-icon {
+  #bio_edit_icon {
     position:relative;
-    top:-3px;
+    top:-8px;
+    left:10px;
+    color:#ffcc66;
+    font-size:26px;
+  }
+  #direct_message {
+    position:relative;
+    top:-8px;
+    left:14px;
+    color:#339966;
+    margin-left:7px;
+    font-size:26px;
+  }
+  #inbox {
+    position:relative;
+    top:-8px;
+    left:24px;
+    margin-left:10px;
+    font-size:26px;
+    color:grey;
+  }
+  #settings {
+    position:relative;
+    top:-10px;
+    left:40px;
+    color:#cc6600;
+    font-size:30px;
+  }
+  #profile_stats {
+    position:relative;
+    margin:auto;
+    width:270px;
+    top:-24px;
+    left: 1px;
+    font-size:12px;
+    font-weight:bold;
+    text-align:center;
+  }
+  #profile_following {
+    margin-left:13px;
+  }
+  #profile_posts {
+    margin-left:13px;
+  }
+  #bio_text {
+    position:relative;
+    top:-13px;
+    height:110px;
+    overflow:scroll;
+    background-color:gold;
+  }
+  div.section {
+    position: relative;
+    margin: auto;
+    width: 95%;
+  }
+  #unauth_container {
+    position:relative;
+    top:30px;
+    border-style:dashed;
+    margin:auto;
+    width:100px;
+    background:green;
+  }
+  #unauth_message {
+    position:relative;
+    font-size:14px;
+    color:red;
+  }
+  #form_container {
+	position:relative;
+	padding:5px;
+	width:305px;
+	margin:auto;
+	max-width:305px;
+	height:115px;
+	top:10px;
+  }
+  #button_submit_container {
+    position:relative;
+    top:-2px;
+    left:14px;
+  }
+  #button_clear_container {
+    position:relative;
+    top:13px; 
+    height:15px;   
+    left:119px;
+  }
+  #status_container {
+    position:relative;
+    top:12px;
+    margin:auto;
+    left:1px;
+    overflow:scroll;
+    border-style:dashed;
+    padding:5px;
+    width:305px;
+    max-width:305px;
+    height:60px;
+    background-color:white;
+  }
+  #status_date {
+    position:relative;
+    top:12px;
+    left:146px;
+  }
+  #flashback {
+    position:relative;
+    float:left;
+    cursor:pointer;
+    top:-13px;
+    padding:4px;
+    left:90px;
+    font-size:16px;
+    color:gold;
+  }
+  #clear {
+    display:none!important;
+  }
+  #private_login {
+    position:relative;
+    margin-bottom:8px;
+    color:red!important;
+  }
+  #cover_art_container {
+    display: none;
+  }
+  #album_art_container {
+    display:none;
+  }
+  #my-audio {
+    position: fixed;
+    bottom: 5px;
+    margin: auto;
+    width: 100%;
+  }
+  body { 
+    padding-top: 70px; 
+  } 
+  #menuButton {
+    margin-top: 5px;
+  }
+  #logoTitle {
+    position: relative;
+    top: 9x;
+    color: black!important;
+  }   
+  #noPosts {
+    position:relative;
+    top: 10px;
+  }
+  #dub {
+    position: relative;
+    top: 7px!important;
+  }
+  li a { color: green;}
+  p.entry {
+    text-align: justify;
+  } 
+  #footer {
+    position: relative;
+  }
+  .jp-gui, .jp-title {
+    display: none!important;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  #profile_bio_container {
+    position:relative;
+    padding:10px;
+    margin:auto;
+    border-style:solid;
+    width:95%;
+    height:300px;
+  }
+  #bio_avi {
+    position:relative;
+    padding:8px;
+    width:100px;
+    height:100px;
+  }
+  #avatar {
+    position:relative;
+  }
+  #bio_username {
+    position:relative;
+    top:-96px;
+    left:108px;
+    width:170px;
+    font-size:12px;
+    overflow:auto;
+  }
+  #bio_tagline_container {
+    position:relative;
+    display:none;
+    top:-75px;
+    left:145px;
+  }
+  #bio_action_container {
+    position:relative;
+    top:-44px;
+    left:106px;
+    font-size:18px;
+  }
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    height:20px;
+  }
+  .flex-container > div {
+    margin-right:10px;
+  }
+  .action_items {
+    position:relative;
+    float:left;
+    cursor:pointer;
+    top:8px;
+    padding:3px;
+  }
+  #bio_edit_icon {
+    position:relative;
+    top:-4px;
     left:10px;
     color:#ffcc66;
   }
-  #direct-message {
+  #direct_message {
     position:relative;
-    top:-3px;
-    left:15px;
+    top:-5px;
+    left:20px;
     color:#339966;
     margin-left:7px;
   }
   #inbox {
     position:relative;
-    top:0px;
-    left:20px;
+    top:-4px;
+    left:38px;
     margin-left:10px;
     color:grey;
   }
   #settings {
     position:relative;
     top:-5px;
-    left:34px;
+    left:68px;
     color:#cc6600;
-    font-size:22px;
   }
-  #profile-stats {
+  #profile_stats {
     position:relative;
     margin:auto;
     width:270px;
@@ -80,13 +314,219 @@
     font-size:12px;
     font-weight:bold;
   }
-  #profile-following {
+  #profile_following {
     margin-left:13px;
   }
-  #profile-posts {
+  #profile_posts {
     margin-left:13px;
   }
-  #bio-text {
+  #bio_text {
+    position:relative;
+    top:-13px;
+    height:110px;
+    overflow:scroll;
+    background-color:gold;
+  }
+  div.section {
+    position: relative;
+    margin: auto;
+    width: 95%;
+  }
+  #unauth_container {
+    position:relative;
+    top:30px;
+    border-style:dashed;
+    margin:auto;
+    width:100px;
+    background:green;
+  }
+  #unauth_message {
+    position:relative;
+    font-size:14px;
+    color:red;
+  }
+  #post_container {
+    position:relative;
+    top:30px;
+  }
+  #flashback {
+	position:relative;
+	float:left;
+	cursor:pointer;
+	top:-4px;
+	padding:4px;
+	left:146px;
+	color:gold;
+  }
+  #status_container {
+	position:relative;
+	top:20px;
+	margin:auto;
+	left:1px;
+	overflow:scroll;
+	border-style:dashed;
+	padding:5px;
+	width:355px;
+	max-width:355px;
+	height:60px;
+	background-color:white;
+  }
+  #status_date {
+    position:relative;
+    top:20px;
+    left:200px;
+  }
+  #form_container {
+	position:relative;
+	padding:5px;
+	width:365px;
+	margin:auto;
+	max-width:365px;
+	height:115px;
+	top:14px;
+  }
+  #button_submit_container {
+    position:relative;
+    top:6px;
+    margin-left:18px;
+  }
+  #button_clear_container {
+    position:relative;
+    top:13px; 
+    height:15px;   
+    left:119px;
+  }
+  #clear {
+    display:none!important;
+  }
+  #private_login {
+    position:relative;
+    margin-bottom:8px;
+    color:red!important;
+  }
+  #cover_art_container {
+    display:none;
+  }
+  #my-audio {
+    position: fixed;
+    bottom: 5px;
+    margin: auto;
+    width: 100%;
+  }
+  #album_art_container {
+    display:none;
+  }
+  body { 
+    padding-top: 70px; 
+  }
+  #menuButton {
+    margin-top: 5px;
+  }
+  #logoTitle {
+    position: relative;
+    top: 9x;
+    color: black!important;
+  }   
+  #noPosts {
+    position:relative;
+    top: 10px;
+  } 
+  #dub {
+    position: relative;
+    top: 7px!important;
+  } 
+  li a { color: green;}
+  p.entry {
+    text-align: justify;
+  } 
+  #footer {
+    position: relative;
+  }
+}
+
+@media only screen and (min-width: 425px) {
+  #profile_bio_container {
+    position:relative;
+    padding:10px;
+    margin:auto;
+    border-style:solid;
+    width:95%;
+    height:300px;
+  }
+  #bio_avi {
+    position:relative;
+    padding:8px;
+    width:100px;
+    height:100px;
+  }
+  #avatar {
+    position:relative;
+  }
+  #bio_username {
+    position:relative;
+    top:-96px;
+    left:110px;
+    width:170px;
+    font-size:12px;
+    overflow:auto;
+  }
+  #bio_tagline_container {
+    position:relative;
+    display:none;
+    top:-75px;
+    left:145px;
+  }
+  #bio_action_container {
+    position:relative;
+    top:-44px;
+    left:106px;
+    font-size:18px;
+  }
+  .action_items {
+    position:relative;
+    float:left;
+    cursor:pointer;
+    top:8px;
+    padding:3px;
+  }
+  #bio_edit_icon {
+    position:relative;
+    top:-2px;
+    left:10px;
+    color:#ffcc66;
+  }
+  #direct_message {
+    position:relative;
+    top:-2px;
+    left:30px;
+    color:#339966;
+    margin-left:7px;
+  }
+  #inbox {
+    position:relative;
+    top:-2px;
+    left:58px;
+    margin-left:10px;
+    color:grey;
+  }
+  #settings {
+    position:relative;
+    top:-2px;
+    left:96px;
+    color:#cc6600;
+  }
+  #profile_stats {
+    position:relative;
+    margin:auto;
+    width:270px;
+    top:-24px;
+    left: 1px;
+    font-size:12px;
+    font-weight:bold;
+  }
+  #profile_following { margin-left:13px; }
+  #profile_posts { margin-left:13px; }
+  #bio_text {
     position:relative;
     top:-13px;
     height:110px;
@@ -119,457 +559,12 @@
     position:relative;
     float:left;
     cursor:pointer;
-    top:3px;
-    padding:4px;
-    left:-14px;
-    font-size:18px;
-    color:gold;
-  }
-  #status-container {
-    position:relative;
-    top:12px;
-    margin:auto;
-    left:1px;
-    overflow:scroll;
-    border-style:dashed;
-    padding:5px;
-    width:300px;
-    max-width:300px;
-    height:60px;
-    background-color:white;
-   }
-   #status-date {
-    position:relative;
-    top:-6px;
-    left:128px;
-   }
-   #form-container {
-     position:relative;
-     padding:5px;
-     width:305px;
-     margin:auto;
-     max-width:305px;
-     height:115px;
-     top:10px;
-   }
-   #button_submit_container {
-     position:relative;
-     top:-2px;
-     left:14px;
-   }
-   #button_clear_container {
-     position:relative;
-     top:13px; 
-     height:15px;   
-     left:119px;
-   }
-   #clear {
-     display:none!important;
-   }
-   #private_login {
-     position:relative;
-     margin-bottom:8px;
-     color:red!important;
-   }
-   #cover-art-container {
-     position:relative;
-     margin-top:45px;
-   }
-   #my-audio {
-     position: fixed;
-     bottom: 5px;
-     margin: auto;
-     width: 100%;
-   }
-   #album_art_container {
-     display:none;
-   }
-   
-   body { 
-     padding-top: 70px; 
-   }
-   
-   #menuButton {
-     margin-top: 5px;
-   }
-
-   #logoTitle {
-     position: relative;
-     top: 9x;
-     color: black!important;
-   }
-     
-   #noPosts {
-     position:relative;
-     top: 10px;
-   }
-   
-   #dub {
-     position: relative;
-     top: 7px!important;
-   }
-   
-   li a { color: green;}
-   
-   p.entry {
-     text-align: justify;
-   }
-   
-   #footer {
-     position: relative;
-   }
-}
-
-@media only screen and (min-width: 375px) {
-  #m-profile-bio-container {
-    position:relative;
-    padding:10px;
-    margin:auto;
-    border-style:solid;
-    width:95%;
-    height:300px;
-  }
-  #m-bio-avi {
-    position:relative;
-    padding:8px;
-    width:100px;
-    height:100px;
-  }
-  #m-avatar {
-    position:relative;
-  }
-  #m-bio-username {
-    position:relative;
-    top:-96px;
-    left:108px;
-    width:170px;
-    font-size:12px;
-    overflow:auto;
-  }
-  #m-bio-tagline-container {
-    position:relative;
-    display:none;
-    top:-75px;
-    left:145px;
-  }
-  #m-bio-action-container {
-    position:relative;
-    top:-44px;
-    left:106px;
-    font-size:18px;
-  }
-  .m-action-item {
-    position:relative;
-    float:left;
-    cursor:pointer;
-    top:8px;
-    padding:3px;
-  }
-  #m-bio-edit-icon {
-    position:relative;
-    top:-46px;
-    left:106px;
-    color:#ffcc66;
-  }
-  #m-direct-message {
-    position:relative;
-    top:-46px;
-    left:106px;
-    color:#339966;
-    margin-left:7px;
-  }
-  #m-inbox {
-    position:relative;
-    top:-46px;
-    left:106px;
-    margin-left:10px;
-    color:grey;
-  }
-  #m-settings {
-    position:relative;
-    top:-46px;
-    left:115px;
-    color:#cc6600;
-  }
-  #m-profile-stats {
-    position:relative;
-    margin:auto;
-    width:270px;
-    top:-24px;
-    left: 1px;
-    font-size:12px;
-    font-weight:bold;
-  }
-  #m-profile-following {
-    margin-left:13px;
-  }
-  #m-profile-posts {
-    margin-left:13px;
-  }
-  #m-bio-text {
-    position:relative;
-    top:-13px;
-    height:110px;
-    overflow:scroll;
-    background-color:gold;
-  }
-  div.section {
-    position: relative;
-    margin: auto;
-    width: 95%;
-  }
-  #unauth_container {
-    position:relative;
-    top:30px;
-    border-style:dashed;
-    margin:auto;
-    width:100px;
-    background:green;
-  }
-  #unauth_message {
-    position:relative;
-    font-size:14px;
-    color:red;
-  }
-  #post_container {
-    position:relative;
-    top:30px;
-  }
-   #flashback {
-     display:none;
-   }
-   #m-flashback {
-     position:relative;
-     float:left;
-     cursor:pointer;
-     top:10px;
-     padding:4px;
-     left:140px;
-     color:gold;
-   }
-   #status_container {
-     display:none;
-   }
-   #m-status-container {
-     position:relative;
-     top:30px;
-     margin:auto;
-     left:1px;
-     overflow:scroll;
-     border-style:dashed;
-     padding:5px;
-     width:355px;
-     max-width:355px;
-     height:60px;
-     background-color:white;
-   }
-   #m-status-date {
-     position:relative;
-     top:32px;
-     left:200px!important;
-   }
-   #form_container {
-     position:relative;
-     padding:5px;
-     width:365px;
-     margin:auto;
-     max-width:365px;
-     height:115px;
-     top:10px;
-   }
-   #button_submit_container {
-     position:relative;
-     top:-2px;
-     left:11px;
-   }
-   #button_clear_container {
-     position:relative;
-     top:13px; 
-     height:15px;   
-     left:119px;
-   }
-   #clear {
-     display:none!important;
-   }
-   #profile_bio_container {
-     display:none;
-   }
-   #private_login {
-     position:relative;
-     margin-bottom:8px;
-     color:red!important;
-   }
-   #cover_art_container {
-     display:none;
-   }
-   #my-audio {
-     position: fixed;
-     bottom: 5px;
-     margin: auto;
-     width: 100%;
-   }
-   #album_art_container {
-     display:none;
-   }
-   
-   body { 
-     padding-top: 70px; 
-   }
-   
-   #menuButton {
-     margin-top: 5px;
-   }
-
-   #logoTitle {
-     position: relative;
-     top: 9x;
-     color: black!important;
-   }
-     
-   #noPosts {
-     position:relative;
-     top: 10px;
-   }
-   
-   #dub {
-     position: relative;
-     top: 7px!important;
-   }
-   
-   li a { color: green;}
-   
-   p.entry {
-     text-align: justify;
-   }
-   
-   #footer {
-     position: relative;
-   }
-}
-
-@media only screen and (min-width: 425px) {
-  #m-profile-bio-container {
-    position:relative;
-    padding:10px;
-    margin:auto;
-    border-style:solid;
-    width:95%;
-    height:300px;
-  }
-  #m-bio-avi {
-    position:relative;
-    padding:8px;
-    width:100px;
-    height:100px;
-  }
-  #m-avatar {
-    position:relative;
-  }
-  #m-bio-username {
-    position:relative;
-    top:-96px;
-    left:108px;
-    width:170px;
-    font-size:12px;
-    overflow:auto;
-  }
-  #m-bio-tagline-container {
-    position:relative;
-    display:none;
-    top:-75px;
-    left:145px;
-  }
-  #m-bio-action-container {
-    position:relative;
-    top:-44px;
-    left:106px;
-    font-size:18px;
-  }
-  .m-action-item {
-    position:relative;
-    float:left;
-    cursor:pointer;
-    top:8px;
-    padding:3px;
-  }
-  #m-bio-edit-icon {
-    position:relative;
-    top:-46px;
-    left:106px;
-    color:#ffcc66;
-  }
-  #m-direct-message {
-    position:relative;
-    top:-46px;
-    left:106px;
-    color:#339966;
-    margin-left:7px;
-  }
-  #m-inbox {
-    position:relative;
-    top:-46px;
-    left:106px;
-    margin-left:10px;
-    color:grey;
-  }
-  #m-settings {
-    position:relative;
-    top:-46px;
-    left:115px;
-    color:#cc6600;
-  }
-  #m-profile-stats {
-    position:relative;
-    margin:auto;
-    width:270px;
-    top:-24px;
-    left: 1px;
-    font-size:12px;
-    font-weight:bold;
-  }
-  #m-profile-following { margin-left:13px; }
-  #m-profile-posts { margin-left:13px; }
-  #m-bio-text {
-    position:relative;
-    top:-13px;
-    height:110px;
-    overflow:scroll;
-    background-color:gold;
-  }
-  div.section {
-    position: relative;
-    margin: auto;
-    width: 95%;
-  }
-  #unauth_container {
-    position:relative;
-    top:30px;
-    border-style:dashed;
-    margin:auto;
-    width:100px;
-    background:green;
-  }
-  #unauth_message {
-    position:relative;
-    font-size:14px;
-    color:red;
-  }
-  #post_container {
-    position:relative;
-    top:30px;
-  }
-  #flashback { display: none; }
-  #m-flashback {
-    position:relative;
-    float:left;
-    cursor:pointer;
-    top:10px;
+    top:6px;
     padding:4px;
     left:160px;
     color:gold;
   }
-  #status_container { display:none; }
-  #m-status-container {
+  #status_container {
     position:relative;
     top:30px;
     margin:auto;
@@ -582,10 +577,10 @@
     height:60px;
     background-color:white;
   }
-  #m-status-date {
+  #status_date {
     position:relative;
     top:32px;
-    left:248px!important;
+    left:234px;
   }
   #form_container {
     position:relative;
@@ -594,11 +589,11 @@
     margin:auto;
     max-width:415px;
     height:115px;
-    top:10px;
+    top:22px;
   }
   #button_submit_container {
     position:relative;
-    top:-2px;
+    top:14px;
     left:11px;
   }
   #button_clear_container {
@@ -608,7 +603,6 @@
     left:119px;
   }
   #clear { display: none!important; }
-  #profile_bio_container { display: none; }
   #private_login {
     position: relative;
     margin-bottom: 8px;
@@ -643,7 +637,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  #m-profile-bio-container {
+  #profile_bio_container {
     position:relative;
     padding:10px;
     margin:auto;
@@ -651,88 +645,87 @@
     width:95%;
     height:300px;
   }
-  #m-bio-avi {
+  #bio_avi {
     position:relative;
     padding:8px;
-    width:160px;
+    width:180px;
     height:120px;
-    background-color:DodgerBlue;
   }
-  .m-avatar {
+  #avatar {
     position:relative;
     width:auto;
   }
-  #m-bio-username {
+  #bio_username {
     position:relative;
-    top:-118px;
-    left:200px;
+    top:-120px;
+    left:112px;
     width:170px;
     font-size:18px;
     overflow:auto;
   }
-  #m-bio-tagline-container {
+  #bio_tagline_container {
     position:relative;
     display:none;
     top:-75px;
     left:145px;
   }
-  #m-bio-action-container {
+  #bio_action_container {
     position:relative;
     top:-44px;
     left:106px;
     font-size:18px;
   }
-  .m-action-item {
+  .action_item {
     position:relative;
     float:left;
     cursor:pointer;
     top:8px;
     padding:3px;
   }
-  #m-bio-edit-icon {
+  #bio_edit_icon {
     position:relative;
-    top:-46px;
-    left:200px;
+    top:-38px;
+    left:10px;
     color:#ffcc66;
-    font-size:30px;
+    font-size:34px;
   }
-  #m-direct-message {
+  #direct_message {
     position:relative;
-    top:-46px;
-    left:210px;
+    top:-36px;
+    left:70px;
     color:#339966;
     margin-left:7px;
     font-size:30px;
   }
-  #m-inbox {
+  #inbox {
     position:relative;
-    top:-46px;
-    left:220px;
+    top:-36px;
+    left:150px;
     margin-left:10px;
     color:grey;
     font-size:30px;
   }
-  #m-settings {
+  #settings {
     position:relative;
-    top:-46px;
-    left:235px;
+    top:-38px;
+    left:234px;
     color:#cc6600;
-    font-size:30px;
+    font-size:34px;
   }
-  #m-profile-stats {
+  #profile_stats {
     position:relative;
     margin:auto;
     width:270px;
-    top:-24px;
+    top:-38px!important;
     left: 1px;
     font-size:12px;
     font-weight:bold;
   }
-  #m-profile-following { margin-left:13px; }
-  #m-profile-posts { margin-left:13px; }
-  #m-bio-text {
+  #profile_following { margin-left:13px; }
+  #profile_posts { margin-left:13px; }
+  #bio_text {
     position:relative;
-    top:-13px;
+    top:-24px;
     height:110px;
     overflow:scroll;
     background-color:gold;
@@ -759,18 +752,16 @@
     position:relative;
     top:30px;
   }
-  #flashback { display: none; }
-  #m-flashback {
+  #flashback {
     position:relative;
     float:left;
     cursor:pointer;
-    top:10px;
+    top:6px;
     padding:4px;
     left:480px;
     color:gold;
   }
-  #status_container { display:none; }
-  #m-status-container {
+  #status_container {
     position:relative;
     top:30px;
     margin:auto;
@@ -783,10 +774,10 @@
     height:60px;
     background-color:white;
   }
-  #m-status-date {
+  #status_date {
     position:relative;
-    top:32px;
-    left:580px!important;
+    top:28px;
+    left:568px;
   }
   #form_container {
     position:relative;
@@ -809,13 +800,16 @@
     left:119px;
   }
   #clear { display: none!important; }
-  #profile_bio_container { display: none; }
   #private_login {
     position: relative;
     margin-bottom: 8px;
     color: red!important;
   }
-  #cover_art_container { display:none; }
+  #cover_art_container { 
+    position: relative; 
+    top: 10px;
+    left: 10px;
+  }
   #my-audio {
     position: fixed;
     bottom: 5px;
@@ -844,25 +838,10 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  #m-profile-bio-container { display: none; }
-  #m-bio-avi { display: none; }
-  .m-avatar { display: none; }
-  #m-bio-username { display:none; }
-  #m-bio-tagline-container { display: none; }
-  #m-bio-action-container { display: none; }
-  .m-action-item { display: none; }
-  #m-bio-edit-icon { display: none; }
-  #m-direct-message { display: none; }
-  #m-inbox { display: none; }
-  #m-settings { display: none; }
-  #m-profile-stats { display: none; }
-  #m-profile-following { margin-left:13px; }
-  #m-profile-posts { margin-left:13px; }
-  #m-bio-text { display: none; }
-  #m-flashback { display: none; }
-  #m-status-container { display: none; }
-  #m-status-date { display: none; }
-  #profile-bio-container {
+  #my-audio {
+    display: none;
+  }
+  #profile_bio_container {
     position:fixed;
     border-style:solid;
     left:10px;
@@ -871,7 +850,7 @@
     max-width:335px;
     padding:10px;
   }
-  #bio-avi {
+  #bio_avi {
     position:relative;
     padding:8px;
     width:100px;
@@ -880,19 +859,19 @@
   avatar {
     position:relative;
   }
-  #bio-username {
+  #bio_username {
     position:relative;
     top:-95px;
     left:110px;
     font-size:12px;
   }
-  #bio-tagline-container {
+  #bio_tagline_container {
     position:relative;
     top:-75px;
     left:145px;
     display:none;
   }
-  #bio-action-container {
+  #bio_action_container {
     position:relative;
     top:-38px;
     left:103px;
@@ -900,12 +879,12 @@
     padding:2px;
     width:210px;
   }
-  #bio-edit-icon {
+  #bio_edit_icon {
     position:relative;
     left:5px;
     color:#ffcc66;
   }
-  #direct-message {
+  #direct_message {
     position:relative;
     left:10px;
     color:#339966;
@@ -919,78 +898,48 @@
     left:40px;
     color:#cc6600;
   }
-  #profile-stats {
+  #profile_stats {
     position:relative;
-    width:328px;
-    left:1px;
+    width:310px;
+    left:0px;
+    text-align:center;
     margin-left:2px;
     top:-24px;
     font-size:12px;
     font-weight:bold;
   }
-  #profile-followers {}
-  #profile-following { margin-left:13px; }
-  #profile-posts { margin-left:13px; }
-  #bio-text {  
-    position:relative;
-    top:-13px;
-  }
-  #status-container {
-    position:fixed;
-    overflow:scroll;
-    border-style:dashed;
-    padding:5px;
-    width:330px;
-    max-width:330px;
-    height:115px;
-    left:13px;
-    top: 383px;
-    background-color:white;
-  }
-  #status-update {}
-  #flashback {
-    position:relative;
-    float:left;
-    cursor:pointer;
-    padding:4px;
-    left:-37px!important;
-    color:gold;
-  }
-  #status-date {
-    position:fixed;
-    left:170px;
-    top:500px;
-    text-align:right; 
-  }
-  #status-time {
-    position:relative;
-    left:-8px;
-  }
-  div.section {
-    position: relative;
-    margin: auto;
-    width: 95%;
-  }
-  #unauth_container {
-    position:relative;
-    top:30px;
-    border-style:dashed;
-    margin:auto;
-    width:100px;
-    background:green;
-  }
-  #unauth_message {
-    position:relative;
-    font-size:14px;
-    color:red;
-  }
   #post_container {
     position:relative;
-    margin:auto;
     top:0px;
-    width:34%;
+    margin:auto;
+    width:32%;
   }
-  #form-container {
+  #status_container {
+	position:fixed;
+	overflow:scroll;
+	border-style:dashed;
+	padding:5px;
+	width:330px;
+	max-width:330px;
+	height:115px;
+	left:13px;
+	top: 383px;
+	background-color:white;
+  }
+  #flashback {
+    position:fixed;
+    cursor:pointer;
+    top:494px;
+    left:120px;
+    color:gold;
+  }
+  #status_date {
+	position:fixed;
+	left:178px;
+	top:500px;
+	text-align:right;   
+  }
+  #form_container {
     position:fixed;
     padding:5px;
     width:340px;
@@ -998,11 +947,11 @@
     max-width:738px;
     height:115px;
     left:10px;
-    top:500px;
+    top:540px;
   }
   #button_submit_container {
     position:fixed;
-    top:615px;
+    top:660px;
     left:14px;
   }
   #button_clear_container {
@@ -1011,17 +960,12 @@
     height:15px;   
     left:119px;
   }
-  #clear { display: none!important; }
-  #private_login {
-    position: relative;
-    margin-bottom: 8px;
-    color: red!important;
-  }
   .jp-gui {
 	position: fixed;
-	left: 800px!important;
-	bottom: 55px!important;
-	width: 30%;
+	display:block!important;
+	left: 620px!important;
+	bottom: -16px!important;
+	width: 400px;
 	opacity: 0.6;
 	background: #f34927;
 	background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
@@ -1039,67 +983,151 @@
   }
   .jp-title {
 	position: fixed;
+	display:block!important;
 	text-align: center;
 	font-size: 12px;
 	margin-left: 30px;
-	left: 930px;
-	bottom: 100px;
+	left: 730px;
+	bottom: 50px;
 	width:18%;
 	color: #999;
   }
-  #cover-art-container { 
-    position:fixed;
-    right:40px!important;
-    height:290px;
-    top:215px;
-    width:335px;
-  }
-  #my-audio {
-    position: fixed;
-    bottom: 5px;
-    margin: auto;
-    width: 100%;
-  }
-  #album_art_container { display: none; } 
-  body { padding-top: 70px; }
-  #menuButton { margin-top: 5px; }
-  #logoTitle {
-    position: relative;
-    top: 9x;
-    color: black!important;
-  }  
-  #noPosts {
-    position:relative;
-    top: 10px;
-  }
-  #dub {
-    position: relative;
-    top: 7px!important;
-  }
-  li a { color: green;}
-  p.entry { text-align: justify; }
-  #footer { position: relative; }
+  .jp-title ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 
 
-/* Galaxy S5 media query */
+.jp-jplayer, .jp-audio {
+    width: 420px;
+    margin: 50px auto;
+}
+
+.jp-controls {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: "FontAwesome";
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+.jp-controls li {
+    display: inline;
+}
+
+.jp-controls a {
+    color: #fff;
+}
+
+.jp-play,.jp-pause {
+    width: 60px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    line-height: 43px;
+    border-right: 1px solid #d22f0f;
+}
+
+.jp-controls .jp-play:hover,.jp-controls .jp-pause:hover {
+    background-color: #de3918;
+}
+
+.jp-mute,.jp-unmute {
+    position: absolute;
+    right: 55px;
+    top: 0;
+    width: 20px;
+    height: 40px;
+    display: inline-block;
+    line-height: 46px;
+}
+
+.jp-mute {
+    text-align: left;
+}
+
+.jp-volume-bar {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    width: 45px;
+    height: 8px;
+    border-radius: 20px 20px 20px 20px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1) inset;
+    background-color: #992E18;
+    overflow: hidden;
+}
+
+.jp-volume-bar-value {
+    background-color: #fff;
+    height: 8px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.jp-progress {
+    background-color: #992E18;
+    border-radius: 20px 20px 20px 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 133px;
+    top: 15px;
+    width: 210px;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2) inset;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2) inset;
+}
+
+.jp-play-bar {
+    height: 12px;
+    background-color: #fff;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.jp-time-holder {
+    color: #FFF;
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    right: 90px;
+    top: 14px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}  
+
+  #cover_art_container { 
+    position:fixed;
+    display:block!important;
+    left:685px!important;
+    height:290px;
+    top:215px;
+    width:335px;
+  }
+  #up_shortcut {
+    display: none;
+  }
+}
 
 /* MacBook Pro 13" or Desktops and Laptops*/
 @media screen and (min-width: 1200px) {
   #my-audio {
     display: none;
   }
-  #flashback {
+  #post_container {
     position:relative;
+    top:0px;
+    margin:auto;
+    width:46%;
+  }
+  #flashback {
+    position:fixed;
     float:left;
     cursor:pointer;
     padding:4px;
-    left:27px;
+    top:495px!important;
+    left:150px;
     color:gold;
-  }
-  #m_flashback {
-    display:none;
+    font-size:14px;
   }
   #dub {
   	margin-top: 5px;
@@ -1111,7 +1139,6 @@
   	top: 13px;
   	left: 3px;
   }
-  
   .dropdown {
     position: relative;
     top: 2px;
@@ -1125,8 +1152,8 @@
   }
   #form_container {
     position:fixed;
-    top:516px;
-    left:16px;
+    top:504px;
+    left:8px;
   }
   #button_clear_container {
     position:fixed;
@@ -1136,21 +1163,49 @@
   }
   #button_submit_container {
     position:fixed;
-    top:625px;
-    left:22px;
+    top:618px;
+    left:12px;
     z-index:2!important;
   }
-  #m_profile_bio_container {
-    display:none;
+  #cover_art_container { 
+    position:fixed;
+    display:block!important;
+    left:935px!important;
+    height:290px;
+    top:215px;
+    width:335px;
   }
-  #m_status_container {
-    display:none;
+  .jp-gui {
+	position: fixed;
+	display:block!important;
+	left: 860px!important;
+	bottom: 80px!important;
+	width: 400px;
+	opacity: 0.6;
+	background: #f34927;
+	background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f34927), color-stop(100%,#dd3311));
+	background: -webkit-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -o-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -ms-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: linear-gradient(to bottom,  #f34927 0%,#dd3311 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f34927', endColorstr='#dd3311',GradientType=0 );
+	-webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);    
+	box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);
+	border-radius: 3px;
+	overflow: hidden;
+	margin-top: 10px;
   }
-  #m_status_date {
-    display:none;
-  }
-  #m_post_container {
-    display:none!important;
+  .jp-title {
+	position: fixed;
+	display:block!important;
+	text-align: center;
+	font-size: 12px;
+	margin-left: 30px;
+	left: 952px;
+	bottom: 140px;
+	width:18%;
+	color: #999;
   }
   #private_login {
     position:relative;
@@ -1163,49 +1218,420 @@
   }
   	
 }
+
+@media screen and (min-width: 1440px) {
+  #my-audio {
+    display: none;
+  }
+  #post_container {
+    position:relative;
+    top:0px;
+    margin:auto;
+    width:51%;
+  }
+  #flashback {
+    position:fixed;
+    float:left;
+    cursor:pointer;
+    padding:4px;
+    top:495px!important;
+    left:150px;
+    color:gold;
+    font-size:14px;
+  }
+  #dub {
+  	margin-top: 5px;
+  	margin-left: 20px;
+  }
   
-/* Large screens */
-@media only screen and (min-width: 1824px) {
-  #status_container {
-    display:none;
+  #logoTitle {
+  	position: relative;
+  	top: 13px;
+  	left: 3px;
   }
-  #m_flashback {
-    display:none;
+  .dropdown {
+    position: relative;
+    top: 2px;
+    margin-right: 20px;
+    float: right;
   }
-  #m_status_container {
-    display:none;
-  }
-  #m_status_date {
-    display:none;
-  }
-  #m_post_container {
-    display:none;
+  #unauth_message {
+    position:relative;
+    color:red;
+    font-size:20px;
   }
   #form_container {
     position:fixed;
-    top:516px;
-    left:16px;
+    top:504px;
+    left:8px;
   }
   #button_clear_container {
     position:fixed;
     top:625px;    
     left:110px;
+    z-index:2!important;
   }
   #button_submit_container {
     position:fixed;
-    top:625px;
-    left:22px;
+    top:618px;
+    left:12px;
+    z-index:2!important;
   }
-  #m_profile_bio_container {
-    display:none;
+  #cover_art_container { 
+    position:fixed;
+    display:block!important;
+    left:1075px!important;
+    height:290px;
+    top:215px;
+    width:335px;
+  }
+  .jp-gui {
+	position: fixed;
+	display:block!important;
+	left: 1016px!important;
+	bottom: 80px!important;
+	width: 420px;
+	opacity: 0.6;
+	background: #f34927;
+	background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f34927), color-stop(100%,#dd3311));
+	background: -webkit-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -o-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -ms-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: linear-gradient(to bottom,  #f34927 0%,#dd3311 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f34927', endColorstr='#dd3311',GradientType=0 );
+	-webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);    
+	box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);
+	border-radius: 3px;
+	overflow: hidden;
+	margin-top: 10px;
+  }
+  .jp-title {
+	position: fixed;
+	display:block!important;
+	text-align: center;
+	font-size: 12px;
+	margin-left: 30px;
+	left: 1080px;
+	bottom: 146px;
+	width:18%;
+	color: #999;
+  }
+  #private_login {
+    position:relative;
+    margin-bottom:8px;
+    top:8px;
+    color:red;
   }
   #up_shortcut {
     display:none;
   }
 }
+
+@media screen and (min-width: 2560px) {
+  #my-audio {
+    display: none;
+  }
+  #profile_bio_container {
+    position:fixed;
+    border-style:solid;
+    left:10px;
+    height:290px;
+    top:81px;
+    max-width:475px;
+    padding:10px;
+  }
+  #bio_avi {
+    position:relative;
+    padding:8px;
+    width:100px;
+    height:100px;
+  }
+  avatar {
+    position:relative;
+  }
+  #bio_username {
+    position:relative;
+    top:-95px;
+    left:110px;
+    font-size:12px;
+  }
+  #bio_tagline_container {
+    position:relative;
+    top:-75px;
+    left:145px;
+    display:none;
+  }
+  #bio_action_container {
+    position:relative;
+    top:-38px;
+    left:103px;
+    height:25px;
+    padding:2px;
+    width:210px;
+  }
+  #bio_edit_icon {
+    position:relative;
+    left:5px;
+    color:#ffcc66;
+  }
+  #direct_message {
+    position:relative;
+    left:10px;
+    color:#339966;
+  }
+  #inbox { 
+    position:relative; 
+    left:20px;
+  }
+  #settings { 
+    position:relative;
+    left:40px;
+    color:#cc6600;
+  }
+  #profile_stats {
+    position:relative;
+    width:310px;
+    left:0px;
+    text-align:center;
+    margin:auto;
+    top:-24px;
+    font-size:12px;
+    font-weight:bold;
+  }
+  #post_container {
+    position:relative;
+    top:0px;
+    margin:auto;
+    width:60%;
+  }
+  #form_container {
+    position:fixed;
+    top:530px;
+    left:16px;
+    width:250px;
+  }
+  #status_container {
+	position:fixed;
+	overflow:scroll;
+	border-style:dashed;
+	padding:5px;
+	width:473px;
+	max-width:473px;
+	height:115px;
+	left:13px;
+	top: 383px;
+	background-color:white;
+  }
+  #flashback {
+    position:fixed;
+    cursor:pointer;
+    top:494px;
+    left:220px;
+    color:gold;
+  }
+  #status_date {
+	position:fixed;
+	left:300px;
+	top:500px;
+	text-align:right;   
+  }
+  #form_container {
+    position:fixed;
+    padding:5px;
+    width:480px;
+    margin:auto;
+    max-width:480px;
+    height:115px;
+    left:10px;
+    top:560px;
+  }
+  #button_submit_container {
+    position:fixed;
+    top:680px;
+    margin-left:4px!important;
+  }
+  #button_clear_container {
+    position:relative;
+    top:13px; 
+    height:15px;   
+    left:119px;
+  }
+  #dub {
+  	margin-top: 5px;
+  	margin-left: 20px;
+  }
   
+  #logoTitle {
+  	position: relative;
+  	top: 13px;
+  	left: 3px;
+  }
+  .dropdown {
+    position: relative;
+    top: 2px;
+    margin-right: 20px;
+    float: right;
+  }
+  #unauth_message {
+    position:relative;
+    color:red;
+    font-size:20px;
+  }
+  #form_container {
+    position:fixed;
+    top:504px;
+    left:8px;
+  }
+  #button_clear_container {
+    position:fixed;
+    top:625px;    
+    left:110px;
+    z-index:2!important;
+  }
+  #button_submit_container {
+    position:fixed;
+    top:618px;
+    left:12px;
+    z-index:2!important;
+  }
+  #cover_art_container { 
+    position:fixed;
+    display:block!important;
+    left:2130px!important;
+    height:290px;
+    top:245px;
+    width:335px;
+  }
+  .jp-gui {
+	position: fixed;
+	display:block!important;
+	left: 2082px!important;
+	bottom: 468px!important;
+	width: 420px;
+	opacity: 0.6;
+	background: #f34927;
+	background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f34927), color-stop(100%,#dd3311));
+	background: -webkit-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -o-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: -ms-linear-gradient(top,  #f34927 0%,#dd3311 100%);
+	background: linear-gradient(to bottom,  #f34927 0%,#dd3311 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f34927', endColorstr='#dd3311',GradientType=0 );
+	-webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);    
+	box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);
+	border-radius: 3px;
+	overflow: hidden;
+	margin-top: 10px;
+  }
+  .jp-title {
+	position: fixed;
+	display:block!important;
+	text-align: center;
+	font-size: 12px;
+	margin-left: 30px;
+	left: 2034px;
+	bottom: 580px;
+	width:18%;
+	color: #999;
+  }
+  #private_login {
+    position:relative;
+    margin-bottom:8px;
+    top:8px;
+    color:red;
+  }
+  #up_shortcut {
+    display:none;
+  }
+}
+
 
 /* Default */
+.music-tab {
+  display:none;
+}
+.title {
+  padding: 3px;
+  text-align:center;
+  /*font-family: 'Cormorant Garamond', serif;*/
+  font-family: 'Oxygen', sans-serif;
+}
+#new_status_container {
+  position:fixed;
+  overflow:scroll;
+  border-style:dashed;
+  padding:5px;
+  width:330px;
+  max-width:330px;
+  height:115px;
+  right:13px;
+  top:80px;
+  background-color:white;
+}
+
+#up_shortcut {
+  position:fixed;
+  top:375px;
+  right:5px;
+}
+#close_flashback {
+  display:none;
+}
+.post_comments {
+  display: none;
+}
+/* unvisited link */
+#comment_owner_link:link {
+  color: blue;
+  text-decoration:underline;
+}
+/* visited link */
+#comment_owner_link:visited {
+  color: purple;
+}
+/* mouse over link */
+#comment_owner_link:hover { /* must come after unvisited and visited */
+  color: blue;
+}
+/* selected link */
+#comment_owner_link:active {
+  color: green;
+}
+.slideout-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 256px;
+  min-height: 100vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  z-index: 0;
+  display: none;
+}
+.slideout-menu-left {
+  left: 0;
+}
+.slideout-menu-right {
+  right: 0;
+}
+.slideout-panel {
+  position: relative;
+  z-index: 1;
+  will-change: transform; 
+  background-color: #FFF; /* A background-color is required */
+  min-height: 100vh;
+}
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+.slideout-open .slideout-menu {
+  display: block;
+}
+
+
 #show-menu-button {
   display:none;
 }
@@ -1221,7 +1647,6 @@ html, body {
   width:100%;
   margin:0px;
 }
-
 
 body { 
    padding-top: 70px; 
@@ -1251,25 +1676,6 @@ body {
    position: absolute;
 }
 
-#status_container {
-  position:fixed;
-  overflow:scroll;
-  border-style:dashed;
-  padding:5px;
-  width:330px;
-  max-width:330px;
-  height:115px;
-  left:13px;
-  top: 80px;
-  background-color:white;
-}
-
-#status_date {
-  position:fixed;
-  left:170px;
-  top:175px;
-  text-align:right;   
-}
 .section {
   position: relative;
   margin: auto;
