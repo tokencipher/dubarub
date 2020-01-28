@@ -40,163 +40,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 <?php require_once ('php_class/class_User.php'); ?>
 <?php require_once ('php_inc/inc_db_qp4.php'); ?>
 <title>dubarub | Home</title>
-  <style>
-    .music-tab {
-      display:none;
-    }
-    .jp-gui {
-	  position: fixed;
-      left: 885px!important;
-      bottom: 75px!important;
-      width: 30%;
-	  opacity: 0.6;
-	  background: #f34927;
-	  background: -moz-linear-gradient(top,  #f34927 0%, #dd3311 100%);
-	  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f34927), color-stop(100%,#dd3311));
-	  background: -webkit-linear-gradient(top,  #f34927 0%,#dd3311 100%);
-	  background: -o-linear-gradient(top,  #f34927 0%,#dd3311 100%);
-	  background: -ms-linear-gradient(top,  #f34927 0%,#dd3311 100%);
-	  background: linear-gradient(to bottom,  #f34927 0%,#dd3311 100%);
-	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f34927', endColorstr='#dd3311',GradientType=0 );
-	  -webkit-box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);    
-      box-shadow:  0px 1px 1px 0px rgba(0, 0, 0, .1);
-      border-radius: 3px;
-	  overflow: hidden;
-	  margin-top: 10px;
-    }
-    .jp-title {
-      position: fixed;
-      text-align: center;
-      font-size: 12px;
-      margin-left: 55px;
-      left: 930px;
-      bottom: 125px;
-      width:18%;
-      text-align:center;
-      color: #999;
-    }
-    .title {
-      padding: 3px;
-      text-align:center;
-      /*font-family: 'Cormorant Garamond', serif;*/
-      font-family: 'Oxygen', sans-serif;
-    }
-    #cover_art_container {
-     
-    }
-    #new_status_container {
-      position:fixed;
-      overflow:scroll;
-      border-style:dashed;
-      padding:5px;
-      width:330px;
-      max-width:330px;
-      height:115px;
-      right:13px;
-      top:80px;
-      background-color:white;
-    }
-    /*
-    #m_status_container {
-      position:relative;
-      top:27px;
-      margin:auto;
-      left:1px;
-      overflow:scroll;
-      border-style:dashed;
-      padding:5px;
-      width:330px;
-      max-width:330px;
-      height:60px;
-      background-color:white;
-    }
-    */
-    .action_items {
-      position:relative;
-      cursor:pointer;
-      top:-4px;
-      padding:3px;
-    }
-    #inbox {
-      color:grey;
-    }
-    #up_shortcut {
-      position:fixed;
-      top:375px;
-      right:5px;
-    }
-    #close_flashback {
-      display:none;
-    }
-    .post_comments {
-      display: none;
-    }
-    /* unvisited link */
-    #comment_owner_link:link {
-      color: blue;
-      text-decoration:underline;
-    }
-    /* visited link */
-    #comment_owner_link:visited {
-      color: purple;
-    }
-    /* mouse over link */
-    #comment_owner_link:hover { /* must come after unvisited and visited */
-      color: blue;
-    }
-    /* selected link */
-    #comment_owner_link:active {
-      color: green;
-    }
-    .flex-container {
-      display: flex;
-      flex-direction: row;
-      height:20px;
-    }
-    .flex-container > div {
-      margin-right:10px;
-    }
-    body {
-      width: 100%;
-      height: 100%;
-    }
-    .slideout-menu {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 256px;
-      min-height: 100vh;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-      z-index: 0;
-      display: none;
-    }
-    .slideout-menu-left {
-      left: 0;
-    }
-    .slideout-menu-right {
-      right: 0;
-    }
-    .slideout-panel {
-      position: relative;
-      z-index: 1;
-      will-change: transform; 
-      background-color: #FFF; /* A background-color is required */
-      min-height: 100vh;
-    }
-    .slideout-open,
-    .slideout-open body,
-    .slideout-open .slideout-panel {
-      overflow: hidden;
-    }
-    .slideout-open .slideout-menu {
-      display: block;
-    }
-    /* Phone portrait */
-    @media (max-width: 481px) {
-      #clear {display:none!important;}
-    }
-  </style>
 <?php include_once ('php_inc/inc_user_home_nav.php'); ?>
 </head>
 <body>
@@ -284,7 +127,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var avatar = JSON.parse(this.responseText);
         //alert(avatar[0].avatar);
         $('#avatar').attr("src", avatar[0].avatar);
-        $('#m-avatar').attr("src", avatar[0].avatar);
+        $('#m_avatar').attr("src", avatar[0].avatar);
       }
     };
     avatarRequest.open("GET", "get_avatar.php", true);
@@ -893,9 +736,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         data: { update: message, u_id: user_id }
       }).done(function ( msg ) {
         
-        $('#m-status-update').text(msg[0].status_text);
-        $('#m-status-time').text(msg[0].created_at);
-        
         $('#status_update').text(msg[0].status_text);
         $('#status_time').text(msg[0].created_at);
         
@@ -924,7 +764,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       var id = "<?php echo $_SESSION['user_id']; ?>";
 
       $('#bio_text').text(bio);
-      $('#m-bio-text').text(bio);
       
       // Clear out bio_edit textarea input
       $('#bio_edit').val('');
@@ -969,24 +808,11 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       document.getElementById('message_modal').style.display = 'block';
     }); 
     
-     $('#m-direct-message').click(function() {
-      document.getElementById('message_modal').style.display = 'block';
-    });
-    
     $('#bio_edit_icon').click(function() {
       document.getElementById('bio_modal').style.display = 'block';
     });
     
-    $('#m-bio-edit-icon').click(function() {
-      document.getElementById('bio_modal').style.display = 'block';
-    })
-    
     $('#settings').click(function() {
-      window.location.assign('settings_update.php');
-      //document.getElementById('settings_modal').style.display = 'block';
-    })
-    
-    $('#m-settings').click(function() {
       window.location.assign('settings_update.php');
       //document.getElementById('settings_modal').style.display = 'block';
     })
@@ -1001,26 +827,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       $('#close_flashback').css({
         display: "none" 
       });
-    });
-    
-    $('#m-flashback').click(function() {
-    
-      $('#close_flashback').css({
-        position: "fixed",
-        top: "375px",
-        right: "5px"
-      });
-      
-      document.getElementById('close_flashback').style.display='block'; 
-      
-      $('#close_flashback').click(function() {
-      
-        $('#flashback-dialog').css('display', 'none');
-        $('#close_flashback').css('display', 'none');  
-      
-      });
-      
-    });       
+    });      
     
   });
 </script>
@@ -1242,8 +1049,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       
     
             
-  <div id="profile-bio-container">  
-    <div id="bio-avi">
+  <div id="profile_bio_container">  
+    <div id="bio_avi">
       <img id="avatar" src="
       <?php 
         $id = $_SESSION['user_id'];
@@ -1255,7 +1062,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     
     <!-- username character count cannot be greater than 24 -->
-    <div id="bio-username">
+    <div id="bio_username">
       <?php 
         $user_id = $_SESSION['user_id'];
         $userName = new User();
@@ -1264,15 +1071,15 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     </div>
     
     <!-- Hide display of tagline and replace with action items -->
-    <div id="bio-tagline-container">
+    <div id="bio_tagline_container">
        "Closed beta v1.0"
     </div>
     
-    <div id="bio-action-container" class="flex-container">
-      <i id="bio-edit-icon" class="fa fa-pencil action-item" aria-hidden="true"></i>
-      <i id="direct-message" class="fa fa-paper-plane action-item" aria-hidden="true"></i>
-      <i id="inbox" class="fa fa-envelope action-tem" aria-hidden="true"></i>
-      <i id="settings" class="fa fa-cog action-item" aria-hidden="true"></i>
+    <div id="bio_action_container" class="flex-container">
+      <i id="bio_edit_icon" class="fa fa-pencil action_items" aria-hidden="true"></i>
+      <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
+      <i id="inbox" class="fa fa-envelope action_items" aria-hidden="true"></i>
+      <i id="settings" class="fa fa-cog action_items" aria-hidden="true"></i>
     </div>
     
     <!--
@@ -1282,8 +1089,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     --> 
     
     
-    <div id="profile-stats">
-      <span id="profile-followers" onclick="getFollowers()"><a style="cursor:pointer;">
+    <div id="profile_stats">
+      <span id="profile_followers" onclick="getFollowers()"><a style="cursor:pointer;">
         <?php
           $follow = new Follow();
           $followers = $follow->getFollowerCount($_SESSION['user_id']);
@@ -1294,14 +1101,14 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           }
         ?>
         </a></span>
-      <span id="profile-following" onclick="getFollowing()"><a style="cursor:pointer">
+      <span id="profile_following" onclick="getFollowing()"><a style="cursor:pointer">
         <?php
           $follow = new Follow();
           $following = $follow->getFollowingCount($_SESSION['user_id']);
           echo $following . " following";
         ?>
         </a></span>
-      <span id="profile-posts">
+      <span id="profile_posts">
       <?php
       
         $id = $_SESSION['user_id'];
@@ -1321,7 +1128,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       </span>
     </div>
     
-    <div id="bio-text">
+    <div id="bio_text">
       <!-- Display bio from db -->
       <?php
         $user_id = $_SESSION['user_id'];
@@ -1334,32 +1141,33 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
   </div>
   
-  <div id="status-container">
-    <span id="status-update">
+  <div id="status_container">
+    <span id="status_update">
       <?php
         $user_id = $_SESSION['user_id'];
         $lastUpdate = new Status();
         echo htmlentities($lastUpdate->getText($user_id));
       ?>
     </span>
-  </div>
-  <div>
     <br>
-    <div id="status-date">
-      <span id="status-time">
-        <?php
-          $user_id = $_SESSION['user_id'];
-          $timestamp = new Status();
-          echo $timestamp->getTimestamp($user_id);
-        ?>
-      </span>
-      <i id="flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt fa-lg" aria-hidden="true"></i>
-    </div>
   </div>
+  <div id="status_date">
+    <span id="status_time">
+      <?php
+        $user_id = $_SESSION['user_id'];
+        $timestamp = new Status();
+        echo $timestamp->getTimestamp($user_id);
+      ?>
+    </span>
+  </div>
+  <span id="flashback">
+    <i onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt fa-lg" aria-hidden="true"></i>
+  </span>
 
+<!-- start mobile display -->
   
-  <div id="form-container"> 
-    <form id="status-form" method="post">
+  <div id="form_container"> 
+    <form id="status_form" method="post">
       <div class="form-group">
         <label for="status">Update status</label>
         <textarea id="status" name="status" class="form-control" rows="3"></textarea>
@@ -1378,7 +1186,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   </div>
     
   <div id="up_shortcut" style="z-index:999999">
-    <a href="#m_profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
+    <a href="#profile_bio_container" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">
       <span class="glyphicon glyphicon-circle-arrow-up"></span>
     </a>
   </div>
