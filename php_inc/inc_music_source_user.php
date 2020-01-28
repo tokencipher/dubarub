@@ -8,7 +8,7 @@
 <div class="stereo"> 
 
 <div id="cover_art_container">
-  <div id="album_art" style="margin:auto;padding:1px;">
+  <div id="album_art">
 	<img id="cover_art" src="img/cover_art/vinyl_stub.jpg" width="325" height="280">
   </div>
 </div>
