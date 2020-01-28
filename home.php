@@ -127,7 +127,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         var avatar = JSON.parse(this.responseText);
         //alert(avatar[0].avatar);
         $('#avatar').attr("src", avatar[0].avatar);
-        $('#m_avatar').attr("src", avatar[0].avatar);
       }
     };
     avatarRequest.open("GET", "get_avatar.php", true);
