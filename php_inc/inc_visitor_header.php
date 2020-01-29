@@ -13,7 +13,7 @@
   /**
    * Check if the user is logged in.
    */
-   if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in'])) {
+   if (isset($_SESSION['user_id']) && isset($_SESSION['logged_in']) && $_SESSION['user_name'] == $_GET['name']) {
   ?>
     <link rel="stylesheet" href="css/user.css" /> 
   <?php
