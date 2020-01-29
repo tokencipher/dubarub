@@ -30,7 +30,7 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
       case 'Upvote Post':
         $post_id = $_POST['post_id'];
         $postObj = new Post();
-        $upvote_flag = $commentObj->getUpvoteFlag($u_id, $p_id);
+        $upvote_flag = $postObj->getUpvoteFlag($u_id, $p_id);
         
         if ($upvote_flag == "true") {
           return;
