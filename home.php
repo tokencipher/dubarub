@@ -808,7 +808,24 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }); 
     
     $('#bio_edit_icon').click(function() {
+      var id = "<?php echo $_SESSION['user_id']; ?>";
+    
+      $.ajax({
+        async: true,
+        cache: false,
+        url: 'retrieve_bio.php',  
+        type: 'POST',
+        dataType: 'json',
+        data: { u_id: id }  
+      }).done(function ( msg ) {
+        console.log('data retrieved...');
+        $('#bio_edit').text(msg[0].bio);
+      }).fail(function ( xhr, textStatus) {
+        console.log(xhr.statusText);
+      });
+      
       document.getElementById('bio_modal').style.display = 'block';
+      
     });
     
     $('#settings').click(function() {
@@ -954,7 +971,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
           <div class="form-group">
             <!-- <label for="bio_edit">Edit bio</label> -->
             <div><i class="w3-xxlarge fa fa-pencil" style="color:#ffcc66;"></i></div>
-            <textarea id="bio_edit" name="bio_edit" class="form-control" placeholder="215 character limit" rows="3" maxlength="215"></textarea>
+            <textarea id="bio_edit" name="bio_edit" class="form-control" placeholder="215 character limit" rows="3" maxlength="215" value=""></textarea>
             <br>
           </div>
         </form>
