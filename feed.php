@@ -7,6 +7,41 @@
 <body>
   
   <script>  
+  
+	function handPostTrophy(element) {
+	  console.log("post trophy clicked");
+	
+	  // revise for user who isn't logged in 
+	  var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+		
+	  if (hand_trophy === true) {
+	
+		var trophy = $( element );
+		var postID = trophy.data("postid");
+		
+		var action = "Upvote Post";
+		
+		$.ajax({
+		  async: true,
+		  cache: false,
+		  url: 'user_action.php',  
+		  type: 'POST',
+		  data: { user_action: action, post_id: postID }  
+		}).done(function ( msg ) {
+		  console.log('Post upvote action taken...');
+		  console.log(msg);
+		}).fail(function ( xhr, textStatus) {
+		  console.log(xhr.statusText);
+		});
+		
+	  } else {
+		if (confirm("You must be logged in to give a trophy. Sign up/Login?")) {
+		  window.location.assign("https://dubarub.com");
+		} else {
+		  return;
+		}
+	  }     
+	}
 
     function rewritePosts() {
       var postRequestTwo = new XMLHttpRequest();
