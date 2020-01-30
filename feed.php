@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <?php include_once('php_inc/inc_header.php');?>
 
   <title>dubarub | Feed</title>  
