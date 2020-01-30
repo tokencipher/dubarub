@@ -247,11 +247,20 @@ class Post {
   
   public function getUpvote($p_id) {
     $table = "post";
+    $sql = "SELECT upvote FROM $table WHERE p_id=$p_id";
+    $object = array(); 
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $object[$x]['upvote'] = "{$row['upvote']}";
+    }
+    return $object[$x]['upvote'];
+    /*
     $sql = "SELECT upvote FROM $table WHERE p_id = :p_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':p_id', $p_id);
     return $stmt->execute();
+    */
   }
   
   public function upvote($p_id) {
