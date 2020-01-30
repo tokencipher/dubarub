@@ -42,6 +42,42 @@
 		}
 	  }     
 	}
+	
+	function handCommentTrophy(element) {
+	  console.log("comment trophy clicked");
+	
+	  // revise for user who isn't logged in 
+	  var hand_trophy = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
+		
+	  if (hand_trophy === true) {
+
+		var trophy = $( element );
+		var commID = trophy.data("commid");
+		
+		var action = "Upvote Comment";
+		
+		$.ajax({
+		  async: true,
+		  cache: false,
+		  url: 'user_action.php',  
+		  type: 'POST',
+		  data: { user_action: action, comment_id: commID }  
+		}).done(function ( msg ) {
+		  console.log('Comment upvote action taken...');
+		  console.log(msg);
+		}).fail(function ( xhr, textStatus) {
+		  console.log(xhr.statusText);
+		});
+		
+	  } else {
+		if (confirm("You must be logged in to give a trophy. Sign up/Login?")) {
+		  window.location.assign("https://dubarub.com");
+		} else {
+		  return;
+		}
+	  }     
+	}
+  
 
     function rewritePosts() {
       var postRequestTwo = new XMLHttpRequest();
