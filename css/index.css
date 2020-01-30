@@ -169,10 +169,10 @@
     position:relative;
     float:left;
     cursor:pointer;
-    top:-13px;
+    top:-10px;
     padding:4px;
     left:90px;
-    font-size:16px;
+    font-size:18px;
     color:gold;
   }
   #clear {
@@ -1123,11 +1123,12 @@
     position:fixed;
     float:left;
     cursor:pointer;
+    top:14px;
     padding:4px;
     top:495px!important;
     left:150px;
     color:gold;
-    font-size:14px;
+    font-size:18px;
   }
   #dub {
   	margin-top: 5px;
@@ -1426,9 +1427,10 @@
   #flashback {
     position:fixed;
     cursor:pointer;
-    top:494px;
+    top:500px!important;
     left:220px;
     color:gold;
+    font-size:22px!important;
   }
   #status_date {
 	position:fixed;
