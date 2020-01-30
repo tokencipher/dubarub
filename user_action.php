@@ -3,13 +3,13 @@
  * Start the session
  */
 session_start();
+header('Content-Type: application/json;charset=utf-8');
+
 
 require_once('php_class/class_Post.php');
 require_once('php_class/class_PostComment.php');
 require_once('php_class/class_Status.php');
 require_once('php_class/class_Follow.php');
-
-header('Content-Type: application/json;charset=utf-8');
 
 // The user id of currently logged in user
 $user_id = $_SESSION['user_id'];
@@ -175,11 +175,13 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
         break;
         
       default:
-        echo "No action taken";
+        $myObj = array();
+        $myObj['error'] = 'no action taken';
+        echo json_encode($myObj);
     }
+    
   }   
   
-$myObj = json_encode($myObj);
-echo $myObj;
+echo json_encode($myObj);
 
 ?>
