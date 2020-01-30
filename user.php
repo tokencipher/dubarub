@@ -516,7 +516,6 @@
     
       var trophy = $( element );
 	  var postID = trophy.data("postid");
-	  console.log("Post ID from user.php is " + postID);
 		
 	  var action = "Upvote Post";
 		
@@ -525,13 +524,12 @@
       	cache: false,
         url: 'user_action.php',  
         type: 'POST',
-        dataType: 'json',
         data: { user_action: action, post_id: postID }  
       }).done(function ( msg ) {
         console.log('Post upvote action taken...');
         console.log(msg);
       }).fail(function ( xhr, textStatus) {
-        console.log(textStatus);
+        console.log(xhr.statusText);
       });
         
     } else {
