@@ -1176,9 +1176,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       ?>
     </span>
   </div>
-  <span id="flashback">
-    <i onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt fa-lg" aria-hidden="true"></i>
-  </span>
+  <i id="flashback" onclick="document.getElementById('flashback-dialog').style.display='block'" class="fa fa-bolt fa-lg" aria-hidden="true"></i>
 
 <!-- start mobile display -->
   
