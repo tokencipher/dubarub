@@ -293,12 +293,20 @@ class Post {
   
   public function getUpvoteFlag($user_id, $post_id) {
     $table = "post_upvote";
+    $sql = "SELECT upvote FROM $table WHERE u_id = $user_id && p_id = $post_id";
+    $object = array(); 
+    foreach ($this->db->query($sql) as $row) {
+      $object['upvote'] = "{$row['upvote']}";
+    }
+    return $object['upvote'];
+    /*
     $sql = "SELECT upvote FROM $table WHERE u_id = :u_id && p_id = :p_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $user_id);
     $stmt->bindParam(':p_id', $post_id);
     return $stmt->execute();
+    */
   }
   
   public function updateCommentCount($p_id) {
