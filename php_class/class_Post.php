@@ -280,7 +280,7 @@ class Post {
      
   }
   
-  public function setPostFlag($u_id, $p_id, $flag) {  
+  public function setUpvoteFlag($u_id, $p_id, $flag) {  
     $table = "post_upvote";
     $sql = "INSERT INTO $table (u_id, p_id, upvote) VALUES (:u_id, :p_id, :upvote)";
     $stmt = $this->db->prepare($sql);
