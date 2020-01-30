@@ -265,7 +265,7 @@ class Post {
   
   public function upvote($p_id) {
     // Get upvote count so we can increment it and send to DB
-    $count = getUpvote($p_id);
+    $count = $this->getUpvote($p_id);
     
     // Increment retrieved upvote
     $count += 1;
