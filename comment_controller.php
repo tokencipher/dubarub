@@ -25,19 +25,48 @@ if (isset($_POST['comment_text'])) {
   $post_id = $_POST['post_id'];
   
   if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];  
-    $post_owner = $_SESSION['id'];
+    $user_id = $_SESSION['user_id']; 
+    
+    if ($_POST['post_owner'] == true) {
+      // Owner of post is making a comment
+      $post_owner = $user_id;
+      $user = new User();
+      $user->setUserId($user_id);
+      $avatar = $user->getAvatar();
+      
+      // If the session variable of 'user_id' is set then so is the 'user_name' session var
+      $user_name = $_SESSION['user_name'];
+      
+      // Prepare to persist comment to db 
+      $commentObj = new PostComment();
+      $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
+      
+      // Update comment count on post via post id
+      $post = new Post();
+      $post->updateCommentCount($post_id);
+      
+    } else {
+      // A user has commented on someone else's post other than their own 
+      if (isset($_SESSION['id'])) {
 
-    $user = new User();
-    $user->setUserId($user_id);
-    $avatar = $user->getAvatar();
-    $user_name = $user->getUsername($user_id);
+		$user = new User();
+		$user->setUserId($user_id);
+		$avatar = $user->getAvatar();
+		$user_name = $_SESSION['user_name'];
+		
+		//$user_name = $user->getUsername($user_id);
 
-    $commentObj = new PostComment();
-    $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
+		$commentObj = new PostComment();
+		$commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
   
-    $post = new Post();
-    $post->updateCommentCount($p_id);
+		$post = new Post();
+		$post->updateCommentCount($post_id);
+	  } else {
+	    // Session variable has expired, return user to home.php 
+	    header('Location: home.php');
+	  }
+    }
+  }
 }
 
 
