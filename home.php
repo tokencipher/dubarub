@@ -347,7 +347,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   			  '<a href="#"><img style="margin-left:5px" height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div class="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
  			  '<div class="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
- 			  '<div onclick="removeComment(this)" data-commid="' + comments[i].c_id + '" id="remove_comment' + comments[i].c_id + '" style="position:relative;bottom:22px;cursor:pointer;margin-right:10px;float:right">' + 
+ 			  '<div onclick="removeComment(this)" data-postid="' + comments[i].p_id + '" data-commid="' + comments[i].c_id + '" id="remove_comment' + comments[i].c_id + '" style="position:relative;bottom:22px;cursor:pointer;margin-right:10px;float:right">' + 
  			  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></div>' + 
  			  '<div style="clear:both;font-size:12px" class="comment_options flex-container">' + 
  			  '<div class="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
@@ -561,6 +561,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     	
         var comment = $( element );
 	    var commID = comment.data("commid");
+	    
+	    // This is needed to decrement the comment counter for post related to comment
+	    var postID = comment.data("postid");
+	    
+	    // Get comment counter for post 
+	    var commentCount = $('#comment_count_post' + postID).text();
 		
 	    var action = "Remove Comment";
 		
@@ -569,10 +575,13 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       	  cache: false,
           url: 'user_action.php',  
           type: 'POST',
-          data: { user_action: action, comment_id: commID }  
+          data: { user_action: action, comment_id: commID, post_id: postID }  
         }).done(function ( msg ) {
           console.log('Remove comment action taken...');
-          console.log(msg);
+          // Remove comment element from DOM 
+          $('#comment' + commID).remove();
+          // Decrement post comment counter 
+          $('#comment_count_post' + postID).text(commentCount - 1);
         }).fail(function ( xhr, textStatus) {
           console.log(xhr.statusText);
         });
