@@ -311,7 +311,7 @@ class Post {
   
   public function updateCommentCount($p_id) {
     // Get comment count so we can increment it and send to DB
-    $count = getCommentCount($p_id);
+    $count = $this->getCommentCount($p_id);
     
     // Increment retrieved upvote
     $count += 1;
