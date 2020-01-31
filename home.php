@@ -421,7 +421,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
-  function submitComment(event, p_id) {
+  function submitComment(p_id) {
     event.preventDefault();
     
     // Required to make comment push to server
