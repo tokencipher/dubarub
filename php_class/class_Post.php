@@ -309,12 +309,17 @@ class Post {
     */
   }
   
-  public function updateCommentCount($p_id) {
+  public function updateCommentCount($p_id, $action) {
     // Get comment count so we can increment it and send to DB
     $count = $this->getCommentCount($p_id);
     
-    // Increment retrieved upvote
-    $count += 1;
+    if ($action == "increment") {
+      // Increment current comment count for post
+      $count += 1;
+    } else {
+      // Decrement current comment count for post 
+      $count -= 1;
+    }
     
     $table = "post";
     $sql = "UPDATE $table SET comments = :inc WHERE p_id = :p_id";
