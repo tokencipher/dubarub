@@ -79,8 +79,12 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_S
         
       case 'Remove Comment':
         $comment_id = $_POST['comment_id'];
+        $post_id = $_POST['post_id'];
         $commentObj = new PostComment();
         $commentObj->deleteComment($comment_id);
+        
+        $post = new Post();
+        $post->updateCommentCount($post_id, "decrement");
           
         $myObj = array();
         $myObj['isCommentRemoved'] = "true";
