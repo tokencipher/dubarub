@@ -439,7 +439,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       cache: false,
       url: 'comment_controller.php',  
       type: 'POST',
-      data: { comment_text: comment, post_id: p_id }  
+      data: { post_owner: true, comment_text: comment, post_id: p_id }  
     }).done(function ( msg ) {
       console.log('comment submitted...');
     }).fail(function ( xhr, textStatus) {
