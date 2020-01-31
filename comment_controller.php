@@ -43,7 +43,7 @@ if (isset($_POST['comment_text'])) {
       
       // Update comment count on post via post id
       $post = new Post();
-      $post->updateCommentCount($post_id);
+      $post->updateCommentCount($post_id, "increment");
       
     } else {
       // A user has commented on someone else's post other than their own 
@@ -60,7 +60,7 @@ if (isset($_POST['comment_text'])) {
 		$commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
   
 		$post = new Post();
-		$post->updateCommentCount($post_id);
+		$post->updateCommentCount($post_id, "increment");
 	  } else {
 	    // Session variable has expired, return user to home.php 
 	    header('Location: home.php');
