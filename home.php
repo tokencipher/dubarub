@@ -422,18 +422,17 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   }
   
   function submitComment(p_id) {
-    event.preventDefault();
-    
+      
     // Required to make comment push to server
-    $('#comment_text').trigger('focusout');
+    $('#comment_text' + p_id).trigger('focusout');
     
     // Save comment to variable
-    var comment = $('#comment_text').val();
+    var comment = $('#comment_text' + p_id).val();
     console.log(comment);
     console.log(p_id);
       
     // Clear out comment textarea input
-    $('#comment_text').val('');
+    $('#comment_text' + p_id).val('');
           
     $.ajax({
       async: true,
