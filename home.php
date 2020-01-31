@@ -199,7 +199,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<p class="post_tags" style="margin-left:10px;">' +  
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name + 
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +  
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + '<span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -209,7 +209,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="post">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
-			  '<button onclick="submitComment(' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
@@ -421,27 +421,32 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
-  function submitComment(p_id) {
+  function submitComment(postID, commentCount) {
       
     // Required to make comment push to server
-    $('#comment_text' + p_id).trigger('focusout');
+    $('#comment_text' + postID).trigger('focusout');
     
     // Save comment to variable
-    var comment = $('#comment_text' + p_id).val();
-    console.log(comment);
-    console.log(p_id);
+    var comment = $('#comment_text' + postID).val();
+    console.log("User has commented: " + comment);
+    console.log("Post ID: " + postID);
+    console.log("Comment count: " + commentCount);
+    
+    var newCommentCount = commentCount + 1; 
       
     // Clear out comment textarea input
-    $('#comment_text' + p_id).val('');
+    $('#comment_text' + postID).val('');
           
     $.ajax({
       async: true,
       cache: false,
       url: 'comment_controller.php',  
       type: 'POST',
-      data: { post_owner: true, comment_text: comment, post_id: p_id }  
+      data: { post_owner: true, comment_text: comment, post_id: postID }  
     }).done(function ( msg ) {
       console.log('comment submitted...');
+      // Update comment count on post 
+      $('#comment_count_post' + postID).text(newCommentCount);
     }).fail(function ( xhr, textStatus) {
       console.log(xhr.statusText);
     });
