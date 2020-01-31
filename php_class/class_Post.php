@@ -329,11 +329,20 @@ class Post {
   
   public function getCommentCount($p_id) {
     $table = "post";
+    $sql = "SELECT comments FROM $table WHERE p_id = $p_id";
+    $object = array(); 
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $object[$x]['comments'] = "{$row['comments']}";
+    }
+    return $object[$x]['comments'];
+    /*
     $sql = "SELECT comments FROM $table WHERE p_id = :p_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':p_id', $p_id);
     return $stmt->execute();
+    */
   }
   
   public function createPostWImage() {
