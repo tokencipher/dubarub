@@ -232,8 +232,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
@@ -256,8 +256,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
@@ -276,8 +276,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');	  
     	    } 	  
               
