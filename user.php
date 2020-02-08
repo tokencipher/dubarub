@@ -636,37 +636,47 @@
   
   function removeComment(element) {
     console.log("remove comment item clicked");
-    
     // revise for user who isn't logged in 
     var remove_flag = Boolean("<?php echo (isset($_SESSION['user_id']) ? true : false); ?>");
     	
     if (remove_flag === true) {
+      if (confirm("Are you sure you want to delete this comment?")) {
     	
-      var comment = $( element );
-	  var commID = comment.data("commid");
+        var comment = $( element );
+	    var commID = comment.data("commid");
+	    
+	    // This is needed to decrement the comment counter for post related to comment
+	    var postID = comment.data("postid");
+	    
+	    // Get comment counter for post 
+	    var commentCount = $('#comment_count_post' + postID).text();
 		
-	  var action = "Remove Comment";
+	    var action = "Remove Comment";
 		
-	  $.ajax({
-        async: true,
-      	cache: false,
-        url: 'user_action.php',  
-        type: 'POST',
-        data: { user_action: action, comment_id: commID }  
-      }).done(function ( msg ) {
-        console.log('Remove comment action taken...');
-        console.log(msg);
-      }).fail(function ( xhr, textStatus) {
-        console.log(xhr.statusText);
-      });
-        
-    } else {
-      if (confirm("You must be logged in to remove this comment. Sign up/Login?")) {
-  	    window.location.assign("https://dubarub.com");
+		$.ajax({
+		  async: true,
+		  cache: false,
+		  url: 'user_action.php',  
+		  type: 'POST',
+		  data: { user_action: action, comment_id: commID, post_id: postID }  
+		}).done(function ( msg ) {
+		  console.log('Remove comment action taken...');
+          // Remove comment element from DOM 
+          $('#comment' + commID).remove();
+          // Decrement post comment counter 
+          $('#comment_count_post' + postID).text(commentCount - 1);
+		}).fail(function ( xhr, textStatus) {
+		  console.log(xhr.statusText);
+		});
+		
 	  } else {
-  		return;
-	  }
-    }       
+		if (confirm("You must be logged in to remove this comment. Sign up/Login?")) {
+		  window.location.assign("https://dubarub.com");
+		} else {
+		  return;
+		}
+	  } 
+	}        
   }
   
   function follow(elem) {
