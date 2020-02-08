@@ -14,6 +14,8 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   exit;
 }
 
+header('Content-Type: application/json;charset=utf-8');
+
 require_once('php_class/class_User.php');
 require_once('php_class/class_Post.php');
 require_once('php_class/class_PostComment.php');
@@ -39,11 +41,15 @@ if (isset($_POST['comment_text'])) {
       
       // Prepare to persist comment to db 
       $commentObj = new PostComment();
-      $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
+      $lastId = $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
       
       // Update comment count on post via post id
       $post = new Post();
       $post->updateCommentCount($post_id, "increment");
+      
+      $object = array();
+      $object['last_id'] = $lastId;
+      echo json_encode($object);
       
     } else {
       // A user has commented on someone else's post other than their own 
@@ -57,10 +63,15 @@ if (isset($_POST['comment_text'])) {
 		//$user_name = $user->getUsername($user_id);
 
 		$commentObj = new PostComment();
-		$commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
+		$lastId = $commentObj->createComment($user_id, $user_name, $post_id, $avatar, $comment, $post_owner);
   
 		$post = new Post();
 		$post->updateCommentCount($post_id, "increment");
+		
+		$object = array();
+		$object['last_id'] = $lastId;
+		echo json_encode($object);
+		
 	  } else {
 	    // Session variable has expired, return user to home.php 
 	    header('Location: home.php');
