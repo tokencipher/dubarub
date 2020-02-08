@@ -421,7 +421,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
-  function submitComment(postID, commentCount, userName) {
+  function submitComment(postID, commentCount) {
       
     // Required to make comment push to server
     $('#comment_text' + postID).trigger('focusout');
