@@ -57,7 +57,7 @@ if (isset($_POST['comment_text'])) {
     } else {
       // A user has commented on someone else's post other than their own 
       if (isset($_SESSION['id'])) {
-
+		$post_owner = $_SESSION['id'];
 		$user = new User();
 		$user->setUserId($user_id);
 		$avatar = $user->getAvatar();
