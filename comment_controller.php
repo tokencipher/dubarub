@@ -29,7 +29,7 @@ if (isset($_POST['comment_text'])) {
   if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id']; 
     
-    if ($_POST['post_owner'] == true) {
+    if ($_POST['post_owner'] == 'true') {
       // Owner of post is making a comment
       $post_owner = $user_id;
       $user = new User();
@@ -76,6 +76,8 @@ if (isset($_POST['comment_text'])) {
 		$object = array();
 		$object['last_id'] = $lastId;
 		$object['comment_count'] = $newCount;
+		$object['user_name'] = $user_name;
+		$object['avatar'] = $avatar; 
 		echo json_encode($object);
 		
 	  } else {
