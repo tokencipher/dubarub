@@ -191,7 +191,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         for ( var x = 0; x < postCnt; x++ ) {
     
     	    if (obj[x].image == "true") {
-    	      var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' +
+    	      var post = $( '<div data-username="' + obj[x].user_name + '" data-avatar="' + obj[x].avatar + '" id="post' + obj[x].p_id + '" class="section w3-card-4">' +
     	      '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
     	      '</span><h2 class="title">' + obj[x].title +
               '</h2><img id="post" src="' + obj[x].photo_url + '" alt="" height="385" style="width:100%"></img>' +
@@ -209,10 +209,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="post">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
-			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
-    		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
+    		  var post = $( '<div data-username="' + obj[x].user_name + '" data-avatar="' + obj[x].avatar + '" id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385;">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
     		  '</span><h2 class="title">' + obj[x].title + '</h2>' +
               '<div id="video-container"><div id="video-contained" class="w3-container">' + 
@@ -223,7 +223,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<p class="post_tags" style="margin-left:10px;">' +
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments + 
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i><span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' + 
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -233,10 +233,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="post">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
-			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' +
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
-    		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
+    		  var post = $( '<div data-username="' + obj[x].user_name + '" data-avatar="' + obj[x].avatar + '" id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
     		  '</span><h2 class="title">' + obj[x].title +
               '</h2><div style="position:relative;height:0px;padding-bottom:56.25%">' +
@@ -247,7 +247,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
               '<p class="post_tags" style="margin-left:10px;">' +  
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name + 
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +  
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i><span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -257,17 +257,17 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="post">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
-			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else {
-    		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
+    		  var post = $( '<div data-username="' + obj[x].user_name + '" data-avatar="' + obj[x].avatar + '" id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
     		  '<span style="float:left;"><img src="' + obj[x].avatar + '" alt="dubarub user avatar" height="40" width="47" class="w3-circle"/>' + 
     		  '</span><h2 class="title">' + obj[x].title + '</h2>' +
     		  '<div class="metadata">' + 
               '<p class="post_tags" style="margin-left:10px;">' +
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' +  moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i><span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +
               '<i class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px"></i>' + obj[x].upvote + 
               '<div onclick="removePost(this)" data-pid="' + obj[x].p_id + '" style="position:relative;top:-4px;margin-right:10px;float:right"><button class="w3-button w3-circle w3-red fa fa-remove"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -277,7 +277,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="post">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
-			  '<button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');	  
     	    } 	  
               
@@ -342,7 +342,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
             console.log("comment user id: " + comments[i].u_id + " and current user: " + user_id);
             
             if ( comments[i].u_id == user_id ) {
-              $('#post' + comments[i].p_id).find('.post_comments').append('<div id="comment' + comments[i].c_id +  '" class="media">' +
+              $('#post' + comments[i].p_id).find('.post_comments').append('<div data-avatar="' + comments[i].avatar + '" data-upvote="' + comments[i].upvote + " " + trophyAmount + '" data-timestamp="' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '" data-username="' + comments[i].user_name + '" id="comment' + comments[i].c_id +  '" class="media">' +
   			  '<div class="media-left">' + 
   			  '<a href="#"><img style="margin-left:5px" height="64" width="64" class="media-object" src="' + comments[i].avatar + '" alt="user avatar"></a>' +
  			  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div class="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + comments[i].user_name + '">' + comments[i].user_name + '</a></b> says:</div>' + 
@@ -421,18 +421,22 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     }
   }
   
-  function submitComment(postID, commentCount) {
+  function submitComment(postID, commentCount, userName) {
       
     // Required to make comment push to server
     $('#comment_text' + postID).trigger('focusout');
     
+    /*
+    var avatar = 'dub_priv_user_files/image/avatar/DC716F0D-C500-4993-83D0-7B6DD5032759.jpeg';
+    var userName = 'sinclair';
+    */
+    
+    // Implementation for this may different in user.php
+    var avatar = $('#post' + postID).data('avatar');
+    var userName = $('#post' + postID).data('username');
+    
     // Save comment to variable
     var comment = $('#comment_text' + postID).val();
-    console.log("User has commented: " + comment);
-    console.log("Post ID: " + postID);
-    console.log("Comment count: " + commentCount);
-    
-    var newCommentCount = commentCount + 1; 
       
     // Clear out comment textarea input
     $('#comment_text' + postID).val('');
@@ -442,11 +446,25 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       cache: false,
       url: 'comment_controller.php',  
       type: 'POST',
+      dataType: 'json',
       data: { post_owner: true, comment_text: comment, post_id: postID }  
     }).done(function ( msg ) {
-      console.log('comment submitted...');
+      // Save reference to comment ID
+      var commID = Number(msg.last_id);
       // Update comment count on post 
-      $('#comment_count_post' + postID).text(newCommentCount);
+      $('#comment_count_post' + postID).text(msg.comment_count);
+      // Add comment to post asynchronously 
+      $('#post' + postID).find('.post_comments').append('<div id="comment' + commID +  '" class="media">' +
+	  '<div class="media-left">' + 
+	  '<a href="#"><img style="margin-left:5px" height="64" width="64" class="media-object" src="' + avatar + '" alt="user avatar"></a>' +
+	  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div class="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + userName + '">' + userName + '</a></b> says:</div>' + 
+	  '<div class="comment_body" style="margin-bottom:2px;font-size:12px">' + comment + '</div>' + 
+	  '<div onclick="removeComment(this)" data-postid="' + postID + '" data-commid="' + commID + '" id="remove_comment' + commID + '" style="position:relative;bottom:22px;cursor:pointer;margin-right:10px;float:right">' + 
+	  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></div>' + 
+	  '<div style="clear:both;font-size:12px" class="comment_options flex-container">' + 
+	  '<div class="comment_timestamp">a moment ago</div>' +
+	  '<div class="upvote">0 trophies</div>' +
+	  '</div></div>');
     }).fail(function ( xhr, textStatus) {
       console.log(xhr.statusText);
     });
