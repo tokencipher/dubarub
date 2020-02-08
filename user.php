@@ -1,5 +1,5 @@
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 01/29/20 -->
+<!-- Last modified: 02/08/20 -->
 <?php 
   session_start();
   
@@ -230,7 +230,7 @@
               '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" href="#" id="addComment">Add Comment</a></span>' +
-			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' + 
@@ -254,7 +254,7 @@
               '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
-			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' + 
@@ -278,7 +278,7 @@
               '<div id="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
-			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
@@ -297,7 +297,7 @@
               '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
-			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form action="user.php" method="POST" enctype="multipart/form-data">' + 
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
 			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
 			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' + 
