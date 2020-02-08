@@ -447,7 +447,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       url: 'comment_controller.php',  
       type: 'POST',
       dataType: 'json',
-      data: { post_owner: true, comment_text: comment, post_id: postID }  
+      data: { post_owner: 'true', comment_text: comment, post_id: postID }  
     }).done(function ( msg ) {
       // Save reference to comment ID
       var commID = Number(msg.last_id);
