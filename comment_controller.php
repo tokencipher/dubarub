@@ -47,8 +47,11 @@ if (isset($_POST['comment_text'])) {
       $post = new Post();
       $post->updateCommentCount($post_id, "increment");
       
+      $newCount = $post->getCommentCount($post_id);
+      
       $object = array();
       $object['last_id'] = $lastId;
+      $object['comment_count'] = $newCount;
       echo json_encode($object);
       
     } else {
@@ -68,8 +71,11 @@ if (isset($_POST['comment_text'])) {
 		$post = new Post();
 		$post->updateCommentCount($post_id, "increment");
 		
+		$newCount = $post->getCommentCount($post_id);
+		
 		$object = array();
 		$object['last_id'] = $lastId;
+		$object['comment_count'] = $newCount;
 		echo json_encode($object);
 		
 	  } else {
