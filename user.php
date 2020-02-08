@@ -223,7 +223,7 @@
               '<p class="post_tags" style="margin-left:10px;">' +  
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name + 
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +  
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + '<span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' + 
               '<i onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px;cursor:pointer"></i>' + obj[x].upvote + 
               '<div onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" style="position:relative;top:-8px;margin-right:10px;float:right;font-size:24px;color:#b36b00"><button class="w3-square fa fa-trophy"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -232,8 +232,8 @@
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" href="#" id="addComment">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' + 
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].video == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4" style="height:385">' + 
@@ -247,7 +247,7 @@
               '<p class="post_tags" style="margin-left:10px;">' +
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +  
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + '<span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +
               '<i onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px;cursor:pointer"></i>' + obj[x].upvote + 
               '<div onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" style="position:relative;top:-8px;margin-right:10px;float:right;font-size:24px;color:#b36b00"><button class="w3-square fa fa-trophy"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -256,8 +256,8 @@
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' + 
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else if (obj[x].external == "true") {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
@@ -271,7 +271,7 @@
               '<p class="post_tags" style="margin-left:10px;">' +  
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name + 
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +  
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + '<span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +  
               '<i onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px;cursor:pointer"></i>' + obj[x].upvote + 
               '<div onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" style="position:relative;top:-8px;margin-right:10px;float:right;font-size:24px;color:#b36b00"><button class="w3-square fa fa-trophy"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
@@ -280,8 +280,8 @@
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
 			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' +
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } else {
     		  var post = $( '<div id="post' + obj[x].p_id + '" class="section w3-card-4">' + 
@@ -290,17 +290,17 @@
     		  '<div class="metadata"><p class="post_tags" style="margin-left:10px;">' +
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' +  moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
-              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].comments +
+              '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + '<span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +
               '<i onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px;cursor:pointer"></i>' + obj[x].upvote + 
               '<div onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" style="position:relative;top:-8px;margin-right:10px;float:right;font-size:24px;color:#b36b00"><button class="w3-square fa fa-trophy"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
               '<button onclick="toggleComment(' + obj[x].p_id + ')" id="toggle_comments" style="text-align:left;color:blue;text-decoration:underline;">Show/Hide Comments</button>' +
               '<span style="float:right;color:blue;text-decoration:underline;"><a onclick="toggleCommentBox(event,' + obj[x].p_id + ')" id="addComment" href="#">Add Comment</a></span>' +
-			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form method="POST">' + 
+			  '</div><br><div class="comment_box" id="comment_box' + obj[x].p_id + '" style="padding:5px;"><form>' + 
 			  '<div class="form-group"><label for="comment_text">Leave a comment</label>' + 
-			  '<textarea class="comment_text form-control" name="comment_text" rows="3" required></textarea></div>' + 
-			  '<button onclick="submitComment(event,' + obj[x].p_id + ')" class="commentSubmit btn btn-primary">Submit</button></form>' + 
+			  '<textarea id="comment_text' + obj[x].p_id + '" class="form-control" rows="3"></textarea></div>' + 
+			  '</form><button onclick="submitComment(' + obj[x].p_id + ', ' + obj[x].comments + ')" class="commentSubmit btn btn-primary">Submit</button>' + 
 			  '</div><hr><div class="post_comments" id="post_comments' + obj[x].p_id + '"></div></div>');
     	    } 	  
               
@@ -478,28 +478,51 @@
     }
   }
   
-  function submitComment(event, p_id) {
-    event.preventDefault();
+  function submitComment(postID, commentCount) {
     
     // Required to make comment push to server
-    $('#comment_text').trigger('focusout');
+    $('#comment_text' + postID).trigger('focusout');
     
     // Save comment to variable
-    var comment = $('#comment_text').val();
+    var comment = $('#comment_text' + postID).val();
     console.log(comment);
-    console.log(p_id);
+    console.log(postID);
       
     // Clear out comment textarea input
-    $('#comment_text').val('');
+    $('#comment_text' + postID).val('');
           
     $.ajax({
       async: true,
       cache: false,
       url: 'comment_controller.php',  
       type: 'POST',
-      data: { comment_text: comment, post_id: p_id }  
+      dataType: 'json',
+      data: { post_owner: 'false', comment_text: comment, post_id: postID }  
     }).done(function ( msg ) {
       console.log('comment submitted...');
+      // Retrieve username
+      console.log("Username of commenter: " + msg.user_name);
+      var userName = msg.user_name;
+      // Retrieve avatar 
+      console.log("Avatar path of commenter: " + msg.avatar);
+      var avatar = msg.avatar;
+      
+      // Save reference to comment ID
+      var commID = Number(msg.last_id);
+      // Update comment count on post 
+      $('#comment_count_post' + postID).text(msg.comment_count);
+      // Add comment to post asynchronously 
+      $('#post' + postID).find('.post_comments').append('<div id="comment' + commID +  '" class="media">' +
+	  '<div class="media-left">' + 
+	  '<a href="#"><img style="margin-left:5px" height="64" width="64" class="media-object" src="' + avatar + '" alt="user avatar"></a>' +
+	  '</div><div style="position:relative;top:-5px;text-align:left;" class="media-body"><div class="commenter" style="font-size:14px;" class="media-heading"><b><a id="comment_owner_link" href="user.php?name=' + userName + '">' + userName + '</a></b> says:</div>' + 
+	  '<div class="comment_body" style="margin-bottom:2px;font-size:12px">' + comment + '</div>' + 
+	  '<div onclick="removeComment(this)" data-postid="' + postID + '" data-commid="' + commID + '" id="remove_comment' + commID + '" style="position:relative;bottom:22px;cursor:pointer;margin-right:10px;float:right">' + 
+	  '<i class="fa fa-times" style="color:red" aria-hidden="true"></i></div>' + 
+	  '<div style="clear:both;font-size:12px" class="comment_options flex-container">' + 
+	  '<div class="comment_timestamp">a moment ago</div>' +
+	  '<div class="upvote">0 trophies</div>' +
+	  '</div></div>');
     }).fail(function ( xhr, textStatus) {
       console.log(xhr.statusText);
     });
