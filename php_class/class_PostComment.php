@@ -151,6 +151,16 @@ class PostComment {
     return $stmt->execute();
   }
   
+  public function getLastInsertId() {
+    $table = "post_comment";
+    $sql = "SELECT c_id FROM post_comment"; 
+    $object = array(); 
+    foreach ($this->db->query($sql) as $row) {
+      $object['c_id'] = "{$row['c_id']}";
+    }
+    return $object['c_id'];
+  }
+  
   public function createComment($u_id, $user_name, $p_id, $avatar, $comment, $post_owner) {
     $table = "post_comment";
     $sql = "INSERT INTO $table (u_id, user_name, p_id, avatar, comment, post_owner) VALUES (:user_id, :user_name, :post_id, :avatar, :comment, :post_owner)";
@@ -163,6 +173,9 @@ class PostComment {
     $stmt->bindParam(':comment', $comment);
     $stmt->bindParam(':post_owner', $post_owner);
     $stmt->execute();
+    
+    $lastId = $this->getLastInsertId();
+    return $lastId;
   }
   
   public function deleteComment($comment_id) {
