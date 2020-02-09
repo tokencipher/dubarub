@@ -91,7 +91,7 @@ class PostComment {
     $count += 1;
   
     $table = "comment_upvote";
-    $sql = "UPDATE $table SET upvote = :inc WHERE p_id = :c_id";
+    $sql = "UPDATE $table SET upvote = :inc WHERE c_id = :c_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':inc', $count);
@@ -130,12 +130,12 @@ class PostComment {
   
   public function getUpvote($comment_id) {
     $table = "comment_upvote";
-    $sql = "SELECT upvote FROM $table WHERE c_id = $comment_id";
+    $sql = "SELECT counter FROM $table WHERE c_id = $comment_id";
     $object = array(); 
     foreach ($this->db->query($sql) as $row) {
-      $object['upvote'] = "{$row['upvote']}";
+      $object['counter'] = "{$row['counter']}";
     }
-    return $object['upvote'];
+    return $object['counter'];
     /*
     $table = "post_comment";
     $sql = "SELECT upvote FROM $table WHERE c_id = :c_id";
