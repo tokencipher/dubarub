@@ -122,12 +122,20 @@ class PostComment {
   
   public function getUpvoteFlag($user_id, $comment_id) {
     $table = "comment_upvote";
+    $sql = "SELECT upvote FROM $table WHERE u_id = $user_id && c_id = $comment_id";
+    $object = array(); 
+    foreach ($this->db->query($sql) as $row) {
+      $object['upvote'] = "{$row['upvote']}";
+    }
+    return $object['upvote'];
+    /*
     $sql = "SELECT upvote FROM $table WHERE u_id = :u_id && c_id = :c_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':u_id', $user_id);
     $stmt->bindParam(':c_id', $comment_id);
     return $stmt->execute();
+    */
   }
   
   public function setReportFlag($u_id, $c_id, $flag) {  
