@@ -85,6 +85,22 @@ class PostComment {
   
   public function upvote($c_id) {
     // Get upvote count so we can increment it and send to DB
+    $count = $this->getUpvote($c_id);
+    
+    // Increment retrieved upvote
+    $count += 1;
+  
+    $table = "comment_upvote";
+    $sql = "UPDATE $table SET upvote = :inc WHERE p_id = :c_id";
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':inc', $count);
+    $stmt->bindParam(':c_id', $c_id);
+    return $stmt->execute();
+     
+  
+    /*
+    // Get upvote count so we can increment it and send to DB
     $count = getUpvote($c_id);
     
     // Increment retrieved upvote
@@ -97,6 +113,7 @@ class PostComment {
     $stmt->bindParam(':inc', $count);
     $stmt->bindParam(':c_id', $c_id);
     return $stmt->execute();
+    */
     
   }
   
