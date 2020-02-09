@@ -91,7 +91,7 @@ class PostComment {
     $count += 1;
   
     $table = "comment_upvote";
-    $sql = "UPDATE $table SET upvote = :inc WHERE c_id = :c_id";
+    $sql = "UPDATE $table SET counter = :inc WHERE c_id = :c_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':inc', $count);
