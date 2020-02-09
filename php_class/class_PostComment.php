@@ -129,12 +129,21 @@ class PostComment {
   }
   
   public function getUpvote($comment_id) {
+    $table = "comment_upvote";
+    $sql = "SELECT upvote FROM $table WHERE c_id = $comment_id";
+    $object = array(); 
+    foreach ($this->db->query($sql) as $row) {
+      $object['upvote'] = "{$row['upvote']}";
+    }
+    return $object['upvote'];
+    /*
     $table = "post_comment";
     $sql = "SELECT upvote FROM $table WHERE c_id = :c_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':c_id', $comment_id);
     return $stmt->execute();
+    */
   }
   
   public function getUpvoteFlag($user_id, $comment_id) {
