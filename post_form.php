@@ -89,11 +89,12 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   <div class="form-group">
     <label for="photo_credit">Enter photo credit for image (optional)</label>
     <input type="text" maxlength="50" name="photo_cred" class="form-control" id="photo_credit" aria-describedby="title_help" placeholder="Photo credit">
-    <small id="title_help" class="form-text text-muted">Photo credit cannot be any longer than 50 characters.</small>
+    <small id="photo_credit_help" class="form-text text-muted">Photo credit cannot be any longer than 50 characters.</small>
   </div>
   <div class="form-group">
     <label for="post_text">Now, let your mind flow freely</label>
-    <textarea id="post_text" name="post_text" class="form-control" rows="3" required></textarea>
+    <textarea id="post_text" name="post_text" class="form-control" rows="3" maxlength="" required></textarea>
+    <small id="post_text_help" class="form-text text-muted">Post text content cannot be any longer than 5000 characters.</small>
   </div>
   <div class="form-group">
     <label for="post_tags">Tags</label>
