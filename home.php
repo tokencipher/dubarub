@@ -1235,7 +1235,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <form id="status_form" method="post">
       <div class="form-group">
         <label for="status">Update status</label>
-        <textarea id="status" name="status" class="form-control" rows="3"></textarea>
+        <textarea id="status" name="status" class="form-control" rows="3" maxlength="2000"></textarea>
         <br>
       </div>
     </form>
