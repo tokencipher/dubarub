@@ -248,7 +248,7 @@
               '<br><i class="fa fa-user fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + obj[x].user_name +
               '<i class="fa fa-calendar-o fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + moment(obj[x].created_at, "YYYY-MM-DD kk:mm:ss").fromNow() + 
               '<br><i class="fa fa-comments fa-lg" aria-hidden="true" style="margin-left:5px;padding-right:2px;"></i>' + '<span id="comment_count_post' + obj[x].p_id + '">' + obj[x].comments + '</span>' +
-              '<i onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px;cursor:pointer"></i>' + '<span id="trophy_count_post' + obj[x].p_id '">' + obj[x].upvote + '</span>' + 
+              '<i onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" class="fa fa-trophy fa-lg post_trophy" aria-hidden="true" style="color:#b36b00;margin-left:5px;padding-right:2px;cursor:pointer"></i><span id="trophy_count_post' + obj[x].p_id + '">' + obj[x].upvote + '</span>' + 
               '<div onclick="handPostTrophy(this)" data-postid="' + obj[x].p_id + '" style="position:relative;top:-8px;margin-right:10px;float:right;font-size:24px;color:#b36b00"><button class="w3-square fa fa-trophy"></button></div>' +
               '</p></div><hr><p class="entry">' + obj[x].entry + '</p>' + 
               '<div class="post_options" style="position:relative;font-size:16px;font-family:\'Aref Ruqaa\',serif;text-align:justify;top:20px;padding:10px;">' +
@@ -388,7 +388,7 @@
  			  '<div class="comment_body" style="margin-bottom:5px;font-size:12px">' + comments[i].comment + '</div>' + 
  			  '<div style="clear:both;font-size:12px" class="comment_options flex-container">' + 
  			  '<div class="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
- 			  '<div class="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
+ 			  '<div class="upvote"><span id="trophy_count_comment' + comments[i].c_id + '">' + comments[i].upvote + '</span>' + " " + '<span id="trophy_counter' + comments[i].c_id + '">' + trophyAmount + '</span></div>' +
  			  '<div onclick="handCommentTrophy(this)" class="comment_trophy" data-commid="' + comments[i].c_id + '"><i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' + 
  			  '<div onclick="flagComment(this)" class="comment_flag" data-commid="' + comments[i].c_id + '" style="position:relative;left:15px;"><i style="color:red" class="fa fa-flag" aria-hidden="true"></i></div>' +
  			  '</div></div>');
@@ -550,7 +550,7 @@
         data: { user_action: action, post_id: postID }  
       }).done(function ( msg ) {
         console.log('Post upvote action taken...');
-        $('#comment_count_post' + postID).text(msg.comment_count);
+        $('#trophy_count_post' + postID).text(msg.trophy_count);
       }).fail(function ( xhr, textStatus) {
         console.log(xhr.statusText);
       });
@@ -585,6 +585,15 @@
         data: { user_action: action, comment_id: commID }  
       }).done(function ( msg ) {
         console.log('Comment upvote action taken...');
+        var extension;
+        var count = msg.trophy_count; 
+        if (count == 1) {
+          extension = "trophy";
+        } else {
+          extension = "trophies";
+        }
+        $('#trophy_count_comment' + commID).text(msg.trophy_count);
+        $('#trophy_counter' + commID).text(extension);
         console.log(msg);
       }).fail(function ( xhr, textStatus) {
         console.log(xhr.statusText);

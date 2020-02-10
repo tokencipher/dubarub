@@ -361,9 +361,9 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
  			  '<div class="comment_body" style="margin-bottom:2px;font-size:12px">' + comments[i].comment + '</div>' + 
  			  '<div style="clear:both;font-size:12px" class="comment_options flex-container">' + 
  			  '<div class="comment_timestamp">' + moment(comments[i].timestamp, "YYYY-MM-DD kk:mm:ss").fromNow() + '</div>' +
- 			  '<div class="upvote">' + comments[i].upvote + " " + trophyAmount + '</div>' +
- 			  '<div onclick="handCommentTrophy(this)" class="comment_trophy" data-commid="' + comments[i].c_id + '"><i class="fa fa-trophy" style="color:#b36b00" aria-hidden="true"></i></a></div>' + 
- 			  '<div onclick="flagComment(this)" class="comment_flag" data-commid="' + comments[i].c_id + '" style="position:relative;left:15px;"><i style="color:red" class="fa fa-flag" aria-hidden="true"></i></div>' +
+ 			  '<div class="upvote">' + '<span id="trophy_count_comment' + comments[i].c_id + '">' + comments[i].upvote + '</span>' + " " + '<span id="trophy_counter' + comments[i].c_id + '">' + trophyAmount + '</span></div>' +
+ 			  '<div onclick="handCommentTrophy(this)" class="comment_trophy" data-commid="' + comments[i].c_id + '"><i class="fa fa-trophy" style="color:#b36b00;cursor:pointer" aria-hidden="true"></i></a></div>' + 
+ 			  '<div onclick="flagComment(this)" class="comment_flag" data-commid="' + comments[i].c_id + '" style="position:relative;left:15px;"><i style="color:red;cursor:pointer" class="fa fa-flag" aria-hidden="true"></i></div>' +
  			  '</div></div>');
  			}
           }
@@ -523,6 +523,15 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
         data: { user_action: action, comment_id: commID }  
       }).done(function ( msg ) {
         console.log('Comment upvote action taken...');
+        var extension;
+        var count = msg.trophy_count; 
+        if (count == 1) {
+          extension = "trophy";
+        } else {
+          extension = "trophies";
+        }
+        $('#trophy_count_comment' + commID).text(msg.trophy_count);
+        $('#trophy_counter' + commID).text(extension);
         console.log(msg);
       }).fail(function ( xhr, textStatus) {
         console.log(xhr.statusText);
