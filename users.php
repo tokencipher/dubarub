@@ -25,19 +25,19 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       line-height:75px;
       font-size:30px;
     }
-    #bio_avi {
+    .bio_avi {
       position:relative;
       padding:4px;
       width:80px;
       height:80px;
       background:;
     }
-    #avatar {
+    .avatar {
       position:relative;
       top:-4px;
       left:3px;
     }
-    #bio_username_container {
+    .bio_username_container {
       position:relative;
       top:-80px;
       left:88px;
@@ -46,50 +46,53 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       height:25px;
       line-height:24px;
       overflow:scroll;
-      background:;
     }
-    #bio_username {
+    .bio_username {
       text-align:left;
       font-size:12px;
     }
-    #bio_action_container {
+    .bio_action_container {
       position:relative;
-      top:-55px;
+      top:-67px;
       left:88px;
       width:28px;
       line-height:13px;
       height:25px;
       padding:2px;
-      background:;
+      color:green;
+      font-size:20px;
     }
-    #direct_message {
+    .direct_message {
       position:relative;
       float:left;
       font-size:20px;
       color:green;
       cursor:pointer;
     }
-    #bio_text_container {
+    .bio_text_container {
       position:relative;
       line-height:20px;
       top:-40px;
       height:55px;
+      width:100%;
       font-size:10px;
       padding:1px;
       text-align:justify;
       word-wrap:break-word;
       overflow:auto;
-      background:;
+      background:gold;
     }
-    #follow_button_container {
+    .follow_button_container {
       position:relative;
       top:-40px;
       padding:10px;
+      cursor:pointer;
     }
-    #unfollow_button_container {
+    .unfollow_button_container {
       position:relative;
       top:-40px;
       padding:10px;
+      cursor:pointer;
     }
   </style>
 <?php require_once ('php_inc/inc_user_nav.php'); ?>
@@ -153,26 +156,26 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
             
             if (follow_status) {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
-		      'class="flex_item"><div id="bio_avi"><a href="user.php?name=' + data.rendered_user_name + '"><img id="avatar" src="' + data.avatar +
-		      '" width="65" height="65"></img></a></div><div id="bio_username_container">' + 
-		      '<div id="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
-		      '<div id="bio_action_container">' +
-		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
-		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
-		      '<p id="bio_text">' + data.bio + '</p></div>' + 
-		      '<div id="unfollow_button_container"><a onclick="unfollow(this)" ' +
+		      'class="flex_item"><div class="bio_avi"><a href="user.php?name=' + data.rendered_user_name + '"><img class="avatar" src="' + data.avatar +
+		      '" width="65" height="65"></img></a></div><div class="bio_username_container">' + 
+		      '<div class="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
+		      '<div class="bio_action_container">' +
+		      '<i onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
+		      'aria-hidden="true"></i></div><div class="bio_text_container">' + 
+		      '<p class="bio_text">' + data.bio + '</p></div>' + 
+		      '<div class="unfollow_button_container"><a onclick="unfollow(this)" ' +
 		      'class="btn btn-primary btn-sm btn-block active" role="button" ' + 
 		      'aria-pressed="true" data-rendered-user-name="' + data.rendered_user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Unfollow</a></div></div>');
             } else {
               var user = $('<div id="user' + data.rendered_user_id + '" ' + 
-		      'class="flex_item"><div id="bio_avi"><a href="user.php?name=' + data.rendered_user_name + '"><img id="avatar" src="' + data.avatar +
-		      '" width="65" height="65"></a></img></div><div id="bio_username_container">' + 
-		      '<div id="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
-		      '<div id="bio_action_container">' +
-		      '<i id="direct_message" onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
-		      'aria-hidden="true"></i></div><div id="bio_text_container">' + 
-		      '<p id="bio_text">' + data.bio + '</p></div>' + 
-		      '<div id="follow_button_container"><a onclick="follow(this)" ' + 
+		      'class="flex_item"><div class="bio_avi"><a href="user.php?name=' + data.rendered_user_name + '"><img id="avatar" src="' + data.avatar +
+		      '" width="65" height="65"></a></img></div><div class="bio_username_container">' + 
+		      '<div class="bio_username"><b><a href="user.php?name=' + data.rendered_user_name + '">' + data.rendered_user_name + '</a></b></div></div>' + 
+		      '<div class="bio_action_container">' +
+		      '<i onclick="displayMessageModal()" class="fa fa-paper-plane action_items" ' + 
+		      'aria-hidden="true"></i></div><div class="bio_text_container">' + 
+		      '<p class="bio_text">' + data.bio + '</p></div>' + 
+		      '<div class="follow_button_container"><a onclick="follow(this)" ' + 
 		      'class="btn btn-primary btn-sm btn-block active" role="button" ' +
 		      'aria-pressed="true" data-rendered-user-name="' + data.rendered_user_name + '" data-rendered-user-id="' + data.rendered_user_id + '">Follow</a></div></div>');
             }
@@ -206,7 +209,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  var renderedUserName = $(elem).data("rendered-user-name");
 	  
 	  $(elem).text("Unfollow");
-	  $(elem).parent().attr("id", "unfollow_button_container");
+	  $(elem).parent().attr("class", "unfollow_button_container");
 	  $(elem).attr("onclick", "unfollow(this)");	
 	  
 	
@@ -245,7 +248,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       var renderedUserName = $(elem).data("rendered-user-name");
       
 	  $(elem).text("Follow");
-	  $(elem).parent().attr("id", "follow_button_container");
+	  $(elem).parent().attr("class", "follow_button_container");
 	  $(elem).attr("onclick", "follow(this)");
       
       

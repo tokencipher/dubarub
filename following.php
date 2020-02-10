@@ -46,7 +46,6 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       height:25px;
       line-height:24px;
       overflow:scroll;
-      background:;
     }
     .bio_username {
       text-align:left;
@@ -210,7 +209,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  var renderedUserName = $(elem).data("rendered-user-name");
 	  
 	  $(elem).text("Unfollow");
-	  $(elem).parent().attr("id", "unfollow_button_container");
+	  $(elem).parent().attr("class", "unfollow_button_container");
 	  $(elem).attr("onclick", "unfollow(this)");	
 	  
 	
@@ -249,7 +248,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       var renderedUserName = $(elem).data("rendered-user-name");
       
 	  $(elem).text("Follow");
-	  $(elem).parent().attr("id", "follow_button_container");
+	  $(elem).parent().attr("class", "follow_button_container");
 	  $(elem).attr("onclick", "follow(this)");
       
       
