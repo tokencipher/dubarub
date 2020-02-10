@@ -755,6 +755,17 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     sequenceAsync();
     
+    var status = document.getElementById('status');
+    
+    // Submit status update onClick of "Enter" key 
+    status.addEventListener('keyup', function(event) {
+      // Number 13 is the "Enter" key on the keyboard
+      if (event.keyCode == 13) {
+        // Trigger the button element with a click
+        document.getElementById('submit').click();
+      }
+    });
+    
     $('#clear').click(function() {
       $('#status').val('');
     });
