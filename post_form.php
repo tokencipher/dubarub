@@ -93,7 +93,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   </div>
   <div class="form-group">
     <label for="post_text">Now, let your mind flow freely</label>
-    <textarea id="post_text" name="post_text" class="form-control" rows="3" maxlength="" required></textarea>
+    <textarea id="post_text" name="post_text" class="form-control" rows="3" maxlength="5000" required></textarea>
     <small id="post_text_help" class="form-text text-muted">Post text content cannot be any longer than 5000 characters.</small>
   </div>
   <div class="form-group">
