@@ -257,7 +257,7 @@ if ($errorCount == 0) {
   // Set password to md5 hash
   $password = md5($password);
 
-  $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : '';
+  $avatar = isset($_POST['avatar']) ? $_POST['avatar'] : 'img/dubarub-01.png';
 
   // Create new user
   $User = new User();
@@ -278,7 +278,7 @@ if ($errorCount > 0) {
   
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 12/20/2019 -->
+<!-- Last modified: 03/06/2020 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <style>
   .heading {
