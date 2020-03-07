@@ -142,6 +142,7 @@ if (isset($_POST['submit'])) {
     $username = "";
   } else {
     $username = trim($_POST['username']);
+    $username = preg_replace('/\s+/', '', $username);
     $username = strtolower($username);
     $username = stripslashes($username);
     $username = htmlspecialchars($username);
