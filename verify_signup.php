@@ -185,7 +185,7 @@ if (isset($_POST['submit'])) {
   
   // invalidate username against special characters 
   $special_chars = $username;
-  $special_chars = preg_match('/[@#$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\]/', $username);
+  $special_chars = preg_match('/[@#$%^&*()+=\-\[\]\';,\/{}|":<>?~\\\\]/', $username);
   if ($special_chars) {
     ++$errorCount;
     $errUsername = "username cannot contain any special characters";
