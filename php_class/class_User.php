@@ -63,6 +63,19 @@ class User {
     $this->avatar = $path;
   }
   
+  public function setBio($bio) {
+    $this->bio = $bio;
+  }
+  
+  public function updateBio($user_id, $bio) {
+    $table = "user";
+    $sql = "UPDATE $table SET bio = :bio WHERE u_id = :user_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':bio', $bio);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+  }
+  
   public function updateAvatar() {
     $table = "user";
     $user_id = $this->user_id;
@@ -71,10 +84,6 @@ class User {
     $stmt->bindParam(':avatar', $this->avatar);
     $stmt->bindParam(':user_id', $this->user_id);
     $stmt->execute();
-  }
-  
-  public function setBio($bio) {
-    $this->bio = $bio;
   }
   
   public function getBio() {
