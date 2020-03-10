@@ -107,6 +107,7 @@
     top:-13px;
     height:110px;
     overflow:scroll;
+    padding:5px;
     background-color:gold;
   }
   div.section {
@@ -325,6 +326,7 @@
     top:-13px;
     height:110px;
     overflow:scroll;
+    padding:5px;
     background-color:gold;
   }
   div.section {
@@ -531,6 +533,7 @@
     top:-13px;
     height:110px;
     overflow:scroll;
+    padding:5px;
     background-color:gold;
   }
   div.section {
@@ -728,6 +731,7 @@
     top:-24px;
     height:110px;
     overflow:scroll;
+    padding:5px;
     background-color:gold;
   }
   div.section {
