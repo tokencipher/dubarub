@@ -817,13 +817,15 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       
       // Clear out bio_edit textarea input
       $('#bio_edit').val('');
+      
+      var action = 'Update Bio';
           
       $.ajax({
         async: true,
         cache: false,
-        url: 'bio_controller.php',  
+        url: 'user_action.php',  
         type: 'POST',
-        data: { update_bio: bio, u_id: id }  
+        data: { user_action: action, updated_bio: bio, u_id: id }  
       }).done(function ( msg ) {
         console.log('data retrieved...');
       }).fail(function ( xhr, textStatus) {
