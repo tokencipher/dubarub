@@ -10,6 +10,7 @@ require_once('php_class/class_Post.php');
 require_once('php_class/class_PostComment.php');
 require_once('php_class/class_Status.php');
 require_once('php_class/class_Follow.php');
+require_once('php_class/class_User.php');
 
 // The user id of currently logged in user
 $user_id = $_SESSION['user_id'];
@@ -18,14 +19,20 @@ $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
 // The user id of user whose profile is currently being viewed
-$id = isset($_POST['rendered_user_id']) ? $_POST['rendered_user_id'] : $_SESSION['id'];
+$id = isset($_POST['rendered_user_id']) ? $_POST['rendered_user_id'] : isset($_SESSION['id']) ? $_SESSION['id'] : null;
 
 // The user name of user whose profile is currently being viewed
-$user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : $_SESSION['user'];
+$user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
   if (isset($_POST['user_action'])) {
      
     switch ( $_POST['user_action'] ) {
+    
+      case 'Update Bio':
+        $user = new User();
+        $user->updateBio($user_id, $_POST['updated_bio']);
+        $myObj['isBioUpdated'] = 'true';
+        break;
     
       case 'Upvote Post':
         $post_id = $_POST['post_id'];
