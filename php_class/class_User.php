@@ -123,6 +123,15 @@ class User {
   public function getUserId() {
     return $this->user_id;
   }
+
+  public function retrieveUserID($user_name) {
+    $table = "user";
+    $sql = "SELECT u_id FROM user WHERE user_name = '$user_name'";
+    foreach ($this->db->query($sql) as $row) {
+      $userID = "{$row['u_id']}";
+    }
+    return $userID;
+  }
   
   public function getUsername($user_id) {
     $tableName = "user";
