@@ -54,19 +54,21 @@ class Message {
     
   }
   
-  public sendMessage($sender_id, $sender_username, $sender_avatar, $message) {
+  public function sendMessage($message_id, $sender_id, $sender_avatar, $sender_username, $recipient, $message) {
     $table = "message";
-    $sql = "INSERT INTO $table (sender_id, sender_username, sender_avatar, message) VALUES (:sender_id, :sender_username, :sender_avatar, :message)";
+    $sql = "INSERT INTO $table (message_id, sender_id, avatar, sender, recipient, body) VALUES (:message_id, :sender_id, :sender_avatar, :sender_username, :recipient, :message)";
     $stmt = $this->db->prepare($sql);
     
+    $stmt->bindParam(':message_id', $message_id);
     $stmt->bindParam(':sender_id', $sender_id);
-    $stmt->bindParam(':sender_username', $sender_username);
     $stmt->bindParam(':sender_avatar', $sender_avatar);
+    $stmt->bindParam(':sender_username', $sender_username);
+    $stmt->bindParam(':recipient', $recipient);
     $stmt->bindParam(':message', $message);
     $stmt->execute();
   }
   
-  public deleteMessage($message_id, $recipient_id) {
+  public function deleteMessage($message_id, $recipient_id) {
     $table = "message";
     $sql = "UPDATE $table SET display = 'false' WHERE message_id = :message_id && recipient_id = :recipient_id";
     $stmt = $this->db->prepare($sql);
@@ -76,7 +78,7 @@ class Message {
     $stmt->execute();
   }
   
-  public setOpened($message_id) {
+  public function setOpened($message_id) {
     $table = "message";
     $sql = "UPDATE $table SET opened = 'true' WHERE message_id = :message_id";
     
