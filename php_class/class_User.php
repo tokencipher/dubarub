@@ -42,7 +42,7 @@ class User {
     $this->age = $age;
   }
   
-  // Shouldn't ever have to be used 
+  // Used for getting avatar
   public function setUserId($uid) {
     $this->user_id = $uid;
   }
