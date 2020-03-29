@@ -9,7 +9,7 @@ class Message {
   private $body; // VARCHAR(2020)
   private $unread; // VARCHAR(5)
   private $created_at; // TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
+  
   public function __construct() {
     include("php_inc/inc_db_qp4.php");
     if ($conn !== FALSE) {
