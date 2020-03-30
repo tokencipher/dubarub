@@ -73,7 +73,7 @@ class Postmaster {
   
   public function retrieveMailbox($user_name) {
     $table = $user_name . "_mailbox";
-    $sql = "SELECT message_id, sender_id, avatar, sender, recipient, body, unread, created_at FROM $table WHERE recipient = '$user_name'";
+    $sql = "SELECT message_id, sender_id, avatar, sender, recipient, body, unread, created_at FROM $table";
     $object = array();
     $x = 0;
     foreach ($this->db->query($sql) as $row) {
