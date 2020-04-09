@@ -46,6 +46,10 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
 <script>
 
+    
+  var userID = "<?php echo $_SESSION['user_id']; ?>";
+  var userName = "<?php echo $_SESSION['user_name']; ?>";
+
   function performAsync(message, callback) {
     return new Promise( (resolve, reject) => {
       setTimeout(
@@ -1168,7 +1172,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     <div id="bio_action_container" class="flex-container">
       <i id="bio_edit_icon" class="fa fa-pencil action_items" aria-hidden="true"></i>
       <i id="direct_message" class="fa fa-paper-plane action_items" aria-hidden="true"></i>
-      <i id="inbox" class="fa fa-envelope action_items" aria-hidden="true"></i>
+      <i id="inbox" class="fa fa-envelope action_items" aria-hidden="true"><span style="position:absolute;top:-5px;right:-5px;padding:5px10px;border-radius:50%;background:red;color:white" class="badge"</i>
       <i id="settings" class="fa fa-cog action_items" aria-hidden="true"></i>
     </div>
     
