@@ -15,6 +15,8 @@
 	<script src="js/index.js"></script> 
 	<script src="js/moment.min.js"></script>
     <script src="js/defer_load.js"></script>
+    <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
+
 
   </body>
 </html>
