@@ -780,6 +780,34 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     
     sequenceAsync();
     
+	var socket = io('https://dubarub.com:4200');
+	loadUnreadMessageCount();
+  
+	$('#inbox').click(function() {
+	  window.location.assign('https://quarterpast4.com/inbox.php');
+	});
+  
+	socket.on('connect', function() {
+	  console.log('Connected to message server...');
+	  socket.emit('user connected', {userName: userName});
+	});
+  
+	socket.on('message', function(data) {
+	
+	  if (data.recipient == userName) {
+	  
+		console.log('new message available for recipient: ' + data.recipient);
+		var count = Number($('.badge').text());
+		count += 1;
+	  
+		$('.badge').css("display", "block");
+	
+		$('.badge').text(count);
+		
+	  }
+	
+	});
+    
     var status = document.getElementById('status');
     
     // Submit status update onClick of "Enter" key 
