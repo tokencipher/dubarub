@@ -156,7 +156,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 
         for ( var x = 0; x < statusCnt; x++ ) {
           
-          var status = $( '<div id="status' + obj[x].status_id + '"' + 
+          var status = $( '<div id="status' + obj[x].status_id + '">' + 
           '<p>' + obj[x].status_text + '</p>' + 
           '<p>' + obj[x].created_at + '</p>' +
           '<div id="status_options" style="position:relative;top:2px;padding:10px;cursor:pointer;">' +
@@ -749,6 +749,27 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
   function stripHTML(str) {
     var StrippedString = str.replace(/(<([^>]+)>)/ig,"");
     return StrippedString;
+  }
+  
+  function loadUnreadMessageCount() {
+	
+	$.ajax({
+	  async: true,
+	  cache: false,
+	  url: 'get_unread_message_count.php',
+	  type: 'POST', 
+	  dataType: 'json',
+	}).done(function (data) {
+	  if (data.unreadCount == 0) {
+		$('.badge').css("display", "none");
+	  } else {
+		$('.badge').text(data.unreadCount);
+		$('.badge').css("display", "block");
+	  }
+	}).fail(function(xhr, textStatus) {
+	  console.log(textStatus);
+	});
+	
   }
   
   $(document).ready(function() {
