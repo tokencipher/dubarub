@@ -7,7 +7,7 @@ $loggedInUserId = $_SESSION['user_id'];
 
 include ("php_inc/inc_db_qp4.php");
    if ($conn != FALSE) {
-     $sql = "SELECT a.u_id, a.p_id, a.avatar, a.thumbnail, a.display, a.mime_type, a.user_name, a.title, a.photo_url, a.video_url, a.video_mp4, a.external, a.image, a.video, a.file_size, a.upvote, a.comments, a.photo_cred, a.entry, a.created_at from post a JOIN following b on a.u_id=b.u_id_following where b.u_id=$loggedInUserId AND a.display = 'TRUE';";
+     $sql = "SELECT a.u_id, a.p_id, a.avatar, a.thumbnail, a.display, a.mime_type, a.user_name, a.title, a.photo_url, a.video_url, a.external_url, a.video_mp4, a.external, a.image, a.video, a.file_size, a.upvote, a.comments, a.photo_cred, a.entry, a.created_at from post a JOIN following b on a.u_id=b.u_id_following where b.u_id=$loggedInUserId AND a.display = 'TRUE';";
      $object = array();
      $x = 0;
      foreach ($conn->query($sql) as $row) {
@@ -23,6 +23,7 @@ include ("php_inc/inc_db_qp4.php");
        $object[$x]['video_url'] = "{$row['video_url']}";
        $object[$x]['video_mp4'] = "{$row['video_mp4']}";
        $object[$x]['external'] = "{$row['external']}";
+       $object[$x]['external_url'] = "{$row['external_url']}";
        $object[$x]['image'] = "{$row['image']}";
        $object[$x]['video'] = "{$row['video']}";
        $object[$x]['file_size'] = "{$row['file_size']}";
