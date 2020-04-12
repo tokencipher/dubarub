@@ -5,7 +5,7 @@
 
   <title>dubarub | Feed</title>  
   
-<?php include_once ('php_inc/inc_user_nav.php'); ?>
+<?php include_once ('php_inc/inc_user_home_nav.php'); ?>
 </head>
 <body>
   
