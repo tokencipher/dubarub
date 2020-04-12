@@ -46,6 +46,7 @@ $post_master->deliverMessage($recipient_mailbox, $message_id, $sender_id, $avata
 
 $sender_mailbox = $sender . '_mailbox';
 $post_master->deliverMessage($sender_mailbox, $message_id, $sender_id, $avatar, $sender, $recipient, $message);
+$post_master->setUnreadFlag($sender, $message_id);
 
 $myObj = array(
   "messageID"=>$message_id, 
