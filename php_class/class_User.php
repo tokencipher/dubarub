@@ -105,11 +105,21 @@ class User {
   public function getAvatar() {
     $table = "user";
     $user_id = $this->user_id; 
-    $sql = "SELECT avatar FROM $table WHERE u_id = $user_id;";
+    $sql = "SELECT avatar FROM $table WHERE u_id = $user_id";
+    /*
+    $sql = "SELECT avatar FROM $table WHERE u_id = :user_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    $avatar = $stmt->fetch();
+    return $avatar;
+    */
+    
     foreach ($this->db->query($sql) as $row) {
       $avatar = "{$row['avatar']}";
     }
     return $avatar;
+    
   } 
   
   public function getName() {
@@ -126,11 +136,20 @@ class User {
 
   public function retrieveUserID($user_name) {
     $table = "user";
-    $sql = "SELECT u_id FROM user WHERE user_name = '$user_name'";
+    $sql = "SELECT u_id FROM $table WHERE user_name = '$user_name'";
+    /*
+    $sql = "SELECT u_id FROM $table WHERE user_name = :user_name";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':user_name', $user_name);
+    $stmt->execute();
+    $user_id = $stmt->fetch();
+    return $user_id;
+    */
     foreach ($this->db->query($sql) as $row) {
       $userID = "{$row['u_id']}";
     }
     return $userID;
+    
   }
   
   public function getUsername($user_id) {
