@@ -345,9 +345,11 @@
     
     $(document).ready(function() {
       loadFeed();
+      /*
       setInterval(function() {
         rewritePosts();
       }, 3000); 
+      */
     });
   </script>
 
