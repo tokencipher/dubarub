@@ -4,6 +4,24 @@
 */
 /* Extra small devices (phones, 320px and up) */
 @media only screen and (min-width: 320px) {
+  #message_container {
+    position:relative;
+    top:10px;
+    width:300px;
+    padding:5px;
+  }
+  
+  #message_thread_container {
+    display:none;
+  }
+  
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    left:198px;
+  }
+
   #profile_bio_container {
     position:relative;
     padding:10px;
@@ -228,6 +246,23 @@
 }
 
 @media only screen and (min-width: 375px) {
+  #message_container {
+    position:relative;
+    top:10px;
+    width:359px;
+    padding:5px;
+  }
+  
+  #message_thread_container {
+    display: none;
+  }
+    
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    left:257px;
+  }
   #profile_bio_container {
     position:relative;
     padding:10px;
@@ -446,7 +481,25 @@
   }
 }
 
-@media only screen and (min-width: 425px) {
+@media only screen and (min-width: 425px) { 
+  #message_container {
+    position:relative;
+    top:10px;
+    width:420px;
+    padding:5px;
+  }
+  
+  #message_thread_container {
+    display: none;
+  }
+  
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    left:290px;
+  }
+
   #profile_bio_container {
     position:relative;
     padding:10px;
@@ -640,6 +693,29 @@
 }
 
 @media only screen and (min-width: 768px) {
+  #message_container {
+    position:relative;
+    top:10px;
+    width:328px;
+  }
+  
+  #message_thread_container {
+    position:fixed;
+    top:70px;
+    left:330px;
+    height:485px;
+    width:432px;
+    background-color:gray;
+    display:block;
+  }
+
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    left:210px;
+  }
+
   #profile_bio_container {
     position:relative;
     padding:10px;
@@ -842,6 +918,29 @@
 }
 
 @media only screen and (min-width: 1024px) {
+  #message_container {
+    position:relative;
+    top:10px;
+    width:420px!important;
+  }
+  
+  #message_thread_container {
+    position:fixed;
+    top:70px;
+    left:430px;
+    height:485px;
+    width:580px;
+    background-color:gray;
+    display:block;
+  }
+
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    left:290px!important;
+  }
+  
   #my-audio {
     display: none;
   }
@@ -1114,6 +1213,30 @@
 
 /* MacBook Pro 13" or Desktops and Laptops*/
 @media screen and (min-width: 1200px) {
+  #message_container {
+    position:relative;
+    top:10px;
+    width:420px;
+  }
+  
+  #message_thread_container {
+    position:fixed;
+    top:70px;
+    left:450px;
+    height:568px;
+    width:800px;
+    background-color:gray;
+    display:block;
+  }
+
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    margin-left:4px;
+    left:298px!important;
+  }
+
   #my-audio {
     display: none;
   }
@@ -1225,6 +1348,29 @@
 }
 
 @media screen and (min-width: 1440px) {
+  #message_container {
+    position:relative;
+    top:10px;
+    width:420px;
+  }
+  
+  #message_thread_container {
+    position:fixed;
+    top:70px;
+    left:450px;
+    height:568px;
+    width:950px;
+    background-color:gray;
+    display:block;
+  }
+
+  .message-delete {
+    position:relative;
+    bottom:22px;
+    cursor:pointer;
+    left:260px;
+  }
+  
   #my-audio {
     display: none;
   }
