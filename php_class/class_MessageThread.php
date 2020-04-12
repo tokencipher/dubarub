@@ -36,19 +36,18 @@ class MessageThread {
 	$this->db = null;
   }
  
-  public function createThread($message_id, $sender_id, $recipient_id, $avatar, $sender, $recipient, $body) {
+  public function createThread($message_id, $sender_id, $recipient_id, $sender, $recipient, $body) {
 	$table = "thread";
-	$sql = "INSERT INTO $table (message_id, sender_id, recipient_id, avatar, sender, recipient, body) VALUES (:message_id, :sender_id, :recipient_id, :avatar, :sender, :recipient, :body)";
+	$sql = "INSERT INTO $table (message_id, sender_id, recipient_id, sender, recipient, body) VALUES (:message_id, :sender_id, :recipient_id, :sender, :recipient, :body)";
 	$stmt = $this->db->prepare($sql);
 
 	$stmt->bindParam(':message_id', $message_id);
 	$stmt->bindParam(':sender_id', $sender_id);
 	$stmt->bindParam(':recipient_id', $recipient_id);
-	$stmt->bindParam(':avatar', $avatar);
 	$stmt->bindParam(':sender', $sender);
 	$stmt->bindParam(':recipient', $recipient);
 	$stmt->bindParam(':body', $body);
 	$stmt->execute();
   }
-}
+  
 ?>
