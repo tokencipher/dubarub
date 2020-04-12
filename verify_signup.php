@@ -7,6 +7,7 @@ require("php_inc/inc_db_qp4.php");
 
 require_once("php_class/class_Session.php");
 require_once("php_class/class_User.php");
+require_once("php_class/class_Postmaster.php");
 
 $errorCount = 0;
 $username = "";
@@ -267,6 +268,9 @@ if ($errorCount == 0) {
   $User->setPassword($password);
   $User->setAvatar($avatar);
   $User->createUser();
+  $Mailbox = new Postmaster();
+  $Mailbox->setUsername($username);
+  $Mailbox->createMailbox();
   
   header('Location: index.php');
 
