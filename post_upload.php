@@ -418,8 +418,8 @@ if ($error_count == 0) {
           $Tag->setPostId($post_id);
           $Tag->setTags($tag_array);
           $Tag->insertTags();
-        }
-    
+        }    
+        
         header('Location: home.php'); 
         exit;
     
