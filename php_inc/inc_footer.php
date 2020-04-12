@@ -8,7 +8,7 @@
 		 ?> dubarub.com. All Rights Reserved. 
 		</p>
 		-->
-		<p id="author">The content of this site is licensed under the <a href="https://choosealicense.com/licenses/gpl-3.0/">GPLv3 License</a></p>
+		<p id="license">The content of this site is licensed under the <a href="https://choosealicense.com/licenses/gpl-3.0/">GPLv3 License</a></p>
 	</div>
 
     <!--For music player play button graphic -->
