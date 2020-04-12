@@ -38,7 +38,7 @@ $message_object->createMessage($message_id, $sender_id, $avatar, $sender, $recip
 $user = new User();
 $recipient_id = $user->retrieveUserID($recipient);
 $messageThread = new MessageThread();
-$messageThread->createThread($message_id, $sender_id, $recipient_id, $avatar, $sender, $recipient, $message);
+$messageThread->createThread($message_id, $sender_id, $recipient_id, $sender, $recipient, $message);
 
 $recipient_mailbox = $recipient . '_mailbox';
 $post_master = new Postmaster();
