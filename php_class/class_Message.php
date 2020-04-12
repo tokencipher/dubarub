@@ -4,12 +4,15 @@ class Message {
   private $db;
   private $message_id; // PRIMARY KEY
   private $sender_id; // FOREIGN KEY 
-  private $avatar; // VARCHAR(255)
-  private $recipient; // VARCHAR(70) 
-  private $body; // VARCHAR(2020)
-  private $unread; // VARCHAR(5)
-  private $created_at; // TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  
+  private $sender_username; 
+  private $sender_avatar;
+  private $recipient_id; // FOREIGN KEY
+  private $message; // VARCHAR(1300) NOT NULL;
+  private $timestamp; // TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  private $opened;  // VARCHAR(5) DEFAULT 'false'
+  private $display; // VARCHAR(5) DEFAULT 'true'
+
+
   public function __construct() {
     include("php_inc/inc_db_qp4.php");
     if ($conn !== FALSE) {
@@ -31,6 +34,26 @@ class Message {
     $this->db = null;
   }
   
+  public function getInbox($recipient_id) {
+    $table = "message";
+    $sql = "SELECT message_id, sender_id, sender_username, sender_avatar, message, timestamp, opened, display FROM message WHERE u_id = $recipient_id;";
+    
+    $x = 0; 
+    foreach($this->db->query($sql) as $row) {
+      $object[$x]['message_id'] = "{$row['message_id']}";
+      $object[$x]['sender_id'] = "{$row['sender_id']}";
+      $object[$x]['sender_username'] = "{$row['sender_username']}";
+      $object[$x]['sender_avatar'] = "{$row['sender_avatar']}";
+      $object[$x]['message'] = "{$row['message']}";
+      $object[$x]['timestamp'] = "{$row['timestamp']}";
+      $object[$x]['opened'] = "{$row['opened']}";
+      $object[$x]['display'] = "{$row['display']}";
+      ++$x;
+    }
+    return $x;
+    
+  }
+  
   public function createMessage($message_id, $sender_id, $sender_avatar, $sender_username, $recipient, $message) {
     $table = "message";
     $sql = "INSERT INTO $table (message_id, sender_id, avatar, sender, recipient, body) VALUES (:message_id, :sender_id, :sender_avatar, :sender_username, :recipient, :message)";
@@ -45,18 +68,19 @@ class Message {
     $stmt->execute();
   }
   
-  public function deleteMessage($message_id, $mailbox) {
-    $table = $mailbox;
-    $sql = "DELETE FROM $table WHERE message_id = :message_id";
+  public function deleteMessage($message_id, $recipient_id) {
+    $table = "message";
+    $sql = "UPDATE $table SET display = 'false' WHERE message_id = :message_id && recipient_id = :recipient_id";
     $stmt = $this->db->prepare($sql);
     
     $stmt->bindParam(':message_id', $message_id);
+    $stmt->bindParam(':recipient_id', $recipient_id);
     $stmt->execute();
   }
   
-  public function setOpened($message_id, $mailbox) {
-    $table = $mailbox;
-    $sql = "UPDATE $table SET unread = 'false' WHERE message_id = :message_id";
+  public function setOpened($message_id) {
+    $table = "message";
+    $sql = "UPDATE $table SET opened = 'true' WHERE message_id = :message_id";
     
     $stmt = $this->db->prepare($sql);
     $stmt->bindParam(':message_id', $message_id);
