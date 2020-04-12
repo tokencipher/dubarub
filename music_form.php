@@ -143,6 +143,19 @@ if (isset($_POST['upload'])) {
   		  ++$error_count;
 		}
         break;
+        
+      case "audio/m4a": 
+        $audio = true;
+        $getID3 = new getID3;
+        $tag = $getID3->analyze($temp_audio_file);
+        $html_artist = isset($tag['tags_html']['id3v2']['artist'][0]) ? $tag['tags_html']['id3v2']['artist'][0] : ''; 
+    	$html_album = isset($tag['tags_html']['id3v2']['album'][0]) ? $tag['tags_html']['id3v2']['album'][0] : '';
+    	
+    	if ((empty($html_artist)) && (empty($html_album))) {
+    	  $audio_flag = "invalid metadata";
+  		  ++$error_count;
+		}
+        break;
                
       default:
         $audio_flag = "invalid data format";
