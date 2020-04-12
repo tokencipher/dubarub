@@ -80,7 +80,7 @@ function redisplayForm($post_title, $post_entry) {
       <label for="post_multimedia">Add image/video</label>
       <!--<input type="hidden" name="MAX_FILE_SIZE" value="10000000" />-->
       <!--<input type="hidden" name="user_id" value="1" />-->
-      <input type="file" name="new_file" class="form-control-file" id="post_multimedia" aria-describedby="multimedia_help">
+      <input type="file" name="mov_file" class="form-control-file" id="post_multimedia" aria-describedby="multimedia_help">
       <small id="multimedia_help" class="form_text text-muted">File cannot be any larger than 10MB</small>
     </div>
     <div class="form-group">
@@ -104,9 +104,6 @@ function redisplayForm($post_title, $post_entry) {
 
 <?php
 }
-?>
-
-<?php
 
 function sanitize($str) {
   $new_str = trim($str);
@@ -117,10 +114,10 @@ function sanitize($str) {
 
 if (isset($_POST['upload'])) {
   $target_dir = "";
-  $temp_file = $_FILES['new_file']['tmp_name'];
-  $target_img_dir = $dir . "/image/" . $_FILES['new_file']['name'];
-  $target_vid_dir = $dir . "/video/" . $_FILES['new_file']['name'];
-  $file_size = $_FILES['new_file']['size'];
+  $temp_file = $_FILES['mov_file']['tmp_name'];
+  $target_img_dir = $dir . "/image/" . $_FILES['mov_file']['name'];
+  $target_vid_dir = $dir . "/video/" . $_FILES['mov_file']['name'];
+  $file_size = $_FILES['mov_file']['size'];
 
   
   if (!empty($temp_file)) {
@@ -367,7 +364,7 @@ if ($error_count == 0) {
      
       if (move_uploaded_file($temp_file, $target_img_dir) == true) {
         chmod($target_img_dir, 0644);
-        echo "File \"" . htmlentities($_FILES['new_file']['name']) . "\"successfully 
+        echo "File \"" . htmlentities($_FILES['mov_file']['name']) . "\"successfully 
         uploaded.<br />\n";
     
         // Remember to get user id from SESSION variable in production code
@@ -377,8 +374,8 @@ if ($error_count == 0) {
         // Declare and initialize required values to be added to post object
         $display = "true";
         $post_title = sanitize($_POST['post_title']); // sanitize 
-        $image_url = $dir . "/image/" . $_FILES['new_file']['name'];
-        $image_size = $_FILES['new_file']['size'];
+        $image_url = $dir . "/image/" . $_FILES['mov_file']['name'];
+        $image_size = $_FILES['mov_file']['size'];
         $post_entry = sanitize($_POST['post_text']); // sanitize 
         $image_flag = "true";
         // sanitize 
@@ -418,8 +415,8 @@ if ($error_count == 0) {
           $Tag->setPostId($post_id);
           $Tag->setTags($tag_array);
           $Tag->insertTags();
-        }    
-        
+        }
+    
         header('Location: home.php'); 
         exit;
     
@@ -468,13 +465,13 @@ if ($error_count == 0) {
         // Declare and initialize required values to be added to post object
         $display = "true";
         $video_flag = "true";
-        $basename = explode(".", $_FILES['new_file']['name']);
+        $basename = explode(".", $_FILES['mov_file']['name']);
         $basename = $basename[0];
-        $video_url = $dir . "/video/" . $_FILES['new_file']['name'];
+        $video_url = $dir . "/video/" . $_FILES['mov_file']['name'];
         $video_mp4 = $dir . "/video/" . $basename . ".mp4";
-        $thumbnail = $dir . "/video/" . $basename . ".jpg";
+        $thumbnail = $dir . "/image/" . $basename . ".jpg";
         $post_title = sanitize($_POST['post_title']);
-        $video_size = $_FILES['new_file']['size'];
+        $video_size = $_FILES['mov_file']['size'];
         $post_entry = sanitize($_POST['post_text']); 
       
         
@@ -530,7 +527,7 @@ if ($error_count == 0) {
         exit;
       } 
     } else {
-      echo "There was an error uploading \"" . htmlentities($_FILES['new_file']['name']) .
+      echo "There was an error uploading \"" . htmlentities($_FILES['mov_file']['name']) .
       "\".<br />\n";
       redisplayForm($post_title, $post_entry);
     }
