@@ -1,12 +1,14 @@
 <div style="clear:both;margin-top:100px;"></div>
 	<div id="footer" class="w3-container w3-light-grey">
+	    <!--
 		<p id="copyright">&copy; 
 		 <?php 
 		   date_default_timezone_set("America/New_York");
 		   echo date("Y");
 		 ?> dubarub.com. All Rights Reserved. 
 		</p>
-		<p id="author">Developed and maintained by: Bryan Thomas</p>
+		-->
+		<p id="license">The content of this site is licensed under the <a href="https://choosealicense.com/licenses/gpl-3.0/">GPLv3 License</a></p>
 	</div>
 
     <!--For music player play button graphic -->
