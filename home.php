@@ -784,7 +784,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	loadUnreadMessageCount();
   
 	$('#inbox').click(function() {
-	  window.location.assign('https://quarterpast4.com/inbox.php');
+	  window.location.assign('https://dubarub.com/inbox.php');
 	});
   
 	socket.on('connect', function() {
@@ -935,7 +935,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
     });
     
     $('#settings').click(function() {
-      window.location.assign('settings_update.php');
+      window.location.assign('settings.php');
       //document.getElementById('settings_modal').style.display = 'block';
     })
     
