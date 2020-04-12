@@ -8,6 +8,7 @@ header('Content-Type: application/json;charset=utf-8');
 
 require_once('php_class/class_Post.php');
 require_once('php_class/class_PostComment.php');
+require_once('php_class/class_Postmaster.php');
 require_once('php_class/class_Status.php');
 require_once('php_class/class_Follow.php');
 require_once('php_class/class_User.php');
@@ -82,6 +83,16 @@ $user = isset($_POST['rendered_user_name']) ? $_POST['rendered_user_name'] : iss
           
         $myObj = array();
         $myObj['isCommentFlagged'] = "true";
+        break;
+        
+      case 'Remove Message':
+        $message_id = $_POST['message_id'];
+        $postmaster = new Postmaster();
+        $postmaster->setUsername($user_name);
+        $postmaster->deleteMessage($message_id);
+        
+        $myObj = array();
+        $myObj['isMessageRemoved'] = "true";
         break;
         
       case 'Remove Comment':
