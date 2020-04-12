@@ -46,8 +46,7 @@ class Postmaster {
     recipient VARCHAR(70) NOT NULL, 
     body VARCHAR(2020) NOT NULL, 
     unread VARCHAR(5) DEFAULT 'true', 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
-    display VARCHAR(5) DEFAULT 'true', 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
     FOREIGN KEY (sender_id) REFERENCES user(u_id));";
     
     $this->db->exec($sql);
@@ -80,9 +79,20 @@ class Postmaster {
     $stmt->execute();
   }
   
+  public function deleteMessage($message_id) {
+    $table = $this->user_name . '_mailbox';
+    $sql = "DELETE FROM $table WHERE message_id = :message_id";
+    
+    $stmt = $this->db->prepare($sql);
+    
+    $stmt->bindParam(':message_id', $message_id);
+    
+    return $stmt->execute();
+  } 
+  
   public function retrieveMailbox($user_name) {
     $table = $user_name . "_mailbox";
-    $sql = "SELECT message_id, sender_id, avatar, sender, recipient, body, unread, created_at, display FROM $table ORDER BY created_at ASC";
+    $sql = "SELECT message_id, sender_id, avatar, sender, recipient, body, unread, created_at FROM $table ORDER BY created_at ASC";
     $object = array();
     $x = 0;
     foreach ($this->db->query($sql) as $row) {
