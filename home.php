@@ -807,6 +807,22 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	  }
 	
 	});
+	
+	socket.on('message thread', function(data) {
+	
+	  if (data.recipient == userName) {
+	  
+		console.log('new message thread available for recipient: ' + data.recipient);
+		var count = Number($('.badge').text());
+		count += 1;
+	  
+		$('.badge').css("display", "block");
+	
+		$('.badge').text(count);
+		
+	  }
+	
+	});
     
     var status = document.getElementById('status');
     
