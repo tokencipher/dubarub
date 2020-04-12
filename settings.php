@@ -200,21 +200,21 @@ if ($error_count == 0) {
 
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/17/2018 -->
+<!-- Last modified: 04/11/2020 -->
 
 <?php require_once('php_inc/inc_header.php'); ?>
-<title>Update Settings</title>
+<title>Settings</title>
 <?php include('php_inc/inc_user_nav.php'); ?>
 </head>
 <body> 
 
 <div class="w3-center">
-  <h2>Update Settings</h2>
+  <h2>Settings</h2>
   <i class="w3-xxlarge fa fa-cog" style="color:#cc6600"></i>
 </div>
 
 <div class="w3-center"><br>
-  <form action="settings_update.php" method="POST" enctype="multipart/form-data" class="w3-container" >
+  <form action="settings.php" method="POST" enctype="multipart/form-data" class="w3-container" >
     <div class="form-group">
       <label for="avatar_file">Choose avatar</label>
       <input style="margin:auto;" type="file" id="avatar_file" name="avatar_path" class="form-control-file" required></input>

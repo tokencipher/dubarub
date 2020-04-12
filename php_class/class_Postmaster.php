@@ -1,9 +1,17 @@
 <?php
+
+/**
+ * Every user has their own mailbox. A mailbox should be created for each user
+ * upon signup. The mailbox allows for a user to delete a message from their 
+ * mailbox, but allows for the sender to still have a copy of that message in 
+ * their mailbox although the message deleted is identified by one unique 
+ * message_id. 
+ */ 
  
 class Postmaster {
   /**
-    private $db;
-    Mailbox fields 
+    Mailbox fields
+	private $db; 
 	private $message_id; 
 	private $sender_id; 
 	private $avatar;
@@ -12,6 +20,7 @@ class Postmaster {
 	private $body;
 	private $unread;
 	private $created_at; 
+	private $display;
 	*/
 	private $user_name; 
 	
@@ -73,7 +82,7 @@ class Postmaster {
   
   public function retrieveMailbox($user_name) {
     $table = $user_name . "_mailbox";
-    $sql = "SELECT message_id, sender_id, avatar, sender, recipient, body, unread, created_at FROM $table";
+    $sql = "SELECT message_id, sender_id, avatar, sender, recipient, body, unread, created_at, display FROM $table ORDER BY created_at ASC";
     $object = array();
     $x = 0;
     foreach ($this->db->query($sql) as $row) {
@@ -88,6 +97,21 @@ class Postmaster {
       ++$x;
     }
     return $object;
+  }
+  
+  public function setUnreadFlag($user_name, $message_id) {
+    $table = $user_name . '_mailbox';
+    $sql = "UPDATE $table SET unread = 'false' WHERE message_id = :message_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':message_id', $message_id);
+    $stmt->execute();
+  }
+  
+  public function getUnreadCount($user_name) {
+    $table = $user_name . '_mailbox';
+    $sql = "SELECT COUNT(message_id) AS messages FROM $table WHERE unread = 'true'";
+    $unread_count = $this->db->query($sql)->fetchColumn();
+    return $unread_count;
   }
   
 }
