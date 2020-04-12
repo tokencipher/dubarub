@@ -46,6 +46,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
       height:25px;
       line-height:24px;
       overflow:scroll;
+      background:;
     }
     .bio_username {
       text-align:left;
@@ -292,25 +293,7 @@ if (!isset($_SESSION['user_id']) && !isset($_SESSION['logged_in'])) {
 	<h2>Send message</h2>
   </header>
 
-  <div class="w3-center"><br>
-	<form class="w3-container" method="post">
-	  <div class="form-group">
-		<div><i class="w3-xxlarge fa fa-paper-plane" style="color:#339966;"></i></div>
-		<!--<label for="post_title">Enter caption of new post</label>-->
-		Subject: <input type="text" maxlength="140" name="message_subject" class="form-control" id="message_subject" aria-describedby="subject_help" placeholder="" />
-		<small id="subject_help" class="form-text text-muted">Subject cannot be any longer than 140 characters.</small>
-	  </div>
-	  <div class="form-group">
-		<!-- <label for="bio_edit">Edit bio</label> -->
-		Body: <textarea id="message_body" name="message_body" class="form-control" placeholder="" rows="3" maxlength="" required></textarea>
-		<br>
-	  </div>
-	</form>
-	
-	<div id="message_submit_container">
-	  <button id="message_submit" class="btn btn-primary w3-margin-bottom">Send</button>
-	</div>
-  </div>
+  <iframe src="https://dubarub.com:4200/message_form/<?php echo $_SESSION['user_name']; ?>" height="100%" width="100%" style="border:none"></iframe>
   
   <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
 	<button onclick="document.getElementById('message_modal').style.display='none'"
