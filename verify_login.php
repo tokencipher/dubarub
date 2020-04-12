@@ -7,7 +7,7 @@ session_start();
 /** 
   * Include our database connection.
   */
-require ("php_inc/inc_db_qp4.php");
+require("php_inc/inc_db_qp4.php");
 require_once("php_class/class_Session.php");
 
 $errorCount = 0;
@@ -23,7 +23,7 @@ function redisplayForm($email, $errEmail, $errPassword) {
 ?>
   
   <div style="position:relative;margin:auto" id="logo_container" class="w3-center">
-    <img src="img/dubarub.jpg" alt="dubarub" id="place_logo" height="80" width="80" />   
+    <img src="images/dubarub.jpg" alt="dubarub" id="place_logo" height="80" width="80" />   
   </div>
   
   <form name="loginForm" method="post" action="verify_login.php">
@@ -119,6 +119,7 @@ if ($errorCount == 0) {
         $_SESSION['user_name'] = $username;
         $_SESSION['logged_in'] = time();
         
+        
         $user_log = new Session();
         $user_log->logUser($_SESSION['user_id'], $_SESSION['user_name']);
         
@@ -140,7 +141,7 @@ echo "<p>$password</p>";
   
 ?>
 <!-- Author: Bryan Thomas -->
-<!-- Last modified: 11/17/2018 -->
+<!-- Last modified: 04/12/2020 -->
 <?php require_once('php_inc/inc_header.php'); ?>
 <style>
   .heading {
@@ -159,7 +160,8 @@ echo "<p>$password</p>";
   <?php echo $result; ?>
 </div>
 </body>
-<?php include_once('php_inc/inc_footer.php'); ?>
+</html>
+//<?php include_once('php_inc/inc_footer.php'); ?>
 
 
 
