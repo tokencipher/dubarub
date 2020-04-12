@@ -50,4 +50,21 @@ class MessageThread {
 	$stmt->execute();
   }
   
+  public function retrieveThreads($message_id) {
+    $table = "thread";
+    $sql = "SELECT message_id, sender_id, recipient_id, sender, recipient, body FROM $table WHERE message_id = '$message_id'";
+    $object = array();
+    $x = 0;
+    foreach ($this->db->query($sql) as $row) {
+      $object[$x]['message_id'] = "{$row['message_id']}";
+      $object[$x]['sender_id'] = "{$row['sender_id']}";
+      $object[$x]['recipient_id'] = "{$row['recipient_id']}";
+      $object[$x]['sender'] = "{$row['sender']}";
+      $object[$x]['recipient'] = "{$row['recipient']}";
+      $object[$x]['body'] = "{$row['body']}";
+      ++$x;
+    }
+    return $object;
+  } 
+}
 ?>
