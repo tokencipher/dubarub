@@ -239,6 +239,9 @@ seen fit.
 * Implement flagging of posts
 * Implement flagging of comments
 
+#### Testing
+* Add unit tests
+
 #### Accessibility
 * Made app W3C accessibility compliant
 
