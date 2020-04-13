@@ -20,6 +20,10 @@ v1.0 features include:
 • adding to and deleting music from playlist
 • feed of posts from all users followed
 
+## Usage
+
+Visit [dubarub](https://www.dubarub.com) to sign up!
+
 ## Installation
 
 These are the installation instructions as executed on Ubuntu v16.04.6 LTS
