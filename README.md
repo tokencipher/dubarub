@@ -219,6 +219,7 @@ seen fit.
 * Implement service worker
 * Push notifications 
 * Improve programmatic audio metadata/tags collection from user-uploaded audio (check out [music-metadata](https://www.npmjs.com/package/music-metadata)
+* Allow music from playlist to be played while offline 
 
 #### UI
 * Inbox design update
