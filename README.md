@@ -221,6 +221,7 @@ seen fit.
 * Push notifications 
 * Improve programmatic audio metadata/tags collection from user-uploaded audio (check out [music-metadata](https://www.npmjs.com/package/music-metadata)
 * Allow music from playlist to be played while offline 
+* Add support for replying to comments
 
 #### UI
 * Inbox design update
