@@ -207,6 +207,7 @@ seen fit.
 #### Source Code
 * Improve html mark-up for better search engine ranking
 * Refactor where applicable
+* Ensure codebase enforces scalability 
 
 #### Data
 * Add more fields for audio streaming analytics 
